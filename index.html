@@ -1,23 +1,821 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <title>Clue Connection</title>
 <style>
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-       background:#10141c;color:#e8d9b0;font-family:Georgia,serif;text-align:center}
-  .card{padding:2rem}
-  h1{font-size:2.2rem;letter-spacing:.04em;margin:.2em 0}
-  p{opacity:.8}
-  .gear{font-size:3rem}
+:root{--wood:#241710;--panel:#33231a;--cream:#f6ecd6;--gold:#ffc928;--a1:#e0b455;--a2:#8a5a34;--nav:84px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;overflow:hidden}
+body{background:var(--wood);color:var(--cream);font:17px/1.3 Calibri,Arial,Helvetica,sans-serif;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+h1,h2,h3,p{margin:0}
+#app{position:fixed;inset:0 0 calc(var(--nav) + env(safe-area-inset-bottom)) 0;overflow:auto}
+/* shaped controls: medallions and pills, never plain rectangles */
+.med{position:relative;display:grid;place-items:center;flex:none;width:56px;height:56px;border-radius:50%;color:var(--a1);
+  background:radial-gradient(circle at 35% 30%,#6b4a2e,#2a1a10);border:3px solid var(--a1);
+  box-shadow:0 0 0 3px var(--wood),0 0 0 5px var(--a2),0 6px 10px rgba(0,0,0,.5)}
+.g{width:64%;height:64%;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.med.has-art .g{visibility:hidden}
+.art{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:inherit}
+/* puzzle scene: a 200 x 100 unit world (10px per unit) panned and zoomed inside the view */
+.view{position:relative;overflow:hidden;touch-action:none;background:#1a100a;cursor:grab}
+.scene{position:absolute;left:0;top:0;width:2000px;height:1000px;transform-origin:0 0}
+.scene>svg,.scene>.art{position:absolute;inset:0;width:100%;height:100%;border-radius:0;object-fit:fill}
+.item{position:absolute}
+.item small{position:absolute;left:50%;top:100%;transform:translateX(-50%);font-size:14px;white-space:nowrap;color:#000;background:#fff;border-radius:6px;padding:0 4px}
+.chip{position:relative;display:grid;place-items:center;width:100%;height:100%;border-radius:28%;color:#fff;
+  background:hsl(var(--h) 55% 42%);border:.07em solid #fff;box-shadow:0 .1em 0 rgba(0,0,0,.35)}
+.chip b{line-height:1}
+.chip.has-art{background:none;border-color:transparent;box-shadow:none}
+.chip.has-art b{visibility:hidden}
+.bar{display:flex;align-items:center;gap:14px;padding:12px 16px}
+.bar h1{flex:1;font-size:24px}
+.mb{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:7px;min-width:64px;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:8px 22px;border-radius:999px;font-weight:bold;text-align:left;
+  border:3px solid var(--a1);background:linear-gradient(#5d3f27,#38241a);box-shadow:0 4px 0 #120b07,0 8px 12px rgba(0,0,0,.4)}
+.pill:active:not(:disabled),.mb:active:not(:disabled) .med{transform:translateY(2px)}
+button:disabled{opacity:.45;cursor:default}
+.pill small,.tile small{display:block;font-size:13px;font-weight:normal;opacity:.85}
+.num{font-size:24px;font-weight:bold}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;padding:8px 16px 24px}
+.tile{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:30px;text-align:left;
+  border:3px solid var(--a1);background:var(--panel);box-shadow:inset 0 0 0 3px var(--a2),0 6px 12px rgba(0,0,0,.4)}
+.cats{display:grid;gap:14px;justify-items:start;padding:8px 16px 24px}
+.cat{width:100%;padding:14px;border-radius:30px;background:var(--panel);box-shadow:inset 0 0 0 3px var(--a2)}
+.cathead{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.cathead .med{width:76px;height:76px}
+.modes{display:flex;flex-wrap:wrap;gap:12px}
+.mode{padding-left:8px}
+.mode .med{width:40px;height:40px;border-width:2px;box-shadow:none}
+.nums{display:grid;grid-template-columns:repeat(5,auto);gap:26px;justify-content:center;padding:24px}
+.nums .med{width:84px;height:84px;font-size:34px}
+.tick{position:absolute;right:-6px;top:58px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#3a2618}
+/* play: scene plus a side panel (landscape) or bottom panel (portrait) holding the checklist and the Found Tray */
+.playing #app{bottom:0}
+.play{display:grid;height:100%;grid-template-columns:1fr 264px}
+.side{display:flex;flex-direction:column;gap:8px;min-height:0;padding:8px 8px 84px;background:var(--panel)}
+.side .bar{padding:0 0 4px}
+.side h1{font-size:18px}
+.side .med{width:44px;height:44px}
+#list{flex:none;margin:0;padding:0;list-style:none;columns:2;font-size:14px}
+#list li{display:flex;align-items:center;gap:3px;padding:2px 0;break-inside:avoid}
+#list .g{flex:none;width:15px;height:15px;stroke-width:6;color:var(--gold);visibility:hidden}
+#list .done{color:#a8977c;text-decoration:line-through}
+#list .done .g{visibility:visible}
+.tray{flex:1;min-height:0;overflow:auto;padding:8px;border-radius:20px;border:3px solid var(--a1);background:#1c120c;box-shadow:inset 0 0 0 3px var(--a2)}
+.tray h2{font-size:16px;margin-bottom:6px}
+#tray{display:flex;flex-wrap:wrap;gap:6px 2px}
+.got{display:flex;flex-direction:column;align-items:center;gap:2px;width:56px;font-size:11px;line-height:1.1;text-align:center}
+.got .chip{width:38px;height:38px;font-size:22px}
+@media (orientation:portrait){
+  .play{grid-template-columns:none;grid-template-rows:1fr auto}
+  .side{padding:8px}
+  #list{columns:4}
+  .tray{min-height:104px;margin-right:76px}
+}
+/* found sequence: golden ring draws itself, pop and sparkles, then the item flies to the tray */
+.ring{position:absolute;left:-20%;top:-20%;width:140%;height:140%;overflow:visible;pointer-events:none}
+.ring circle{fill:none;stroke:var(--gold);stroke-width:9;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:draw .35s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pop .chip{animation:pop .4s}
+@keyframes pop{40%{transform:scale(1.3)}}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-7%)}50%{transform:translateX(7%)}75%{transform:translateX(-4%)}}
+.fly{position:fixed;z-index:9;transform-origin:0 0;transition:transform .5s ease-in}
+.sparks{position:absolute;left:50%;top:50%;pointer-events:none}
+.sparks i{position:absolute;left:-7px;top:-7px;width:14px;height:14px;background:var(--gold);--d:-70px;animation:spark .7s ease-out both;
+  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+@keyframes spark{from{transform:rotate(var(--r));opacity:0}15%{opacity:1}to{transform:rotate(var(--r)) translateY(var(--d)) scale(.2);opacity:0}}
+.win{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:rgba(20,12,8,.8)}
+.card{display:grid;gap:16px;justify-items:center;padding:28px 36px;border-radius:36px;text-align:center;
+  border:4px solid var(--gold);background:var(--panel);box-shadow:0 0 60px rgba(255,201,40,.4)}
+/* Wonder Machine home: a living room scene that changes with every piece */
+.home{display:flex;flex-direction:column;height:100%}
+.powers{display:flex;align-items:center;gap:10px}
+.powers .med{width:40px;height:40px;border-style:dashed;opacity:.55}
+.stagew{flex:1;display:flex;align-items:center;gap:6px;min-height:0;padding:0 10px}
+.room{flex:1;min-width:0;height:100%;touch-action:pan-y}
+.wire{fill:none;stroke:#5b4636;stroke-width:.6}
+.bulb{fill:#4a3a2e}
+.bulb.lit{fill:#ffe08a;filter:drop-shadow(0 0 2px #ffd76a)}
+.piece{fill:none;stroke:#e0b455;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.piece .wood{stroke:#9a6638;stroke-width:3.4}
+.ghost,.ghost .wood{fill:none;stroke:#f6ecd6;stroke-width:1;stroke-dasharray:2 2;opacity:.25}
+.piece.fly{animation:flyin .9s cubic-bezier(.3,1.3,.5,1) both;transform-box:fill-box;transform-origin:center}
+@keyframes flyin{from{transform:translateY(-70px) scale(2.4);opacity:0}70%{opacity:1}}
+.spk{fill:var(--gold);--d:-16px;animation:spark .7s .7s ease-out both}
+.marble{fill:var(--gold);stroke:#fff;stroke-width:.6}
+.runs{animation:hum 1.2s ease-in-out infinite alternate}
+@keyframes hum{to{filter:drop-shadow(0 0 3px #ffd76a)}}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px 14px}
+.foot b{color:var(--gold)}
+.big{padding:10px 44px;font-size:22px}
+/* the bottom banner: the same five medallions in landscape and portrait; one Home medallion during play */
+#nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;justify-content:space-around;align-items:center;
+  height:calc(var(--nav) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);
+  background:linear-gradient(#3a2618,#1b110a);border-top:3px solid var(--a2);box-shadow:0 -4px 12px rgba(0,0,0,.5)}
+#nav .mb{gap:6px;font-size:12px}
+#nav .med{width:46px;height:46px}
+.playing #nav{left:auto;right:10px;bottom:10px;height:auto;padding:0;background:none;border:0;box-shadow:none}
+/* settings */
+.sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;padding:8px 16px 24px}
+.sets h2{margin-bottom:12px}
+.sets .pill{margin:0 10px 6px 0}
+.code{margin-bottom:12px;font-size:13px;word-break:break-all;-webkit-user-select:all;user-select:all}
+.field{width:100%;min-height:48px;margin-bottom:12px;padding:8px 18px;border-radius:999px;border:3px solid var(--a2);
+  background:#1c120c;color:var(--cream);font:inherit;-webkit-user-select:text;user-select:text}
+.slider{-webkit-appearance:none;appearance:none;width:min(100%,420px);height:22px;margin:14px 0;border-radius:999px;
+  border:3px solid var(--a1);background:#1c120c;box-shadow:inset 0 0 0 2px var(--a2)}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:44px;height:44px;border-radius:50%;border:3px solid var(--a1);
+  background:radial-gradient(circle at 35% 30%,#ffe08a,#b9812a);box-shadow:0 0 0 3px var(--wood),0 0 0 5px var(--a2),0 4px 8px rgba(0,0,0,.5)}
+.slider::-moz-range-thumb{width:40px;height:40px;border-radius:50%;border:3px solid var(--a1);
+  background:radial-gradient(circle at 35% 30%,#ffe08a,#b9812a);box-shadow:0 0 0 3px var(--wood),0 0 0 5px var(--a2),0 4px 8px rgba(0,0,0,.5)}
+.toggle{position:relative;display:flex;align-items:center;width:136px;height:64px;padding:0 6px;border-radius:999px;
+  border:3px solid var(--a1);background:#1c120c;box-shadow:inset 0 0 0 3px var(--a2),0 6px 10px rgba(0,0,0,.4)}
+.toggle .med{width:46px;height:46px;color:#8d7c66;border-color:#8d7c66;transition:transform .2s}
+.toggle b{position:absolute;right:20px}
+.toggle[aria-checked=true]{background:linear-gradient(#6f9440,#3f5f22)}
+.toggle[aria-checked=true] .med{transform:translateX(72px);color:var(--gold);border-color:var(--gold)}
+.toggle[aria-checked=true] b{left:20px;right:auto}
+.toggle[aria-checked=false] .med::after{content:"";position:absolute;width:3px;height:74%;border-radius:2px;background:currentColor;transform:rotate(45deg)}
+.toggle.has-art{border:0;background:none;box-shadow:none}
+.toggle.has-art>:not(.art){visibility:hidden}
+.test{max-width:860px;max-height:92%;overflow:auto;text-align:left;justify-items:start;-webkit-user-select:text;user-select:text}
+.test ul{margin:0;padding:0;list-style:none}
+.test li{padding:3px 0}
+.test .ok b{color:#9bdc74}
+.test .bad b{color:#ff9478}
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="gear">⚙️</div>
-    <h1>Clue Connection</h1>
-    <p>The machines are still being designed… coming soon.</p>
-  </div>
+<div id="app"></div>
+<nav id="nav"></nav>
+<audio id="music" loop></audio>
+<script>
+'use strict';
+// ---------- LABELS: every display name lives here; rename in one line ----------
+const LABELS = {
+  title: 'Clue Connection',
+  cat: { find: 'Find It', compare: 'Compare It', remember: 'Remember It', figure: 'Deduce It' },
+  mode: {
+    'i-spy': 'I Spy', 'hidden-object': 'Find Them All', count: 'Count Them', twins: 'Find the Twins',
+    'spot-difference': 'Spot the Difference', 'odd-one-out': 'Odd One Out', shadow: 'Shadow Match',
+    vanished: "What's Missing?", changed: 'What Changed?', 'doesnt-belong': "Which Doesn't Belong?", zoom: 'Tiny Clues'
+  },
+  ui: {
+    play: 'Play', back: 'Back', home: 'Home', settings: 'Settings', soon: 'Coming soon', worlds: 'Pick a World',
+    stages: 'Pick a Puzzle', found: 'Found', foundCount: 'found', pieces: 'pieces', powers: 'Powers', runs: 'It runs!',
+    later: 'This machine comes later', win: 'You found them all!', newPiece: 'You earned a new piece for the',
+    oldPiece: 'You already earned the piece for this puzzle.', seeMachine: 'See my machine', next: 'Next puzzle',
+    allModes: 'Show all',
+    saveCode: 'My Save Code', copy: 'Copy', copied: 'Copied', loadCode: 'Load a Save Code', load: 'Load',
+    paste: 'Paste a save code here', badCode: 'That code did not work. Please check it and try again. Your game is unchanged.',
+    confirmLoad: 'Tap again to replace your game', loaded: 'Save code loaded.', together: 'Play Together',
+    host: 'Host', join: 'Join', volume: 'Volume', music: 'Music', on: 'On', off: 'Off',
+    startOver: 'Start Over', confirmWipe: 'Tap again to erase everything', wiped: 'Your game has been reset.'
+  }
+};
+
+// ---------- ICONS: drop assets/icons/<icon-id>.png in later; the inline SVG is the placeholder ----------
+const ICONS = {};
+const CATEGORIES = [
+  { id: 'find', modes: ['i-spy', 'hidden-object', 'count', 'twins'] },
+  { id: 'compare', modes: ['spot-difference', 'odd-one-out', 'shadow'] },
+  { id: 'remember', modes: ['vanished', 'changed'] },
+  { id: 'figure', modes: ['doesnt-belong', 'zoom'] }
+];
+const PLAYABLE_MODE = 'hidden-object';
+const GLYPHS = {
+  find: '<circle cx="21" cy="21" r="10"/><path d="M29 29l10 10"/>',
+  compare: '<ellipse cx="15" cy="24" rx="7" ry="9"/><ellipse cx="33" cy="24" rx="7" ry="9"/><circle cx="17" cy="26" r="2.5" fill="currentColor"/><circle cx="35" cy="26" r="2.5" fill="currentColor"/>',
+  remember: '<ellipse cx="10" cy="20" rx="6" ry="9"/><ellipse cx="38" cy="20" rx="6" ry="9"/><path d="M17 27a9 9.5 0 1 1 14 0c-2 2-3 4-3 7 0 5 6 6 7 2"/><path d="M17 27c2 2 3 4 3 7 0 6 4 9 9 8"/><circle cx="20.5" cy="19" r="1.5" fill="currentColor"/><circle cx="27.5" cy="19" r="1.5" fill="currentColor"/>',
+  figure: '<path d="M5 31c9 6 29 6 38 0"/><path d="M12 32c0-13 3-20 12-20s12 7 12 20"/><path d="M12.5 26c7 3 16 3 23 0"/>',
+  settings: '<circle cx="24" cy="24" r="14" stroke-width="5" stroke-dasharray="5.5 5.5"/><circle cx="24" cy="24" r="10"/><circle cx="24" cy="24" r="3.5"/>',
+  home: '<path d="M8 24L24 10l16 14"/><path d="M13 21v17h22V21"/><path d="M21 38v-9h6v9"/>',
+  back: '<path d="M29 11L16 24l13 13"/>',
+  next: '<path d="M19 11l13 13-13 13"/>',
+  check: '<path d="M11 25l9 9 17-19"/>',
+  lock: '<rect x="13" y="22" width="22" height="16" rx="3"/><path d="M17 22v-5a7 7 0 0 1 14 0v5"/>',
+  note: '<path d="M19 34V14l16-4v20"/><circle cx="15" cy="34" r="4" fill="currentColor"/><circle cx="31" cy="30" r="4" fill="currentColor"/>'
+};
+for (const id in GLYPHS) ICONS[id] = { src: `assets/icons/${id}.png`, svg: GLYPHS[id] };
+for (const c of CATEGORIES) for (const m of c.modes) ICONS[m] = { src: `assets/icons/${m}.png`, svg: GLYPHS[c.id] };
+
+// ---------- WORLDS: zones are in scene units; the scene is 200 wide x 100 tall (1 unit = 1% of scene height) ----------
+// Shelf and table zones: items rest on the zone's bottom edge. Wall and floor zones: items sit anywhere inside.
+const world = (id, name, blurb, zones = []) => ({ id, name, blurb, background: `assets/worlds/${id}/background.png`, zones });
+const zone = (id, x, y, w, h, surface, maxSize) => ({ id, x, y, w, h, surfaces: [surface], maxSize });
+const WORLDS = [
+  world('clockmakers-attic', "The Clockmaker's Attic", 'A cosy tinker-shop of brass, pendulums and giant cuckoo clocks.', [
+    zone('rafter-left', 10, 4, 60, 12, 'shelf', 'M'), zone('rafter-right', 120, 4, 66, 12, 'shelf', 'M'),
+    zone('cuckoo-wall', 8, 22, 40, 26, 'wall', 'L'), zone('tool-shelf-top', 54, 22, 44, 13, 'shelf', 'M'),
+    zone('tool-shelf-low', 54, 37, 44, 13, 'shelf', 'M'), zone('window-sill', 104, 30, 30, 16, 'shelf', 'M'),
+    zone('gear-tower', 140, 20, 22, 30, 'wall', 'L'), zone('pendulum-corner', 166, 22, 28, 28, 'wall', 'L'),
+    zone('workbench', 6, 54, 58, 18, 'table', 'L'), zone('blueprint-desk', 72, 56, 48, 16, 'table', 'L'),
+    zone('crate-stack', 128, 56, 32, 16, 'table', 'M'), zone('low-shelf', 164, 54, 30, 16, 'shelf', 'M'),
+    zone('floor-left', 4, 77, 92, 20, 'floor', 'L'), zone('floor-right', 100, 77, 96, 20, 'floor', 'L')
+  ]),
+  world('midnight-botanical-conservatory', 'The Midnight Botanical Conservatory', 'A glasshouse at night, full of glowing mushrooms and forest spirits.'),
+  world('micro-kingdoms', "Micro-Kingdoms: The Giant's Living Room", 'You are three inches tall in a messy, giant room.'),
+  world('papercraft-origami-kingdom', 'The Papercraft and Origami Kingdom', 'A pop-up land of folded paper and cardboard.'),
+  world('grand-astral-express', 'The Grand Astral Express', 'A velvet-and-brass train rolling through the stars.'),
+  world('living-art-gallery', 'The Living Art Gallery', 'A storybook museum where the paintings are alive.'),
+  world('sunken-coral-metropolis', 'Sunken Coral Metropolis', 'Sunny underwater ruins with turtles and pearl lanterns.'),
+  world('cloud-top-sky-port', 'The Cloud-Top Sky-Port', 'Floating islands, windmills and airships at cloud piers.'),
+  world('wizards-kitchen', "The Wizard's Kitchen and Potion Pantry", 'Bubbling cauldrons, starry jars and enchanted spoons.'),
+  world('retro-arcade-toybox', 'Retro Arcade and Toybox Nexus', 'Neon cartridges, toy robots and a giant arcade cabinet.')
+];
+
+// ---------- ITEMS ----------
+// SAMPLE POOL: 30 placeholder items for the Clockmaker's Attic. The real pool of 80 to 100 items per world
+// arrives with the art workbook and replaces this list. These counts are not final.
+const SIZE = { S: 5, M: 7, L: 10 }; // item diameter in scene units
+const pool = (worldId, rows) => rows.map(([name, category, size], i) => {
+  const id = `${worldId}-${String(i + 1).padStart(3, '0')}`;
+  return { id, name, category, size, sprite: `assets/worlds/${worldId}/items/${id}.png` };
+});
+const ITEMS = {
+  'clockmakers-attic': pool('clockmakers-attic', [
+    ['Brass Gear', 'gears', 'M'], ['Tiny Cog', 'gears', 'S'], ['Coiled Spring', 'gears', 'S'], ['Flywheel', 'gears', 'L'], ['Ratchet Wheel', 'gears', 'M'],
+    ['Winding Key', 'keys', 'S'], ['Skeleton Key', 'keys', 'S'], ['Padlock', 'keys', 'M'], ['Key Ring', 'keys', 'M'], ['Keyhole Plate', 'keys', 'S'],
+    ['Pocket Watch', 'clocks', 'S'], ['Cuckoo Clock', 'clocks', 'L'], ['Hourglass', 'clocks', 'M'], ['Alarm Clock', 'clocks', 'M'], ['Pendulum Bob', 'clocks', 'L'],
+    ['Oil Can', 'tools', 'M'], ['Screwdriver', 'tools', 'M'], ['Magnifier', 'tools', 'M'], ['Tweezers', 'tools', 'S'], ['Wooden Mallet', 'tools', 'L'],
+    ['Blueprint Roll', 'papers', 'L'], ['Sketchbook', 'papers', 'M'], ['Ink Pot', 'papers', 'S'], ['Quill Pen', 'papers', 'M'], ['Sealed Envelope', 'papers', 'S'],
+    ['Music Box', 'curios', 'L'], ['Candle Stub', 'curios', 'S'], ['Teacup', 'curios', 'S'], ['Spectacles', 'curios', 'M'], ['Brass Bell', 'curios', 'M']
+  ])
+};
+
+// ---------- MACHINES: the five Wonder Machines in SPEC order; a1/a2 are each home's accent colours ----------
+const MACHINES = [
+  { id: 'marble-rail', name: 'Marble Rail', a1: '#e0b455', a2: '#8a5a34' },
+  { id: 'puzzle-box', name: 'Puzzle Box', a1: '#eb9a72', a2: '#7d3f52',
+    ghost: '<rect x="72" y="42" width="56" height="50" rx="3"/><path d="M72 58h56M100 42v50"/><circle cx="100" cy="75" r="7"/>' },
+  { id: 'terrarium', name: 'Terrarium', a1: '#a6d68f', a2: '#3f7a5a',
+    ghost: '<path d="M66 86V60a34 34 0 0 1 68 0v26z"/><rect x="60" y="86" width="80" height="7" rx="2"/>' },
+  { id: 'astral-clock', name: 'Astral-Clock', a1: '#a9bdff', a2: '#4a4f9a',
+    ghost: '<circle cx="100" cy="60" r="32"/><circle cx="100" cy="60" r="22"/><path d="M100 60V42M100 60l12 8"/>' },
+  { id: 'wallpaper-art-odyssey', name: 'Wallpaper Art Odyssey', a1: '#f2a8cc', a2: '#7a4a8a',
+    ghost: '<rect x="38" y="36" width="36" height="27"/><rect x="82" y="50" width="36" height="27"/><rect x="126" y="36" width="36" height="27"/>' }
+];
+
+// ---------- Sub-stage manifest: 10 per world + mode, each just { n, seed }. Seeds are frozen forever. ----------
+const subStages = (worldId, modeId) => Array.from({ length: 10 }, (_, i) => ({ n: i + 1, seed: `${worldId}/${modeId}/${i + 1}` }));
+
+// ---------- Seeded generator ----------
+function hash(str) { // FNV-1a, 32-bit
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619);
+  return h >>> 0;
+}
+function mulberry32(a) {
+  return () => {
+    let t = a = a + 0x6D2B79F5 | 0;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+// Returns every placed item for a Hidden Object List round: 20 targets plus the rest of the pool as decoys.
+// Positions come only from the sub-stage seed: same seed, same layout, on any device, forever.
+function buildRound(worldId, modeId, n) {
+  const rnd = mulberry32(hash(subStages(worldId, modeId)[n - 1].seed));
+  const zones = WORLDS.find(w => w.id === worldId).zones, items = ITEMS[worldId].slice(), placed = [];
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(rnd() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  const spot = (from, room) => Math.round((from + rnd() * room) * 100) / 100;
+  items.forEach((item, i) => {
+    const d = SIZE[item.size], fits = zones.filter(z => SIZE[z.maxSize] >= d);
+    let p;
+    for (let tries = 0; tries < 200; tries++) {
+      const z = fits[Math.floor(rnd() * fits.length)], rests = z.surfaces[0] === 'shelf' || z.surfaces[0] === 'table';
+      const x = spot(z.x + d / 2, z.w - d), y = rests ? z.y + z.h - d / 2 : spot(z.y + d / 2, z.h - d);
+      p = { item, zone: z.id, x, y, target: i < 20 };
+      if (!placed.some(q => Math.hypot(q.x - x, q.y - y) < (SIZE[q.item.size] + d) / 2 + 1)) break;
+    }
+    placed.push(p);
+  });
+  return placed;
+}
+const layoutHash = placed => hash(JSON.stringify(placed.map(p => [p.item.id, p.zone, p.x, p.y, p.target])));
+
+// ---------- Save state. Never rename this key or change its shape without a migration. ----------
+const KEY = 'clue-connection-data-v1';
+const fresh = () => ({
+  version: 1,
+  progress: { worlds: {} },
+  machines: { current: 0, pieces: [0, 0, 0, 0, 0], completed: [] },
+  powers: [],
+  settings: { volume: 80, music: true }
+});
+const isObj = o => !!o && typeof o === 'object' && !Array.isArray(o);
+const isCount = (v, max) => Number.isInteger(v) && v >= 0 && v <= max;
+function validSave(s) {
+  return isObj(s) && s.version === 1 && isObj(s.progress) && isObj(s.progress.worlds) &&
+    Object.values(s.progress.worlds).every(w => isObj(w) && isObj(w.modes) && Object.values(w.modes).every(m =>
+      isObj(m) && Array.isArray(m.clearedSubStages) && m.clearedSubStages.every(n => isCount(n, 10)) && isCount(m.currentSubStage, 10))) &&
+    isObj(s.machines) && isCount(s.machines.current, 4) && Array.isArray(s.machines.pieces) && s.machines.pieces.length === 5 &&
+    s.machines.pieces.every(n => isCount(n, 10)) && Array.isArray(s.machines.completed) &&
+    Array.isArray(s.powers) && isObj(s.settings);
+}
+let save;
+function loadSave() {
+  save = fresh();
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY));
+    if (validSave(s)) save = s;
+  } catch (e) { /* unreadable save: start fresh */ }
+}
+function storeSave() {
+  try { localStorage.setItem(KEY, JSON.stringify(save)); } catch (e) { /* storage unavailable: play on in memory */ }
+}
+const modeProgress = (worldId, modeId) =>
+  (save.progress.worlds[worldId] || { modes: {} }).modes[modeId] || { clearedSubStages: [], currentSubStage: 1 };
+const isUnlocked = (worldId, modeId, n) => n === 1 || modeProgress(worldId, modeId).clearedSubStages.includes(n - 1);
+// Marks a sub-stage cleared. The first clear awards one piece to the CURRENT machine; replays award nothing.
+function clearSubStage(worldId, modeId, n) {
+  const w = save.progress.worlds[worldId] = save.progress.worlds[worldId] || { modes: {} };
+  const m = w.modes[modeId] = w.modes[modeId] || { clearedSubStages: [], currentSubStage: 1 };
+  const mach = save.machines, cur = mach.current;
+  if (m.clearedSubStages.includes(n)) return false;
+  m.clearedSubStages.push(n);
+  m.currentSubStage = Math.min(n + 1, 10);
+  const awarded = mach.pieces[cur] < 10;
+  if (awarded) {
+    mach.justEarned = { machine: cur, piece: ++mach.pieces[cur] };
+    if (mach.pieces[cur] === 10) {
+      mach.completed.push(cur);
+      mach.current = Math.min(cur + 1, 4);
+    }
+  }
+  storeSave();
+  return awarded;
+}
+// ---------- Rendering helpers ----------
+const $ = sel => document.querySelector(sel);
+const app = $('#app'), nav = $('#nav');
+const DEV = new URLSearchParams(location.search).get('dev') === '1';
+// Art drop-in: every icon, sprite and background tries its PNG first and falls back to the drawn placeholder.
+const missingArt = new Set();
+function noArt(img) { missingArt.add(img.getAttribute('src')); img.remove(); }
+const art = src => missingArt.has(src) ? '' :
+  `<img class="art" src="${src}" alt="" draggable="false" onerror="noArt(this)" onload="this.parentNode.classList.add('has-art')">`;
+const glyph = id => `<svg class="g" viewBox="0 0 48 48">${ICONS[id].svg}</svg>`;
+const icon = id => `<span class="med">${glyph(id)}${art(ICONS[id].src)}</span>`;
+const pic = item => `<span class="chip" style="--h:${hash(item.category) % 360}"><b>${item.name[0]}</b>${art(item.sprite)}</span>`;
+
+// ---------- Scene renderer ----------
+// Themed placeholder silhouettes, used only until assets/worlds/<slug>/background.png exists.
+const PLACEHOLDER_ART = {
+  'clockmakers-attic': '<path d="M0 0h40L0 24zM200 0h-40l40 24z" fill="#8a5a34"/>' +
+    '<circle cx="119" cy="17" r="10" fill="#fff6d8" stroke="#8a5a34" stroke-width="1.5"/><path d="M109 17h20M119 7v20" stroke="#8a5a34"/>' +
+    '<path d="M111 26L84 100h48l-5-74z" fill="#fff6d8" opacity=".3"/>' +
+    '<g fill="none" stroke="#cf9d5c" stroke-width="3"><path d="M18 46V30l10-8 10 8v16z" stroke-width="1.5"/><circle cx="28" cy="35" r="5" stroke-width="1.5"/>' +
+    '<circle cx="151" cy="28" r="6" stroke-dasharray="2.4"/><circle cx="153" cy="42" r="4.5" stroke-dasharray="2"/><path d="M180 22v20" stroke-width="1"/><circle cx="180" cy="44" r="3"/></g>'
+};
+function sceneHTML(w, placed) {
+  const shapes = w.zones.map(z => {
+    const s = z.surfaces[0], y = z.y + z.h;
+    return (s === 'shelf' || s === 'table' ? `<rect x="${z.x}" y="${y}" width="${z.w}" height="1.5" rx=".5" fill="#6e4424"/>` : '') +
+      (s === 'table' ? `<path d="M${z.x + 3} ${y + 1.5}V77M${z.x + z.w - 3} ${y + 1.5}V77" stroke="#6e4424" stroke-width="2"/>` : '') +
+      (DEV ? `<rect x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" fill="none" stroke="#c00" stroke-width=".3" stroke-dasharray="1"/>` +
+        `<text x="${z.x + 1}" y="${z.y + 3}" font-size="2.4" fill="#c00">${z.id} (${s}, max ${z.maxSize})</text>` : '');
+  }).join('');
+  return `<div class="scene" id="scene"><svg viewBox="0 0 200 100" preserveAspectRatio="none">` +
+    `<defs><linearGradient id="wall" x2="0" y2="1"><stop offset="0" stop-color="#f6dfae"/><stop offset="1" stop-color="#e6bd7e"/></linearGradient></defs>` +
+    `<rect width="200" height="77" fill="url(#wall)"/><rect y="77" width="200" height="23" fill="#b98554"/>` +
+    `${PLACEHOLDER_ART[w.id] || ''}${shapes}</svg>${art(w.background)}` +
+    placed.map(p => {
+      const d = SIZE[p.item.size] * 10;
+      return `<div class="item" id="i-${p.item.id}" style="left:${p.x * 10 - d / 2}px;top:${p.y * 10 - d / 2}px;width:${d}px;height:${d}px;font-size:${d * .6}px">` +
+        `${pic(p.item)}${DEV ? `<small>${p.item.name}</small>` : ''}</div>`;
+    }).join('') + `</div>`;
+}
+// Camera: drag to pan, pinch or wheel to zoom. The scene always covers the view.
+const cam = { x: 0, y: 0, s: 1, min: 1 };
+function moveCam(view) {
+  cam.s = Math.min(Math.max(cam.s, cam.min), cam.min * 4);
+  cam.x = Math.min(0, Math.max(cam.x, view.clientWidth - 2000 * cam.s));
+  cam.y = Math.min(0, Math.max(cam.y, view.clientHeight - 1000 * cam.s));
+  $('#scene').style.transform = `translate(${cam.x}px,${cam.y}px) scale(${cam.s})`;
+}
+function mountScene(view, onTap) {
+  const pts = new Map();
+  let moved = 0, pinch = 0;
+  const fit = () => { if (!view.isConnected) return; cam.min = Math.max(view.clientWidth / 2000, view.clientHeight / 1000); moveCam(view); };
+  const zoom = (f, cx, cy) => {
+    const s = Math.min(Math.max(cam.s * f, cam.min), cam.min * 4), r = view.getBoundingClientRect();
+    cam.x = cx - r.left - (cx - r.left - cam.x) * s / cam.s;
+    cam.y = cy - r.top - (cy - r.top - cam.y) * s / cam.s;
+    cam.s = s;
+  };
+  view.onpointerdown = e => { view.setPointerCapture(e.pointerId); if (!pts.size) moved = 0; pts.set(e.pointerId, e); };
+  view.onpointermove = e => {
+    const was = pts.get(e.pointerId);
+    if (!was) return;
+    pts.set(e.pointerId, e);
+    if (pts.size === 1) {
+      cam.x += e.clientX - was.clientX;
+      cam.y += e.clientY - was.clientY;
+      moved += Math.abs(e.clientX - was.clientX) + Math.abs(e.clientY - was.clientY);
+    } else {
+      const [a, b] = [...pts.values()], dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      if (pinch) zoom(dist / pinch, (a.clientX + b.clientX) / 2, (a.clientY + b.clientY) / 2);
+      pinch = dist;
+      moved = 99;
+    }
+    moveCam(view);
+  };
+  view.onpointerup = view.onpointercancel = e => {
+    pts.delete(e.pointerId);
+    pinch = 0;
+    if (e.type !== 'pointerup' || pts.size || moved > 10) return;
+    const r = view.getBoundingClientRect(); // tap: convert to scene units
+    onTap((e.clientX - r.left - cam.x) / cam.s / 10, (e.clientY - r.top - cam.y) / cam.s / 10);
+  };
+  view.onwheel = e => { e.preventDefault(); zoom(e.deltaY < 0 ? 1.15 : .87, e.clientX, e.clientY); moveCam(view); };
+  window.onresize = fit;
+  cam.s = cam.x = cam.y = 0;
+  fit();
+}
+
+// ---------- Screens ----------
+const cur = { screen: 'home', home: 0, world: WORLDS[0].id, cat: null, n: 1 }; // view state, not saved
+let round = null; // the live puzzle round: { placed, found: [item ids] }
+const btn = (act, arg, inner, cls = 'pill', off = false) =>
+  `<button class="${cls}" data-act="${act}" data-arg="${arg}"${off ? ' disabled' : ''}>${inner}</button>`;
+const bar = (title, backTo) =>
+  `<header class="bar">${btn('show', backTo, icon('back') + `<span>${LABELS.ui.back}</span>`, 'mb')}<h1>${title}</h1></header>`;
+const sparks = `<span class="sparks">${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<i style="--r:${i * 45}deg"></i>`).join('')}</span>`;
+const SCREENS = {
+  worlds: () => bar(LABELS.ui.worlds, 'home') + `<div class="tiles">` + WORLDS.map((w, i) =>
+    btn('world', w.id, `<span class="med num">${i + 1}</span><span><b>${w.name}</b><small>${w.zones.length ? w.blurb : LABELS.ui.soon}</small></span>`,
+      'tile', !w.zones.length)).join('') + `</div>`,
+  modes: () => bar(WORLDS.find(w => w.id === cur.world).name, 'worlds') + `<div class="cats">` +
+    CATEGORIES.filter(c => !cur.cat || c.id === cur.cat).map(c =>
+      `<section class="cat"><div class="cathead">${icon(c.id)}<h2>${LABELS.cat[c.id]}</h2></div><div class="modes">` + c.modes.map(m =>
+        btn('show', 'stages', `${icon(m)}<span>${LABELS.mode[m]}${m === PLAYABLE_MODE ? '' : `<small>${LABELS.ui.soon}</small>`}</span>`,
+          'pill mode', m !== PLAYABLE_MODE)).join('') + `</div></section>`).join('') +
+    (cur.cat ? btn('cat', '', LABELS.ui.allModes) : '') + `</div>`,
+  stages() {
+    const cleared = modeProgress(cur.world, PLAYABLE_MODE).clearedSubStages;
+    return bar(`${LABELS.mode[PLAYABLE_MODE]}: ${LABELS.ui.stages}`, 'modes') + `<div class="nums">` + subStages(cur.world, PLAYABLE_MODE).map(({ n }) =>
+      isUnlocked(cur.world, PLAYABLE_MODE, n)
+        ? btn('stage', n, `<span class="med num">${n}</span>${cleared.includes(n) ? `<i class="tick">${glyph('check')}</i>` : ''}`, 'mb')
+        : btn('stage', n, icon('lock'), 'mb', true)).join('') + `</div>`;
+  },
+  play() {
+    round = { placed: buildRound(cur.world, PLAYABLE_MODE, cur.n), found: [] };
+    return `<div class="play"><div class="view" id="view">${sceneHTML(WORLDS.find(w => w.id === cur.world), round.placed)}</div><aside class="side">` +
+      bar(`${LABELS.mode[PLAYABLE_MODE]} ${cur.n}`, 'stages') + `<b id="count"></b>` +
+      `<ul id="list">${round.placed.filter(p => p.target).map(p => `<li id="l-${p.item.id}">${glyph('check')}${p.item.name}</li>`).join('')}</ul>` +
+      `<section class="tray"><h2>${LABELS.ui.found}</h2><div id="tray"></div></section></aside></div>`;
+  }
+};
+// ---------- Wonder Machine homes ----------
+// Marble Rail placeholder. CONNECTIVITY RULE (SPEC): the rail is ONE continuous route from start bowl to funnel,
+// designed first as a single path, then split into pieces 2 to 9. Shared end points mean the pieces always meet.
+const RAIL = ['M 58 30', 'L 100 36', 'L 140 42', 'Q 151 43 146 50', 'L 100 57', 'L 62 63', 'Q 51 64 56 71', 'L 100 78', 'L 132 83'];
+const RAIL_PIECES = [ // fixed position per piece number
+  '<path class="wood" d="M46 96H158M54 96V22M150 96V40"/><path d="M49 23Q58 37 67 23"/>', // 1: base frame and start bowl
+  ...RAIL.slice(1).map((seg, i) => `<path d="M ${RAIL[i].split(' ').slice(-2).join(' ')} ${seg}"/>`), // 2 to 9: the rail, in order
+  '<path d="M125 85h14l-4 5h-6z"/><rect x="123" y="90" width="18" height="6" rx="1"/><path d="M123 90q9-6 18 0"/>' // 10: funnel and chest
+];
+const ROOM_DETAILS = [ // one small thing appears in the room per piece
+  '<ellipse cx="100" cy="101" rx="58" ry="6" fill="#7d3f52"/>',
+  '<path d="M14 92h10l-2-9h-6z" fill="#a0603a"/><circle cx="19" cy="77" r="6" fill="#4f8a55"/>',
+  '<rect x="9" y="36" width="22" height="15" rx="1" fill="#39566b" stroke="#c9a24a" stroke-width="1.5"/>',
+  '<path d="M184 92V62" stroke="#c9a24a" stroke-width="1.5"/><path d="M177 62h14l-3-10h-8z" fill="#f1cf7a"/>',
+  '<rect x="160" y="44" width="32" height="2" fill="#8a5a34"/>',
+  '<rect x="163" y="35" width="4" height="9" fill="#a94442"/><rect x="168" y="33" width="4" height="11" fill="#3f8a6a"/><rect x="173" y="36" width="4" height="8" fill="#4467a8"/>',
+  '<circle cx="20" cy="64" r="6" fill="#f6ecd6" stroke="#c9a24a" stroke-width="1.5"/><path d="M20 60v4l3 2" stroke="#241710" fill="none"/>',
+  '<rect x="9" y="17" width="20" height="13" rx="1" fill="#1f2c4d" stroke="#8a5a34" stroke-width="1.5"/><circle cx="23" cy="22" r="2.5" fill="#f6ecd6"/>',
+  '<ellipse cx="40" cy="98" rx="9" ry="4" fill="#3f7a5a"/>',
+  '<path d="M181 35h8l-1 5h-6zM185 40v4" fill="#ffc928" stroke="#ffc928"/>'
+];
+SCREENS.home = () => {
+  const earned = save.machines.justEarned; // drives the fly-in exactly once, then is cleared
+  if (earned) {
+    cur.home = earned.machine;
+    delete save.machines.justEarned;
+    storeSave();
+  }
+  const i = cur.home, m = MACHINES[i], n = save.machines.pieces[i];
+  const arrow = (to, glyphId) => btn('machine', to, icon(glyphId) + `<span>${MACHINES[to] ? MACHINES[to].name : ''}</span>`, 'mb', !MACHINES[to]);
+  const bulbs = ROOM_DETAILS.map((_, k) => {
+    const t = (k + .5) / 10;
+    return `<circle class="bulb${k < n ? ' lit' : ''}" cx="${5 + 190 * t}" cy="${10 + 56 * t * (1 - t)}" r="2.2"/>`;
+  }).join('');
+  const machine = i ? `<g class="ghost">${m.ghost}</g>` : `<g class="${n === 10 ? 'runs' : ''}">` +
+    RAIL_PIECES.map((piece, k) => `<g class="${k < n ? 'piece on' : 'piece ghost'}${earned && k === n - 1 ? ' fly' : ''}">${piece}</g>`).join('') +
+    (n === 10 ? `<circle class="marble" r="2.6"><animateMotion dur="5s" repeatCount="indefinite" path="${RAIL.join(' ')} L 132 88"/></circle>` : '') + `</g>` +
+    (earned ? `<g transform="translate(${n === 1 ? '54 60' : n === 10 ? '132 90' : RAIL[n - 1].split(' ').slice(-2).join(' ')})">` +
+      [0, 1, 2, 3, 4, 5, 6, 7].map(k => `<circle class="spk" r="1.4" style="--r:${k * 45}deg"/>`).join('') + `</g>` : '');
+  return `<div class="home"><header class="bar"><h1>${LABELS.title}</h1><div class="powers"><small>${LABELS.ui.powers}</small>` +
+    `${icon('lock').repeat(5)}</div></header><div class="stagew">${arrow(i - 1, 'back')}<div class="room">` +
+    `<svg viewBox="0 0 200 110" width="100%" height="100%"><defs><radialGradient id="glow"><stop offset="0" stop-color="#ffd76a" stop-opacity=".5"/>` +
+    `<stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient></defs>` +
+    `<rect width="200" height="92" rx="5" fill="#2e1e14"/><rect y="90" width="200" height="20" rx="5" fill="#1b110a"/>` +
+    `<path class="wire" d="M5 10Q100 38 195 10"/>${bulbs}<ellipse cx="100" cy="62" rx="${9 * n}" ry="${5.5 * n}" fill="url(#glow)"/>` +
+    ROOM_DETAILS.slice(0, n).map(d => `<g class="env">${d}</g>`).join('') + machine + `</svg></div>${arrow(i + 1, 'next')}</div>` +
+    `<footer class="foot"><div><h2>${m.name}</h2><small>${n} / 10 ${LABELS.ui.pieces}</small> ` +
+    `<b>${n === 10 ? LABELS.ui.runs : i ? LABELS.ui.later : ''}</b></div>${btn('show', 'worlds', LABELS.ui.play, 'pill big')}</footer></div>`;
+};
+// ---------- Bottom banner: always the same five medallions; one Home medallion during play ----------
+const navButton = (act, arg, id, label) => btn(act, arg, icon(id) + `<span>${label}</span>`, 'mb');
+function renderNav() {
+  nav.innerHTML = cur.screen === 'play' ? navButton('show', 'home', 'home', LABELS.ui.home) :
+    CATEGORIES.map(c => navButton('cat', c.id, c.id, LABELS.cat[c.id])).join('') + navButton('show', 'settings', 'settings', LABELS.ui.settings);
+}
+
+// ---------- Settings ----------
+let armed = ''; // which two-tap confirm is waiting for its second tap
+const music = $('#music'); // the owner's songs arrive later: set music.src and these settings already drive it
+function applyAudio() {
+  music.volume = save.settings.volume / 100;
+  music.muted = !save.settings.music;
+}
+// Save code, house format: CC1-<base64url(save JSON)>-<FNV-1a checksum>
+function exportCode() {
+  const body = btoa(JSON.stringify(save)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  return `CC1-${body}-${hash(body).toString(36)}`;
+}
+function readCode(code) { // validates prefix, checksum, JSON shape and version; returns a save or null and never writes
+  const m = /^CC1-([\w-]+)-([a-z0-9]+)$/.exec(code.trim());
+  if (!m || hash(m[1]).toString(36) !== m[2]) return null;
+  try {
+    const s = JSON.parse(atob(m[1].replace(/-/g, '+').replace(/_/g, '/')));
+    return validSave(s) ? s : null;
+  } catch (e) { return null; }
+}
+SCREENS.settings = () => {
+  const st = save.settings, soon = label => btn('', '', `<span>${label}<small>${LABELS.ui.soon}</small></span>`, 'pill', true);
+  return bar(LABELS.ui.settings, 'home') + `<div class="sets">` +
+    `<section class="cat"><h2>${LABELS.ui.saveCode}</h2><p class="code" id="code">${exportCode()}</p>${btn('copy', '', LABELS.ui.copy)}</section>` +
+    `<section class="cat"><h2>${LABELS.ui.loadCode}</h2><input class="field" id="paste" placeholder="${LABELS.ui.paste}" autocomplete="off" autocapitalize="off" spellcheck="false">` +
+    `${btn('load', '', LABELS.ui.load)}<p id="loadmsg"></p></section>` +
+    `<section class="cat"><h2>${LABELS.ui.together}</h2>${soon(LABELS.ui.host)}${soon(LABELS.ui.join)}</section>` +
+    `<section class="cat"><h2>${LABELS.ui.volume} <span id="vol">${st.volume}</span>%</h2>` +
+    `<input class="slider" id="volume" type="range" min="0" max="100" value="${st.volume}" aria-label="${LABELS.ui.volume}"></section>` +
+    `<section class="cat"><h2>${LABELS.ui.music}</h2><button class="toggle" data-act="music" role="switch" aria-checked="${st.music}" aria-label="${LABELS.ui.music}">` +
+    `<span class="med">${glyph('note')}</span><b>${st.music ? LABELS.ui.on : LABELS.ui.off}</b>${art(`assets/ui/music-toggle-${st.music ? 'on' : 'off'}.png`)}</button></section>` +
+    `<section class="cat"><h2>${LABELS.ui.startOver}</h2>${btn('wipe', '', LABELS.ui.startOver)}<p id="wipemsg"></p></section></div>`;
+};
+function show(screen) {
+  cur.screen = screen;
+  round = null;
+  armed = '';
+  document.body.className = screen === 'play' ? 'playing' : '';
+  app.innerHTML = SCREENS[screen]();
+  document.body.style.setProperty('--a1', MACHINES[cur.home].a1);
+  document.body.style.setProperty('--a2', MACHINES[cur.home].a2);
+  if (screen === 'play') { mountScene($('#view'), tapScene); showCount(); }
+  if (screen === 'home') { // swipe between the five homes
+    let x0;
+    $('.room').onpointerdown = e => { x0 = e.clientX; };
+    $('.room').onpointerup = e => { if (Math.abs(e.clientX - x0) > 50) ACT.machine(cur.home - Math.sign(e.clientX - x0)); };
+  }
+  renderNav();
+}
+const ACT = {
+  show,
+  world(id) { cur.world = id; show('modes'); },
+  cat(id) { cur.cat = id || null; show('modes'); },
+  machine(i) { if (MACHINES[i]) { cur.home = +i; show('home'); } },
+  stage(n) { cur.n = +n; show('play'); },
+  copy(_, b) {
+    if (navigator.clipboard) navigator.clipboard.writeText($('#code').textContent).then(() => { b.textContent = LABELS.ui.copied; }, () => {});
+  },
+  load(_, b) {
+    const s = readCode($('#paste').value);
+    if (!s) { armed = ''; b.textContent = LABELS.ui.load; $('#loadmsg').textContent = LABELS.ui.badCode; return; }
+    const hasProgress = save.machines.pieces.some(n => n) || Object.keys(save.progress.worlds).length;
+    if (hasProgress && armed !== 'load') { armed = 'load'; b.textContent = LABELS.ui.confirmLoad; return; }
+    save = s;
+    storeSave();
+    applyAudio();
+    cur.home = save.machines.current;
+    show('settings');
+    $('#loadmsg').textContent = LABELS.ui.loaded;
+  },
+  music() {
+    save.settings.music = !save.settings.music;
+    storeSave();
+    applyAudio();
+    show('settings');
+  },
+  wipe(_, b) {
+    if (armed !== 'wipe') { armed = 'wipe'; b.textContent = LABELS.ui.confirmWipe; return; }
+    save = { ...fresh(), settings: save.settings }; // progress goes; volume and music choices stay
+    storeSave();
+    cur.home = 0;
+    show('settings');
+    $('#wipemsg').textContent = LABELS.ui.wiped;
+  }
+};
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]');
+  if (b && !b.disabled) ACT[b.dataset.act](b.dataset.arg, b);
+});
+document.addEventListener('input', e => {
+  if (e.target.id !== 'volume') return;
+  save.settings.volume = +e.target.value;
+  $('#vol').textContent = e.target.value;
+  storeSave();
+  applyAudio();
+});
+
+// ---------- Hidden Object List: taps, the found sequence, the win ----------
+const showCount = () => { $('#count').textContent = `${document.querySelectorAll('#list .done').length} / 20 ${LABELS.ui.foundCount}`; };
+function tapScene(ux, uy) {
+  const r = round;
+  let hit, best = Infinity;
+  for (const p of r.placed) { // nearest unfound item; the hit area never drops below 44px on screen
+    const d = Math.hypot(p.x - ux, p.y - uy);
+    if (!r.found.includes(p.item.id) && d < best && d <= Math.max(SIZE[p.item.size] / 2, 2.2 / cam.s)) { hit = p; best = d; }
+  }
+  if (!hit) return;
+  const el = $('#i-' + hit.item.id);
+  if (!hit.target) { // wrong item: a gentle shake, nothing else
+    el.classList.remove('shake');
+    void el.offsetWidth;
+    el.classList.add('shake');
+    return;
+  }
+  r.found.push(hit.item.id); // from this moment the item can never be tapped again
+  el.classList.add('pop');
+  el.insertAdjacentHTML('beforeend', `<svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" pathLength="100"/></svg>${sparks}`);
+  setTimeout(() => { // ring held ~0.6s, then the item leaves the scene and flies to the Found Tray
+    if (round !== r) return;
+    $('#tray').insertAdjacentHTML('beforeend', `<span class="got" style="visibility:hidden">${pic(hit.item)}${hit.item.name}</span>`);
+    const chip = $('#tray').lastChild, a = el.getBoundingClientRect();
+    chip.scrollIntoView({ block: 'nearest' });
+    const b = chip.firstChild.getBoundingClientRect();
+    el.innerHTML = pic(hit.item);
+    el.className = 'item fly';
+    el.style.cssText = `left:${a.left}px;top:${a.top}px;width:${a.width}px;height:${a.height}px;font-size:${a.width * .6}px`;
+    document.body.append(el);
+    void el.offsetWidth;
+    el.style.transform = `translate(${b.left - a.left}px,${b.top - a.top}px) scale(${b.width / a.width})`;
+    setTimeout(() => {
+      el.remove();
+      if (round !== r) return;
+      chip.style.visibility = '';
+      $('#l-' + hit.item.id).classList.add('done');
+      showCount();
+      if (document.querySelectorAll('#list .done').length === 20) win();
+    }, 500);
+  }, 600);
+}
+function win() {
+  const got = clearSubStage(cur.world, PLAYABLE_MODE, cur.n);
+  app.insertAdjacentHTML('beforeend', `<div class="win"><div class="card"><h1>${LABELS.ui.win}</h1>` +
+    `<p>${got ? `${LABELS.ui.newPiece} ${MACHINES[save.machines.justEarned.machine].name}.` : LABELS.ui.oldPiece}</p>` +
+    btn('show', 'home', LABELS.ui.seeMachine) + (cur.n < 10 ? btn('stage', cur.n + 1, LABELS.ui.next) : '') +
+    btn('show', 'stages', LABELS.ui.back) + `</div></div>`);
+}
+
+// ---------- Self-test (?selftest=1): every check drives the real code paths; results are shown on screen ----------
+async function selfTest() {
+  const W = WORLDS[0].id, M = PLAYABLE_MODE, hashOf = n => layoutHash(buildRound(W, M, n));
+  if (!location.hash) { // step 1: remember this page load's layout hash, then really reload the page
+    location.hash = hashOf(1);
+    return location.reload();
+  }
+  const realSave = localStorage.getItem(KEY), results = [];
+  const wait = ms => new Promise(done => setTimeout(done, ms));
+  const count = sel => document.querySelectorAll(sel).length;
+  const stored = () => localStorage.getItem(KEY);
+  const reset = () => { save = fresh(); storeSave(); };
+  const clear = upTo => { for (let n = 1; n <= upTo; n++) clearSubStage(W, M, n); };
+  const test = async (id, name, fn) => {
+    let ok = false, note = '';
+    try { ok = await fn(); } catch (e) { note = ` [${e.message}]`; }
+    results.push(`<li class="${ok ? 'ok' : 'bad'}"><b>${ok ? 'PASS' : 'FAIL'}</b> (${id}) ${name}${note}</li>`);
+  };
+  await test('a', 'Same seed builds the identical layout twice, again after a real page reload, and matches the frozen hash',
+    () => hashOf(1) === hashOf(1) && hashOf(1) === +location.hash.slice(1) && hashOf(1) === 851907923);
+  await test('b', 'All 10 sub-stage seeds build different layouts', () => new Set(subStages(W, M).map(s => hashOf(s.n))).size === 10);
+  await test('c', 'Every sub-stage places exactly 20 targets, and every placed item sits inside a valid zone without overlapping', () =>
+    subStages(W, M).every(({ n }) => {
+      const placed = buildRound(W, M, n);
+      return placed.filter(p => p.target).length === 20 && placed.every((p, i) => {
+        const z = WORLDS[0].zones.find(z => z.id === p.zone), d = SIZE[p.item.size], rests = z.surfaces[0] === 'shelf' || z.surfaces[0] === 'table';
+        return d <= SIZE[z.maxSize] && p.x - d / 2 >= z.x && p.x + d / 2 <= z.x + z.w && p.y - d / 2 >= z.y && p.y + d / 2 <= z.y + z.h &&
+          (!rests || p.y === z.y + z.h - d / 2) &&
+          placed.every((q, j) => j >= i || Math.hypot(p.x - q.x, p.y - q.y) >= (d + SIZE[q.item.size]) / 2);
+      });
+    }));
+  await test('d', 'Save, wipe memory, load: progress round-trips', () => {
+    reset(); clear(4);
+    const want = JSON.stringify(save);
+    save = null;
+    loadSave();
+    return JSON.stringify(save) === want && modeProgress(W, M).clearedSubStages.length === 4;
+  });
+  await test('e', 'Clearing sub-stage 1 unlocks 2 but not 3', () => {
+    reset(); clear(1); show('stages');
+    return isUnlocked(W, M, 2) && !isUnlocked(W, M, 3) && count('.nums button:not(:disabled)') === 2;
+  });
+  await test('f', 'A piece is awarded on the first clear only, never on replay', () => {
+    reset();
+    const first = clearSubStage(W, M, 1), replay = clearSubStage(W, M, 1);
+    return first && !replay && save.machines.pieces[0] === 1 && JSON.parse(stored()).machines.pieces[0] === 1;
+  });
+  await test('g', 'The 10th piece flips the machine to its runs state', () => {
+    reset(); clear(9); show('home');
+    const before = count('.runs') + count('.marble');
+    clear(10); show('home');
+    return !before && save.machines.pieces[0] === 10 && save.machines.completed.includes(0) && count('.room .runs') === 1 && count('.marble') === 1;
+  });
+  await test('h', 'Home differs at 0, 3 and 10 pieces (pieces, lit bulbs and room details match the count); the new-piece animation fires once', () => {
+    const pages = [0, 3, 10].map(n => {
+      reset(); clear(n);
+      delete save.machines.justEarned;
+      cur.home = 0; show('home');
+      return count('.piece.on') === n && count('.bulb.lit') === n && count('.env') === n && !count('.fly') && $('.room').innerHTML;
+    });
+    reset(); clear(1); show('home');
+    const flew = count('.piece.fly') === 1 && !save.machines.justEarned && !JSON.parse(stored()).machines.justEarned;
+    show('home');
+    return pages.every(Boolean) && new Set(pages).size === 3 && flew && !count('.fly');
+  });
+  await test('i', 'The banner shows exactly 5 medallions on all 5 home screens, World select, Mode select and Settings, and 1 during play', () =>
+    MACHINES.every((_, i) => { ACT.machine(i); return cur.home === i && count('.home') === 1 && count('#nav .med') === 5; }) &&
+    ['worlds', 'modes', 'settings'].every(scr => { show(scr); return count('#nav .med') === 5; }) && (show('play'), count('#nav .med') === 1));
+  await test('j', 'Save code round trip restores progress exactly; a corrupted code is rejected with the save untouched; loading over progress needs two taps', () => {
+    reset();
+    const freshCode = exportCode();
+    clear(3);
+    const code = exportCode(), want = JSON.stringify(save);
+    const paste = text => { show('settings'); $('#paste').value = text; $('[data-act=load]').click(); };
+    reset(); paste(code);
+    const restored = JSON.stringify(save) === want && stored() === want;
+    paste(code.slice(0, 12) + (code[12] === 'A' ? 'B' : 'A') + code.slice(13));
+    const rejected = stored() === want && JSON.stringify(save) === want && $('#loadmsg').textContent === LABELS.ui.badCode;
+    paste('not a code');
+    paste(freshCode);
+    const held = stored() === want;
+    $('[data-act=load]').click();
+    return restored && rejected && held && save.machines.pieces[0] === 0 && stored() === JSON.stringify(save);
+  });
+  await test('k', 'No emoji anywhere in the rendered UI text or the game data', async () => {
+    let text = JSON.stringify([LABELS, WORLDS, ITEMS, MACHINES]);
+    const grab = () => {
+      text += app.textContent + nav.textContent;
+      document.querySelectorAll('[aria-label],[placeholder],[title],[alt]').forEach(el => { text += [...el.attributes].map(a => a.value).join(' '); });
+    };
+    reset(); clear(3);
+    MACHINES.forEach((_, i) => { ACT.machine(i); grab(); });
+    ['worlds', 'modes', 'stages', 'settings', 'play'].forEach(scr => { show(scr); grab(); });
+    CATEGORIES.forEach(c => { ACT.cat(c.id); grab(); });
+    ACT.cat('');
+    show('play'); win(); grab();
+    return text.length > 5000 && !/\p{Extended_Pictographic}|[\u{1F1E6}-\u{1F1FF}\u{1F3FB}-\u{1F3FF}\uFE0F\u20E3]/u.test(text);
+  });
+  await test('l', 'Found flow: golden ring, then the item lands in the Found Tray and leaves the scene, the checklist is marked and the count goes up exactly once; a wrong tap only shakes; all 20 wins a piece', async () => {
+    reset(); ACT.stage(1);
+    const [t, ...rest] = round.placed.filter(p => p.target), decoy = round.placed.find(p => !p.target), el = $('#i-' + t.item.id);
+    tapScene(decoy.x, decoy.y);
+    const shook = $('#i-' + decoy.item.id).classList.contains('shake') && !round.found.length;
+    tapScene(t.x, t.y);
+    tapScene(t.x, t.y); // a second tap on a found item must do nothing
+    const ring = getComputedStyle($(`#i-${t.item.id} .ring circle`)).stroke === 'rgb(255, 201, 40)' && $('#scene').contains(el) && !count('.got');
+    await wait(1300);
+    const landed = !document.contains(el) && count('#tray .got') === 1 && $('.got').style.visibility === '' && $('.got').textContent.endsWith(t.item.name) &&
+      $('#l-' + t.item.id).classList.contains('done') && count('#list .done') === 1 && round.found.length === 1 && $('#count').textContent.startsWith('1 / 20');
+    rest.forEach(p => tapScene(p.x, p.y));
+    await wait(1300);
+    return shook && ring && landed && count('#scene .item') === 10 && count('.win') === 1 && save.machines.pieces[0] === 1 && isUnlocked(W, M, 2);
+  });
+  await test('m', 'Volume and the music toggle persist across a save and load round trip and reach the audio element', () => {
+    reset(); show('settings');
+    $('#volume').value = 35;
+    $('#volume').dispatchEvent(new Event('input', { bubbles: true }));
+    $('.toggle').click();
+    const shown = $('.toggle').getAttribute('aria-checked') === 'false' && $('#vol').textContent === '35';
+    save = null;
+    loadSave();
+    return shown && save.settings.volume === 35 && save.settings.music === false && music.volume === .35 && music.muted;
+  });
+  realSave === null ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, realSave); // hand the real save back
+  loadSave();
+  applyAudio();
+  cur.home = save.machines.current;
+  show('home');
+  history.replaceState(null, '', location.pathname + location.search);
+  document.body.insertAdjacentHTML('beforeend', `<div class="win"><div class="card test"><h1>Self-test: ` +
+    `${results.filter(r => r.includes('PASS')).length} of ${results.length} passed</h1><ul>${results.join('')}</ul></div></div>`);
+}
+
+loadSave();
+applyAudio();
+cur.home = save.machines.current;
+show('home');
+if (new URLSearchParams(location.search).get('selftest') === '1') selfTest();
+</script>
 </body>
 </html>
