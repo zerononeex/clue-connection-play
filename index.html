@@ -49,14 +49,20 @@ button:disabled{opacity:.45;cursor:default}
 .modes{display:flex;flex-wrap:wrap;gap:12px}
 .mode{padding-left:8px}
 .mode .med{width:40px;height:40px;border-width:2px;box-shadow:none}
-.nums{display:grid;grid-template-columns:repeat(5,auto);gap:26px;justify-content:center;padding:24px}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,84px);gap:26px;justify-content:center;max-width:572px;margin:auto;padding:24px}
 .nums .med{width:84px;height:84px;font-size:34px}
 .tick{position:absolute;right:-6px;top:58px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#3a2618}
-/* play: scene plus a side panel (landscape) or bottom panel (portrait) holding the checklist and the Found Tray */
+/* a round in progress: its count under the number, and a small two-tap reset medallion on the tile */
+.cell{position:relative;display:grid}
+.cell small{width:84px;text-align:center}
+.reset{position:absolute;right:-12px;top:-12px}
+.reset .med{width:36px;height:36px;border-width:2px}
+.reset.armed .med{color:var(--gold);border-color:var(--gold)}
+/* play: scene plus a side sheet (landscape) or bottom sheet (portrait) holding the checklist and the Found Tray */
 .playing #app{bottom:0}
-.play{display:grid;height:100%;grid-template-columns:1fr 264px}
-.side{display:flex;flex-direction:column;gap:8px;min-height:0;padding:8px 8px 84px;background:var(--panel)}
-.side .bar{padding:0 0 4px}
+.play{display:grid;height:100%;grid-template-columns:1fr auto}
+.side{position:relative;display:flex;flex-direction:column;gap:8px;width:264px;min-height:0;overflow:hidden;padding:8px 8px 84px;background:var(--panel)}
+.side .bar{padding:0 52px 4px 0}
 .side h1{font-size:18px}
 .side .med{width:44px;height:44px}
 #list{flex:none;margin:0;padding:0;list-style:none;columns:2;font-size:14px}
@@ -69,11 +75,29 @@ button:disabled{opacity:.45;cursor:default}
 #tray{display:flex;flex-wrap:wrap;gap:6px 2px}
 .got{display:flex;flex-direction:column;align-items:center;gap:2px;width:56px;font-size:11px;line-height:1.1;text-align:center}
 .got .chip{width:38px;height:38px;font-size:22px}
+/* the sheet's one toggle: the count row. Slimmed, it is all that stays: count, next item to find, chevron medallion */
+.slim{display:flex;align-items:center;gap:8px;text-align:left}
+.slim .med{position:absolute;right:8px;top:8px}
+#next{display:none}
+.slimmed .side{width:84px;padding:8px}
+.slimmed .side>:not(.slim),.slimmed #nav{display:none}
+.slimmed .slim{flex-direction:column;font-size:14px;text-align:center}
+.slimmed .slim .med{position:static;order:-1}
+.slimmed .slim .g{transform:rotate(180deg)}
+.slimmed #next{display:block}
+.pulse{animation:pulse .5s}
+@keyframes pulse{40%{transform:scale(1.08);color:var(--gold)}}
 @media (orientation:portrait){
   .play{grid-template-columns:none;grid-template-rows:1fr auto}
-  .side{padding:8px}
+  .side,.slimmed .side{width:auto;padding:8px}
   #list{columns:4}
   .tray{min-height:104px;margin-right:76px}
+  .slim .g{transform:rotate(90deg)}
+  .slimmed .side{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+  .slimmed .slim{flex-direction:row;font-size:inherit;text-align:left}
+  .slimmed .slim .med{order:0}
+  .slimmed .slim .g{transform:rotate(-90deg)}
+  .slimmed #next{flex:1}
 }
 /* found sequence: golden ring draws itself, pop and sparkles, then the item flies to the tray */
 .ring{position:absolute;left:-20%;top:-20%;width:140%;height:140%;overflow:visible;pointer-events:none}
@@ -169,7 +193,7 @@ const LABELS = {
     stages: 'Pick a Puzzle', found: 'Found', foundCount: 'found', pieces: 'pieces', powers: 'Powers', runs: 'It runs!',
     later: 'This machine comes later', win: 'You found them all!', newPiece: 'You earned a new piece for the',
     oldPiece: 'You already earned the piece for this puzzle.', seeMachine: 'See my machine', next: 'Next puzzle',
-    allModes: 'Show all',
+    allModes: 'Show all', resume: 'tap to continue', reset: 'Start this puzzle over', confirmReset: 'Tap again to restart',
     saveCode: 'My Save Code', copy: 'Copy', copied: 'Copied', loadCode: 'Load a Save Code', load: 'Load',
     paste: 'Paste a save code here', badCode: 'That code did not work. Please check it and try again. Your game is unchanged.',
     confirmLoad: 'Tap again to replace your game', loaded: 'Save code loaded.', together: 'Play Together',
@@ -198,6 +222,7 @@ const GLYPHS = {
   next: '<path d="M19 11l13 13-13 13"/>',
   check: '<path d="M11 25l9 9 17-19"/>',
   lock: '<rect x="13" y="22" width="22" height="16" rx="3"/><path d="M17 22v-5a7 7 0 0 1 14 0v5"/>',
+  reset: '<path d="M37 24a13 13 0 1 1-5-10"/><path d="M33 5v10H23"/>',
   note: '<path d="M19 34V14l16-4v20"/><circle cx="15" cy="34" r="4" fill="currentColor"/><circle cx="31" cy="30" r="4" fill="currentColor"/>'
 };
 for (const id in GLYPHS) ICONS[id] = { src: `assets/icons/${id}.png`, svg: GLYPHS[id] };
@@ -319,7 +344,8 @@ function validSave(s) {
       isObj(m) && Array.isArray(m.clearedSubStages) && m.clearedSubStages.every(n => isCount(n, 10)) && isCount(m.currentSubStage, 10))) &&
     isObj(s.machines) && isCount(s.machines.current, 4) && Array.isArray(s.machines.pieces) && s.machines.pieces.length === 5 &&
     s.machines.pieces.every(n => isCount(n, 10)) && Array.isArray(s.machines.completed) &&
-    Array.isArray(s.powers) && isObj(s.settings);
+    Array.isArray(s.powers) && isObj(s.settings) &&
+    (s.inProgress === undefined || isObj(s.inProgress) && Object.values(s.inProgress).every(e => isObj(e) && Array.isArray(e.found)));
 }
 let save;
 function loadSave() {
@@ -332,6 +358,10 @@ function loadSave() {
 function storeSave() {
   try { localStorage.setItem(KEY, JSON.stringify(save)); } catch (e) { /* storage unavailable: play on in memory */ }
 }
+// Rounds left part-way: save.inProgress['<worldId>|<modeId>|<subStageN>'] = { found: [item ids in find order], updatedAt }.
+// The field is optional: older saves do not have it and gain it on their first find.
+const roundKey = (worldId, modeId, n) => `${worldId}|${modeId}|${n}`;
+const inProgress = () => save.inProgress || {};
 const modeProgress = (worldId, modeId) =>
   (save.progress.worlds[worldId] || { modes: {} }).modes[modeId] || { clearedSubStages: [], currentSubStage: 1 };
 const isUnlocked = (worldId, modeId, n) => n === 1 || modeProgress(worldId, modeId).clearedSubStages.includes(n - 1);
@@ -405,7 +435,13 @@ function moveCam(view) {
 function mountScene(view, onTap) {
   const pts = new Map();
   let moved = 0, pinch = 0;
-  const fit = () => { if (!view.isConnected) return; cam.min = Math.max(view.clientWidth / 2000, view.clientHeight / 1000); moveCam(view); };
+  const fit = () => { // runs whenever the view changes size (rotation, the sheet sliding); a zoomed-in camera keeps its pan and zoom
+    if (!view.clientWidth) return view.isConnected || sized.disconnect();
+    const k = Math.max(view.clientWidth / 2000, view.clientHeight / 1000) / cam.min;
+    if (cam.s <= cam.min) { cam.s *= k; cam.x *= k; cam.y *= k; } // fully zoomed out stays fully zoomed out
+    cam.min *= k;
+    moveCam(view);
+  }, sized = new ResizeObserver(fit);
   const zoom = (f, cx, cy) => {
     const s = Math.min(Math.max(cam.s * f, cam.min), cam.min * 4), r = view.getBoundingClientRect();
     cam.x = cx - r.left - (cx - r.left - cam.x) * s / cam.s;
@@ -437,9 +473,9 @@ function mountScene(view, onTap) {
     onTap((e.clientX - r.left - cam.x) / cam.s / 10, (e.clientY - r.top - cam.y) / cam.s / 10);
   };
   view.onwheel = e => { e.preventDefault(); zoom(e.deltaY < 0 ? 1.15 : .87, e.clientX, e.clientY); moveCam(view); };
-  window.onresize = fit;
   cam.s = cam.x = cam.y = 0;
   fit();
+  sized.observe(view);
 }
 
 // ---------- Screens ----------
@@ -449,6 +485,7 @@ const btn = (act, arg, inner, cls = 'pill', off = false) =>
   `<button class="${cls}" data-act="${act}" data-arg="${arg}"${off ? ' disabled' : ''}>${inner}</button>`;
 const bar = (title, backTo) =>
   `<header class="bar">${btn('show', backTo, icon('back') + `<span>${LABELS.ui.back}</span>`, 'mb')}<h1>${title}</h1></header>`;
+const gotChip = item => `<span class="got">${pic(item)}${item.name}</span>`;
 const sparks = `<span class="sparks">${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<i style="--r:${i * 45}deg"></i>`).join('')}</span>`;
 const SCREENS = {
   worlds: () => bar(LABELS.ui.worlds, 'home') + `<div class="tiles">` + WORLDS.map((w, i) =>
@@ -462,17 +499,26 @@ const SCREENS = {
     (cur.cat ? btn('cat', '', LABELS.ui.allModes) : '') + `</div>`,
   stages() {
     const cleared = modeProgress(cur.world, PLAYABLE_MODE).clearedSubStages;
-    return bar(`${LABELS.mode[PLAYABLE_MODE]}: ${LABELS.ui.stages}`, 'modes') + `<div class="nums">` + subStages(cur.world, PLAYABLE_MODE).map(({ n }) =>
-      isUnlocked(cur.world, PLAYABLE_MODE, n)
-        ? btn('stage', n, `<span class="med num">${n}</span>${cleared.includes(n) ? `<i class="tick">${glyph('check')}</i>` : ''}`, 'mb')
-        : btn('stage', n, icon('lock'), 'mb', true)).join('') + `</div>`;
+    return bar(`${LABELS.mode[PLAYABLE_MODE]}: ${LABELS.ui.stages}`, 'modes') + `<div class="nums">` + subStages(cur.world, PLAYABLE_MODE).map(({ n }) => {
+      if (!isUnlocked(cur.world, PLAYABLE_MODE, n)) return btn('stage', n, icon('lock'), 'mb', true);
+      const going = inProgress()[roundKey(cur.world, PLAYABLE_MODE, n)];
+      const tile = btn('stage', n, `<span class="med num">${n}</span>${cleared.includes(n) ? `<i class="tick">${glyph('check')}</i>` : ''}` +
+        (going ? `<small id="go-${n}">${going.found.length} / 20 \u2014 ${LABELS.ui.resume}</small>` : ''), 'mb');
+      return going ? `<span class="cell">${tile}<button class="reset" data-act="reset" data-arg="${n}" aria-label="${LABELS.ui.reset}">` +
+        `<span class="med">${glyph('reset')}</span></button></span>` : tile;
+    }).join('') + `</div>`;
   },
-  play() {
-    round = { placed: buildRound(cur.world, PLAYABLE_MODE, cur.n), found: [] };
-    return `<div class="play"><div class="view" id="view">${sceneHTML(WORLDS.find(w => w.id === cur.world), round.placed)}</div><aside class="side">` +
-      bar(`${LABELS.mode[PLAYABLE_MODE]} ${cur.n}`, 'stages') + `<b id="count"></b>` +
-      `<ul id="list">${round.placed.filter(p => p.target).map(p => `<li id="l-${p.item.id}">${glyph('check')}${p.item.name}</li>`).join('')}</ul>` +
-      `<section class="tray"><h2>${LABELS.ui.found}</h2><div id="tray"></div></section></aside></div>`;
+  play() { // a round left part-way resumes: same seeded layout, found items already out of the scene and in the tray
+    const placed = buildRound(cur.world, PLAYABLE_MODE, cur.n), going = inProgress()[roundKey(cur.world, PLAYABLE_MODE, cur.n)];
+    const targets = placed.filter(p => p.target), byId = id => targets.find(p => p.item.id === id);
+    round = { placed, found: going ? going.found.filter(byId) : [] };
+    if (going) keepRound();
+    const found = p => round.found.includes(p.item.id);
+    return `<div class="play"><div class="view" id="view">${sceneHTML(WORLDS.find(w => w.id === cur.world), placed.filter(p => !found(p)))}</div><aside class="side">` +
+      bar(`${LABELS.mode[PLAYABLE_MODE]} ${cur.n}`, 'stages') +
+      `<button class="slim" data-act="panel"><b id="count"></b><span id="next"></span><span class="med">${glyph('next')}</span></button>` +
+      `<ul id="list">${targets.map(p => `<li id="l-${p.item.id}"${found(p) ? ' class="done"' : ''}>${glyph('check')}${p.item.name}</li>`).join('')}</ul>` +
+      `<section class="tray"><h2>${LABELS.ui.found}</h2><div id="tray">${round.found.map(id => gotChip(byId(id).item)).join('')}</div></section></aside></div>`;
   }
 };
 // ---------- Wonder Machine homes ----------
@@ -572,7 +618,7 @@ function show(screen) {
   app.innerHTML = SCREENS[screen]();
   document.body.style.setProperty('--a1', MACHINES[cur.home].a1);
   document.body.style.setProperty('--a2', MACHINES[cur.home].a2);
-  if (screen === 'play') { mountScene($('#view'), tapScene); showCount(); }
+  if (screen === 'play') { mountScene($('#view'), tapScene); showCount(); if (round.found.length === 20) win(); }
   if (screen === 'home') { // swipe between the five homes
     let x0;
     $('.room').onpointerdown = e => { x0 = e.clientX; };
@@ -586,13 +632,30 @@ const ACT = {
   cat(id) { cur.cat = id || null; show('modes'); },
   machine(i) { if (MACHINES[i]) { cur.home = +i; show('home'); } },
   stage(n) { cur.n = +n; show('play'); },
+  panel() { // one tap slides the whole sheet (checklist + Found Tray) down to its slim bar, or back; the scene re-fits as it moves
+    const side = $('.side'), size = () => ({ width: side.offsetWidth + 'px', height: side.offsetHeight + 'px' }), from = size();
+    document.body.classList.toggle('slimmed');
+    side.animate([from, size()], { duration: 250, easing: 'ease' });
+  },
+  reset(n) { // two taps abandon one in-progress round; nothing else ever does
+    if (armed !== 'reset' + n) {
+      show('stages');
+      armed = 'reset' + n;
+      $(`.reset[data-arg="${n}"]`).classList.add('armed');
+      $('#go-' + n).textContent = LABELS.ui.confirmReset;
+      return;
+    }
+    delete save.inProgress[roundKey(cur.world, PLAYABLE_MODE, n)];
+    storeSave();
+    show('stages');
+  },
   copy(_, b) {
     if (navigator.clipboard) navigator.clipboard.writeText($('#code').textContent).then(() => { b.textContent = LABELS.ui.copied; }, () => {});
   },
   load(_, b) {
     const s = readCode($('#paste').value);
     if (!s) { armed = ''; b.textContent = LABELS.ui.load; $('#loadmsg').textContent = LABELS.ui.badCode; return; }
-    const hasProgress = save.machines.pieces.some(n => n) || Object.keys(save.progress.worlds).length;
+    const hasProgress = save.machines.pieces.some(n => n) || Object.keys(save.progress.worlds).length || Object.keys(inProgress()).length;
     if (hasProgress && armed !== 'load') { armed = 'load'; b.textContent = LABELS.ui.confirmLoad; return; }
     save = s;
     storeSave();
@@ -627,9 +690,20 @@ document.addEventListener('input', e => {
   storeSave();
   applyAudio();
 });
+// Every change is already stored as it happens; store once more as the page is hidden, so a killed tab loses nothing.
+addEventListener('pagehide', storeSave);
+document.addEventListener('visibilitychange', () => { if (document.hidden) storeSave(); });
 
 // ---------- Hidden Object List: taps, the found sequence, the win ----------
-const showCount = () => { $('#count').textContent = `${document.querySelectorAll('#list .done').length} / 20 ${LABELS.ui.foundCount}`; };
+function showCount() {
+  const next = $('#list li:not(.done)');
+  $('#count').textContent = `${document.querySelectorAll('#list .done').length} / 20 ${LABELS.ui.foundCount}`;
+  $('#next').textContent = next ? next.textContent : '';
+}
+function keepRound() { // stores the live round in the save: on every find, and refreshed when a round is resumed
+  (save.inProgress = save.inProgress || {})[roundKey(cur.world, PLAYABLE_MODE, cur.n)] = { found: round.found, updatedAt: Date.now() };
+  storeSave();
+}
 function tapScene(ux, uy) {
   const r = round;
   let hit, best = Infinity;
@@ -646,32 +720,42 @@ function tapScene(ux, uy) {
     return;
   }
   r.found.push(hit.item.id); // from this moment the item can never be tapped again
+  keepRound();
   el.classList.add('pop');
   el.insertAdjacentHTML('beforeend', `<svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" pathLength="100"/></svg>${sparks}`);
   setTimeout(() => { // ring held ~0.6s, then the item leaves the scene and flies to the Found Tray
     if (round !== r) return;
-    $('#tray').insertAdjacentHTML('beforeend', `<span class="got" style="visibility:hidden">${pic(hit.item)}${hit.item.name}</span>`);
-    const chip = $('#tray').lastChild, a = el.getBoundingClientRect();
+    $('#tray').insertAdjacentHTML('beforeend', gotChip(hit.item));
+    const chip = $('#tray').lastChild, a = el.getBoundingClientRect(), slim = $('.slimmed .slim'); // slimmed: fly to the slim bar instead
+    chip.style.visibility = 'hidden';
     chip.scrollIntoView({ block: 'nearest' });
-    const b = chip.firstChild.getBoundingClientRect();
+    const b = (slim ? $('#count') : chip.firstChild).getBoundingClientRect();
     el.innerHTML = pic(hit.item);
     el.className = 'item fly';
     el.style.cssText = `left:${a.left}px;top:${a.top}px;width:${a.width}px;height:${a.height}px;font-size:${a.width * .6}px`;
     document.body.append(el);
     void el.offsetWidth;
-    el.style.transform = `translate(${b.left - a.left}px,${b.top - a.top}px) scale(${b.width / a.width})`;
+    el.style.transform = `translate(${b.left - a.left}px,${b.top - a.top}px) scale(${b.height / a.height})`;
     setTimeout(() => {
       el.remove();
       if (round !== r) return;
       chip.style.visibility = '';
       $('#l-' + hit.item.id).classList.add('done');
       showCount();
+      const strip = $('.slimmed .slim');
+      if (strip) { // the sheet stays shut: its slim bar pulses once
+        strip.classList.remove('pulse');
+        void strip.offsetWidth;
+        strip.classList.add('pulse');
+      }
       if (document.querySelectorAll('#list .done').length === 20) win();
     }, 500);
   }, 600);
 }
 function win() {
   const got = clearSubStage(cur.world, PLAYABLE_MODE, cur.n);
+  delete inProgress()[roundKey(cur.world, PLAYABLE_MODE, cur.n)];
+  storeSave();
   app.insertAdjacentHTML('beforeend', `<div class="win"><div class="card"><h1>${LABELS.ui.win}</h1>` +
     `<p>${got ? `${LABELS.ui.newPiece} ${MACHINES[save.machines.justEarned.machine].name}.` : LABELS.ui.oldPiece}</p>` +
     btn('show', 'home', LABELS.ui.seeMachine) + (cur.n < 10 ? btn('stage', cur.n + 1, LABELS.ui.next) : '') +
@@ -800,6 +884,88 @@ async function selfTest() {
     save = null;
     loadSave();
     return shown && save.settings.volume === 35 && save.settings.music === false && music.volume === .35 && music.muted;
+  });
+  const K = roundKey(W, M, 1), entry = () => (JSON.parse(stored()).inProgress || {})[K];
+  const targets = () => round.placed.filter(p => p.target && !round.found.includes(p.item.id));
+  const find = async howMany => { targets().slice(0, howMany).forEach(p => tapScene(p.x, p.y)); await wait(1300); };
+  await test('n', 'Panel: one tap slims the sheet to its bar and the scene grows with pan and zoom kept; a find while slimmed pulses the bar, updates the count and does not open the sheet; one more tap restores the same checklist and tray', async () => {
+    reset(); ACT.stage(1);
+    await find(2);
+    const view = $('#view'), size = () => [view.clientWidth, view.clientHeight], shot = () => $('#list').innerHTML + $('#tray').innerHTML;
+    const open0 = !count('.slimmed') && $('#list').offsetHeight > 0 && $('.tray').offsetHeight > 0;
+    cam.s = cam.min * 2.5; cam.x = -300; cam.y = -200; moveCam(view);
+    const pos = () => JSON.stringify([cam.x, cam.y, cam.s]), camWas = pos(), [w0, h0] = size(), before = shot();
+    $('.slim').click();
+    await wait(500);
+    const [w1, h1] = size(), next = $('#list li:not(.done)').textContent;
+    const grew = w1 >= w0 && h1 >= h0 && w1 * h1 > w0 * h0 && pos() === camWas;
+    const slimOnly = count('.slimmed') === 1 && !$('#list').offsetHeight && !$('.tray').offsetHeight && !$('.side .bar').offsetHeight &&
+      $('#count').textContent.startsWith('2 / 20') && $('#next').offsetHeight > 0 && $('#next').textContent === next && $('.slim .med').offsetHeight > 0;
+    await find(1);
+    const quiet = count('.slimmed') === 1 && $('.slim').classList.contains('pulse') && $('#count').textContent.startsWith('3 / 20') &&
+      $('#next').textContent !== next && count('#tray .got') === 3 && pos() === camWas;
+    const during = shot();
+    $('.slim .med').click();
+    await wait(500);
+    const [w2, h2] = size();
+    return open0 && grew && slimOnly && quiet && !count('.slimmed') && w2 === w0 && h2 === h0 && shot() === during && during !== before &&
+      $('#list').offsetHeight > 0 && $('.tray').offsetHeight > 0 && pos() === camWas && (ACT.stage(1), !count('.slimmed'));
+  });
+  await test('o', 'Resume: 3 finds, leave, full save reload, re-enter: 3 / 20, those 3 gone from the scene, in the tray in order and the only ones marked; the other 17 then win one piece and the in-progress entry is deleted', async () => {
+    reset(); ACT.stage(1);
+    const layout = layoutHash(round.placed);
+    await find(3);
+    const ids = round.found.slice(), names = ids.map(id => round.placed.find(p => p.item.id === id).item.name);
+    show('stages');
+    const tile = $('#go-1').textContent.startsWith('3 / 20') && count('.reset') === 1;
+    save = null;
+    loadSave();
+    ACT.stage(1);
+    const resumed = layoutHash(round.placed) === layout && JSON.stringify(round.found) === JSON.stringify(ids) && $('#count').textContent.startsWith('3 / 20') &&
+      ids.every(id => !$('#i-' + id)) && count('#scene .item') === 27 && !count('.slimmed') &&
+      JSON.stringify([...document.querySelectorAll('#tray .got')].map(g => g.lastChild.textContent)) === JSON.stringify(names) &&
+      JSON.stringify([...document.querySelectorAll('#list .done')].map(li => li.id).sort()) === JSON.stringify(ids.map(id => 'l-' + id).sort());
+    await find(17);
+    return tile && resumed && count('.win') === 1 && save.machines.pieces[0] === 1 && !save.inProgress[K] && !entry() &&
+      (show('stages'), !count('.reset')) && !clearSubStage(W, M, 1) && save.machines.pieces[0] === 1;
+  });
+  await test('p', 'Back and Home at any found count keep the in-progress entry (re-enter shows the same count); only the two-tap reset medallion clears it, and only that entry', async () => {
+    reset(); ACT.stage(1);
+    await find(5);
+    $('.side [data-act=show]').click();
+    const back = cur.screen === 'stages' && entry().found.length === 5 && $('#go-1').textContent.startsWith('5 / 20');
+    $('.cell [data-act=stage]').click();
+    const again = $('#count').textContent.startsWith('5 / 20') && count('#tray .got') === 5;
+    await find(1);
+    $('#nav [data-act=show]').click();
+    const home = cur.screen === 'home' && entry().found.length === 6;
+    save.inProgress[roundKey(W, M, 2)] = { found: [], updatedAt: 1 };
+    clear(1); show('stages');
+    $('.reset[data-arg="1"]').click();
+    const armedOnly = entry().found.length === 6 && count('.reset.armed') === 1 && $('#go-1').textContent === LABELS.ui.confirmReset;
+    $('.reset[data-arg="1"]').click();
+    return back && again && home && armedOnly && !entry() && !$('#go-1') && !!JSON.parse(stored()).inProgress[roundKey(W, M, 2)] && count('.reset') === 1;
+  });
+  await test('q', 'A save without the inProgress field loads fine and gains the field on the first find; a save code exported mid-round carries the in-progress round', () => {
+    reset(); clear(1);
+    const old = stored();
+    save = null;
+    loadSave();
+    const loaded = JSON.stringify(save) === old && !('inProgress' in save) && modeProgress(W, M).clearedSubStages.length === 1;
+    ACT.stage(2);
+    const [a, b] = targets();
+    tapScene(a.x, a.y);
+    const K2 = roundKey(W, M, 2), gained = JSON.parse(stored()).inProgress[K2].found.length === 1;
+    tapScene(b.x, b.y);
+    const code = exportCode(), want = JSON.stringify(save.inProgress[K2].found);
+    reset(); show('settings');
+    $('#paste').value = code;
+    $('[data-act=load]').click();
+    const carried = JSON.stringify(JSON.parse(stored()).inProgress[K2].found) === want;
+    show('stages');
+    const shown = $('#go-2').textContent.startsWith('2 / 20');
+    ACT.stage(2);
+    return loaded && gained && carried && shown && $('#count').textContent.startsWith('2 / 20') && count('#tray .got') === 2 && count('#scene .item') === 28;
   });
   realSave === null ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, realSave); // hand the real save back
   loadSave();
