@@ -1,0 +1,134 @@
+{
+ "note": "Hand-authored. Stage units: the home background is 1000 x 750. A sprite sits by centre and width (c, w: height follows the art), or by a parallelogram q = [origin x, y, u x, y, v x, y] (the art's top edge runs along u, its left edge along v). z = draw order, o = opacity. from = [source file, grid columns, rows, cell]. pivot = the point of the art that sits on c (default its centre), spin = seconds per turn once the machine runs (negative turns backwards), fx/at = finale animation and its start in seconds, frames = the five picture openings [x, y, w, h]. Marble Rail pieces carry cut (polygon in percent of route-master.png; recorded position = its bounding box on the canvas) and route (marble path in the same percent). docs/build_machine_assets.py cuts the sprites into <id>/web/.",
+ "stage": [1000, 750],
+ "machines": {
+  "marble-rail": {
+   "canvas": [100, 75, 800, 450.0],
+   "base": {"from": ["base.png", 1, 1, 1], "c": [501.1, 300.4], "w": 739.4},
+   "pieces": [
+    {"cut": [[0, 0], [24.2, 0], [24.2, 24], [12, 24], [12, 35], [0, 35]], "route": [[9, 10], [14, 13.5], [24.2, 15.5]]},
+    {"cut": [[24.2, 0], [51.6, 0], [51.6, 34], [24.2, 34]], "route": [[38, 20.5], [51.6, 27]]},
+    {"cut": [[51.6, 0], [76.2, 0], [76.2, 34], [51.6, 34]], "route": [[60, 28.5], [66, 28], [70, 22], [70, 10], [63.5, 4.5], [57, 10], [57, 22], [61, 28], [70, 28.5], [76.2, 28.5]]},
+    {"cut": [[76.2, 0], [100, 0], [100, 46], [85.6, 46], [85.6, 34], [76.2, 34]], "route": [[78, 25], [81, 20.5], [88, 18], [94, 21], [96.5, 28], [94, 35], [89, 38.5], [85.6, 40.5]]},
+    {"cut": [[61.8, 34], [85.6, 34], [85.6, 46], [86, 46], [86, 64], [61.8, 64]], "route": [[80, 43], [75, 44.5], [70.5, 42.5], [66, 45.5], [61.8, 48.5]]},
+    {"cut": [[31.9, 34], [61.8, 34], [61.8, 64], [31.9, 64]], "route": [[47, 47], [31.9, 45.5]]},
+    {"cut": [[0, 35], [12, 35], [12, 24], [24.2, 24], [24.2, 34], [31.9, 34], [31.9, 66], [24.6, 66], [24.6, 100], [0, 100]], "route": [[29.5, 43], [27.5, 39], [15, 37.5], [5, 43], [12, 50], [24, 51], [5, 56], [12, 63], [24, 63], [5, 68], [12, 73], [24.6, 74.5]]},
+    {"cut": [[24.6, 66], [31.9, 66], [31.9, 64], [54.6, 64], [54.6, 100], [24.6, 100]], "route": [[30, 76], [38, 82], [45, 80.5], [51, 75], [54.6, 73.5]]},
+    {"cut": [[54.6, 64], [83.7, 64], [83.7, 100], [54.6, 100]], "route": [[60, 74], [68, 79], [76, 84], [82.5, 87]]},
+    {"cut": [[83.7, 46], [100, 46], [100, 100], [83.7, 100]], "route": [[87, 74], [91, 66], [91, 78], [91, 92]]}
+   ],
+   "sprites": {
+    "marble-blue": {"from": ["finale-marbles.png", 2, 1, 1], "w": 20},
+    "marble-gold": {"from": ["finale-marbles.png", 2, 1, 2], "w": 20},
+    "chest": {"from": ["finale-chest.png", 2, 1, 1], "c": [830, 556], "w": 100},
+    "chest-open": {"from": ["finale-chest.png", 2, 1, 2], "c": [832, 548], "w": 114}
+   }
+  },
+  "puzzle-box": {
+   "base": {"from": ["base.png", 1, 1, 1], "c": [500, 520], "w": 360},
+   "pieces": [
+    {"from": ["pieces-sheet.png", 5, 2, 1], "q": [347.9, 357.4, 152.2, -85.0, 0, 174.3], "z": 1},
+    {"from": ["pieces-sheet.png", 5, 2, 2], "q": [500.1, 272.4, 152.2, 85.0, 0, 174.3], "z": 1},
+    {"from": ["pieces-sheet.png", 5, 2, 3], "q": [347.9, 357.4, 152.2, 88.9, 0, 174.3], "z": 2},
+    {"from": ["pieces-sheet.png", 5, 2, 4], "q": [500.1, 446.3, 152.2, -88.9, 0, 174.3], "z": 2},
+    {"from": ["pieces-sheet.png", 5, 2, 5], "q": [347.9, 357.4, 152.2, -85.0, 152.2, 88.9], "z": 3, "fx": "lift"},
+    {"from": ["pieces-sheet.png", 5, 2, 6], "c": [292, 612], "w": 92, "z": 5},
+    {"from": ["pieces-sheet.png", 5, 2, 7], "c": [500.1, 468.3], "w": 70, "z": 5},
+    {"from": ["pieces-sheet.png", 5, 2, 8], "q": [347.9, 357.4, 152.2, -85.0, 152.2, 88.9], "z": 4, "fx": "lift"},
+    {"from": ["pieces-sheet.png", 5, 2, 9], "c": [655, 648], "w": 100, "z": 5},
+    {"from": ["pieces-sheet.png", 5, 2, 10], "c": [590.2, 505.0], "w": 26, "z": 6}
+   ],
+   "sprites": {
+    "light": {"from": ["finale-open.png", 4, 1, 1], "c": [500, 255], "w": 300, "z": 7, "fx": "glow", "at": 0.8},
+    "bird": {"from": ["finale-open.png", 4, 1, 2], "c": [500, 300], "w": 90, "z": 9, "fx": "fly", "at": 1.8},
+    "scroll": {"from": ["finale-open.png", 4, 1, 3], "c": [500, 300], "w": 44, "z": 8, "fx": "rise", "at": 1.4},
+    "sparkles": {"from": ["finale-open.png", 4, 1, 4], "c": [500, 215], "w": 230, "z": 8, "fx": "twinkle", "at": 1.2}
+   }
+  },
+  "terrarium": {
+   "base": {"from": ["base.png", 1, 1, 1], "c": [500, 497], "w": 215},
+   "pieces": [
+    {"from": ["pieces-sheet.png", 5, 2, 1], "c": [500, 265], "w": 178, "z": 9, "o": 0.4},
+    {"from": ["pieces-sheet.png", 5, 2, 2], "c": [500, 408], "w": 200, "z": 1},
+    {"from": ["pieces-sheet.png", 5, 2, 3], "c": [500, 372], "w": 150, "z": 2},
+    {"from": ["pieces-sheet.png", 5, 2, 4], "c": [505, 352], "w": 80, "z": 3},
+    {"from": ["pieces-sheet.png", 5, 2, 5], "c": [448, 312], "w": 58, "z": 4},
+    {"from": ["pieces-sheet.png", 5, 2, 6], "c": [482, 286], "w": 58, "z": 4},
+    {"from": ["pieces-sheet.png", 5, 2, 7], "c": [520, 286], "w": 58, "z": 4},
+    {"from": ["pieces-sheet.png", 5, 2, 8], "c": [552, 312], "w": 58, "z": 4},
+    {"from": ["pieces-sheet.png", 5, 2, 9], "c": [478, 346], "w": 52, "z": 5},
+    {"from": ["pieces-sheet.png", 5, 2, 10], "c": [530, 352], "w": 28, "z": 5}
+   ],
+   "sprites": {
+    "seed-1": {"from": ["finale-time-seed.png", 4, 1, 1], "c": [500, 300], "w": 50, "z": 6, "fx": "seed", "at": 0.0},
+    "seed-2": {"from": ["finale-time-seed.png", 4, 1, 2], "c": [500, 300], "w": 96, "z": 6, "fx": "seed", "at": 1.3},
+    "seed-3": {"from": ["finale-time-seed.png", 4, 1, 3], "c": [500, 300], "w": 84, "z": 6, "fx": "seed", "at": 2.6},
+    "seed-4": {"from": ["finale-time-seed.png", 4, 1, 4], "c": [500, 300], "w": 110, "z": 6, "fx": "seed", "at": 3.9},
+    "sun": {"from": ["weather-effects.png", 3, 3, 1], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 5.5},
+    "cloud": {"from": ["weather-effects.png", 3, 3, 3], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 8.5},
+    "rain": {"from": ["weather-effects.png", 3, 3, 4], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 11.5},
+    "rainbow": {"from": ["weather-effects.png", 3, 3, 9], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 14.5},
+    "blossom": {"from": ["weather-effects.png", 3, 3, 6], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 17.5},
+    "leaves": {"from": ["weather-effects.png", 3, 3, 7], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 20.5},
+    "snow": {"from": ["weather-effects.png", 3, 3, 5], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 23.5},
+    "moon": {"from": ["weather-effects.png", 3, 3, 2], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 26.5},
+    "fireflies": {"from": ["weather-effects.png", 3, 3, 8], "c": [500, 185], "w": 72, "z": 7, "fx": "sky", "at": 29.5}
+   }
+  },
+  "astral-clock": {
+   "base": {"from": ["base.png", 1, 1, 1], "c": [500, 375], "w": 400},
+   "pieces": [
+    {"from": ["pieces-sheet.png", 5, 2, 1], "c": [500, 375], "w": 340, "z": 2},
+    {"from": ["pieces-sheet.png", 5, 2, 2], "c": [500, 375], "w": 150, "z": 5},
+    {"from": ["pieces-sheet.png", 5, 2, 3], "c": [500, 375], "w": 200, "z": 4},
+    {"from": ["pieces-sheet.png", 5, 2, 4], "c": [500, 375], "w": 190, "z": 6, "spin": -60},
+    {"from": ["pieces-sheet.png", 5, 2, 5], "c": [592, 468], "w": 105, "z": 1, "spin": 24},
+    {"from": ["pieces-sheet.png", 5, 2, 6], "c": [500, 375], "w": 120, "z": 8, "pivot": [0.3, 0.7], "spin": 16},
+    {"from": ["pieces-sheet.png", 5, 2, 7], "c": [412, 290], "w": 78, "z": 7},
+    {"from": ["pieces-sheet.png", 5, 2, 8], "c": [590, 288], "w": 62, "z": 7},
+    {"from": ["pieces-sheet.png", 5, 2, 9], "c": [500, 375], "w": 268, "z": 3},
+    {"from": ["pieces-sheet.png", 5, 2, 10], "c": [500, 588], "w": 58, "z": 8}
+   ],
+   "sprites": {
+    "star-1": {"from": ["finale-constellations.png", 5, 2, 1, "black"], "c": [230, 120], "w": 85, "fx": "star", "at": 0.0},
+    "star-2": {"from": ["finale-constellations.png", 5, 2, 2, "black"], "c": [150, 250], "w": 85, "fx": "star", "at": 0.45},
+    "star-3": {"from": ["finale-constellations.png", 5, 2, 3, "black"], "c": [240, 385], "w": 85, "fx": "star", "at": 0.9},
+    "star-4": {"from": ["finale-constellations.png", 5, 2, 4, "black"], "c": [265, 590], "w": 85, "fx": "star", "at": 1.35},
+    "star-5": {"from": ["finale-constellations.png", 5, 2, 5, "black"], "c": [770, 150], "w": 85, "fx": "star", "at": 1.8},
+    "star-6": {"from": ["finale-constellations.png", 5, 2, 6, "black"], "c": [850, 280], "w": 85, "fx": "star", "at": 2.25},
+    "star-7": {"from": ["finale-constellations.png", 5, 2, 7, "black"], "c": [765, 400], "w": 85, "fx": "star", "at": 2.7},
+    "star-8": {"from": ["finale-constellations.png", 5, 2, 8, "black"], "c": [745, 590], "w": 85, "fx": "star", "at": 3.15},
+    "star-9": {"from": ["finale-constellations.png", 5, 2, 9, "black"], "c": [410, 88], "w": 85, "fx": "star", "at": 3.6},
+    "star-10": {"from": ["finale-constellations.png", 5, 2, 10, "black"], "c": [590, 88], "w": 85, "fx": "star", "at": 4.05}
+   }
+  },
+  "wallpaper-art-odyssey": {
+   "base": {"from": ["base.png", 1, 1, 1], "q": [50, 150, 900, 0, 0, 340.7]},
+   "frames": [[85.0, 199.3, 107.9, 251.2], [266.0, 199.3, 107.9, 251.2], [447.1, 199.3, 107.9, 251.2], [628.1, 199.3, 107.9, 251.2], [809.1, 199.3, 107.9, 251.2]],
+   "pieces": [
+    {"from": ["pieces-paintings.png", 5, 1, 1], "q": [85.0, 199.3, 107.9, 0, 0, 251.2], "z": 1},
+    {"from": ["pieces-paintings.png", 5, 1, 2], "q": [266.0, 199.3, 107.9, 0, 0, 251.2], "z": 1},
+    {"from": ["pieces-paintings.png", 5, 1, 3], "q": [447.1, 199.3, 107.9, 0, 0, 251.2], "z": 1},
+    {"from": ["pieces-paintings.png", 5, 1, 4], "q": [628.1, 199.3, 107.9, 0, 0, 251.2], "z": 1},
+    {"from": ["pieces-paintings.png", 5, 1, 5], "q": [809.1, 199.3, 107.9, 0, 0, 251.2], "z": 1},
+    {"from": ["pieces-platforms.png", 5, 1, 1], "c": [138.9, 329.9], "w": 47.5, "z": 3},
+    {"from": ["pieces-platforms.png", 5, 1, 2], "c": [316.7, 375.1], "w": 60.4, "z": 3},
+    {"from": ["pieces-platforms.png", 5, 1, 3], "c": [501.0, 372.6], "w": 56.1, "z": 3},
+    {"from": ["pieces-platforms.png", 5, 1, 4], "c": [682.0, 377.6], "w": 53.9, "z": 3},
+    {"from": ["pieces-platforms.png", 5, 1, 5], "c": [863.1, 311.0], "w": 45.3, "z": 3}
+   ],
+   "sprites": {
+    "stand": {"from": ["finale-runner.png", 4, 2, 1], "w": 22},
+    "door": {"from": ["finale-runner.png", 4, 2, 2], "w": 34},
+    "run-1": {"from": ["finale-runner.png", 4, 2, 3], "w": 36},
+    "run-2": {"from": ["finale-runner.png", 4, 2, 4], "w": 35},
+    "crouch": {"from": ["finale-runner.png", 4, 2, 5], "w": 30},
+    "jump": {"from": ["finale-runner.png", 4, 2, 6], "w": 40},
+    "land": {"from": ["finale-runner.png", 4, 2, 7], "w": 32},
+    "cheer": {"from": ["finale-runner.png", 4, 2, 8], "w": 30},
+    "seam": {"from": ["finale-portal-seam.png", 1, 1, 1, "black"], "w": 34},
+    "chest-open": {"from": ["finale-chest-open.png", 1, 1, 1], "c": [863.1, 307.3], "w": 53.9}
+   }
+  }
+ }
+}

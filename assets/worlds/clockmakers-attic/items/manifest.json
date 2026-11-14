@@ -1,0 +1,125 @@
+{
+ "world": "clockmakers-attic",
+ "items": {
+  "clockmakers-attic-001": {
+   "file": "star-shaped-centre-hole-brass-cog.png",
+   "w": 173,
+   "h": 176,
+   "sheet": 1
+  },
+  "clockmakers-attic-002": {
+   "file": "heart-shaped-centre-hole-brass-cog.png",
+   "w": 173,
+   "h": 176,
+   "sheet": 1
+  },
+  "clockmakers-attic-003": {
+   "file": "tiny-copper-pinion-gear.png",
+   "w": 117,
+   "h": 111,
+   "sheet": 1
+  },
+  "clockmakers-attic-004": {
+   "file": "big-iron-spur-gear-with-thick-teeth.png",
+   "w": 214,
+   "h": 198,
+   "sheet": 1
+  },
+  "clockmakers-attic-005": {
+   "file": "escape-wheel-with-hooked-teeth.png",
+   "w": 202,
+   "h": 205,
+   "sheet": 1
+  },
+  "clockmakers-attic-006": {
+   "file": "crown-gear-with-upright-teeth.png",
+   "w": 190,
+   "h": 157,
+   "sheet": 1
+  },
+  "clockmakers-attic-007": {
+   "file": "wooden-gear-with-round-peg-teeth.png",
+   "w": 200,
+   "h": 197,
+   "sheet": 1
+  },
+  "clockmakers-attic-008": {
+   "file": "two-meshed-mini-gears-on-a-brass-plate.png",
+   "w": 201,
+   "h": 127,
+   "sheet": 1
+  },
+  "clockmakers-attic-009": {
+   "file": "stack-of-three-cogs-on-one-axle.png",
+   "w": 188,
+   "h": 181,
+   "sheet": 1
+  },
+  "clockmakers-attic-010": {
+   "file": "worm-gear-on-a-short-shaft.png",
+   "w": 215,
+   "h": 96,
+   "sheet": 1
+  },
+  "clockmakers-attic-011": {
+   "file": "red-end-cap-coiled-steel-spring.png",
+   "w": 172,
+   "h": 164,
+   "sheet": 1
+  },
+  "clockmakers-attic-012": {
+   "file": "blue-end-cap-coiled-steel-spring.png",
+   "w": 174,
+   "h": 164,
+   "sheet": 1
+  },
+  "clockmakers-attic-013": {
+   "file": "flat-spiral-mainspring.png",
+   "w": 193,
+   "h": 179,
+   "sheet": 1
+  },
+  "clockmakers-attic-014": {
+   "file": "long-stretched-wobbly-spring.png",
+   "w": 220,
+   "h": 133,
+   "sheet": 1
+  },
+  "clockmakers-attic-015": {
+   "file": "brass-pendulum-with-a-round-bob.png",
+   "w": 107,
+   "h": 218,
+   "sheet": 1
+  },
+  "clockmakers-attic-016": {
+   "file": "pendulum-with-a-crescent-moon-bob.png",
+   "w": 120,
+   "h": 227,
+   "sheet": 1
+  },
+  "clockmakers-attic-017": {
+   "file": "pine-cone-clock-weight-on-a-chain.png",
+   "w": 108,
+   "h": 226,
+   "sheet": 1
+  },
+  "clockmakers-attic-018": {
+   "file": "balance-wheel-with-a-hairspring.png",
+   "w": 176,
+   "h": 193,
+   "sheet": 1
+  },
+  "clockmakers-attic-019": {
+   "file": "wooden-metronome-with-a-swinging-arm.png",
+   "w": 155,
+   "h": 220,
+   "sheet": 1
+  },
+  "clockmakers-attic-020": {
+   "file": "steel-tuning-fork.png",
+   "w": 165,
+   "h": 223,
+   "sheet": 1
+  }
+ }
+}
