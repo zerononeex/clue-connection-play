@@ -228,20 +228,12 @@ const GLYPHS = {
 for (const id in GLYPHS) ICONS[id] = { src: `assets/icons/${id}.png`, svg: GLYPHS[id] };
 for (const c of CATEGORIES) for (const m of c.modes) ICONS[m] = { src: `assets/icons/${m}.png`, svg: GLYPHS[c.id] };
 
-// ---------- WORLDS: zones are in scene units; the scene is 200 wide x 100 tall (1 unit = 1% of scene height) ----------
-// Shelf and table zones: items rest on the zone's bottom edge. Wall and floor zones: items sit anywhere inside.
-const world = (id, name, blurb, zones = []) => ({ id, name, blurb, background: `assets/worlds/${id}/background.png`, zones });
-const zone = (id, x, y, w, h, surface, maxSize) => ({ id, x, y, w, h, surfaces: [surface], maxSize });
+// ---------- WORLDS: scene units are 1% of scene height; a scene is 100 tall and w.w wide (200 until real art is wired) ----------
+// The Attic's zones and painted objects come from its anchors.json (normalized 0-1 boxes measured on the real painting).
+// rest zones: items stand on the zone's bottom edge. Other zones: items sit anywhere inside.
+const world = (id, name, blurb) => ({ id, name, blurb, background: `assets/worlds/${id}/background.png`, zones: [] });
 const WORLDS = [
-  world('clockmakers-attic', "The Clockmaker's Attic", 'A cosy tinker-shop of brass, pendulums and giant cuckoo clocks.', [
-    zone('rafter-left', 10, 4, 60, 12, 'shelf', 'M'), zone('rafter-right', 120, 4, 66, 12, 'shelf', 'M'),
-    zone('cuckoo-wall', 8, 22, 40, 26, 'wall', 'L'), zone('tool-shelf-top', 54, 22, 44, 13, 'shelf', 'M'),
-    zone('tool-shelf-low', 54, 37, 44, 13, 'shelf', 'M'), zone('window-sill', 104, 30, 30, 16, 'shelf', 'M'),
-    zone('gear-tower', 140, 20, 22, 30, 'wall', 'L'), zone('pendulum-corner', 166, 22, 28, 28, 'wall', 'L'),
-    zone('workbench', 6, 54, 58, 18, 'table', 'L'), zone('blueprint-desk', 72, 56, 48, 16, 'table', 'L'),
-    zone('crate-stack', 128, 56, 32, 16, 'table', 'M'), zone('low-shelf', 164, 54, 30, 16, 'shelf', 'M'),
-    zone('floor-left', 4, 77, 92, 20, 'floor', 'L'), zone('floor-right', 100, 77, 96, 20, 'floor', 'L')
-  ]),
+  world('clockmakers-attic', "The Clockmaker's Attic", 'A cosy tinker-shop of brass, pendulums and giant cuckoo clocks.'),
   world('midnight-botanical-conservatory', 'The Midnight Botanical Conservatory', 'A glasshouse at night, full of glowing mushrooms and forest spirits.'),
   world('micro-kingdoms', "Micro-Kingdoms: The Giant's Living Room", 'You are three inches tall in a messy, giant room.'),
   world('papercraft-origami-kingdom', 'The Papercraft and Origami Kingdom', 'A pop-up land of folded paper and cardboard.'),
@@ -257,6 +249,16 @@ const WORLDS = [
 // SAMPLE POOL: 30 placeholder items for the Clockmaker's Attic. The real pool of 80 to 100 items per world
 // arrives with the art workbook and replaces this list. These counts are not final.
 const SIZE = { S: 5, M: 7, L: 10 }; // item diameter in scene units
+async function loadAnchors() { // needs http(s); if the file cannot be read the Attic stays without zones and its tile stays locked
+  const w = WORLDS[0], dir = `assets/worlds/${w.id}/`;
+  try {
+    const a = await (await fetch(dir + 'anchors.json')).json(), box = b => ({ ...b, x: b.x * w.w, y: b.y * 100, w: b.w * w.w, h: b.h * 100 });
+    w.w = 100 * a.background.size[0] / a.background.size[1];
+    w.zones = a.zones.map(box);
+    w.painted = a.paintedObjects.map(box);
+    w.background = dir + 'background-web.jpg';
+  } catch (e) {}
+}
 const pool = (worldId, rows) => rows.map(([name, category, size], i) => {
   const id = `${worldId}-${String(i + 1).padStart(3, '0')}`;
   return { id, name, category, size, sprite: `assets/worlds/${worldId}/items/${id}.png` };
@@ -312,20 +314,19 @@ function buildRound(worldId, modeId, n) {
     [items[i], items[j]] = [items[j], items[i]];
   }
   const spot = (from, room) => Math.round((from + rnd() * room) * 100) / 100;
-  items.forEach((item, i) => {
-    const d = SIZE[item.size], fits = zones.filter(z => SIZE[z.maxSize] >= d);
-    let p;
+  items.forEach((item, i) => { // an item shrinks to its zone's sprite scale; one that finds no free spot in 200 tries is left out
     for (let tries = 0; tries < 200; tries++) {
-      const z = fits[Math.floor(rnd() * fits.length)], rests = z.surfaces[0] === 'shelf' || z.surfaces[0] === 'table';
-      const x = spot(z.x + d / 2, z.w - d), y = rests ? z.y + z.h - d / 2 : spot(z.y + d / 2, z.h - d);
-      p = { item, zone: z.id, x, y, target: i < 20 };
-      if (!placed.some(q => Math.hypot(q.x - x, q.y - y) < (SIZE[q.item.size] + d) / 2 + 1)) break;
+      const z = zones[Math.floor(rnd() * zones.length)], d = Math.round(Math.min(SIZE[item.size], SIZE[z.maxSize]) * z.scale * 100) / 100;
+      if (d > z.w || d > z.h) continue;
+      const x = spot(z.x + d / 2, z.w - d), y = z.rest ? Math.round((z.y + z.h - d / 2) * 100) / 100 : spot(z.y + d / 2, z.h - d);
+      if (placed.some(q => Math.hypot(q.x - x, q.y - y) < (q.d + d) / 2 + .5)) continue;
+      placed.push({ item, zone: z.id, x, y, d, target: i < 20 });
+      break;
     }
-    placed.push(p);
   });
   return placed;
 }
-const layoutHash = placed => hash(JSON.stringify(placed.map(p => [p.item.id, p.zone, p.x, p.y, p.target])));
+const layoutHash = placed => hash(JSON.stringify(placed.map(p => [p.item.id, p.zone, p.x, p.y, p.d, p.target])));
 
 // ---------- Save state. Never rename this key or change its shape without a migration. ----------
 const KEY = 'clue-connection-data-v1';
@@ -407,28 +408,25 @@ const PLACEHOLDER_ART = {
     '<circle cx="151" cy="28" r="6" stroke-dasharray="2.4"/><circle cx="153" cy="42" r="4.5" stroke-dasharray="2"/><path d="M180 22v20" stroke-width="1"/><circle cx="180" cy="44" r="3"/></g>'
 };
 function sceneHTML(w, placed) {
-  const shapes = w.zones.map(z => {
-    const s = z.surfaces[0], y = z.y + z.h;
-    return (s === 'shelf' || s === 'table' ? `<rect x="${z.x}" y="${y}" width="${z.w}" height="1.5" rx=".5" fill="#6e4424"/>` : '') +
-      (s === 'table' ? `<path d="M${z.x + 3} ${y + 1.5}V77M${z.x + z.w - 3} ${y + 1.5}V77" stroke="#6e4424" stroke-width="2"/>` : '') +
-      (DEV ? `<rect x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" fill="none" stroke="#c00" stroke-width=".3" stroke-dasharray="1"/>` +
-        `<text x="${z.x + 1}" y="${z.y + 3}" font-size="2.4" fill="#c00">${z.id} (${s}, max ${z.maxSize})</text>` : '');
-  }).join('');
-  return `<div class="scene" id="scene"><svg viewBox="0 0 200 100" preserveAspectRatio="none">` +
+  const W = w.w || 200, shapes = !DEV ? '' : w.zones.map(z =>
+    `<rect x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" fill="none" stroke="#c00" stroke-width=".3" stroke-dasharray="1"/>` +
+    `<text x="${z.x}" y="${z.y - .5}" font-size="1.6" fill="#c00">${z.id} (max ${z.maxSize})</text>`).join('');
+  cam.w = W * 10;
+  return `<div class="scene" id="scene" style="width:${cam.w}px"><svg viewBox="0 0 ${W} 100" preserveAspectRatio="none">` +
     `<defs><linearGradient id="wall" x2="0" y2="1"><stop offset="0" stop-color="#f6dfae"/><stop offset="1" stop-color="#e6bd7e"/></linearGradient></defs>` +
-    `<rect width="200" height="77" fill="url(#wall)"/><rect y="77" width="200" height="23" fill="#b98554"/>` +
-    `${PLACEHOLDER_ART[w.id] || ''}${shapes}</svg>${art(w.background)}` +
+    `<rect width="${W}" height="77" fill="url(#wall)"/><rect y="77" width="${W}" height="23" fill="#b98554"/>` +
+    `${PLACEHOLDER_ART[w.id] || ''}</svg>${art(w.background)}${shapes && `<svg viewBox="0 0 ${W} 100" preserveAspectRatio="none">${shapes}</svg>`}` +
     placed.map(p => {
-      const d = SIZE[p.item.size] * 10;
+      const d = p.d * 10;
       return `<div class="item" id="i-${p.item.id}" style="left:${p.x * 10 - d / 2}px;top:${p.y * 10 - d / 2}px;width:${d}px;height:${d}px;font-size:${d * .6}px">` +
         `${pic(p.item)}${DEV ? `<small>${p.item.name}</small>` : ''}</div>`;
     }).join('') + `</div>`;
 }
 // Camera: drag to pan, pinch or wheel to zoom. The scene always covers the view.
-const cam = { x: 0, y: 0, s: 1, min: 1 };
+const cam = { x: 0, y: 0, s: 1, min: 1, w: 2000 };
 function moveCam(view) {
   cam.s = Math.min(Math.max(cam.s, cam.min), cam.min * 4);
-  cam.x = Math.min(0, Math.max(cam.x, view.clientWidth - 2000 * cam.s));
+  cam.x = Math.min(0, Math.max(cam.x, view.clientWidth - cam.w * cam.s));
   cam.y = Math.min(0, Math.max(cam.y, view.clientHeight - 1000 * cam.s));
   $('#scene').style.transform = `translate(${cam.x}px,${cam.y}px) scale(${cam.s})`;
 }
@@ -437,7 +435,7 @@ function mountScene(view, onTap) {
   let moved = 0, pinch = 0;
   const fit = () => { // runs whenever the view changes size (rotation, the sheet sliding); a zoomed-in camera keeps its pan and zoom
     if (!view.clientWidth) return view.isConnected || sized.disconnect();
-    const k = Math.max(view.clientWidth / 2000, view.clientHeight / 1000) / cam.min;
+    const k = Math.max(view.clientWidth / cam.w, view.clientHeight / 1000) / cam.min;
     if (cam.s <= cam.min) { cam.s *= k; cam.x *= k; cam.y *= k; } // fully zoomed out stays fully zoomed out
     cam.min *= k;
     moveCam(view);
@@ -709,7 +707,7 @@ function tapScene(ux, uy) {
   let hit, best = Infinity;
   for (const p of r.placed) { // nearest unfound item; the hit area never drops below 44px on screen
     const d = Math.hypot(p.x - ux, p.y - uy);
-    if (!r.found.includes(p.item.id) && d < best && d <= Math.max(SIZE[p.item.size] / 2, 2.2 / cam.s)) { hit = p; best = d; }
+    if (!r.found.includes(p.item.id) && d < best && d <= Math.max(p.d / 2, 2.2 / cam.s)) { hit = p; best = d; }
   }
   if (!hit) return;
   const el = $('#i-' + hit.item.id);
@@ -781,16 +779,16 @@ async function selfTest() {
     results.push(`<li class="${ok ? 'ok' : 'bad'}"><b>${ok ? 'PASS' : 'FAIL'}</b> (${id}) ${name}${note}</li>`);
   };
   await test('a', 'Same seed builds the identical layout twice, again after a real page reload, and matches the frozen hash',
-    () => hashOf(1) === hashOf(1) && hashOf(1) === +location.hash.slice(1) && hashOf(1) === 851907923);
+    () => hashOf(1) === hashOf(1) && hashOf(1) === +location.hash.slice(1) && hashOf(1) === 756027844);
   await test('b', 'All 10 sub-stage seeds build different layouts', () => new Set(subStages(W, M).map(s => hashOf(s.n))).size === 10);
   await test('c', 'Every sub-stage places exactly 20 targets, and every placed item sits inside a valid zone without overlapping', () =>
     subStages(W, M).every(({ n }) => {
       const placed = buildRound(W, M, n);
       return placed.filter(p => p.target).length === 20 && placed.every((p, i) => {
-        const z = WORLDS[0].zones.find(z => z.id === p.zone), d = SIZE[p.item.size], rests = z.surfaces[0] === 'shelf' || z.surfaces[0] === 'table';
-        return d <= SIZE[z.maxSize] && p.x - d / 2 >= z.x && p.x + d / 2 <= z.x + z.w && p.y - d / 2 >= z.y && p.y + d / 2 <= z.y + z.h &&
-          (!rests || p.y === z.y + z.h - d / 2) &&
-          placed.every((q, j) => j >= i || Math.hypot(p.x - q.x, p.y - q.y) >= (d + SIZE[q.item.size]) / 2);
+        const z = WORLDS[0].zones.find(z => z.id === p.zone), d = p.d, e = .011; // e: positions are rounded to 2 places
+        return d <= SIZE[z.maxSize] * z.scale + e && p.x - d / 2 >= z.x - e && p.x + d / 2 <= z.x + z.w + e && p.y - d / 2 >= z.y - e && p.y + d / 2 <= z.y + z.h + e &&
+          (!z.rest || Math.abs(p.y - (z.y + z.h - d / 2)) < e) &&
+          placed.every((q, j) => j >= i || Math.hypot(p.x - q.x, p.y - q.y) >= (d + q.d) / 2);
       });
     }));
   await test('d', 'Save, wipe memory, load: progress round-trips', () => {
@@ -967,6 +965,23 @@ async function selfTest() {
     ACT.stage(2);
     return loaded && gained && carried && shown && $('#count').textContent.startsWith('2 / 20') && count('#tray .got') === 2 && count('#scene .item') === 28;
   });
+  const A = WORLDS[0], inScene = b => b.x >= 0 && b.y >= 0 && b.w > 0 && b.h > 0 && b.x + b.w <= A.w + 1e-9 && b.y + b.h <= 100 + 1e-9;
+  await test('r', "The Attic's anchors.json loads: real zones and painted objects, and the scene uses the web-size background at the painting's shape", async () => {
+    const a = await (await fetch(`assets/worlds/${W}/anchors.json`)).json();
+    ACT.stage(1);
+    const img = $('#scene img');
+    return a.world === W && A.zones.length === a.zones.length && A.zones.length >= 25 && A.painted.length === a.paintedObjects.length && A.painted.length >= 20 &&
+      A.zones.every((z, i) => z.id === a.zones[i].id) && Math.abs(A.w - 100 * 7680 / 3258) < 1e-9 && Math.abs(parseFloat($('#scene').style.width) - A.w * 10) < .01 &&
+      A.background.endsWith('background-web.jpg') && (await fetch(A.background)).ok && (!img || img.getAttribute('src') === A.background);
+  });
+  await test('s', 'Every zone box and every painted-object box sits inside the scene', () => A.zones.every(inScene) && A.painted.every(inScene));
+  await test('t', 'A placed sample round uses only real zones from anchors.json, every item drawn at its placed spot and size', () => {
+    ACT.stage(1);
+    return round.placed.length >= 20 && round.placed.every(p => {
+      const z = A.zones.find(z => z.id === p.zone), el = $('#i-' + p.item.id);
+      return z && inScene(z) && el && Math.abs(parseFloat(el.style.width) - p.d * 10) < .01 && Math.abs(parseFloat(el.style.left) - (p.x * 10 - p.d * 5)) < .01;
+    });
+  });
   realSave === null ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, realSave); // hand the real save back
   loadSave();
   applyAudio();
@@ -977,11 +992,13 @@ async function selfTest() {
     `${results.filter(r => r.includes('PASS')).length} of ${results.length} passed</h1><ul>${results.join('')}</ul></div></div>`);
 }
 
-loadSave();
-applyAudio();
-cur.home = save.machines.current;
-show('home');
-if (new URLSearchParams(location.search).get('selftest') === '1') selfTest();
+loadAnchors().then(() => {
+  loadSave();
+  applyAudio();
+  cur.home = save.machines.current;
+  show('home');
+  if (new URLSearchParams(location.search).get('selftest') === '1') selfTest();
+});
 </script>
 </body>
 </html>
