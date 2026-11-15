@@ -1,0 +1,3607 @@
+{
+ "TS-01": {
+  "names": [
+   "Front door scene, evening (background)"
+  ],
+  "f": "assets/ui/title/title-bg.webp",
+  "w": 2560,
+  "h": 1911
+ },
+ "TS-02": {
+  "names": [
+   "Game title sign: Clue Connection"
+  ],
+  "f": "assets/ui/title/title-sign.webp",
+  "w": 1600,
+  "h": 718
+ },
+ "TS-03": {
+  "names": [
+   "The front door panel, closed: a tall POINTED-arch (gothic arch) wooden door shaped exactly like the doorway in the attached TS-01 picture, in deep plum purple with vertical planks, a round porthole window with a brass star-shaped frame, and a brass knob, seen straight on",
+   "The front door's thick edge, seen straight on: a tall narrow strip of the same plum wood with a pointed top to match the door, as thick as a heavy castle door, with a brass band across its middle and an iron strap at top and bottom (the game stacks it behind the door so the door shows real width as it swings)",
+   "A soft cream rabbit sitting, side view facing right",
+   "The same rabbit mid-hop, side view facing right",
+   "The same rabbit running fast, stretched out, side view facing right",
+   "A small owl sitting on nothing, facing forward, big round eyes",
+   "An orange cat curled up asleep, as if on a window shelf",
+   "A small black cat sitting, facing forward, yellow eyes",
+   "A tiny glowing fairy with gold light and clear wings, flying",
+   "A tiny glowing fairy with blue light and clear wings, flying",
+   "A tiny glowing fairy with lilac light and clear wings, flying",
+   "A tiny gnome face with a pointed green hat, peeking shyly, smiling",
+   "A dark silhouette of a friendly witch with a pointed hat, head and shoulders only, flat dark plum colour",
+   "A small dark dragon silhouette flying with wings up, side view, flat deep purple",
+   "An orange koi fish leaping in an arc, side view",
+   "A green frog mid-jump with legs stretched"
+  ],
+  "f": [
+   "assets/ui/title/title-sheet-1/01.webp",
+   "assets/ui/title/title-sheet-1/02.webp",
+   "assets/ui/title/title-sheet-1/03.webp",
+   "assets/ui/title/title-sheet-1/04.webp",
+   "assets/ui/title/title-sheet-1/05.webp",
+   "assets/ui/title/title-sheet-1/06.webp",
+   "assets/ui/title/title-sheet-1/07.webp",
+   "assets/ui/title/title-sheet-1/08.webp",
+   "assets/ui/title/title-sheet-1/09.webp",
+   "assets/ui/title/title-sheet-1/10.webp",
+   "assets/ui/title/title-sheet-1/11.webp",
+   "assets/ui/title/title-sheet-1/12.webp",
+   "assets/ui/title/title-sheet-1/13.webp",
+   "assets/ui/title/title-sheet-1/14.webp",
+   "assets/ui/title/title-sheet-1/15.webp",
+   "assets/ui/title/title-sheet-1/16.webp"
+  ],
+  "w": [
+   598,
+   782,
+   509,
+   215,
+   900,
+   545,
+   719,
+   485,
+   475,
+   464,
+   411,
+   416,
+   779,
+   744,
+   402,
+   900
+  ],
+  "h": [
+   795,
+   726,
+   900,
+   900,
+   486,
+   551,
+   412,
+   663,
+   593,
+   594,
+   530,
+   530,
+   848,
+   866,
+   786,
+   613
+  ]
+ },
+ "TS-04": {
+  "names": [
+   "A tiny arched fairy door panel in honey wood, closed, for the tree roots",
+   "The same tiny fairy door seen from the side as it swings open",
+   "A tiny round wooden door panel for the mushroom house, closed",
+   "An orange koi fish swimming, top view",
+   "A white koi fish with red patches swimming, top view",
+   "A green frog sitting on a lily pad",
+   "A soft round puff of chimney smoke, pale lavender grey",
+   "A water splash with droplets, side view",
+   "A ring ripple on water, seen at an angle",
+   "A blank hanging wooden plaque with a brass rim, wide and rounded, no writing",
+   "A cluster of three glowing fireflies",
+   "A four-point magic sparkle star in pale gold"
+  ],
+  "f": [
+   "assets/ui/title/title-sheet-2/01.webp",
+   "assets/ui/title/title-sheet-2/02.webp",
+   "assets/ui/title/title-sheet-2/03.webp",
+   "assets/ui/title/title-sheet-2/04.webp",
+   "assets/ui/title/title-sheet-2/05.webp",
+   "assets/ui/title/title-sheet-2/06.webp",
+   "assets/ui/title/title-sheet-2/07.webp",
+   "assets/ui/title/title-sheet-2/08.webp",
+   "assets/ui/title/title-sheet-2/09.webp",
+   "assets/ui/title/title-sheet-2/10.webp",
+   "assets/ui/title/title-sheet-2/11.webp",
+   "assets/ui/title/title-sheet-2/12.webp"
+  ],
+  "w": [
+   597,
+   608,
+   767,
+   379,
+   373,
+   869,
+   818,
+   885,
+   882,
+   821,
+   769,
+   612
+  ],
+  "h": [
+   810,
+   809,
+   770,
+   900,
+   900,
+   640,
+   900,
+   586,
+   441,
+   742,
+   806,
+   721
+  ]
+ },
+ "RM-01": {
+  "names": [
+   "Room panel 1 of 3 (left), night"
+  ],
+  "f": "assets/ui/room/room-night-1.webp",
+  "w": 2580,
+  "h": 1440
+ },
+ "RM-02": {
+  "names": [
+   "Room panel 2 of 3 (centre), night"
+  ],
+  "f": "assets/ui/room/room-night-2.webp",
+  "w": 2580,
+  "h": 1440
+ },
+ "RM-03": {
+  "names": [
+   "Room panel 3 of 3 (right), night"
+  ],
+  "f": "assets/ui/room/room-night-3.webp",
+  "w": 2580,
+  "h": 1440
+ },
+ "RM-04": {
+  "names": [
+   "Room panel 1 of 3 (left), day"
+  ],
+  "f": "assets/ui/room/room-day-1.webp",
+  "w": 2580,
+  "h": 1440
+ },
+ "RM-05": {
+  "names": [
+   "Room panel 2 of 3 (centre), day"
+  ],
+  "f": "assets/ui/room/room-day-2.webp",
+  "w": 2580,
+  "h": 1440
+ },
+ "RM-06": {
+  "names": [
+   "Room panel 3 of 3 (right), day"
+  ],
+  "f": "assets/ui/room/room-day-3.webp",
+  "w": 2580,
+  "h": 1440
+ },
+ "RM-07": {
+  "names": [
+   "Stone pillar with ivy winding up the left side",
+   "Stone pillar with ivy winding up the right side"
+  ],
+  "f": [
+   "assets/ui/room/room-pillars/01.webp",
+   "assets/ui/room/room-pillars/02.webp"
+  ],
+  "w": [
+   214,
+   214
+  ],
+  "h": [
+   900,
+   900
+  ]
+ },
+ "FU-01": {
+  "names": [
+   "The huge main table"
+  ],
+  "f": "assets/ui/room/fu-01.webp",
+  "w": 1600,
+  "h": 597
+ },
+ "FU-02": {
+  "names": [
+   "Maker wall shelf"
+  ],
+  "f": "assets/ui/room/fu-02.webp",
+  "w": 1600,
+  "h": 325
+ },
+ "FU-03": {
+  "names": [
+   "Papercraft back table"
+  ],
+  "f": "assets/ui/room/fu-03.webp",
+  "w": 1600,
+  "h": 1553
+ },
+ "FU-04": {
+  "names": [
+   "Laboratory bench"
+  ],
+  "f": "assets/ui/room/fu-04.webp",
+  "w": 1600,
+  "h": 500
+ },
+ "FU-05": {
+  "names": [
+   "Robot stand"
+  ],
+  "f": "assets/ui/room/fu-05.webp",
+  "w": 1600,
+  "h": 1209
+ },
+ "FU-06": {
+  "names": [
+   "Aquarium cabinet"
+  ],
+  "f": "assets/ui/room/fu-06.webp",
+  "w": 1600,
+  "h": 501
+ },
+ "FU-07": {
+  "names": [
+   "Inside of the front door"
+  ],
+  "f": "assets/ui/room/fu-07.webp",
+  "w": 1171,
+  "h": 1600
+ },
+ "FU-08": {
+  "names": [
+   "Settings toolbox"
+  ],
+  "f": "assets/ui/room/fu-08.webp",
+  "w": 1600,
+  "h": 1394
+ },
+ "FU-09": {
+  "names": [
+   "The clock frame: a round dark walnut clock case with a brass rim, four small brass studs at 12, 3, 6 and 9, a short brass hand, and a horizontal brass bar across the middle; the centre of the face is EMPTY (transparent) so the dial can turn behind it",
+   "The dial disc that turns behind the frame: a circle split exactly in half, the top half deep night blue with a cream crescent moon and three tiny stars, the bottom half sky blue with a bright golden sun with short rays"
+  ],
+  "f": [
+   "assets/ui/room/sun-moon-clock/01.webp",
+   "assets/ui/room/sun-moon-clock/02.webp"
+  ],
+  "w": [
+   900,
+   895
+  ],
+  "h": [
+   890,
+   900
+  ]
+ },
+ "PR-01": {
+  "names": [
+   "Hanging lantern, brass with warm gold glass, on a short chain",
+   "Hanging lantern, brass with ice-blue glass",
+   "Hanging lantern, brass with lilac glass",
+   "Hanging lantern, brass with mint-green glass",
+   "Small iron candle chandelier with five lit candles",
+   "Tall floor lamp with a fabric shade glowing warm",
+   "A single tall cream candle, lit",
+   "A cluster of three candles of different heights, lit",
+   "Glass jar with a cork, glowing blue liquid",
+   "Glass jar with a cork, glowing lilac liquid",
+   "Glass jar with a cork, glowing mint liquid",
+   "Glass jar with a cork, glowing golden firefly light",
+   "Cluster of pale blue glowing crystals",
+   "Cluster of lilac glowing crystals"
+  ],
+  "f": [
+   "assets/ui/room/props-lights/01.webp",
+   "assets/ui/room/props-lights/02.webp",
+   "assets/ui/room/props-lights/03.webp",
+   "assets/ui/room/props-lights/04.webp",
+   "assets/ui/room/props-lights/05.webp",
+   "assets/ui/room/props-lights/06.webp",
+   "assets/ui/room/props-lights/07.webp",
+   "assets/ui/room/props-lights/08.webp",
+   "assets/ui/room/props-lights/09.webp",
+   "assets/ui/room/props-lights/10.webp",
+   "assets/ui/room/props-lights/11.webp",
+   "assets/ui/room/props-lights/12.webp",
+   "assets/ui/room/props-lights/13.webp",
+   "assets/ui/room/props-lights/14.webp"
+  ],
+  "w": [
+   419,
+   387,
+   354,
+   435,
+   798,
+   390,
+   360,
+   578,
+   523,
+   507,
+   562,
+   503,
+   639,
+   638
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   708,
+   887,
+   825,
+   820,
+   774,
+   772,
+   776,
+   775,
+   811,
+   810
+  ]
+ },
+ "PR-02": {
+  "names": [
+   "Tall messy pile of eight books, some sticking out",
+   "Medium pile of five books",
+   "Short pile of three books",
+   "Pile of books with a small plant on top",
+   "A single closed book lying flat, red",
+   "A single closed book lying flat, blue",
+   "A single book leaning open, face down",
+   "An open spellbook glowing softly gold from its pages, with tiny star doodles",
+   "A loose sheet of cream paper with faint lines, flat",
+   "A loose sheet of paper curled slightly, as if falling",
+   "A stack of three rolled scrolls tied with ribbon",
+   "A parchment note pinned with a red pin",
+   "A parchment note pinned with a blue pin",
+   "A small torn parchment note pinned with a gold pin",
+   "A white feather quill in a round black inkpot",
+   "A brass magnifying glass lying down"
+  ],
+  "f": [
+   "assets/ui/room/props-books/01.webp",
+   "assets/ui/room/props-books/02.webp",
+   "assets/ui/room/props-books/03.webp",
+   "assets/ui/room/props-books/04.webp",
+   "assets/ui/room/props-books/05.webp",
+   "assets/ui/room/props-books/06.webp",
+   "assets/ui/room/props-books/07.webp",
+   "assets/ui/room/props-books/08.webp",
+   "assets/ui/room/props-books/09.webp",
+   "assets/ui/room/props-books/10.webp",
+   "assets/ui/room/props-books/11.webp",
+   "assets/ui/room/props-books/12.webp",
+   "assets/ui/room/props-books/13.webp",
+   "assets/ui/room/props-books/14.webp",
+   "assets/ui/room/props-books/15.webp",
+   "assets/ui/room/props-books/16.webp"
+  ],
+  "w": [
+   836,
+   858,
+   814,
+   698,
+   896,
+   847,
+   726,
+   900,
+   620,
+   774,
+   900,
+   632,
+   617,
+   594,
+   657,
+   722
+  ],
+  "h": [
+   900,
+   779,
+   622,
+   895,
+   688,
+   725,
+   764,
+   640,
+   776,
+   690,
+   662,
+   808,
+   751,
+   681,
+   900,
+   699
+  ]
+ },
+ "PR-03": {
+  "names": [
+   "Large fern in a terracotta pot",
+   "Trailing plant with long hanging vines in a small pot",
+   "Small round succulent in a tiny pot",
+   "Little sprout in a cracked teacup",
+   "Long strand of ivy hanging straight down",
+   "Short strand of ivy hanging with a curl",
+   "Set of glowing mushrooms in blue, gold and lilac",
+   "A hanging basket of trailing flowers",
+   "Mossy grey stone, round",
+   "Mossy grey stone, flat",
+   "A tuft of grass with two tiny flowers",
+   "A crack in stone with grass growing out (flat, seen from above at an angle)"
+  ],
+  "f": [
+   "assets/ui/room/props-plants/01.webp",
+   "assets/ui/room/props-plants/02.webp",
+   "assets/ui/room/props-plants/03.webp",
+   "assets/ui/room/props-plants/04.webp",
+   "assets/ui/room/props-plants/05.webp",
+   "assets/ui/room/props-plants/06.webp",
+   "assets/ui/room/props-plants/07.webp",
+   "assets/ui/room/props-plants/08.webp",
+   "assets/ui/room/props-plants/09.webp",
+   "assets/ui/room/props-plants/10.webp",
+   "assets/ui/room/props-plants/11.webp",
+   "assets/ui/room/props-plants/12.webp"
+  ],
+  "w": [
+   900,
+   476,
+   459,
+   756,
+   291,
+   392,
+   726,
+   539,
+   782,
+   900,
+   611,
+   900
+  ],
+  "h": [
+   893,
+   900,
+   578,
+   709,
+   900,
+   900,
+   900,
+   900,
+   684,
+   473,
+   649,
+   767
+  ]
+ },
+ "PR-04": {
+  "names": [
+   "A deep indigo wizard robe with tiny gold stars, hanging from a brass hook",
+   "A broom leaning at an angle, straw bristles tied with twine",
+   "A broom flying sideways with a few sparkles trailing from its bristles",
+   "A purple pointed wizard hat with a gold band and two stars, standing",
+   "A blue pointed wizard hat, a little floppy at the tip, standing",
+   "A wooden wall rack of square cubbies filled with rolled scrolls",
+   "A wooden treasure chest with brass corners, closed",
+   "A brass telescope on a small stand"
+  ],
+  "f": [
+   "assets/ui/room/props-wizard/01.webp",
+   "assets/ui/room/props-wizard/02.webp",
+   "assets/ui/room/props-wizard/03.webp",
+   "assets/ui/room/props-wizard/04.webp",
+   "assets/ui/room/props-wizard/05.webp",
+   "assets/ui/room/props-wizard/06.webp",
+   "assets/ui/room/props-wizard/07.webp",
+   "assets/ui/room/props-wizard/08.webp"
+  ],
+  "w": [
+   474,
+   414,
+   738,
+   821,
+   870,
+   830,
+   852,
+   768
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   835,
+   813,
+   900,
+   715,
+   836
+  ]
+ },
+ "PR-05": {
+  "names": [
+   "Round deep-blue rug with a gold dotted border",
+   "Round plum rug with gold rings",
+   "Huge oval red-and-gold rug for under the main table",
+   "A magic flying carpet in ruby red with gold diamond patterns and gold tassels at both ends, rippling gently as if floating"
+  ],
+  "f": [
+   "assets/ui/room/props-rugs/01.webp",
+   "assets/ui/room/props-rugs/02.webp",
+   "assets/ui/room/props-rugs/03.webp",
+   "assets/ui/room/props-rugs/04.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900
+  ],
+  "h": [
+   550,
+   561,
+   644,
+   550
+  ]
+ },
+ "PR-06": {
+  "names": [
+   "Picture A pose 1: a smiling young wizard in a pointed hat, arm down, in a gold frame",
+   "Picture A pose 2: the same wizard waving, arm up",
+   "Picture B pose 1: a little sailboat on blue waves, tilted left, in a brown frame",
+   "Picture B pose 2: the same boat tilted right",
+   "Picture C pose 1: an owl portrait with eyes open, oval frame",
+   "Picture C pose 2: the same owl with eyes closed",
+   "Picture D pose 1: a small green dragon flying over hills at night, wings up",
+   "Picture D pose 2: the same dragon, wings down",
+   "Picture E pose 1: a grey cat lying down, tail up",
+   "Picture E pose 2: the same cat, tail curled down",
+   "Picture F pose 1: a candle flame standing tall, dark red background",
+   "Picture F pose 2: the same candle flame leaning"
+  ],
+  "f": [
+   "assets/ui/room/props-photos/01.webp",
+   "assets/ui/room/props-photos/02.webp",
+   "assets/ui/room/props-photos/03.webp",
+   "assets/ui/room/props-photos/04.webp",
+   "assets/ui/room/props-photos/05.webp",
+   "assets/ui/room/props-photos/06.webp",
+   "assets/ui/room/props-photos/07.webp",
+   "assets/ui/room/props-photos/08.webp",
+   "assets/ui/room/props-photos/09.webp",
+   "assets/ui/room/props-photos/10.webp",
+   "assets/ui/room/props-photos/11.webp",
+   "assets/ui/room/props-photos/12.webp"
+  ],
+  "w": [
+   750,
+   748,
+   721,
+   729,
+   670,
+   670,
+   671,
+   671,
+   743,
+   742,
+   676,
+   677
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900
+  ]
+ },
+ "WO-01": {
+  "names": [
+   "Conservatory: the giant tree"
+  ],
+  "f": "assets/ui/room/wo-01.webp",
+  "w": 1215,
+  "h": 1600
+ },
+ "WO-02": {
+  "names": [
+   "Micro-Kingdoms: the playhouse"
+  ],
+  "f": "assets/ui/room/wo-02.webp",
+  "w": 1600,
+  "h": 1559
+ },
+ "WO-03": {
+  "names": [
+   "Papercraft: castle and village model"
+  ],
+  "f": "assets/ui/room/wo-03.webp",
+  "w": 1600,
+  "h": 852
+ },
+ "WO-04": {
+  "names": [
+   "Clockmaker's Attic: the cuckoo clock"
+  ],
+  "f": "assets/ui/room/wo-04.webp",
+  "w": 829,
+  "h": 1600
+ },
+ "WO-05": {
+  "names": [
+   "Living Art Gallery: picture frame"
+  ],
+  "f": "assets/ui/room/wo-05.webp",
+  "w": 1600,
+  "h": 905
+ },
+ "WO-06": {
+  "names": [
+   "Sky-Port: hanging floating-island model"
+  ],
+  "f": "assets/ui/room/wo-06.webp",
+  "w": 1600,
+  "h": 967
+ },
+ "WO-07": {
+  "names": [
+   "Wizard's Kitchen: the chemistry lab"
+  ],
+  "f": "assets/ui/room/wo-07.webp",
+  "w": 1600,
+  "h": 869
+ },
+ "WO-08": {
+  "names": [
+   "Coral City: the aquarium"
+  ],
+  "f": "assets/ui/room/wo-08.webp",
+  "w": 1600,
+  "h": 912
+ },
+ "WO-09": {
+  "names": [
+   "Arcade: the arcade cabinet"
+  ],
+  "f": "assets/ui/room/wo-09.webp",
+  "w": 1141,
+  "h": 1600
+ },
+ "WO-10": {
+  "names": [
+   "Astral Express: the toy train track"
+  ],
+  "f": "assets/ui/room/wo-10.webp",
+  "w": 1600,
+  "h": 374
+ },
+ "WO-11": {
+  "names": [
+   "Toy steam train engine in deep blue and gold, side view",
+   "Toy train carriage in red and gold, side view",
+   "Toy train carriage in green and gold, side view",
+   "A puff of toy-train smoke",
+   "Windmill sails in red, four blades",
+   "A cuckoo clock pendulum in brass",
+   "A folded paper dragon in red on a thread",
+   "A tiny arched fairy door panel for the giant tree",
+   "Orange striped fish, side view",
+   "Yellow fish, side view",
+   "Green sea turtle swimming",
+   "Pale lilac jellyfish",
+   "Little red octopus",
+   "Orange seahorse",
+   "Tiny bubbles rising",
+   "A soft blue screen glow (rounded rectangle of light)"
+  ],
+  "f": [
+   "assets/ui/room/world-bits/01.webp",
+   "assets/ui/room/world-bits/02.webp",
+   "assets/ui/room/world-bits/03.webp",
+   "assets/ui/room/world-bits/04.webp",
+   "assets/ui/room/world-bits/05.webp",
+   "assets/ui/room/world-bits/06.webp",
+   "assets/ui/room/world-bits/07.webp",
+   "assets/ui/room/world-bits/08.webp",
+   "assets/ui/room/world-bits/09.webp",
+   "assets/ui/room/world-bits/10.webp",
+   "assets/ui/room/world-bits/11.webp",
+   "assets/ui/room/world-bits/12.webp",
+   "assets/ui/room/world-bits/13.webp",
+   "assets/ui/room/world-bits/14.webp",
+   "assets/ui/room/world-bits/15.webp",
+   "assets/ui/room/world-bits/16.webp"
+  ],
+  "w": [
+   900,
+   796,
+   900,
+   666,
+   886,
+   309,
+   665,
+   656,
+   838,
+   821,
+   822,
+   582,
+   763,
+   446,
+   245,
+   726
+  ],
+  "h": [
+   697,
+   631,
+   611,
+   565,
+   889,
+   900,
+   900,
+   850,
+   617,
+   643,
+   541,
+   871,
+   719,
+   841,
+   380,
+   605
+  ]
+ },
+ "RB-00": {
+  "names": [
+   "Wind-up Robot: complete (10 of 10)"
+  ],
+  "f": "assets/ui/machines/rb-complete.webp",
+  "w": 1256,
+  "h": 1600
+ },
+ "RB-01": {
+  "names": [
+   "Wind-up Robot: empty base (0 of 10)"
+  ],
+  "f": "assets/ui/machines/rb-base.webp",
+  "w": 1600,
+  "h": 789
+ },
+ "RB-02": {
+  "names": [
+   "Two round feet (as a pair)",
+   "Two short legs (as a pair)",
+   "The barrel body with a round porthole gear window",
+   "The big brass wind-up key",
+   "The left arm with a round hand",
+   "The right arm with a round hand",
+   "The square head with a rounded top (no eyes)",
+   "Two big glowing teal eyes (as a pair)",
+   "The antenna with a little red ball",
+   "The heart-shaped chest light, glowing soft pink"
+  ],
+  "f": [
+   "assets/ui/machines/rb-pieces/01.webp",
+   "assets/ui/machines/rb-pieces/02.webp",
+   "assets/ui/machines/rb-pieces/03.webp",
+   "assets/ui/machines/rb-pieces/04.webp",
+   "assets/ui/machines/rb-pieces/05.webp",
+   "assets/ui/machines/rb-pieces/06.webp",
+   "assets/ui/machines/rb-pieces/07.webp",
+   "assets/ui/machines/rb-pieces/08.webp",
+   "assets/ui/machines/rb-pieces/09.webp",
+   "assets/ui/machines/rb-pieces/10.webp"
+  ],
+  "w": [
+   900,
+   705,
+   861,
+   767,
+   383,
+   381,
+   900,
+   827,
+   302,
+   785
+  ],
+  "h": [
+   310,
+   397,
+   900,
+   755,
+   900,
+   900,
+   766,
+   376,
+   650,
+   725
+  ]
+ },
+ "PB-00": {
+  "names": [
+   "Puzzle Box: complete (10 of 10)"
+  ],
+  "f": "assets/ui/machines/pb-complete.webp",
+  "w": 1600,
+  "h": 1459
+ },
+ "PB-01": {
+  "names": [
+   "Puzzle Box: empty base (0 of 10)"
+  ],
+  "f": "assets/ui/machines/pb-base.webp",
+  "w": 1600,
+  "h": 566
+ },
+ "PB-02": {
+  "names": [
+   "The carved plum box body (plain, no fittings)",
+   "The hinged lid",
+   "The big brass gear",
+   "The small copper gear",
+   "The crank handle",
+   "The keyhole plate",
+   "The left sliding panel",
+   "The right sliding panel",
+   "The gold jewel for the lid",
+   "The golden star latch"
+  ],
+  "f": [
+   "assets/ui/machines/pb-pieces/01.webp",
+   "assets/ui/machines/pb-pieces/02.webp",
+   "assets/ui/machines/pb-pieces/03.webp",
+   "assets/ui/machines/pb-pieces/04.webp",
+   "assets/ui/machines/pb-pieces/05.webp",
+   "assets/ui/machines/pb-pieces/06.webp",
+   "assets/ui/machines/pb-pieces/07.webp",
+   "assets/ui/machines/pb-pieces/08.webp",
+   "assets/ui/machines/pb-pieces/09.webp",
+   "assets/ui/machines/pb-pieces/10.webp"
+  ],
+  "w": [
+   900,
+   900,
+   891,
+   587,
+   788,
+   586,
+   716,
+   765,
+   900,
+   673
+  ],
+  "h": [
+   469,
+   891,
+   876,
+   528,
+   763,
+   870,
+   900,
+   900,
+   609,
+   808
+  ]
+ },
+ "TE-00": {
+  "names": [
+   "Four Seasons Terrarium: complete (10 of 10)"
+  ],
+  "f": "assets/ui/machines/te-complete.webp",
+  "w": 1034,
+  "h": 1600
+ },
+ "TE-01": {
+  "names": [
+   "Four Seasons Terrarium: empty base (0 of 10)"
+  ],
+  "f": "assets/ui/machines/te-base.webp",
+  "w": 1358,
+  "h": 1600
+ },
+ "TE-02": {
+  "names": [
+   "The soil layer",
+   "A scatter of pebbles",
+   "A tiny pond",
+   "Two little mossy hills",
+   "A young tree (summer green)",
+   "A patch of flowers",
+   "A cluster of red-and-white mushrooms",
+   "A tiny cottage with a round door",
+   "A butterfly",
+   "A little hanging sun-and-moon charm"
+  ],
+  "f": [
+   "assets/ui/machines/te-pieces/01.webp",
+   "assets/ui/machines/te-pieces/02.webp",
+   "assets/ui/machines/te-pieces/03.webp",
+   "assets/ui/machines/te-pieces/04.webp",
+   "assets/ui/machines/te-pieces/05.webp",
+   "assets/ui/machines/te-pieces/06.webp",
+   "assets/ui/machines/te-pieces/07.webp",
+   "assets/ui/machines/te-pieces/08.webp",
+   "assets/ui/machines/te-pieces/09.webp",
+   "assets/ui/machines/te-pieces/10.webp",
+   "assets/ui/machines/te-pieces/11.webp"
+  ],
+  "w": [
+   900,
+   379,
+   900,
+   876,
+   900,
+   713,
+   790,
+   715,
+   632,
+   500,
+   567
+  ],
+  "h": [
+   369,
+   161,
+   331,
+   557,
+   343,
+   900,
+   900,
+   540,
+   652,
+   505,
+   900
+  ]
+ },
+ "SM-00": {
+  "names": [
+   "Star Map (Astral Clock): complete (10 of 10)"
+  ],
+  "f": "assets/ui/machines/sm-complete.webp",
+  "w": 1600,
+  "h": 1593
+ },
+ "SM-01": {
+  "names": [
+   "Star Map (Astral Clock): empty base (0 of 10)"
+  ],
+  "f": "assets/ui/machines/sm-base.webp",
+  "w": 1600,
+  "h": 1592
+ },
+ "SM-02": {
+  "names": [
+   "Big Dipper star pattern",
+   "Little Dipper star pattern",
+   "Cassiopeia star pattern",
+   "Orion star pattern",
+   "Cygnus (the swan) star pattern",
+   "Leo star pattern",
+   "Scorpius star pattern",
+   "Lyra star pattern",
+   "Pegasus star pattern",
+   "Southern Cross star pattern"
+  ],
+  "f": [
+   "assets/ui/machines/sm-pieces/01.webp",
+   "assets/ui/machines/sm-pieces/02.webp",
+   "assets/ui/machines/sm-pieces/03.webp",
+   "assets/ui/machines/sm-pieces/04.webp",
+   "assets/ui/machines/sm-pieces/05.webp",
+   "assets/ui/machines/sm-pieces/06.webp",
+   "assets/ui/machines/sm-pieces/07.webp",
+   "assets/ui/machines/sm-pieces/08.webp",
+   "assets/ui/machines/sm-pieces/09.webp",
+   "assets/ui/machines/sm-pieces/10.webp",
+   "assets/ui/machines/sm-pieces/11.webp"
+  ],
+  "w": [
+   900,
+   900,
+   865,
+   633,
+   896,
+   900,
+   900,
+   446,
+   638,
+   900,
+   519
+  ],
+  "h": [
+   426,
+   443,
+   473,
+   900,
+   783,
+   542,
+   737,
+   600,
+   900,
+   641,
+   632
+  ]
+ },
+ "TE-03": {
+  "names": [
+   "Spring: pink blossoms and fresh light leaves",
+   "Summer: full deep green leaves",
+   "Autumn: orange and red leaves, a few falling",
+   "Winter: bare branches with soft snow"
+  ],
+  "f": [
+   "assets/ui/machines/te-seasons/01.webp",
+   "assets/ui/machines/te-seasons/02.webp",
+   "assets/ui/machines/te-seasons/03.webp",
+   "assets/ui/machines/te-seasons/04.webp"
+  ],
+  "w": [
+   703,
+   706,
+   735,
+   732
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900
+  ]
+ },
+ "WA-00": {
+  "names": [
+   "Wall Art: four empty frames"
+  ],
+  "f": "assets/ui/machines/wa-frames.webp",
+  "w": 900,
+  "h": 382
+ },
+ "WA-01": {
+  "names": [
+   "Wall Art: painting 1 (sliced into 3 pieces)"
+  ],
+  "f": "assets/ui/machines/wa-painting-1.webp",
+  "w": 1195,
+  "h": 1600
+ },
+ "WA-02": {
+  "names": [
+   "Wall Art: painting 2 (sliced into 3 pieces)"
+  ],
+  "f": "assets/ui/machines/wa-painting-2.webp",
+  "w": 1195,
+  "h": 1600
+ },
+ "WA-03": {
+  "names": [
+   "Wall Art: painting 3 (sliced into 2 pieces)"
+  ],
+  "f": "assets/ui/machines/wa-painting-3.webp",
+  "w": 1195,
+  "h": 1600
+ },
+ "WA-04": {
+  "names": [
+   "Wall Art: painting 4 (sliced into 2 pieces)"
+  ],
+  "f": "assets/ui/machines/wa-painting-4.webp",
+  "w": 1195,
+  "h": 1600
+ },
+ "WA-05": {
+  "names": [
+   "Traveller walking, left foot forward: a small child explorer in a red cloak and a round hat, side view facing right",
+   "Traveller walking, right foot forward",
+   "Traveller waving, facing the viewer",
+   "Small wooden plank bridge that spans the gap between two frames",
+   "Treasure chest, closed",
+   "Treasure chest, open, golden light and a glowing star pouring out"
+  ],
+  "f": [
+   "assets/ui/machines/wa-traveller/01.webp",
+   "assets/ui/machines/wa-traveller/02.webp",
+   "assets/ui/machines/wa-traveller/03.webp",
+   "assets/ui/machines/wa-traveller/04.webp",
+   "assets/ui/machines/wa-traveller/05.webp",
+   "assets/ui/machines/wa-traveller/06.webp"
+  ],
+  "w": [
+   513,
+   500,
+   542,
+   900,
+   846,
+   829
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   652,
+   717,
+   900
+  ]
+ },
+ "PE-OW": {
+  "names": [
+   "Sitting calmly, facing forward (idle)",
+   "Flying with wings spread",
+   "Curled up asleep",
+   "Surprised: jumping up a little with wide eyes",
+   "Happy: bouncing with eyes closed and a big smile",
+   "Its own trick: hooting with its beak open and wings spread",
+   "Head alone (to turn)",
+   "One wing alone (to flap)"
+  ],
+  "f": [
+   "assets/ui/pets/owl/01.webp",
+   "assets/ui/pets/owl/02.webp",
+   "assets/ui/pets/owl/03.webp",
+   "assets/ui/pets/owl/04.webp",
+   "assets/ui/pets/owl/05.webp",
+   "assets/ui/pets/owl/06.webp",
+   "assets/ui/pets/owl/07.webp",
+   "assets/ui/pets/owl/08.webp",
+   "assets/ui/pets/owl/09.webp"
+  ],
+  "w": [
+   829,
+   900,
+   883,
+   900,
+   900,
+   900,
+   900,
+   854,
+   900
+  ],
+  "h": [
+   879,
+   585,
+   704,
+   791,
+   805,
+   736,
+   850,
+   699,
+   785
+  ]
+ },
+ "PE-CA": {
+  "names": [
+   "Sitting calmly, facing forward (idle)",
+   "Walking, side view facing right",
+   "Curled up asleep",
+   "Surprised: jumping up a little with wide eyes",
+   "Happy: bouncing with eyes closed and a big smile",
+   "Its own trick: meowing with its mouth open, paw raised to bat at something",
+   "Head alone",
+   "Tail alone (to swish)"
+  ],
+  "f": [
+   "assets/ui/pets/cat/01.webp",
+   "assets/ui/pets/cat/02.webp",
+   "assets/ui/pets/cat/03.webp",
+   "assets/ui/pets/cat/04.webp",
+   "assets/ui/pets/cat/05.webp",
+   "assets/ui/pets/cat/06.webp",
+   "assets/ui/pets/cat/07.webp",
+   "assets/ui/pets/cat/08.webp"
+  ],
+  "w": [
+   679,
+   900,
+   864,
+   687,
+   736,
+   900,
+   900,
+   340
+  ],
+  "h": [
+   900,
+   641,
+   667,
+   900,
+   900,
+   826,
+   843,
+   900
+  ]
+ },
+ "PE-DR": {
+  "names": [
+   "Sitting calmly, facing forward (idle)",
+   "Flying, side view facing right",
+   "Curled up asleep",
+   "Surprised: jumping up a little with wide eyes",
+   "Happy: bouncing with eyes closed and a big smile",
+   "Its own trick: blowing a small puff of warm orange fire, happily",
+   "Head alone",
+   "One wing alone (to flap)"
+  ],
+  "f": [
+   "assets/ui/pets/dragon/01.webp",
+   "assets/ui/pets/dragon/02.webp",
+   "assets/ui/pets/dragon/03.webp",
+   "assets/ui/pets/dragon/04.webp",
+   "assets/ui/pets/dragon/05.webp",
+   "assets/ui/pets/dragon/06.webp",
+   "assets/ui/pets/dragon/07.webp",
+   "assets/ui/pets/dragon/08.webp",
+   "assets/ui/pets/dragon/09.webp",
+   "assets/ui/pets/dragon/10.webp"
+  ],
+  "w": [
+   645,
+   900,
+   900,
+   900,
+   900,
+   684,
+   684,
+   900,
+   731,
+   739
+  ],
+  "h": [
+   900,
+   843,
+   575,
+   716,
+   681,
+   900,
+   900,
+   831,
+   725,
+   741
+  ]
+ },
+ "PE-LI": {
+  "names": [
+   "Sitting calmly, facing forward (idle)",
+   "Creeping, seen from above",
+   "Curled up asleep",
+   "Surprised: jumping up a little with wide eyes",
+   "Happy: bouncing with eyes closed and a big smile",
+   "Its own trick: dashing away fast, body curved",
+   "Head alone",
+   "Tail alone (to curl)"
+  ],
+  "f": [
+   "assets/ui/pets/lizard/01.webp",
+   "assets/ui/pets/lizard/02.webp",
+   "assets/ui/pets/lizard/03.webp",
+   "assets/ui/pets/lizard/04.webp",
+   "assets/ui/pets/lizard/05.webp",
+   "assets/ui/pets/lizard/06.webp",
+   "assets/ui/pets/lizard/07.webp",
+   "assets/ui/pets/lizard/08.webp"
+  ],
+  "w": [
+   419,
+   434,
+   883,
+   436,
+   451,
+   472,
+   602,
+   532
+  ],
+  "h": [
+   900,
+   900,
+   828,
+   900,
+   900,
+   900,
+   596,
+   900
+  ]
+ },
+ "PE-FR": {
+  "names": [
+   "Sitting calmly, facing forward (idle)",
+   "Hopping, side view facing right",
+   "Curled up asleep",
+   "Surprised: jumping up a little with wide eyes",
+   "Happy: bouncing with eyes closed and a big smile",
+   "Its own trick: leaping high with legs stretched out",
+   "Head alone",
+   "Back legs alone (to kick)"
+  ],
+  "f": [
+   "assets/ui/pets/frog/01.webp",
+   "assets/ui/pets/frog/02.webp",
+   "assets/ui/pets/frog/03.webp",
+   "assets/ui/pets/frog/04.webp",
+   "assets/ui/pets/frog/05.webp",
+   "assets/ui/pets/frog/06.webp",
+   "assets/ui/pets/frog/07.webp",
+   "assets/ui/pets/frog/08.webp",
+   "assets/ui/pets/frog/09.webp",
+   "assets/ui/pets/frog/10.webp",
+   "assets/ui/pets/frog/11.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   727,
+   847,
+   900,
+   839,
+   395,
+   394
+  ],
+  "h": [
+   729,
+   651,
+   619,
+   676,
+   619,
+   900,
+   900,
+   776,
+   698,
+   790,
+   837
+  ]
+ },
+ "PE-CR": {
+  "names": [
+   "Sitting calmly, facing forward (idle)",
+   "Hopping, side view facing right",
+   "Curled up asleep",
+   "Surprised: jumping up a little with wide eyes",
+   "Happy: bouncing with eyes closed and a big smile",
+   "Its own trick: cawing with its beak wide open, wings half spread",
+   "Head alone",
+   "One wing alone (to flap)"
+  ],
+  "f": [
+   "assets/ui/pets/crow/01.webp",
+   "assets/ui/pets/crow/02.webp",
+   "assets/ui/pets/crow/03.webp",
+   "assets/ui/pets/crow/04.webp",
+   "assets/ui/pets/crow/05.webp",
+   "assets/ui/pets/crow/06.webp",
+   "assets/ui/pets/crow/07.webp",
+   "assets/ui/pets/crow/08.webp"
+  ],
+  "w": [
+   605,
+   900,
+   900,
+   900,
+   900,
+   856,
+   803,
+   742
+  ],
+  "h": [
+   900,
+   741,
+   799,
+   737,
+   867,
+   900,
+   809,
+   900
+  ]
+ },
+ "PL-01": {
+  "names": [
+   "Blank pill button, plum enamel with a brass rim (for the word Home)",
+   "Round music medallion showing a musical note (music on)",
+   "The same music medallion with the note faded grey (music off)",
+   "Round hint medallion showing a glowing lightbulb",
+   "Small blank brass tag pill (for the words free: 3)",
+   "Round Show-me medallion showing a magnifying glass with a sparkle",
+   "Blank pill button in brass and walnut (for Back to the room)",
+   "A golden glowing ring, a thin bright circle with a soft gold glow, empty inside",
+   "A hand-drawn ink cross-out stroke, dark brown, slightly wobbly",
+   "A blank list card frame: cream parchment with a brass corner",
+   "Power medallion: lightbulb (Hint)",
+   "Power medallion: small shield with a star (Oops Shield)",
+   "Power medallion: eye with a circular arrow (Echo Replay)",
+   "Power medallion: magnifying glass with a plus (Super Zoom)",
+   "Power medallion: lantern with a beam (Truth Scanner)",
+   "Blank round empty power slot, dark and recessed"
+  ],
+  "f": [
+   "assets/ui/play/play-sheet/01.webp",
+   "assets/ui/play/play-sheet/02.webp",
+   "assets/ui/play/play-sheet/03.webp",
+   "assets/ui/play/play-sheet/04.webp",
+   "assets/ui/play/play-sheet/05.webp",
+   "assets/ui/play/play-sheet/06.webp",
+   "assets/ui/play/play-sheet/07.webp",
+   "assets/ui/play/play-sheet/08.webp",
+   "assets/ui/play/play-sheet/09.webp",
+   "assets/ui/play/play-sheet/10.webp",
+   "assets/ui/play/play-sheet/11.webp",
+   "assets/ui/play/play-sheet/12.webp",
+   "assets/ui/play/play-sheet/13.webp",
+   "assets/ui/play/play-sheet/14.webp",
+   "assets/ui/play/play-sheet/15.webp",
+   "assets/ui/play/play-sheet/16.webp"
+  ],
+  "w": [
+   900,
+   812,
+   812,
+   814,
+   900,
+   814,
+   900,
+   820,
+   661,
+   863,
+   825,
+   823,
+   826,
+   826,
+   826,
+   825
+  ],
+  "h": [
+   402,
+   819,
+   819,
+   819,
+   357,
+   823,
+   447,
+   819,
+   704,
+   859,
+   828,
+   829,
+   829,
+   829,
+   829,
+   828
+  ]
+ },
+ "PL-02": {
+  "names": [
+   "Side list panel, landscape (left side)"
+  ],
+  "f": "assets/ui/play/list-landscape.webp",
+  "w": 1139,
+  "h": 2048
+ },
+ "PL-03": {
+  "names": [
+   "Side list panel, portrait (bottom)"
+  ],
+  "f": "assets/ui/play/list-portrait.webp",
+  "w": 2048,
+  "h": 508
+ },
+ "WN-00": {
+  "names": [
+   "Win light rays (light layer)"
+  ],
+  "f": "assets/ui/win/rays.webp",
+  "w": 1600,
+  "h": 1600
+ },
+ "WN-01": {
+  "names": [
+   "Card frame: a brass-rimmed wooden card with small cogs in each corner",
+   "Top ornament: a brass clock face with a little cuckoo bird",
+   "Confetti: tiny brass cogs",
+   "Confetti: tiny clock hands",
+   "Confetti: gold sparkles",
+   "Prize medallion rim in brass with ticks"
+  ],
+  "f": [
+   "assets/ui/win/win-attic/01.webp",
+   "assets/ui/win/win-attic/02.webp",
+   "assets/ui/win/win-attic/03.webp",
+   "assets/ui/win/win-attic/04.webp",
+   "assets/ui/win/win-attic/05.webp",
+   "assets/ui/win/win-attic/06.webp"
+  ],
+  "w": [
+   649,
+   669,
+   721,
+   767,
+   319,
+   842
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   365,
+   900
+  ]
+ },
+ "WN-02": {
+  "names": [
+   "Card frame: a glasshouse-arched card wrapped in leaves and glowing flowers",
+   "Top ornament: a big glowing moonflower",
+   "Confetti: tiny leaves",
+   "Confetti: petals",
+   "Confetti: glowing pollen dots",
+   "Prize medallion rim made of vines"
+  ],
+  "f": [
+   "assets/ui/win/win-conservatory/01.webp",
+   "assets/ui/win/win-conservatory/02.webp",
+   "assets/ui/win/win-conservatory/03.webp",
+   "assets/ui/win/win-conservatory/04.webp",
+   "assets/ui/win/win-conservatory/05.webp"
+  ],
+  "w": [
+   695,
+   860,
+   657,
+   674,
+   891
+  ],
+  "h": [
+   900,
+   900,
+   563,
+   726,
+   900
+  ]
+ },
+ "WN-03": {
+  "names": [
+   "Card frame: a card made from a giant cream sewing label with stitched edges",
+   "Top ornament: a giant red sewing button",
+   "Confetti: tiny buttons",
+   "Confetti: thimbles",
+   "Confetti: coloured pins",
+   "Prize medallion rim like a bottle cap"
+  ],
+  "f": [
+   "assets/ui/win/win-micro/01.webp",
+   "assets/ui/win/win-micro/02.webp",
+   "assets/ui/win/win-micro/03.webp",
+   "assets/ui/win/win-micro/04.webp",
+   "assets/ui/win/win-micro/05.webp",
+   "assets/ui/win/win-micro/06.webp"
+  ],
+  "w": [
+   637,
+   891,
+   900,
+   847,
+   761,
+   864
+  ],
+  "h": [
+   900,
+   900,
+   895,
+   900,
+   900,
+   900
+  ]
+ },
+ "WN-04": {
+  "names": [
+   "Card frame: a layered folded-paper card with crisp creases",
+   "Top ornament: an origami crane",
+   "Confetti: tiny paper squares",
+   "Confetti: paper stars",
+   "Confetti: paper triangles",
+   "Prize medallion rim of folded paper petals"
+  ],
+  "f": [
+   "assets/ui/win/win-paper/01.webp",
+   "assets/ui/win/win-paper/02.webp",
+   "assets/ui/win/win-paper/03.webp",
+   "assets/ui/win/win-paper/04.webp",
+   "assets/ui/win/win-paper/05.webp",
+   "assets/ui/win/win-paper/06.webp"
+  ],
+  "w": [
+   724,
+   860,
+   456,
+   687,
+   638,
+   655
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900
+  ]
+ },
+ "WN-05": {
+  "names": [
+   "Card frame: a navy card shaped like a golden train ticket with punched holes",
+   "Top ornament: a little gold steam engine",
+   "Confetti: tiny stars",
+   "Confetti: ticket stubs",
+   "Confetti: steam puffs",
+   "Prize medallion rim like a train lamp"
+  ],
+  "f": [
+   "assets/ui/win/win-astral/01.webp",
+   "assets/ui/win/win-astral/02.webp",
+   "assets/ui/win/win-astral/03.webp",
+   "assets/ui/win/win-astral/04.webp",
+   "assets/ui/win/win-astral/05.webp",
+   "assets/ui/win/win-astral/06.webp",
+   "assets/ui/win/win-astral/07.webp",
+   "assets/ui/win/win-astral/08.webp",
+   "assets/ui/win/win-astral/09.webp",
+   "assets/ui/win/win-astral/10.webp",
+   "assets/ui/win/win-astral/11.webp",
+   "assets/ui/win/win-astral/12.webp",
+   "assets/ui/win/win-astral/13.webp",
+   "assets/ui/win/win-astral/14.webp",
+   "assets/ui/win/win-astral/15.webp",
+   "assets/ui/win/win-astral/16.webp",
+   "assets/ui/win/win-astral/17.webp"
+  ],
+  "w": [
+   900,
+   900,
+   536,
+   334,
+   224,
+   364,
+   236,
+   501,
+   850,
+   216,
+   357,
+   278,
+   703,
+   327,
+   313,
+   463,
+   263
+  ],
+  "h": [
+   699,
+   558,
+   434,
+   327,
+   275,
+   441,
+   212,
+   666,
+   838,
+   179,
+   334,
+   272,
+   900,
+   297,
+   289,
+   447,
+   295
+  ]
+ },
+ "WN-06": {
+  "names": [
+   "Card frame: an ornate gilded picture frame card with ruby velvet",
+   "Top ornament: a painter's palette with a brush",
+   "Confetti: paint drops",
+   "Confetti: tiny brushes",
+   "Confetti: gold flecks",
+   "Prize medallion rim like a gilded frame"
+  ],
+  "f": [
+   "assets/ui/win/win-gallery/01.webp",
+   "assets/ui/win/win-gallery/02.webp",
+   "assets/ui/win/win-gallery/03.webp",
+   "assets/ui/win/win-gallery/04.webp",
+   "assets/ui/win/win-gallery/05.webp",
+   "assets/ui/win/win-gallery/06.webp",
+   "assets/ui/win/win-gallery/07.webp",
+   "assets/ui/win/win-gallery/08.webp",
+   "assets/ui/win/win-gallery/09.webp",
+   "assets/ui/win/win-gallery/10.webp",
+   "assets/ui/win/win-gallery/11.webp",
+   "assets/ui/win/win-gallery/12.webp",
+   "assets/ui/win/win-gallery/13.webp"
+  ],
+  "w": [
+   237,
+   294,
+   691,
+   714,
+   299,
+   288,
+   249,
+   234,
+   289,
+   332,
+   855,
+   337,
+   388
+  ],
+  "h": [
+   338,
+   260,
+   900,
+   900,
+   354,
+   335,
+   407,
+   433,
+   585,
+   616,
+   900,
+   612,
+   524
+  ]
+ },
+ "WN-07": {
+  "names": [
+   "Card frame: a rounded sea-glass card edged with coral and pearls",
+   "Top ornament: an open shell with a pearl",
+   "Confetti: bubbles",
+   "Confetti: tiny shells",
+   "Confetti: starfish",
+   "Prize medallion rim of pearls"
+  ],
+  "f": [
+   "assets/ui/win/win-coral/01.webp",
+   "assets/ui/win/win-coral/02.webp",
+   "assets/ui/win/win-coral/03.webp",
+   "assets/ui/win/win-coral/04.webp",
+   "assets/ui/win/win-coral/05.webp",
+   "assets/ui/win/win-coral/06.webp"
+  ],
+  "w": [
+   636,
+   618,
+   647,
+   607,
+   551,
+   860
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900
+  ]
+ },
+ "WN-08": {
+  "names": [
+   "Card frame: a puffy cloud-shaped card with a brass rim",
+   "Top ornament: a little red blimp",
+   "Confetti: tiny clouds",
+   "Confetti: paper planes",
+   "Confetti: small flags",
+   "Prize medallion rim like a brass porthole"
+  ],
+  "f": [
+   "assets/ui/win/win-sky/01.webp",
+   "assets/ui/win/win-sky/02.webp",
+   "assets/ui/win/win-sky/03.webp",
+   "assets/ui/win/win-sky/04.webp",
+   "assets/ui/win/win-sky/05.webp",
+   "assets/ui/win/win-sky/06.webp"
+  ],
+  "w": [
+   661,
+   900,
+   900,
+   743,
+   713,
+   885
+  ],
+  "h": [
+   900,
+   622,
+   870,
+   900,
+   900,
+   900
+  ]
+ },
+ "WN-09": {
+  "names": [
+   "Card frame: a card shaped like a potion label on a copper rim, dripping glowing potion",
+   "Top ornament: a bubbling round potion flask",
+   "Confetti: glowing bubbles",
+   "Confetti: tiny stars",
+   "Confetti: herb leaves",
+   "Prize medallion rim like a cauldron rim"
+  ],
+  "f": [
+   "assets/ui/win/win-kitchen/01.webp",
+   "assets/ui/win/win-kitchen/02.webp",
+   "assets/ui/win/win-kitchen/03.webp",
+   "assets/ui/win/win-kitchen/04.webp",
+   "assets/ui/win/win-kitchen/05.webp",
+   "assets/ui/win/win-kitchen/06.webp",
+   "assets/ui/win/win-kitchen/07.webp",
+   "assets/ui/win/win-kitchen/08.webp",
+   "assets/ui/win/win-kitchen/09.webp"
+  ],
+  "w": [
+   197,
+   545,
+   770,
+   535,
+   228,
+   241,
+   204,
+   697,
+   233
+  ],
+  "h": [
+   193,
+   900,
+   799,
+   900,
+   231,
+   323,
+   284,
+   900,
+   262
+  ]
+ },
+ "WN-10": {
+  "names": [
+   "Card frame: a glossy neon-edged card with rounded pixel corners",
+   "Top ornament: a toy joystick",
+   "Confetti: pixel squares",
+   "Confetti: little toy blocks",
+   "Confetti: neon stars",
+   "Prize medallion rim of glossy plastic"
+  ],
+  "f": [
+   "assets/ui/win/win-arcade/01.webp",
+   "assets/ui/win/win-arcade/02.webp",
+   "assets/ui/win/win-arcade/03.webp",
+   "assets/ui/win/win-arcade/04.webp",
+   "assets/ui/win/win-arcade/05.webp",
+   "assets/ui/win/win-arcade/06.webp"
+  ],
+  "w": [
+   651,
+   743,
+   727,
+   785,
+   699,
+   885
+  ],
+  "h": [
+   900,
+   900,
+   839,
+   900,
+   900,
+   900
+  ]
+ },
+ "MN-01-1": {
+  "names": [
+   "The Clockmaker's Attic menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/attic/panel-landscape.webp",
+  "w": 2048,
+  "h": 1199
+ },
+ "MN-01-2": {
+  "names": [
+   "The Clockmaker's Attic menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/attic/panel-portrait.webp",
+  "w": 1499,
+  "h": 2048
+ },
+ "MN-01-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/attic/trims/01.webp",
+   "assets/ui/menus/attic/trims/02.webp",
+   "assets/ui/menus/attic/trims/03.webp",
+   "assets/ui/menus/attic/trims/04.webp",
+   "assets/ui/menus/attic/trims/05.webp",
+   "assets/ui/menus/attic/trims/06.webp",
+   "assets/ui/menus/attic/trims/07.webp",
+   "assets/ui/menus/attic/trims/08.webp",
+   "assets/ui/menus/attic/trims/09.webp",
+   "assets/ui/menus/attic/trims/10.webp",
+   "assets/ui/menus/attic/trims/11.webp",
+   "assets/ui/menus/attic/trims/12.webp",
+   "assets/ui/menus/attic/trims/13.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   643,
+   829,
+   900,
+   900,
+   900,
+   536,
+   513,
+   900
+  ],
+  "h": [
+   628,
+   290,
+   414,
+   318,
+   275,
+   900,
+   900,
+   344,
+   111,
+   390,
+   639,
+   484,
+   335
+  ]
+ },
+ "MN-01-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/attic/buttons-up/01.webp",
+   "assets/ui/menus/attic/buttons-up/02.webp",
+   "assets/ui/menus/attic/buttons-up/03.webp",
+   "assets/ui/menus/attic/buttons-up/04.webp",
+   "assets/ui/menus/attic/buttons-up/05.webp",
+   "assets/ui/menus/attic/buttons-up/06.webp",
+   "assets/ui/menus/attic/buttons-up/07.webp",
+   "assets/ui/menus/attic/buttons-up/08.webp",
+   "assets/ui/menus/attic/buttons-up/09.webp",
+   "assets/ui/menus/attic/buttons-up/10.webp",
+   "assets/ui/menus/attic/buttons-up/11.webp",
+   "assets/ui/menus/attic/buttons-up/12.webp",
+   "assets/ui/menus/attic/buttons-up/13.webp",
+   "assets/ui/menus/attic/buttons-up/14.webp"
+  ],
+  "w": [
+   867,
+   864,
+   865,
+   866,
+   866,
+   865,
+   866,
+   865,
+   867,
+   865,
+   865,
+   864,
+   866,
+   882
+  ],
+  "h": [
+   887,
+   888,
+   888,
+   889,
+   886,
+   886,
+   887,
+   887,
+   888,
+   888,
+   888,
+   887,
+   889,
+   900
+  ]
+ },
+ "MN-01-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/attic/stages/01.webp",
+   "assets/ui/menus/attic/stages/02.webp",
+   "assets/ui/menus/attic/stages/03.webp",
+   "assets/ui/menus/attic/stages/04.webp"
+  ],
+  "w": [
+   884,
+   894,
+   876,
+   875
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900
+  ]
+ },
+ "MN-02-1": {
+  "names": [
+   "The Midnight Botanical Conservatory menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/conservatory/panel-landscape.webp",
+  "w": 2048,
+  "h": 1140
+ },
+ "MN-02-2": {
+  "names": [
+   "The Midnight Botanical Conservatory menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/conservatory/panel-portrait.webp",
+  "w": 1525,
+  "h": 2048
+ },
+ "MN-02-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/conservatory/trims/01.webp",
+   "assets/ui/menus/conservatory/trims/02.webp",
+   "assets/ui/menus/conservatory/trims/03.webp",
+   "assets/ui/menus/conservatory/trims/04.webp",
+   "assets/ui/menus/conservatory/trims/05.webp",
+   "assets/ui/menus/conservatory/trims/06.webp",
+   "assets/ui/menus/conservatory/trims/07.webp",
+   "assets/ui/menus/conservatory/trims/08.webp",
+   "assets/ui/menus/conservatory/trims/09.webp",
+   "assets/ui/menus/conservatory/trims/10.webp",
+   "assets/ui/menus/conservatory/trims/11.webp",
+   "assets/ui/menus/conservatory/trims/12.webp",
+   "assets/ui/menus/conservatory/trims/13.webp",
+   "assets/ui/menus/conservatory/trims/14.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   886,
+   900,
+   900,
+   847,
+   900,
+   900,
+   900,
+   810,
+   499,
+   495,
+   900
+  ],
+  "h": [
+   407,
+   687,
+   522,
+   538,
+   407,
+   433,
+   900,
+   441,
+   67,
+   45,
+   445,
+   581,
+   470,
+   299
+  ]
+ },
+ "MN-02-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/conservatory/buttons-up/01.webp",
+   "assets/ui/menus/conservatory/buttons-up/02.webp",
+   "assets/ui/menus/conservatory/buttons-up/03.webp",
+   "assets/ui/menus/conservatory/buttons-up/04.webp",
+   "assets/ui/menus/conservatory/buttons-up/05.webp",
+   "assets/ui/menus/conservatory/buttons-up/06.webp",
+   "assets/ui/menus/conservatory/buttons-up/07.webp",
+   "assets/ui/menus/conservatory/buttons-up/08.webp",
+   "assets/ui/menus/conservatory/buttons-up/09.webp",
+   "assets/ui/menus/conservatory/buttons-up/10.webp",
+   "assets/ui/menus/conservatory/buttons-up/11.webp",
+   "assets/ui/menus/conservatory/buttons-up/12.webp",
+   "assets/ui/menus/conservatory/buttons-up/13.webp",
+   "assets/ui/menus/conservatory/buttons-up/14.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900
+  ],
+  "h": [
+   874,
+   874,
+   875,
+   875,
+   873,
+   874,
+   875,
+   875,
+   875,
+   874,
+   875,
+   874,
+   875,
+   876
+  ]
+ },
+ "MN-02-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/conservatory/stages/01.webp",
+   "assets/ui/menus/conservatory/stages/02.webp",
+   "assets/ui/menus/conservatory/stages/03.webp",
+   "assets/ui/menus/conservatory/stages/04.webp"
+  ],
+  "w": [
+   898,
+   892,
+   878,
+   900
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   886
+  ]
+ },
+ "MN-03-1": {
+  "names": [
+   "Micro-Kingdoms: The Giant's Living Room menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/micro/panel-landscape.webp",
+  "w": 2048,
+  "h": 1148
+ },
+ "MN-03-2": {
+  "names": [
+   "Micro-Kingdoms: The Giant's Living Room menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/micro/panel-portrait.webp",
+  "w": 1522,
+  "h": 2048
+ },
+ "MN-03-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/micro/trims/01.webp",
+   "assets/ui/menus/micro/trims/02.webp",
+   "assets/ui/menus/micro/trims/03.webp",
+   "assets/ui/menus/micro/trims/04.webp",
+   "assets/ui/menus/micro/trims/05.webp",
+   "assets/ui/menus/micro/trims/06.webp",
+   "assets/ui/menus/micro/trims/07.webp",
+   "assets/ui/menus/micro/trims/08.webp",
+   "assets/ui/menus/micro/trims/09.webp",
+   "assets/ui/menus/micro/trims/10.webp",
+   "assets/ui/menus/micro/trims/11.webp",
+   "assets/ui/menus/micro/trims/12.webp",
+   "assets/ui/menus/micro/trims/13.webp"
+  ],
+  "w": [
+   900,
+   900,
+   877,
+   891,
+   900,
+   866,
+   616,
+   615,
+   900,
+   737,
+   589,
+   900,
+   900
+  ],
+  "h": [
+   260,
+   776,
+   532,
+   701,
+   666,
+   736,
+   634,
+   634,
+   95,
+   865,
+   562,
+   627,
+   141
+  ]
+ },
+ "MN-03-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/micro/buttons-up/01.webp",
+   "assets/ui/menus/micro/buttons-up/02.webp",
+   "assets/ui/menus/micro/buttons-up/03.webp",
+   "assets/ui/menus/micro/buttons-up/04.webp",
+   "assets/ui/menus/micro/buttons-up/05.webp",
+   "assets/ui/menus/micro/buttons-up/06.webp",
+   "assets/ui/menus/micro/buttons-up/07.webp",
+   "assets/ui/menus/micro/buttons-up/08.webp",
+   "assets/ui/menus/micro/buttons-up/09.webp",
+   "assets/ui/menus/micro/buttons-up/10.webp",
+   "assets/ui/menus/micro/buttons-up/11.webp",
+   "assets/ui/menus/micro/buttons-up/12.webp",
+   "assets/ui/menus/micro/buttons-up/13.webp",
+   "assets/ui/menus/micro/buttons-up/14.webp"
+  ],
+  "w": [
+   900,
+   886,
+   886,
+   895,
+   896,
+   889,
+   883,
+   889,
+   898,
+   889,
+   898,
+   900,
+   856,
+   856
+  ],
+  "h": [
+   897,
+   897,
+   889,
+   900,
+   900,
+   888,
+   889,
+   888,
+   900,
+   888,
+   900,
+   501,
+   854,
+   869
+  ]
+ },
+ "MN-03-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/micro/stages/01.webp",
+   "assets/ui/menus/micro/stages/02.webp",
+   "assets/ui/menus/micro/stages/03.webp",
+   "assets/ui/menus/micro/stages/04.webp"
+  ],
+  "w": [
+   896,
+   900,
+   894,
+   898
+  ],
+  "h": [
+   893,
+   895,
+   900,
+   900
+  ]
+ },
+ "MN-04-1": {
+  "names": [
+   "The Papercraft and Origami Kingdom menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/paper/panel-landscape.webp",
+  "w": 2048,
+  "h": 1142
+ },
+ "MN-04-2": {
+  "names": [
+   "The Papercraft and Origami Kingdom menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/paper/panel-portrait.webp",
+  "w": 1550,
+  "h": 2048
+ },
+ "MN-04-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/paper/trims/01.webp",
+   "assets/ui/menus/paper/trims/02.webp",
+   "assets/ui/menus/paper/trims/03.webp",
+   "assets/ui/menus/paper/trims/04.webp",
+   "assets/ui/menus/paper/trims/05.webp",
+   "assets/ui/menus/paper/trims/06.webp",
+   "assets/ui/menus/paper/trims/07.webp",
+   "assets/ui/menus/paper/trims/08.webp",
+   "assets/ui/menus/paper/trims/09.webp",
+   "assets/ui/menus/paper/trims/10.webp",
+   "assets/ui/menus/paper/trims/11.webp",
+   "assets/ui/menus/paper/trims/12.webp",
+   "assets/ui/menus/paper/trims/13.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   896,
+   900,
+   900,
+   871,
+   900,
+   684,
+   674,
+   734,
+   900
+  ],
+  "h": [
+   473,
+   383,
+   392,
+   761,
+   761,
+   771,
+   770,
+   900,
+   193,
+   571,
+   723,
+   781,
+   319
+  ]
+ },
+ "MN-04-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/paper/buttons-up/01.webp",
+   "assets/ui/menus/paper/buttons-up/02.webp",
+   "assets/ui/menus/paper/buttons-up/03.webp",
+   "assets/ui/menus/paper/buttons-up/04.webp",
+   "assets/ui/menus/paper/buttons-up/05.webp",
+   "assets/ui/menus/paper/buttons-up/06.webp",
+   "assets/ui/menus/paper/buttons-up/07.webp",
+   "assets/ui/menus/paper/buttons-up/08.webp",
+   "assets/ui/menus/paper/buttons-up/09.webp",
+   "assets/ui/menus/paper/buttons-up/10.webp",
+   "assets/ui/menus/paper/buttons-up/11.webp",
+   "assets/ui/menus/paper/buttons-up/12.webp",
+   "assets/ui/menus/paper/buttons-up/13.webp",
+   "assets/ui/menus/paper/buttons-up/14.webp"
+  ],
+  "w": [
+   824,
+   825,
+   826,
+   822,
+   825,
+   827,
+   828,
+   824,
+   827,
+   827,
+   829,
+   823,
+   827,
+   855
+  ],
+  "h": [
+   861,
+   860,
+   861,
+   858,
+   860,
+   860,
+   860,
+   860,
+   876,
+   874,
+   875,
+   488,
+   868,
+   900
+  ]
+ },
+ "MN-04-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/paper/stages/01.webp",
+   "assets/ui/menus/paper/stages/02.webp",
+   "assets/ui/menus/paper/stages/03.webp",
+   "assets/ui/menus/paper/stages/04.webp"
+  ],
+  "w": [
+   797,
+   793,
+   827,
+   830
+  ],
+  "h": [
+   900,
+   900,
+   877,
+   875
+  ]
+ },
+ "MN-05-1": {
+  "names": [
+   "The Grand Astral Express menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/astral/panel-landscape.webp",
+  "w": 2048,
+  "h": 1135
+ },
+ "MN-05-2": {
+  "names": [
+   "The Grand Astral Express menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/astral/panel-portrait.webp",
+  "w": 1515,
+  "h": 2048
+ },
+ "MN-05-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/astral/trims/01.webp",
+   "assets/ui/menus/astral/trims/02.webp",
+   "assets/ui/menus/astral/trims/03.webp",
+   "assets/ui/menus/astral/trims/04.webp",
+   "assets/ui/menus/astral/trims/05.webp",
+   "assets/ui/menus/astral/trims/06.webp",
+   "assets/ui/menus/astral/trims/07.webp",
+   "assets/ui/menus/astral/trims/08.webp",
+   "assets/ui/menus/astral/trims/09.webp",
+   "assets/ui/menus/astral/trims/10.webp",
+   "assets/ui/menus/astral/trims/11.webp",
+   "assets/ui/menus/astral/trims/12.webp",
+   "assets/ui/menus/astral/trims/13.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   890,
+   746,
+   900,
+   673,
+   831,
+   490,
+   900
+  ],
+  "h": [
+   357,
+   676,
+   279,
+   377,
+   381,
+   383,
+   733,
+   749,
+   108,
+   560,
+   559,
+   569,
+   291
+  ]
+ },
+ "MN-05-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/astral/buttons-up/01.webp",
+   "assets/ui/menus/astral/buttons-up/02.webp",
+   "assets/ui/menus/astral/buttons-up/03.webp",
+   "assets/ui/menus/astral/buttons-up/04.webp",
+   "assets/ui/menus/astral/buttons-up/05.webp",
+   "assets/ui/menus/astral/buttons-up/06.webp",
+   "assets/ui/menus/astral/buttons-up/07.webp",
+   "assets/ui/menus/astral/buttons-up/08.webp",
+   "assets/ui/menus/astral/buttons-up/09.webp",
+   "assets/ui/menus/astral/buttons-up/10.webp",
+   "assets/ui/menus/astral/buttons-up/11.webp",
+   "assets/ui/menus/astral/buttons-up/12.webp",
+   "assets/ui/menus/astral/buttons-up/13.webp",
+   "assets/ui/menus/astral/buttons-up/14.webp"
+  ],
+  "w": [
+   874,
+   875,
+   873,
+   874,
+   873,
+   875,
+   872,
+   870,
+   875,
+   872,
+   872,
+   900,
+   874,
+   885
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   498,
+   900,
+   900
+  ]
+ },
+ "MN-05-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/astral/stages/01.webp",
+   "assets/ui/menus/astral/stages/02.webp",
+   "assets/ui/menus/astral/stages/03.webp",
+   "assets/ui/menus/astral/stages/04.webp"
+  ],
+  "w": [
+   900,
+   894,
+   854,
+   900
+  ],
+  "h": [
+   898,
+   900,
+   900,
+   864
+  ]
+ },
+ "MN-06-1": {
+  "names": [
+   "The Living Art Gallery menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/gallery/panel-landscape.webp",
+  "w": 2048,
+  "h": 1157
+ },
+ "MN-06-2": {
+  "names": [
+   "The Living Art Gallery menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/gallery/panel-portrait.webp",
+  "w": 1506,
+  "h": 2048
+ },
+ "MN-06-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/gallery/trims/01.webp",
+   "assets/ui/menus/gallery/trims/02.webp",
+   "assets/ui/menus/gallery/trims/03.webp",
+   "assets/ui/menus/gallery/trims/04.webp",
+   "assets/ui/menus/gallery/trims/05.webp",
+   "assets/ui/menus/gallery/trims/06.webp",
+   "assets/ui/menus/gallery/trims/07.webp",
+   "assets/ui/menus/gallery/trims/08.webp",
+   "assets/ui/menus/gallery/trims/09.webp",
+   "assets/ui/menus/gallery/trims/10.webp",
+   "assets/ui/menus/gallery/trims/11.webp",
+   "assets/ui/menus/gallery/trims/12.webp",
+   "assets/ui/menus/gallery/trims/13.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   822,
+   900,
+   900,
+   900,
+   749,
+   900,
+   758,
+   623,
+   434,
+   900
+  ],
+  "h": [
+   597,
+   378,
+   85,
+   792,
+   781,
+   756,
+   809,
+   752,
+   136,
+   424,
+   717,
+   502,
+   295
+  ]
+ },
+ "MN-06-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/gallery/buttons-up/01.webp",
+   "assets/ui/menus/gallery/buttons-up/02.webp",
+   "assets/ui/menus/gallery/buttons-up/03.webp",
+   "assets/ui/menus/gallery/buttons-up/04.webp",
+   "assets/ui/menus/gallery/buttons-up/05.webp",
+   "assets/ui/menus/gallery/buttons-up/06.webp",
+   "assets/ui/menus/gallery/buttons-up/07.webp",
+   "assets/ui/menus/gallery/buttons-up/08.webp",
+   "assets/ui/menus/gallery/buttons-up/09.webp",
+   "assets/ui/menus/gallery/buttons-up/10.webp",
+   "assets/ui/menus/gallery/buttons-up/11.webp",
+   "assets/ui/menus/gallery/buttons-up/12.webp",
+   "assets/ui/menus/gallery/buttons-up/13.webp",
+   "assets/ui/menus/gallery/buttons-up/14.webp"
+  ],
+  "w": [
+   868,
+   870,
+   872,
+   867,
+   872,
+   876,
+   874,
+   875,
+   876,
+   875,
+   876,
+   900,
+   878,
+   898
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   515,
+   900,
+   900
+  ]
+ },
+ "MN-06-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/gallery/stages/01.webp",
+   "assets/ui/menus/gallery/stages/02.webp",
+   "assets/ui/menus/gallery/stages/03.webp",
+   "assets/ui/menus/gallery/stages/04.webp"
+  ],
+  "w": [
+   842,
+   868,
+   860,
+   867
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900
+  ]
+ },
+ "MN-07-1": {
+  "names": [
+   "Sunken Coral Metropolis menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/coral/panel-landscape.webp",
+  "w": 2048,
+  "h": 1156
+ },
+ "MN-07-2": {
+  "names": [
+   "Sunken Coral Metropolis menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/coral/panel-portrait.webp",
+  "w": 1537,
+  "h": 2048
+ },
+ "MN-07-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/coral/trims/01.webp",
+   "assets/ui/menus/coral/trims/02.webp",
+   "assets/ui/menus/coral/trims/03.webp",
+   "assets/ui/menus/coral/trims/04.webp",
+   "assets/ui/menus/coral/trims/05.webp",
+   "assets/ui/menus/coral/trims/06.webp",
+   "assets/ui/menus/coral/trims/07.webp",
+   "assets/ui/menus/coral/trims/08.webp",
+   "assets/ui/menus/coral/trims/09.webp",
+   "assets/ui/menus/coral/trims/10.webp",
+   "assets/ui/menus/coral/trims/11.webp",
+   "assets/ui/menus/coral/trims/12.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   511,
+   578,
+   900
+  ],
+  "h": [
+   709,
+   369,
+   621,
+   767,
+   565,
+   622,
+   891,
+   46,
+   563,
+   712,
+   561,
+   311
+  ]
+ },
+ "MN-07-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/coral/buttons-up/01.webp",
+   "assets/ui/menus/coral/buttons-up/02.webp",
+   "assets/ui/menus/coral/buttons-up/03.webp",
+   "assets/ui/menus/coral/buttons-up/04.webp",
+   "assets/ui/menus/coral/buttons-up/05.webp",
+   "assets/ui/menus/coral/buttons-up/06.webp",
+   "assets/ui/menus/coral/buttons-up/07.webp",
+   "assets/ui/menus/coral/buttons-up/08.webp",
+   "assets/ui/menus/coral/buttons-up/09.webp",
+   "assets/ui/menus/coral/buttons-up/10.webp",
+   "assets/ui/menus/coral/buttons-up/11.webp",
+   "assets/ui/menus/coral/buttons-up/12.webp",
+   "assets/ui/menus/coral/buttons-up/13.webp",
+   "assets/ui/menus/coral/buttons-up/14.webp",
+   "assets/ui/menus/coral/buttons-up/15.webp"
+  ],
+  "w": [
+   877,
+   878,
+   878,
+   878,
+   877,
+   880,
+   877,
+   879,
+   880,
+   881,
+   880,
+   879,
+   880,
+   883,
+   899
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900
+  ]
+ },
+ "MN-07-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/coral/stages/01.webp",
+   "assets/ui/menus/coral/stages/02.webp",
+   "assets/ui/menus/coral/stages/03.webp",
+   "assets/ui/menus/coral/stages/04.webp"
+  ],
+  "w": [
+   863,
+   900,
+   874,
+   873
+  ],
+  "h": [
+   900,
+   891,
+   900,
+   900
+  ]
+ },
+ "MN-08-1": {
+  "names": [
+   "The Cloud-Top Sky-Port menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/sky/panel-landscape.webp",
+  "w": 2048,
+  "h": 1134
+ },
+ "MN-08-2": {
+  "names": [
+   "The Cloud-Top Sky-Port menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/sky/panel-portrait.webp",
+  "w": 1544,
+  "h": 2048
+ },
+ "MN-08-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/sky/trims/01.webp",
+   "assets/ui/menus/sky/trims/02.webp",
+   "assets/ui/menus/sky/trims/03.webp",
+   "assets/ui/menus/sky/trims/04.webp",
+   "assets/ui/menus/sky/trims/05.webp",
+   "assets/ui/menus/sky/trims/06.webp",
+   "assets/ui/menus/sky/trims/07.webp",
+   "assets/ui/menus/sky/trims/08.webp",
+   "assets/ui/menus/sky/trims/09.webp",
+   "assets/ui/menus/sky/trims/10.webp",
+   "assets/ui/menus/sky/trims/11.webp",
+   "assets/ui/menus/sky/trims/12.webp",
+   "assets/ui/menus/sky/trims/13.webp",
+   "assets/ui/menus/sky/trims/14.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   550,
+   700,
+   900,
+   609,
+   900
+  ],
+  "h": [
+   534,
+   495,
+   461,
+   494,
+   519,
+   477,
+   482,
+   888,
+   137,
+   589,
+   454,
+   555,
+   715,
+   137
+  ]
+ },
+ "MN-08-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/sky/buttons-up/01.webp",
+   "assets/ui/menus/sky/buttons-up/02.webp",
+   "assets/ui/menus/sky/buttons-up/03.webp",
+   "assets/ui/menus/sky/buttons-up/04.webp",
+   "assets/ui/menus/sky/buttons-up/05.webp",
+   "assets/ui/menus/sky/buttons-up/06.webp",
+   "assets/ui/menus/sky/buttons-up/07.webp",
+   "assets/ui/menus/sky/buttons-up/08.webp",
+   "assets/ui/menus/sky/buttons-up/09.webp",
+   "assets/ui/menus/sky/buttons-up/10.webp",
+   "assets/ui/menus/sky/buttons-up/11.webp",
+   "assets/ui/menus/sky/buttons-up/12.webp",
+   "assets/ui/menus/sky/buttons-up/13.webp",
+   "assets/ui/menus/sky/buttons-up/14.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900
+  ],
+  "h": [
+   871,
+   869,
+   869,
+   873,
+   871,
+   869,
+   870,
+   872,
+   874,
+   872,
+   873,
+   664,
+   876,
+   882
+  ]
+ },
+ "MN-08-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/sky/stages/01.webp",
+   "assets/ui/menus/sky/stages/02.webp",
+   "assets/ui/menus/sky/stages/03.webp",
+   "assets/ui/menus/sky/stages/04.webp"
+  ],
+  "w": [
+   900,
+   895,
+   900,
+   900
+  ],
+  "h": [
+   895,
+   900,
+   872,
+   871
+  ]
+ },
+ "MN-09-1": {
+  "names": [
+   "The Wizard's Kitchen and Potion Pantry menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/kitchen/panel-landscape.webp",
+  "w": 2048,
+  "h": 1132
+ },
+ "MN-09-2": {
+  "names": [
+   "The Wizard's Kitchen and Potion Pantry menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/kitchen/panel-portrait.webp",
+  "w": 1532,
+  "h": 2048
+ },
+ "MN-09-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/kitchen/trims/01.webp",
+   "assets/ui/menus/kitchen/trims/02.webp",
+   "assets/ui/menus/kitchen/trims/03.webp",
+   "assets/ui/menus/kitchen/trims/04.webp",
+   "assets/ui/menus/kitchen/trims/05.webp",
+   "assets/ui/menus/kitchen/trims/06.webp",
+   "assets/ui/menus/kitchen/trims/07.webp",
+   "assets/ui/menus/kitchen/trims/08.webp",
+   "assets/ui/menus/kitchen/trims/09.webp",
+   "assets/ui/menus/kitchen/trims/10.webp",
+   "assets/ui/menus/kitchen/trims/11.webp",
+   "assets/ui/menus/kitchen/trims/12.webp",
+   "assets/ui/menus/kitchen/trims/13.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   873,
+   807,
+   756,
+   563,
+   900,
+   900
+  ],
+  "h": [
+   548,
+   482,
+   659,
+   667,
+   621,
+   674,
+   654,
+   832,
+   586,
+   817,
+   456,
+   192,
+   270
+  ]
+ },
+ "MN-09-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/kitchen/buttons-up/01.webp",
+   "assets/ui/menus/kitchen/buttons-up/02.webp",
+   "assets/ui/menus/kitchen/buttons-up/03.webp",
+   "assets/ui/menus/kitchen/buttons-up/04.webp",
+   "assets/ui/menus/kitchen/buttons-up/05.webp",
+   "assets/ui/menus/kitchen/buttons-up/06.webp",
+   "assets/ui/menus/kitchen/buttons-up/07.webp",
+   "assets/ui/menus/kitchen/buttons-up/08.webp",
+   "assets/ui/menus/kitchen/buttons-up/09.webp",
+   "assets/ui/menus/kitchen/buttons-up/10.webp",
+   "assets/ui/menus/kitchen/buttons-up/11.webp",
+   "assets/ui/menus/kitchen/buttons-up/12.webp",
+   "assets/ui/menus/kitchen/buttons-up/13.webp",
+   "assets/ui/menus/kitchen/buttons-up/14.webp"
+  ],
+  "w": [
+   878,
+   879,
+   879,
+   880,
+   877,
+   877,
+   877,
+   877,
+   878,
+   877,
+   877,
+   900,
+   877,
+   898
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   507,
+   900,
+   900
+  ]
+ },
+ "MN-09-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/kitchen/stages/01.webp",
+   "assets/ui/menus/kitchen/stages/02.webp",
+   "assets/ui/menus/kitchen/stages/03.webp",
+   "assets/ui/menus/kitchen/stages/04.webp"
+  ],
+  "w": [
+   880,
+   880,
+   878,
+   876
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900
+  ]
+ },
+ "MN-10-1": {
+  "names": [
+   "Retro Arcade and Toybox Nexus menu: panel, landscape"
+  ],
+  "f": "assets/ui/menus/arcade/panel-landscape.webp",
+  "w": 2048,
+  "h": 1160
+ },
+ "MN-10-2": {
+  "names": [
+   "Retro Arcade and Toybox Nexus menu: panel, portrait"
+  ],
+  "f": "assets/ui/menus/arcade/panel-portrait.webp",
+  "w": 1545,
+  "h": 2048
+ },
+ "MN-10-3": {
+  "names": [
+   "Header frame that surrounds the world picture at the top of the menu (wide, empty inside)",
+   "Blank name plaque for the world's name (wide)",
+   "Blank group plaque for the words Find It",
+   "Blank group plaque for the words Compare It",
+   "Blank group plaque for the words Remember It",
+   "Blank group plaque for the words Deduce It",
+   "Corner ornament",
+   "Thin divider strip",
+   "A soft little arrow-shaped cue that says there is more this way (no letters)",
+   "A small friendly mascot creature of this world, sitting",
+   "A sparkle or particle sprite in this world's style",
+   "A long rail or track that the stage buttons sit on"
+  ],
+  "f": [
+   "assets/ui/menus/arcade/trims/01.webp",
+   "assets/ui/menus/arcade/trims/02.webp",
+   "assets/ui/menus/arcade/trims/03.webp",
+   "assets/ui/menus/arcade/trims/04.webp",
+   "assets/ui/menus/arcade/trims/05.webp",
+   "assets/ui/menus/arcade/trims/06.webp",
+   "assets/ui/menus/arcade/trims/07.webp",
+   "assets/ui/menus/arcade/trims/08.webp",
+   "assets/ui/menus/arcade/trims/09.webp",
+   "assets/ui/menus/arcade/trims/10.webp",
+   "assets/ui/menus/arcade/trims/11.webp",
+   "assets/ui/menus/arcade/trims/12.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   900,
+   900,
+   663,
+   900,
+   842,
+   620,
+   555,
+   900
+  ],
+  "h": [
+   378,
+   693,
+   270,
+   269,
+   263,
+   334,
+   651,
+   159,
+   680,
+   707,
+   568,
+   229
+  ]
+ },
+ "MN-10-4": {
+  "names": [
+   "I Spy button, icon: a magnifying glass",
+   "Find Them All button, icon: a magnifying glass over a cluster of dots",
+   "Count Them button, icon: three pebbles and a tally mark",
+   "Find the Twins button, icon: two identical stars side by side",
+   "Spot the Difference button, icon: two small cards side by side",
+   "Odd One Out button, icon: three circles and one triangle in a row",
+   "Shadow Match button, icon: a little object next to its dark shadow",
+   "What's Missing? button, icon: a dotted empty outline of an object",
+   "What Changed? button, icon: two curved arrows in a circle",
+   "Which Doesn't Belong? button, icon: four little shapes with one tilted away",
+   "Tiny Clues button, icon: a trail of tiny footprints",
+   "Home button, blank pill shape (no icon)",
+   "Play Together button, icon: two small figures side by side",
+   "A highlight ring that sits around the chosen game button"
+  ],
+  "f": [
+   "assets/ui/menus/arcade/buttons-up/01.webp",
+   "assets/ui/menus/arcade/buttons-up/02.webp",
+   "assets/ui/menus/arcade/buttons-up/03.webp",
+   "assets/ui/menus/arcade/buttons-up/04.webp",
+   "assets/ui/menus/arcade/buttons-up/05.webp",
+   "assets/ui/menus/arcade/buttons-up/06.webp",
+   "assets/ui/menus/arcade/buttons-up/07.webp",
+   "assets/ui/menus/arcade/buttons-up/08.webp",
+   "assets/ui/menus/arcade/buttons-up/09.webp",
+   "assets/ui/menus/arcade/buttons-up/10.webp",
+   "assets/ui/menus/arcade/buttons-up/11.webp",
+   "assets/ui/menus/arcade/buttons-up/12.webp",
+   "assets/ui/menus/arcade/buttons-up/13.webp",
+   "assets/ui/menus/arcade/buttons-up/14.webp"
+  ],
+  "w": [
+   889,
+   889,
+   889,
+   890,
+   889,
+   891,
+   891,
+   893,
+   890,
+   890,
+   890,
+   888,
+   889,
+   875
+  ],
+  "h": [
+   876,
+   875,
+   876,
+   876,
+   894,
+   895,
+   894,
+   895,
+   899,
+   898,
+   899,
+   897,
+   898,
+   900
+  ]
+ },
+ "MN-10-6": {
+  "names": [
+   "Stage button, finished: bright, with a small gold star mark at the top",
+   "Stage button, the current stage: glowing and slightly larger",
+   "Stage button, locked: dim and quiet (no padlock needed)",
+   "Stage button, pressed: sunk in"
+  ],
+  "f": [
+   "assets/ui/menus/arcade/stages/01.webp",
+   "assets/ui/menus/arcade/stages/02.webp",
+   "assets/ui/menus/arcade/stages/03.webp",
+   "assets/ui/menus/arcade/stages/04.webp"
+  ],
+  "w": [
+   822,
+   877,
+   885,
+   878
+  ],
+  "h": [
+   900,
+   900,
+   900,
+   900
+  ]
+ }
+}

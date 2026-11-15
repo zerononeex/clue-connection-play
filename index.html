@@ -7,13 +7,13 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <style>
-:root{--wood:#241710;--panel:#33231a;--cream:#f6ecd6;--gold:#ffc928;--a1:#e0b455;--a2:#8a5a34;--nav:84px}
+:root{--wood:#241710;--panel:#33231a;--cream:#f6ecd6;--gold:#ffc928;--a1:#e0b455;--a2:#8a5a34}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0;overflow:hidden}
 body{background:var(--wood);color:var(--cream);font:17px/1.3 Calibri,Arial,Helvetica,sans-serif;-webkit-user-select:none;user-select:none;touch-action:manipulation}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 h1,h2,h3,p{margin:0}
-#app{position:fixed;inset:0 0 calc(var(--nav) + env(safe-area-inset-bottom)) 0;overflow:auto}
+#app{position:fixed;inset:0;overflow:auto}
 /* shaped controls: medallions and pills, never plain rectangles */
 .med{position:relative;display:grid;place-items:center;flex:none;width:56px;height:56px;border-radius:50%;color:var(--a1);
   background:radial-gradient(circle at 35% 30%,#6b4a2e,#2a1a10);border:3px solid var(--a1);
@@ -62,22 +62,11 @@ h1,h2,h3,p{margin:0}
   border:3px solid var(--a1);background:linear-gradient(#5d3f27,#38241a);box-shadow:0 4px 0 #120b07,0 8px 12px rgba(0,0,0,.4)}
 .pill:active:not(:disabled),.mb:active:not(:disabled) .med{transform:translateY(2px)}
 button:disabled{opacity:.45;cursor:default}
-.pill small,.tile small{display:block;font-size:13px;font-weight:normal;opacity:.85}
+.pill small{display:block;font-size:13px;font-weight:normal;opacity:.85}
 .num{font-size:24px;font-weight:bold}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;padding:8px 16px 24px}
-.tile{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:30px;text-align:left;
   border:3px solid var(--a1);background:var(--panel);box-shadow:inset 0 0 0 3px var(--a2),0 6px 12px rgba(0,0,0,.4)}
-.tile b+small+small{color:var(--gold)}
-.cats{display:grid;gap:14px;justify-items:start;padding:8px 16px 24px}
 .cat{width:100%;padding:14px;border-radius:30px;background:var(--panel);box-shadow:inset 0 0 0 3px var(--a2)}
-.cathead{display:flex;align-items:center;gap:16px;margin-bottom:14px}
-.cathead .med{width:76px;height:76px}
-.modes{display:flex;flex-wrap:wrap;gap:12px}
-.mode{padding-left:8px}
-.mode .med{width:40px;height:40px;border-width:2px;box-shadow:none}
 .nums{display:grid;grid-template-columns:repeat(auto-fit,84px);gap:26px;justify-content:center;max-width:572px;margin:auto;padding:24px}
-.nums .med{width:84px;height:84px;font-size:34px}
-.tick{position:absolute;right:-6px;top:58px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#3a2618}
 /* a round in progress: its count under the number, and a small two-tap reset medallion on the tile */
 .cell{position:relative;display:grid}
 .cell small{width:84px;text-align:center}
@@ -118,7 +107,7 @@ button:disabled{opacity:.45;cursor:default}
 .slim .med{position:absolute;right:8px;top:8px}
 #next{display:none}
 .slimmed .side{width:84px;padding:8px}
-.slimmed .side>:not(.slim),.slimmed #nav,.peeking .side,.peeking #nav{display:none}
+.slimmed .side>:not(.slim),.peeking .side{display:none}
 .slimmed .slim{flex-direction:column;font-size:14px;text-align:center}
 .slimmed .slim .med{position:static;order:-1}
 .slimmed .slim .g{transform:rotate(180deg)}
@@ -181,54 +170,6 @@ button:disabled{opacity:.45;cursor:default}
 .card.note,.wincard{display:grid;gap:16px;justify-items:center;padding:28px 36px;border-radius:36px;text-align:center;
   border:4px solid var(--gold);background:var(--panel);box-shadow:0 0 60px rgba(255,201,40,.4)}
 .wincard b{color:var(--gold)}
-/* Wonder Machine home: the machine's own room, with the machine assembled from its pieces on a 1000 x 750 stage */
-.home{display:flex;flex-direction:column;height:100%}
-.home .powers small{align-self:center;margin-right:4px}
-.stagew{flex:1;display:flex;align-items:center;gap:6px;min-height:0;padding:0 10px}
-.room{position:relative;flex:1;min-width:0;height:100%;overflow:hidden;touch-action:pan-y;border-radius:24px}
-.mstage{position:absolute;left:0;top:0;width:1000px;height:750px;overflow:hidden;transform-origin:0 0;background:center/cover;border-radius:24px}
-.sp{position:absolute;width:0;height:0}
-.sp img{position:absolute;left:0;top:0;max-width:none}
-.piece.fly{animation:flyin .9s cubic-bezier(.3,1.3,.5,1) backwards}
-@keyframes flyin{from{scale:2.6;opacity:0}}
-.sp .sparks i{animation-delay:.7s;--d:-90px}
-.fx{opacity:0}
-.runner img{transform:translate(-50%,-100%)}
-@keyframes spin{to{rotate:360deg}}
-@keyframes fxin{from{opacity:0;scale:.3}to{opacity:1;scale:1}}
-@keyframes breathe{to{scale:1.08}}
-@keyframes twinkle{to{opacity:.35}}
-@keyframes rise{from{opacity:0;translate:0 70px}to{opacity:1;translate:0 -30px}}
-@keyframes bob{from{translate:0 -30px}to{translate:0 -44px}}
-@keyframes flyout{from{opacity:0;translate:0 60px;scale:.5}30%{opacity:1}to{opacity:1;translate:170px -120px;scale:1}}
-@keyframes flap{from{translate:170px -120px;rotate:-5deg}to{translate:180px -134px;rotate:5deg}}
-@keyframes lift{to{translate:0 -150px;opacity:0}}
-@keyframes seed{from{opacity:0;scale:.5}25%,75%{opacity:1;scale:1}to{opacity:0;scale:1.15}}
-@keyframes sky{0%{opacity:0;translate:0 8px}2%,10%{opacity:1;translate:0 0}12%,100%{opacity:0}}
-@keyframes night{0%,74%{opacity:0}80%,97%{opacity:1}100%{opacity:0}}
-.fx-show{opacity:1}
-.fx-glow{animation:fxin 1s calc(var(--t0) + var(--at)) both,breathe 3s calc(var(--t0) + var(--at) + 1s) infinite alternate}
-.fx-twinkle,.fx-star{animation:fxin .8s calc(var(--t0) + var(--at)) both,twinkle 1.8s calc(var(--t0) + var(--at) + .8s) infinite alternate}
-.fx-rise{animation:rise 1.4s calc(var(--t0) + var(--at)) both,bob 2.4s calc(var(--t0) + var(--at) + 1.4s) infinite alternate}
-.fx-fly{animation:flyout 2.2s calc(var(--t0) + var(--at)) both,flap 1s calc(var(--t0) + var(--at) + 2.2s) infinite alternate}
-.fx-lift{animation:lift 1.4s var(--t0) both}
-.fx-seed{animation:seed 1.6s calc(var(--t0) + var(--at)) both}
-.fx-sky{animation:sky 27s calc(var(--t0) + var(--at)) infinite}
-.night{position:absolute;left:411px;top:111px;width:178px;height:307px;z-index:8;border-radius:89px 89px 20px 20px;background:rgba(8,14,60,.55);opacity:0;
-  animation:night 27s calc(var(--t0) + 5.5s) infinite}
-.lamps{display:inline-flex;gap:5px;vertical-align:middle;margin:0 8px}
-.bulb{width:11px;height:11px;border-radius:50%;background:#4a3a2e}
-.bulb.lit{background:#ffe08a;box-shadow:0 0 6px #ffd76a}
-.foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px 14px}
-.foot b{color:var(--gold)}
-.big{padding:10px 44px;font-size:22px}
-/* the bottom banner: the same five medallions in landscape and portrait; one Home medallion during play */
-#nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;justify-content:space-around;align-items:center;
-  height:calc(var(--nav) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);
-  background:linear-gradient(#3a2618,#1b110a);border-top:3px solid var(--a2);box-shadow:0 -4px 12px rgba(0,0,0,.5)}
-#nav .mb{gap:6px;font-size:12px}
-#nav .med{width:46px;height:46px}
-.playing #nav{left:auto;right:10px;bottom:10px;height:auto;padding:0;background:none;border:0;box-shadow:none}
 /* settings */
 .sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;padding:8px 16px 24px}
 .sets h2{margin-bottom:12px}
@@ -257,11 +198,203 @@ button:disabled{opacity:.45;cursor:default}
 .test li{padding:3px 0}
 .test .ok b{color:#9bdc74}
 .test .bad b{color:#ff9478}
+/* ---------- the atelier: title, room, world menus, machines ---------- */
+#title,#room{position:fixed;inset:0;overflow:hidden;background:#1d1424;display:none;touch-action:none}
+[data-screen=title] #title{display:block}
+[data-screen=home] #room,[data-screen=modes] #room,[data-screen=stages] #room,[data-screen=machine] #room,[data-screen=settings] #room{display:block}
+body:not([data-screen=play]) #app{pointer-events:none}
+body:not([data-screen=play]) #app>*{pointer-events:auto}
+[data-screen=modes] #room>*,[data-screen=stages] #room>*,[data-screen=machine] #room>*,[data-screen=settings] #room>*{filter:brightness(.55) blur(1px);transition:filter .3s}
+.tcam,#rcam{position:absolute;left:0;top:0;transform-origin:0 0}
+.tcam{width:1200px;height:896px}
+.tbg{position:absolute;inset:0;width:100%;height:100%}
+.tcam>div,#rcam .o{position:absolute}
+.tcam img,#rcam .o>img{display:block;width:100%;height:100%;pointer-events:none}
+#rcam .o>.inhole{position:absolute;object-fit:cover}
+.hot{cursor:pointer}
+.t-sign{filter:drop-shadow(0 6px 6px rgba(0,0,0,.45));animation:sway 5s ease-in-out infinite alternate;transform-origin:50% 0}
+.t-witch{opacity:0;transition:opacity .6s}
+.tt-owl .t-witch,.t-witch.peek{opacity:.9}
+.t-gnome{opacity:0;transition:transform .5s,opacity .3s}
+.tt-mushroom .t-gnome{opacity:1;transform:translateY(-16px)}
+.tt-mushroom .t-mdoor{transform:perspective(200px) rotateY(-70deg);transform-origin:0 50%;transition:transform .4s}
+.tt-rabbit .t-rabbit{transition:transform 2.4s ease-in;transform:translateX(-500px)}
+.tt-owl .t-owl{animation:hop .5s 2}
+.tt-pond .t-frog{animation:frogjump 1s}
+.t-dragon{animation:dragon 26s linear infinite;opacity:.85}
+.fairies img{position:absolute;width:34px;opacity:0}
+.tt-fairydoor .fairies img{animation:fairyout 2.4s ease-out both}
+.fairies img:nth-child(1){left:205px;top:690px}
+.fairies img:nth-child(2){left:215px;top:700px;animation-delay:.2s !important}
+.fairies img:nth-child(3){left:200px;top:700px;animation-delay:.4s !important}
+.frontdoor{position:absolute;left:556px;top:466px;width:108px;height:247px;perspective:700px}
+.door3d{position:absolute;inset:0;transform-origin:0 50%;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.5,0,.3,1)}
+.door3d .face{position:absolute;inset:0;width:100%;height:100%}
+.door3d i{position:absolute;inset:0;border-radius:54px 54px 0 0/70px 70px 0 0;background:#3a2238}
+.door3d i:nth-child(n+6):nth-child(-n+7){background:#c9a24a}
+.door3d i:nth-child(1){transform:translateZ(-24px)}.door3d i:nth-child(2){transform:translateZ(-22px)}.door3d i:nth-child(3){transform:translateZ(-20px)}
+.door3d i:nth-child(4){transform:translateZ(-18px)}.door3d i:nth-child(5){transform:translateZ(-16px)}.door3d i:nth-child(6){transform:translateZ(-14px)}
+.door3d i:nth-child(7){transform:translateZ(-12px)}.door3d i:nth-child(8){transform:translateZ(-10px)}.door3d i:nth-child(9){transform:translateZ(-8px)}
+.door3d i:nth-child(10){transform:translateZ(-6px)}.door3d i:nth-child(11){transform:translateZ(-4px)}.door3d i:nth-child(12){transform:translateZ(-2px)}
+#title.open .door3d{transform:rotateY(-80deg)}
+#title.open .tcam{transition:transform 1.4s .5s ease-in;transform-origin:612px 600px;scale:3.2}
+.tap-hint{position:absolute;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);padding:8px 22px;border-radius:999px;
+  background:rgba(30,18,24,.72);border:2px solid var(--gold);font-weight:bold;pointer-events:none;animation:blink 2s infinite alternate}
+@keyframes blink{to{opacity:.55}}
+@keyframes hop{50%{transform:translateY(-14px)}}
+@keyframes frogjump{40%{transform:translate(-30px,-60px) rotate(-20deg)}80%{transform:translate(-60px,0)}}
+@keyframes dragon{0%{transform:translateX(-500px)}100%{transform:translateX(1700px)}}
+@keyframes fairyout{0%{opacity:0;transform:none}15%{opacity:1}100%{opacity:0;transform:translate(var(--fx,80px),-260px)}}
+.fairies img:nth-child(2){--fx:-60px}.fairies img:nth-child(3){--fx:150px}
+/* the room */
+#rcam{width:4838px;height:900px}
+#rcam.glide{transition:transform .6s cubic-bezier(.3,.7,.3,1)}
+.panels{position:absolute;inset:0}
+.pn{position:absolute;top:0;height:900px;width:1613px;transition:opacity 1.2s}
+.pn.day{opacity:0}
+.day .pn.day{opacity:1}
+.nightglow{position:absolute;inset:0;z-index:7;pointer-events:none;background:radial-gradient(ellipse 40% 60% at 50% 40%,rgba(255,190,110,.12),transparent);
+  transition:opacity 1.2s}
+.day .nightglow{opacity:0}
+#rcam .o{transform-origin:50% 100%}
+.o.hot>img{filter:drop-shadow(0 0 0 transparent)}
+.showing .o.hot{animation:showme 2.4s}
+@keyframes showme{0%,100%{filter:none}15%,85%{filter:drop-shadow(0 0 6px #fff6a8) drop-shadow(0 0 16px #ffc928)}}
+.o.wiggle{animation:wiggle .8s}
+@keyframes wiggle{20%{rotate:-2deg}40%{rotate:2deg}60%{rotate:-1deg}80%{rotate:1deg}}
+.o.bump{animation:bumpo .3s}
+@keyframes bumpo{50%{scale:1.06}}
+.sway{animation:sway 4s ease-in-out infinite alternate}
+.swing{transform-origin:50% 0 !important;animation:sway 3.5s ease-in-out infinite alternate}
+@keyframes sway{from{rotate:-2deg}to{rotate:2deg}}
+.drift{animation:drift 7s ease-in-out infinite alternate}
+@keyframes drift{to{translate:0 -12px}}
+.flicker{animation:flick 1.3s infinite alternate}
+@keyframes flick{50%{filter:brightness(1.15)}100%{filter:brightness(.92)}}
+.glowy{animation:glowy 2.6s ease-in-out infinite alternate}
+@keyframes glowy{to{filter:drop-shadow(0 0 10px #9fe8ff)}}
+.fairy{animation:fairy 5s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #fff3a0)}
+.fairy.f2{animation-duration:6.5s;animation-delay:-2s}.fairy.f3{animation-duration:4.2s;animation-delay:-1s}
+@keyframes fairy{0%{translate:0 0}33%{translate:30px -24px}66%{translate:-24px -40px}100%{translate:12px 10px}}
+#dial{transition:rotate 1.4s cubic-bezier(.5,1.6,.5,1)}
+.pet.acting.jump{animation:hop .45s 2}
+.pet.acting.wiggle{animation:wiggle .6s 2}
+.pet.acting.trick{animation:bumpo .4s 3}
+.o.loop{animation:carpet 2.6s ease-in-out}
+@keyframes carpet{25%{translate:-220px -360px;rotate:-12deg}50%{translate:0 -520px;rotate:8deg}75%{translate:240px -320px;rotate:-6deg}}
+.tank{position:absolute;pointer-events:none;z-index:4;overflow:hidden}
+.fish{position:absolute;width:44px;animation:swim 11s ease-in-out infinite alternate}
+.fish.f0{top:28%;animation-duration:12s}.fish.f1{top:45%;width:38px;animation-duration:9s;animation-delay:-3s}
+.fish.f2{top:60%;width:50px;animation-duration:15s;animation-delay:-6s}.fish.f3{top:35%;width:40px;animation-duration:13s;animation-delay:-2s}
+.fish.f4{top:52%;width:30px;animation-duration:10s;animation-delay:-5s}
+@keyframes swim{0%{left:6%;scale:1 1}49%{scale:1 1}50%{left:78%;scale:-1 1}100%{left:6%;scale:-1 1}}
+.train .car{position:absolute;width:52px;pointer-events:none}
+/* machines in the room and up close: dark outline, lit part grows with the pieces found */
+.mfill{position:relative;display:block;width:100%;height:100%}
+.mfill img{position:absolute;inset:0;width:100%;height:100%}
+.mfill .ghost{filter:brightness(.3) saturate(.2);opacity:.85}
+.mfill .lit{transition:clip-path 1.2s,-webkit-mask-image 1.2s}
+.wa .hole{position:absolute;overflow:hidden;z-index:-1;background:#2a1e2a}
+.wa .hole i{position:absolute;top:0;height:100%;opacity:0;transition:opacity 1s}
+.wa .hole i.on{opacity:1}
+.mcount{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);padding:2px 12px;border-radius:999px;font-size:24px;
+  background:var(--gold);color:#3a2618;border:3px solid #8a5a34;white-space:nowrap}
+.wisp{position:fixed;top:50%;z-index:3;width:56px;height:56px;margin-top:-28px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle,rgba(255,243,160,.55),rgba(255,201,40,0) 70%);color:#fff6c8;font-size:34px;animation:pulse 2s infinite}
+#wl{left:6px}#wr{right:6px}
+.atL #wl,.atR #wr{display:none}
+.showme{position:fixed;right:14px;bottom:max(14px,env(safe-area-inset-bottom));z-index:3;display:flex;align-items:center;gap:8px}
+.showme img{width:56px;height:56px}
+.showme b{padding:4px 12px;border-radius:999px;background:rgba(30,18,24,.75);border:2px solid var(--gold)}
+.poof{position:fixed;z-index:40;pointer-events:none}
+/* a world's menu: its framed panel slides up; dark ink on the light middle of the frame */
+.sheet{--W:min(97vw,96vh * 1.79);--H:calc(var(--W) / 1.79);position:fixed;left:50%;bottom:max(1vh,env(safe-area-inset-bottom));width:var(--W);height:var(--H);
+  transform:translateX(-50%);padding:calc(var(--H) * .19) calc(var(--W) * .16) calc(var(--H) * .16);display:flex;flex-direction:column;gap:calc(var(--H) * .02);
+  color:var(--ink);background:var(--pl) center/100% 100% no-repeat;animation:slideup .45s cubic-bezier(.2,.9,.3,1.15);--bs:min(calc(var(--H) * .13),calc(var(--W) * .085))}
+@keyframes slideup{from{transform:translate(-50%,100%)}}
+.shead{display:flex;align-items:center;gap:12px}
+.shead h1{flex:1;font-size:calc(var(--H) * .045);line-height:1.1}
+.wbtn{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;font-weight:bold;font-size:max(11px,calc(var(--H) * .024));line-height:1.1;color:var(--ink)}
+.wbtn img{width:var(--bs);height:var(--bs);object-fit:contain;transition:transform .12s,filter .12s;filter:drop-shadow(0 4px 3px rgba(0,0,0,.35))}
+.wbtn:active:not(:disabled) img{transform:translateY(5%) scale(.9);filter:brightness(.82) drop-shadow(0 1px 1px rgba(0,0,0,.4))}
+.wbtn small{display:block;font-weight:normal;opacity:.8}
+.mode{position:relative}
+.mode small{position:absolute;right:0;top:0;padding:0 6px;border-radius:999px;background:var(--ink);color:#fff;opacity:1;font-size:max(10px,calc(var(--H) * .02))}
+.wbtn.wide{flex-direction:row;gap:6px;--bs:calc(var(--H) * .075)}
+.wbtn.wide img{width:calc(var(--bs) * 2.2);height:var(--bs)}
+.wbtn.wide span{position:absolute;width:calc(var(--bs) * 2.2);text-align:center;color:#fff;text-shadow:0 1px 2px #000}
+.wbtn.wide{position:relative}
+.wbtn.wide span small{display:none}
+.groups{flex:1;min-height:0;overflow:auto;display:grid;grid-template-columns:2fr 2fr 1fr 1fr;gap:1%}
+.grp{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.grp h2{font-size:max(13px,calc(var(--H) * .032));padding:2px 14px;border-radius:999px;background:rgba(255,255,255,.35)}
+.grp>div{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
+.mode{width:calc(var(--bs) + 16px)}
+.stagehead{display:flex;align-items:center;gap:14px}
+.stagehead h2{font-size:calc(var(--H) * .04)}
+.stagehead .wbtn{--bs:calc(var(--H) * .09)}
+.sheet .nums{flex:1;display:grid;grid-template-columns:repeat(5,auto);justify-content:center;align-content:center;gap:2vh 3vw;max-width:none;padding:0}
+.stage{display:grid;justify-items:center;font-weight:bold;color:var(--ink)}
+.sb{position:relative;display:grid;place-items:center;width:calc(var(--H) * .17);aspect-ratio:1}
+.sb img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:transform .12s}
+.sb b{position:relative;font-size:calc(var(--H) * .06);color:#fff;text-shadow:0 2px 0 #000,0 0 6px #000}
+.stage:active:not(:disabled) .sb img{transform:scale(.9) translateY(4%);filter:brightness(.8)}
+.stage:disabled{opacity:.75}
+.sheet .cell small,.stage small{width:auto;font-size:12px}
+.sheet .tick{display:none}
+@media (orientation:portrait){
+  .sheet{--W:min(100vw,94vh * .75);--H:min(94vh,calc(var(--W) * 1.75));padding:calc(var(--H) * .11) calc(var(--W) * .13) calc(var(--H) * .08);background-image:var(--pp);--bs:calc(var(--W) * .14)}
+  .groups{grid-template-columns:1fr 1fr;grid-template-areas:'a a' 'b b' 'c d';align-content:space-evenly}
+  .grp:nth-child(1){grid-area:a}.grp:nth-child(2){grid-area:b}.grp:nth-child(3){grid-area:c}.grp:nth-child(4){grid-area:d}
+  .grp>div{flex-wrap:nowrap}
+  .wbtn,.stage{font-size:max(11px,calc(var(--W) * .03))}
+  .sheet .nums{grid-template-columns:repeat(3,auto)}
+  .shead{flex-wrap:wrap}
+  .shead h1{flex-basis:100%;font-size:calc(var(--W) * .055)}
+  .grp h2{font-size:calc(var(--W) * .042)}
+  .sb{width:calc(var(--W) * .15)}
+  .sheet .nums{gap:1.5vh 4vw}
+}
+/* a machine up close */
+.mview{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:4vw;padding:4vh 4vw;animation:fadein .3s}
+@keyframes fadein{from{opacity:0}}
+.mbig{width:min(52vw,72vh);aspect-ratio:1;display:grid;place-items:center;background:radial-gradient(closest-side,rgba(255,220,150,.35),transparent)}
+.mbig .mfill{width:100%;height:100%}
+.mbig .mfill img{object-fit:contain}
+.mbig .wa{height:auto;aspect-ratio:900/382}
+.mcap{display:grid;gap:14px;justify-items:start;padding:22px 30px;border-radius:30px;background:rgba(30,18,24,.8);border:3px solid var(--gold)}
+.mcap b{color:var(--gold)}
+@media (orientation:portrait){.mview{flex-direction:column}.mbig{width:80vw}}
+/* settings sit on the clockwork panel too */
+.setsheet .sets{flex:1;min-height:0;overflow:auto;padding:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.setsheet .bar{padding:0}
+.setsheet .cat{color:var(--cream)}
+.setsheet .bar h1{color:var(--ink)}
+/* win: the world's own card, its light rays and confetti */
+.win .rays{position:absolute;width:min(130vw,130vh);mix-blend-mode:screen;animation:spin 30s linear infinite;pointer-events:none}
+.win .conf{position:absolute;top:-12vh;width:7vh;pointer-events:none;animation:fall 3.4s ease-in var(--d) both}
+@keyframes fall{to{transform:translateY(125vh) rotate(var(--r))}}
+.wincard.art{position:relative;width:min(88vw,66vh);aspect-ratio:3/4;padding:16% 13% 12%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  border:0;border-radius:0;box-shadow:none;color:var(--ink);background:var(--frame) center/100% 100% no-repeat}
+.wincard.art h1,.wincard.art p{padding:4px 16px;border-radius:16px;background:rgba(255,250,235,.88)}
+.wincard.art .pill{color:var(--cream);min-height:44px;padding:6px 20px}
+.wincard .orn{position:absolute;left:50%;top:0;width:30%;transform:translate(-50%,-40%)}
+.wincard .piece{display:grid;place-items:center;width:110px;height:110px;animation:flyin .9s cubic-bezier(.3,1.3,.5,1) .4s backwards}
+.wincard .piece img{max-width:100%;max-height:100%}
+.wincard .strip{display:block;width:60px;height:100px;border-radius:6px}
+@keyframes flyin{from{scale:2.6;opacity:0}}
+@keyframes spin{to{rotate:360deg}}
+/* play: the parchment list panel, the brass medallions */
+.med.has-art{background:none;border:0;box-shadow:none}
+.side{background:linear-gradient(#3a2618,#22150d);border-left:4px solid #8a5a34;box-shadow:inset 3px 0 0 #c9a24a}
+@media (orientation:portrait){.side{border-left:0;border-top:4px solid #8a5a34;box-shadow:inset 0 3px 0 #c9a24a}}
 </style>
 </head>
 <body>
+<div id="title"></div>
+<div id="room"><div id="rcam"></div><button class="wisp" id="wl" aria-label="More to the left">&lsaquo;</button><button class="wisp" id="wr" aria-label="More to the right">&rsaquo;</button>
+  <button class="showme" id="showme"><img src="assets/ui/play/play-sheet/06.webp" alt=""><b>Show me</b></button></div>
 <div id="app"></div>
-<nav id="nav"></nav>
 <audio id="music" loop></audio>
 <script>
 'use strict';
@@ -282,19 +415,20 @@ const LABELS = {
   },
   power: { zoom: 'Super Zoom', hint: 'Hint', echo: 'Echo Replay', scanner: 'Truth Scanner', shield: 'Oops Shield' },
   ui: {
-    play: 'Play', back: 'Back', home: 'Home', settings: 'Settings', soon: 'Coming soon', worlds: 'Pick a World',
+    back: 'Back', home: 'Home', settings: 'Settings', soon: 'Coming soon',
     stages: 'Pick a Puzzle', found: 'Found', foundCount: 'found', pieces: 'pieces', powers: 'Powers', runs: 'It runs!',
     later: 'This machine comes later', win: 'You did it!', newPiece: 'You earned a new piece for the',
     oldPiece: 'You already earned the piece for this puzzle.', seeMachine: 'See my machine', next: 'Next puzzle',
-    allModes: 'Show all', resume: 'tap to continue', reset: 'Start this puzzle over', confirmReset: 'Tap again to restart',
-    cleared: 'puzzles done', counted: 'counted', countWin: 'You counted', look: 'Look carefully!', ready: 'I am ready',
-    picture: 'Show me a picture', sideA: 'Picture 1', sideB: 'Picture 2', flip: 'Switch picture', again: 'Run it again',
+    resume: 'tap to continue', reset: 'Start this puzzle over', confirmReset: 'Tap again to restart',
+    counted: 'counted', countWin: 'You counted', look: 'Look carefully!', ready: 'I am ready',
+    picture: 'Show me a picture', sideA: 'Picture 1', sideB: 'Picture 2', flip: 'Switch picture',
     belongs: 'Yes, that is the one!', notBelongs: 'No, that is not the one.', shielded: 'Oops Shield saved you!',
     scanOn: 'Tap a thing to scan it', newPower: 'The machine is finished! New power:',
     saveCode: 'My Save Code', copy: 'Copy', copied: 'Copied', loadCode: 'Load a Save Code', load: 'Load',
     paste: 'Paste a save code here', badCode: 'That code did not work. Please check it and try again. Your game is unchanged.',
     confirmLoad: 'Tap again to replace your game', loaded: 'Save code loaded.', together: 'Play Together',
     host: 'Host', join: 'Join', volume: 'Volume', music: 'Music', on: 'On', off: 'Off',
+    tapDoor: 'Tap the door to go in',
     startOver: 'Start Over', confirmWipe: 'Tap again to erase everything', wiped: 'Your game has been reset.'
   }
 };
@@ -309,12 +443,6 @@ const CATEGORIES = [
 ];
 const MODES = CATEGORIES.flatMap(c => c.modes);
 const GLYPHS = {
-  find: '<circle cx="21" cy="21" r="10"/><path d="M29 29l10 10"/>',
-  compare: '<ellipse cx="15" cy="24" rx="7" ry="9"/><ellipse cx="33" cy="24" rx="7" ry="9"/><circle cx="17" cy="26" r="2.5" fill="currentColor"/><circle cx="35" cy="26" r="2.5" fill="currentColor"/>',
-  remember: '<ellipse cx="10" cy="20" rx="6" ry="9"/><ellipse cx="38" cy="20" rx="6" ry="9"/><path d="M17 27a9 9.5 0 1 1 14 0c-2 2-3 4-3 7 0 5 6 6 7 2"/><path d="M17 27c2 2 3 4 3 7 0 6 4 9 9 8"/><circle cx="20.5" cy="19" r="1.5" fill="currentColor"/><circle cx="27.5" cy="19" r="1.5" fill="currentColor"/>',
-  figure: '<path d="M5 31c9 6 29 6 38 0"/><path d="M12 32c0-13 3-20 12-20s12 7 12 20"/><path d="M12.5 26c7 3 16 3 23 0"/>',
-  settings: '<circle cx="24" cy="24" r="14" stroke-width="5" stroke-dasharray="5.5 5.5"/><circle cx="24" cy="24" r="10"/><circle cx="24" cy="24" r="3.5"/>',
-  home: '<path d="M8 24L24 10l16 14"/><path d="M13 21v17h22V21"/><path d="M21 38v-9h6v9"/>',
   back: '<path d="M29 11L16 24l13 13"/>',
   next: '<path d="M19 11l13 13-13 13"/>',
   check: '<path d="M11 25l9 9 17-19"/>',
@@ -329,7 +457,7 @@ const GLYPHS = {
   shield: '<path d="M24 6l15 5v12c0 10-7 16-15 19-8-3-15-9-15-19V11z"/>'
 };
 for (const id in GLYPHS) ICONS[id] = { src: `assets/icons/${id}.png`, svg: GLYPHS[id] };
-for (const c of CATEGORIES) for (const m of c.modes) ICONS[m] = { src: `assets/icons/${m}.png`, svg: GLYPHS[c.id] };
+Object.entries({ hint: 11, shield: 12, echo: 13, zoom: 14, scanner: 15, lock: 16 }).forEach(([id, n]) => { ICONS[id].src = `assets/ui/play/play-sheet/${n}.webp`; });
 
 // ---------- WORLDS: scene units are 1% of scene height; a scene is 100 tall and w.w wide ----------
 // Each world's data is read at start from its folder (needs http): anchors.json (zones and painted objects as
@@ -349,10 +477,8 @@ const WORLDS = [
   world('retro-arcade-toybox', 'Retro Arcade and Toybox Nexus', 'Neon cartridges, toy robots and a giant arcade cabinet.')
 ];
 const SIZE = { S: 5, M: 7, L: 10 }; // item diameter in scene units
-let MACH = { machines: {} }; // assets/machines/machines.json: where every machine sprite sits
 const getJSON = async url => { try { const r = await fetch(url); return r.ok ? await r.json() : null; } catch (e) { return null; } };
 async function loadData() { // a world whose files cannot be read stays without zones and its tile stays locked
-  MACH = await getJSON('assets/machines/machines.json') || MACH;
   await Promise.all(WORLDS.map(async w => {
     const dir = `assets/worlds/${w.id}/`, [a, r, m] = await Promise.all(['anchors.json', 'roster.json', 'items/manifest.json'].map(f => getJSON(dir + f)));
     if (!a || !r) return;
@@ -368,14 +494,14 @@ async function loadData() { // a world whose files cannot be read stays without 
 
 // ---------- MACHINES: the five Wonder Machines in SPEC order; a1/a2 are each home's accent colours ----------
 const MACHINES = [
-  { id: 'marble-rail', name: 'Marble Rail', a1: '#e0b455', a2: '#8a5a34' },
+  { id: 'wind-up-robot', name: 'Wind-up Robot', a1: '#e0b455', a2: '#8a5a34' },
   { id: 'puzzle-box', name: 'Puzzle Box', a1: '#eb9a72', a2: '#7d3f52' },
   { id: 'terrarium', name: 'Terrarium', a1: '#a6d68f', a2: '#3f7a5a' },
   { id: 'astral-clock', name: 'Astral-Clock', a1: '#a9bdff', a2: '#4a4f9a' },
   { id: 'wallpaper-art-odyssey', name: 'Wallpaper Art Odyssey', a1: '#f2a8cc', a2: '#7a4a8a' }
 ];
 // POWERS: which power each finished machine grants. Change the mapping here and nowhere else.
-const POWERS = { 'marble-rail': 'zoom', terrarium: 'hint', 'astral-clock': 'echo', 'puzzle-box': 'scanner', 'wallpaper-art-odyssey': 'shield' };
+const POWERS = { 'wind-up-robot': 'zoom', terrarium: 'hint', 'astral-clock': 'echo', 'puzzle-box': 'scanner', 'wallpaper-art-odyssey': 'shield' };
 const TIME = { hold: 600, fly: 500, peek: 10000, curtain: 500, echo: 3000 }; // feedback and memory timings, in ms
 
 // ---------- Seeded dealing: a sub-stage's id (world / mode / 1..10) is its seed, frozen forever ----------
@@ -589,7 +715,7 @@ function clearSubStage(worldId, modeId, n) {
 // ---------- Rendering helpers ----------
 const $ = sel => document.querySelector(sel);
 const $$ = sel => [...document.querySelectorAll(sel)];
-const app = $('#app'), nav = $('#nav');
+const app = $('#app');
 const DEV = new URLSearchParams(location.search).get('dev') === '1';
 // Art drop-in for icons and the music toggle: each tries its PNG first and falls back to the drawn placeholder.
 const missingArt = new Set();
@@ -716,25 +842,6 @@ const powerBar = play => MACHINES.map(m => {
       `<span class="mb">${icon(p)}${label}</span>`;
 }).join('');
 const SCREENS = {
-  worlds: () => bar(LABELS.ui.worlds, 'home') + `<div class="tiles">` + WORLDS.map((w, i) =>
-    btn('world', w.id, `<span class="med num">${i + 1}</span><span><b>${w.name}</b><small>${w.zones.length ? w.blurb : LABELS.ui.soon}</small>` +
-      `<small>${clearedIn(w.id)} / ${MODES.length * 10} ${LABELS.ui.cleared}</small></span>`, 'tile', !w.zones.length)).join('') + `</div>`,
-  modes: () => bar(WORLDS.find(w => w.id === cur.world).name, 'worlds') + `<div class="cats">` +
-    CATEGORIES.filter(c => !cur.cat || c.id === cur.cat).map(c =>
-      `<section class="cat"><div class="cathead">${icon(c.id)}<h2>${LABELS.cat[c.id]}</h2></div><div class="modes">` + c.modes.map(m =>
-        btn('mode', m, `${icon(m)}<span>${LABELS.mode[m]}<small>${modeProgress(cur.world, m).clearedSubStages.length} / 10</small></span>`, 'pill mode')).join('') +
-      `</div></section>`).join('') + (cur.cat ? btn('cat', '', LABELS.ui.allModes) : '') + `</div>`,
-  stages() {
-    const cleared = modeProgress(cur.world, cur.mode).clearedSubStages;
-    return bar(`${LABELS.mode[cur.mode]}: ${LABELS.ui.stages}`, 'modes') + `<div class="nums">` + [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => {
-      if (!isUnlocked(cur.world, cur.mode, n)) return btn('stage', n, icon('lock'), 'mb', true);
-      const going = inProgress()[roundKey(cur.world, cur.mode, n)];
-      const tile = btn('stage', n, `<span class="med num">${n}</span>${cleared.includes(n) ? `<i class="tick">${glyph('check')}</i>` : ''}` + (going ?
-        `<small id="go-${n}">${going.found.length}${cur.mode === 'count' ? '' : ' / ' + deal(cur.world, cur.mode, n).need.length} — ${LABELS.ui.resume}</small>` : ''), 'mb');
-      return going ? `<span class="cell">${tile}<button class="reset" data-act="reset" data-arg="${n}" aria-label="${LABELS.ui.reset}">` +
-        `<span class="med">${glyph('reset')}</span></button></span>` : tile;
-    }).join('') + `</div>`;
-  },
   play() { // a round left part-way resumes: same seeded round, what was found already in the tray
     const r = round = deal(cur.world, cur.mode, cur.n), going = inProgress()[roundKey(cur.world, cur.mode, cur.n)];
     r.found = going ? going.found.filter(k => r.need.includes(k)) : [];
@@ -753,135 +860,364 @@ const SCREENS = {
   }
 };
 
-// ---------- Wonder Machine homes: the frozen art, assembled on a 1000 x 750 stage from machines.json ----------
-// One sprite: a zero-size anchor at its centre (or pivot) holding the image, so animations turn and grow about that point.
-function spriteHTML(mid, name, p, id, cls = '') {
-  let c = p.c, img;
-  if (p.cut) { // Marble Rail: cut from the route master; its recorded position is its cut's bounding box on the canvas
-    const [cx, cy, cw, ch] = MACH.machines[mid].canvas, xs = p.cut.map(q => q[0]), ys = p.cut.map(q => q[1]);
-    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
-    c = [cx + (x0 + x1) / 200 * cw, cy + (y0 + y1) / 200 * ch];
-    img = `width:${(x1 - x0) / 100 * cw}px;transform:translate(-50%,-50%)`;
-  } else if (p.q) {
-    const [ox, oy, ux, uy, vx, vy] = p.q;
-    c = [ox + (ux + vx) / 2, oy + (uy + vy) / 2];
-    img = `width:100px;height:100px;transform-origin:0 0;transform:matrix(${ux / 100},${uy / 100},${vx / 100},${vy / 100},${-(ux + vx) / 2},${-(uy + vy) / 2})`;
-  } else {
-    const [px, py] = p.pivot || [.5, .5];
-    img = `width:${p.w}px;transform:translate(${-px * 100}%,${-py * 100}%)`;
-  }
-  return `<i class="sp ${cls}" id="${id}" style="left:${c[0]}px;top:${c[1]}px;z-index:${p.z ?? 1};${p.o ? `opacity:${p.o};` : ''}${p.at != null ? `--at:${p.at}s;` : ''}` +
-    `${p.spin && cls.includes('live') ? `animation:spin ${Math.abs(p.spin)}s linear infinite${p.spin < 0 ? ' reverse' : ''}` : ''}">` +
-    `<img src="assets/machines/${mid}/web/${name}.webp" alt="" draggable="false" style="${img}"></i>`;
+// ---------- THE ATELIER: title scene, the one room, world menus, machines and pets (art: docs/atelier) ----------
+// Every picture is a piece cut by docs/build_atelier_assets.py; assets/ui/atelier.json gives each one's size.
+const UI = 'assets/ui/', SIZES = {};
+const ui = (f, n) => UI + f + (n ? `/${String(n).padStart(2, '0')}` : '') + '.webp';
+const ratio = src => (SIZES[src] ? SIZES[src][1] / SIZES[src][0] : 1);
+async function loadAtelier() {
+  const m = await getJSON(UI + 'atelier.json') || {};
+  for (const e of Object.values(m)) [].concat(e.f).forEach((f, i) => { SIZES[f] = [[].concat(e.w)[i], [].concat(e.h)[i]]; });
 }
-SCREENS.home = () => {
-  const earned = save.machines.justEarned; // drives the new piece's fly-in exactly once, then is cleared
-  if (earned) {
-    cur.home = earned.machine;
-    delete save.machines.justEarned;
-    storeSave();
-  }
-  const i = cur.home, m = MACHINES[i], a = MACH.machines[m.id] || { base: { c: [500, 375], w: 1 }, pieces: [] }, n = save.machines.pieces[i], runs = n === 10;
-  const arrow = (to, glyphId) => btn('machine', to, icon(glyphId) + `<span>${MACHINES[to] ? MACHINES[to].name : ''}</span>`, 'mb', !MACHINES[to]);
-  const pieces = a.pieces.slice(0, n).map((p, k) => spriteHTML(m.id, `piece-${String(k + 1).padStart(2, '0')}`, p, `p${k + 1}`,
-    `piece on${earned && k === n - 1 ? ' fly' : ''}${runs ? ' live' + (p.fx ? ' fx-' + p.fx : '') : ''}`).replace('</i>', (earned && k === n - 1 ? sparks : '') + '</i>')).join('');
-  const finale = !runs ? '' : Object.entries(a.sprites || {}).filter(([, p]) => p.fx).map(([name, p]) => spriteHTML(m.id, name, p, 'fx-' + name, 'fx fx-' + p.fx)).join('');
-  return `<div class="home"><header class="bar"><h1>${LABELS.title}</h1><div class="powers"><small>${LABELS.ui.powers}</small>${powerBar()}</div></header>` +
-    `<div class="stagew">${arrow(i - 1, 'back')}<div class="room"><div class="mstage${runs ? ' runs' : ''}" id="mstage" ` +
-    `style="background-image:url(assets/machines/${m.id}/web/home.jpg);--t0:${earned ? 1 : .3}s">${spriteHTML(m.id, 'base', { z: 0, ...a.base }, 'base')}${pieces}${finale}</div></div>` +
-    `${arrow(i + 1, 'next')}</div><footer class="foot"><div><h2>${m.name}</h2><small>${n} / 10 ${LABELS.ui.pieces}</small>` +
-    `<span class="lamps">${a.pieces.map((_, k) => `<i class="bulb${k < n ? ' lit' : ''}"></i>`).join('')}</span>` +
-    `<b>${runs ? LABELS.ui.runs : i > save.machines.current ? LABELS.ui.later : ''}</b></div>` +
-    `<span>${runs ? btn('machine', i, LABELS.ui.again) : ''} ${btn('show', 'worlds', LABELS.ui.play, 'pill big')}</span></footer></div>`;
+// World order matches WORLDS. menu: folder of its menu art; obj: its object in the room; win: [frame, ornament, ...confetti]
+const LOOK = {
+  'clockmakers-attic': { menu: 'attic', win: ['attic', 1, 2, 3, 4, 5], ink: '#4a2e14' },
+  'midnight-botanical-conservatory': { menu: 'conservatory', win: ['conservatory', 1, 2, 3, 4], ink: '#22324a' },
+  'micro-kingdoms': { menu: 'micro', win: ['micro', 1, 2, 3, 4, 5], ink: '#4a2a1a' },
+  'papercraft-origami-kingdom': { menu: 'paper', win: ['paper', 1, 2, 3, 4, 5], ink: '#3a3248' },
+  'grand-astral-express': { menu: 'astral', win: ['astral', 2, 1, 3, 4, 5], ink: '#2a2440' },
+  'living-art-gallery': { menu: 'gallery', win: ['gallery', 3, 4, 1, 2, 5, 6], ink: '#4a1a22' },
+  'sunken-coral-metropolis': { menu: 'coral', win: ['coral', 1, 2, 3, 4, 5], ink: '#173a44' },
+  'cloud-top-sky-port': { menu: 'sky', win: ['sky', 1, 2, 3, 4, 5], ink: '#23384f' },
+  'wizards-kitchen': { menu: 'kitchen', win: ['kitchen', 4, 2, 3, 6, 7], ink: '#40281a' },
+  'retro-arcade-toybox': { menu: 'arcade', win: ['arcade', 1, 2, 3, 4, 5], ink: '#1d2a4a' }
 };
-function fitStage() {
-  const room = $('.room'), st = $('#mstage');
-  if (!st) return;
-  const s = Math.min(room.clientWidth / 1000, room.clientHeight / 750);
-  st.style.transform = `translate(${(room.clientWidth - 1000 * s) / 2}px,${(room.clientHeight - 750 * s) / 2}px) scale(${s})`;
-}
-addEventListener('resize', fitStage);
-// The moving parts that plain CSS cannot do. t0 = ms to wait while a new piece flies in.
-const LIVE = {
-  // Marble Rail: a marble rolls as far as the built track reaches and wobbles at the gap; at 10 of 10 two marbles roll
-  // the whole route into the chest, which opens.
-  'marble-rail'(st, a, n, t0) {
-    if (!n) return;
-    const [cx, cy, cw, ch] = a.canvas, S = a.sprites, done = n === 10;
-    const pts = a.pieces.slice(0, n).flatMap(p => p.route).map(([x, y]) => [cx + x / 100 * cw, cy + y / 100 * ch]);
-    if (done) {
-      pts.push(S.chest.c);
-      st.insertAdjacentHTML('beforeend', spriteHTML('marble-rail', 'chest', { z: 6, ...S.chest }, 'chest') + spriteHTML('marble-rail', 'chest-open', { z: 6, ...S['chest-open'] }, 'chest-open', 'fx'));
-    }
-    let len = 0;
-    const at = pts.map((p, i) => len += i ? Math.hypot(p[0] - pts[i - 1][0], p[1] - pts[i - 1][1]) : 0), roll = len / .24, total = roll + (done ? 500 : 1800);
-    const last = pts[pts.length - 1], frames = pts.map((p, i) => ({ translate: `${p[0]}px ${p[1]}px`, opacity: 1, offset: at[i] / len * roll / total }));
-    if (!done) [5, -5, 3, 0].forEach((dx, i) => frames.push({ translate: `${last[0] + dx}px ${last[1]}px`, opacity: 1, offset: (roll + 160 * (i + 1)) / total }));
-    frames.push({ translate: `${last[0]}px ${last[1]}px`, opacity: 0, offset: 1 });
-    ['marble-blue', 'marble-gold'].slice(0, done ? 2 : 1).forEach((name, i) => {
-      st.insertAdjacentHTML('beforeend', spriteHTML('marble-rail', name, { c: [0, 0], w: S[name].w, z: 5 }, 'marble-' + i, 'marble'));
-      st.lastChild.animate(frames, { duration: total, delay: t0 + i * 800, iterations: Infinity, fill: 'backwards' });
-    });
-    if (done) setTimeout(() => { // the first marble lands: the chest opens
-      if (!st.isConnected) return;
-      $('#chest').style.opacity = 0;
-      $('#chest-open').style.opacity = 1;
-      $('#chest-open').insertAdjacentHTML('beforeend', sparks);
-    }, t0 + roll);
-  },
-  // Terrarium: the Time Seed sequence is CSS; this is the night that falls inside the dome during the weather cycle.
-  terrarium(st, a, n) { if (n === 10) st.insertAdjacentHTML('beforeend', `<div class="night"></div>`); },
-  // Wallpaper Art Odyssey: the runner steps out of the door in picture 1, runs and jumps across the five pictures
-  // through the shimmering seams between the frames, and opens the chest in picture 5.
-  async 'wallpaper-art-odyssey'(st, a, n, t0) {
-    if (n < 10) return;
-    const f = a.frames, S = a.sprites, GROUND = [.71, .7, .69, .71, .56], src = name => `assets/machines/wallpaper-art-odyssey/web/${name}.webp`;
-    const foot = (i, u) => [f[i][0] + u * f[i][2], f[i][1] + GROUND[i] * f[i][3]], sleep = ms => new Promise(done => setTimeout(done, ms));
-    f.slice(1).forEach((b, i) => st.insertAdjacentHTML('beforeend', spriteHTML('wallpaper-art-odyssey', 'seam',
-      { c: [(f[i][0] + f[i][2] + b[0]) / 2, b[1] + b[3] / 2], w: 62, z: 4, at: i * .3 }, 'seam-' + i, 'fx fx-twinkle')));
-    st.insertAdjacentHTML('beforeend', spriteHTML('wallpaper-art-odyssey', 'chest-open', { z: 4, ...S['chest-open'] }, 'chest-open', 'fx') +
-      `<i class="sp runner fx" id="runner" style="z-index:5"><img src="${src('door')}" alt="" draggable="false" style="height:58px"></i>`);
-    const runner = $('#runner'), img = runner.firstChild;
-    let at = foot(0, .5), step = 0;
-    const pose = name => { img.src = src(name); };
-    const go = async (to, ms, hop) => { // moves the runner's feet; a hop arcs through the air
-      const mid = [(at[0] + to[0]) / 2, Math.min(at[1], to[1]) - hop];
-      await runner.animate([at, ...(hop ? [mid] : []), to].map(p => ({ translate: `${p[0]}px ${p[1]}px` })), { duration: ms, fill: 'forwards', easing: hop ? 'ease-in-out' : 'linear' }).finished;
-      at = to;
-    };
-    const legs = setInterval(() => st.isConnected && runner.dataset.run ? pose(step++ % 2 ? 'run-1' : 'run-2') : st.isConnected || clearInterval(legs), 140);
-    await sleep(t0 + 400);
-    runner.style.translate = `${at[0]}px ${at[1]}px`;
-    runner.style.opacity = 1;
-    pose('door');
-    await sleep(900);
-    for (let i = 0; i < 5 && st.isConnected; i++) {
-      runner.dataset.run = 1;
-      await go(foot(i, i === 4 ? .22 : .82), i === 4 ? 300 : 900, 0);
-      runner.dataset.run = '';
-      if (i === 4) break;
-      pose('crouch');
-      await sleep(160);
-      pose('jump');
-      await go(foot(i + 1, .16), 620, 46);
-      pose('land');
-      await sleep(180);
-    }
-    if (!st.isConnected) return;
-    clearInterval(legs);
-    pose('cheer');
-    $('#p10').style.opacity = 0;
-    $('#chest-open').style.opacity = 1;
-    $('#chest-open').insertAdjacentHTML('beforeend', sparks);
-  }
-};
+const button = (w, k) => ui(`menus/${LOOK[w].menu}/buttons-up`, k); // 1-11 the games in MODES order, 12 Home, 13 Play Together
 
-// ---------- Bottom banner: always the same five medallions; one Home medallion during play ----------
-const navButton = (act, arg, id, label) => btn(act, arg, icon(id) + `<span>${label}</span>`, 'mb');
-function renderNav() {
-  nav.innerHTML = cur.screen === 'play' ? navButton('show', 'home', 'home', LABELS.ui.home) :
-    CATEGORIES.map(c => navButton('cat', c.id, c.id, LABELS.cat[c.id])).join('') + navButton('show', 'settings', 'settings', LABELS.ui.settings);
+// The room: three wall panels side by side, 900 units tall; everything else stands on them in room units.
+// [id, picture, centre x, bottom y, width, options]. on: stands on that thing's top. tap: what a tap does.
+const RW = 4838, PANEL = RW / 3;
+const PETS = { // poses, by piece number in each pet's sheet
+  owl: { idle: 1, moves: [4, 5, 6] }, cat: { idle: 1, walk: 2, moves: [4, 5, 6] }, dragon: { idle: 1, moves: [6, 7, 8] },
+  lizard: { idle: 1, moves: [4, 5, 6] }, frog: { idle: 1, moves: [6, 7, 8] }, crow: { idle: 1, moves: [4, 5, 6] }
+};
+const ROOM = [
+  ['rug1', ui('room/props-rugs', 1), 1010, 890, 330, { z: 1, flat: .3 }],
+  ['rug3', ui('room/props-rugs', 3), 2440, 900, 1150, { z: 1, flat: .26 }],
+  ['books1', ui('room/props-books', 1), 230, 880, 150, { z: 5 }],
+  ['fern', ui('room/props-plants', 1), 420, 830, 120, { z: 4, cls: 'sway' }],
+  ['door', ui('room/fu-07'), 760, 575, 250, { z: 2, tap: 'outside' }],
+  ['dial', ui('room/sun-moon-clock', 2), 1000, 318, 120, { z: 2, id: 'dial' }],
+  ['clock', ui('room/sun-moon-clock', 1), 1000, 330, 145, { z: 3, tap: 'daynight' }],
+  ['robe', ui('room/props-wizard', 1), 1150, 520, 110, { z: 2 }],
+  ['broom', ui('room/props-wizard', 2), 560, 600, 70, { z: 2 }],
+  ['tools', ui('room/fu-08'), 1000, 850, 215, { z: 5, tap: 'settings' }],
+  ['hat', ui('room/props-wizard', 4), 840, 880, 100, { z: 5 }],
+  ['tree', ui('room/wo-01'), 1350, 790, 560, { z: 3, tap: 'world:midnight-botanical-conservatory' }],
+  ['shrooms', ui('room/props-plants', 7), 1150, 820, 110, { z: 4, cls: 'glowy' }],
+  ['fairy1', ui('title/title-sheet-1', 9), 1250, 290, 50, { z: 4, cls: 'fairy' }],
+  ['fairy2', ui('title/title-sheet-1', 10), 1460, 230, 46, { z: 4, cls: 'fairy f2' }],
+  ['fairy3', ui('title/title-sheet-1', 11), 1400, 420, 44, { z: 4, cls: 'fairy f3' }],
+  ['lamp1', ui('room/props-lights', 1), 330, 210, 64, { z: 6, cls: 'swing' }],
+  ['lamp2', ui('room/props-lights', 2), 1180, 190, 60, { z: 6, cls: 'swing' }],
+  ['pillar1', ui('room/room-pillars', 1), PANEL, 900, 214, { z: 2 }],
+  ['photo1', ui('room/props-photos', 1), 1760, 300, 92, { z: 2, swap: ui('room/props-photos', 2) }],
+  ['photo2', ui('room/props-photos', 5), 1730, 430, 70, { z: 2, swap: ui('room/props-photos', 6) }],
+  ['backtable', ui('room/fu-03'), 1850, 840, 270, { z: 3 }],
+  ['paper', ui('room/wo-03'), 1850, 0, 300, { z: 4, on: 'backtable', tap: 'world:papercraft-origami-kingdom' }],
+  ['cuckoo', ui('room/wo-04'), 2030, 470, 150, { z: 2, tap: 'world:clockmakers-attic' }],
+  ['sky', ui('room/wo-06'), 2440, 300, 440, { z: 6, cls: 'drift', tap: 'world:cloud-top-sky-port' }],
+  ['chandelier', ui('room/props-lights', 5), 2440, 380, 200, { z: 6 }],
+  ['table', ui('room/fu-01'), 2440, 870, 880, { z: 3 }],
+  ['puzzlebox', 'machine:1', 2170, 0, 170, { z: 4, on: 'table' }],
+  ['candles', ui('room/props-lights', 8), 2330, 0, 70, { z: 4, on: 'table', cls: 'flicker' }],
+  ['spellbook', ui('room/props-books', 8), 2400, 0, 90, { z: 4, on: 'table' }],
+  ['track', ui('room/wo-10'), 2610, 0, 330, { z: 4, on: 'table', tap: 'world:grand-astral-express' }],
+  ['starmap', 'machine:3', 2860, 330, 210, { z: 2 }],
+  ['lab', ui('room/wo-07'), 2960, 880, 430, { z: 4, tap: 'world:wizards-kitchen' }],
+  ['photo3', ui('room/props-photos', 9), 3110, 470, 80, { z: 2, swap: ui('room/props-photos', 10) }],
+  ['photo4', ui('room/props-photos', 11), 3020, 390, 64, { z: 2, swap: ui('room/props-photos', 12) }],
+  ['lamp3', ui('room/props-lights', 3), 2900, 180, 60, { z: 6, cls: 'swing' }],
+  ['pillar2', ui('room/room-pillars', 2), PANEL * 2, 900, 214, { z: 2 }],
+  ['ivy', ui('room/props-plants', 2), 3330, 230, 100, { z: 2, cls: 'sway' }],
+  ['wallart', 'machine:4', 3480, 480, 440, { z: 2 }],
+  ['house', ui('room/wo-02'), 3480, 880, 290, { z: 5, tap: 'world:micro-kingdoms' }],
+  ['gallery', ui('room/wo-05'), 3820, 330, 280, { z: 2, tap: 'world:living-art-gallery', hole: [.1, .17, .76, .63, 'assets/worlds/living-art-gallery/background-web.jpg'] }],
+  ['stand', ui('room/fu-05'), 3840, 870, 220, { z: 4 }],
+  ['robot', 'machine:0', 3840, 0, 180, { z: 5, on: 'stand', inset: .25 }],
+  ['cabinet', ui('room/fu-06'), 4160, 860, 380, { z: 3 }],
+  ['aquarium', ui('room/wo-08'), 4160, 0, 400, { z: 4, on: 'cabinet', tap: 'world:sunken-coral-metropolis' }],
+  ['basket', ui('room/props-plants', 8), 4330, 230, 100, { z: 6, cls: 'sway' }],
+  ['arcade', ui('room/wo-09'), 4440, 870, 220, { z: 4, tap: 'world:retro-arcade-toybox' }],
+  ['bench', ui('room/fu-04'), 4680, 880, 300, { z: 3 }],
+  ['terrarium', 'machine:2', 4680, 0, 150, { z: 4, on: 'bench' }],
+  ['lamp4', ui('room/props-lights', 4), 4000, 190, 60, { z: 6, cls: 'swing' }],
+  ['rock', ui('room/props-plants', 9), 3300, 900, 120, { z: 6 }],
+  ['carpet', ui('room/props-rugs', 4), 4200, 900, 250, { z: 6, tap: 'carpet', id: 'carpet' }],
+  ['scope', ui('room/props-wizard', 8), 4780, 905, 110, { z: 6 }],
+  ['pet-owl', 'pet:owl', 1470, 345, 95, { z: 6 }],
+  ['pet-frog', 'pet:frog', 1570, 860, 85, { z: 6 }],
+  ['pet-cat', 'pet:cat', 2000, 895, 120, { z: 7 }],
+  ['pet-lizard', 'pet:lizard', 3110, 800, 60, { z: 6 }],
+  ['pet-crow', 'pet:crow', 4440, 0, 85, { z: 6, on: 'arcade' }],
+  ['pet-dragon', 'pet:dragon', 4650, 310, 105, { z: 6 }]
+];
+// Machines in the room: the finished picture, shown as a dark outline that fills in, one tenth per piece found.
+// How each one fills: robot from the feet up, puzzle box from the left, terrarium from the soil up, star map round
+// the clock face; Wall Art opens its four paintings strip by strip (3, 3, 2, 2 strips).
+const MACHINE_ART = [
+  { pic: ui('machines/rb-complete'), pieces: 'machines/rb-pieces', fill: 'up' },
+  { pic: ui('machines/pb-complete'), pieces: 'machines/pb-pieces', fill: 'right' },
+  { pic: ui('machines/te-complete'), pieces: 'machines/te-pieces', fill: 'up' },
+  { pic: ui('machines/sm-complete'), pieces: 'machines/sm-pieces', fill: 'round' },
+  { pic: ui('machines/wa-frames'), fill: 'art' }
+];
+const HOLES = [[.1378, .2749, .1156, .4346], [.3522, .2749, .1144, .4346], [.5633, .2749, .1144, .4346], [.7767, .2749, .1144, .4346]];
+const STRIPS = [3, 3, 2, 2];
+const stripOf = k => { let p = 0; while (k >= STRIPS[p]) k -= STRIPS[p++]; return [p, k]; }; // piece 0-9 -> [painting, strip]
+const fillMask = (fill, f) => fill === 'up' ? `inset(${Math.round((1 - f) * 100)}% 0 0 0)` : fill === 'right' ? `inset(0 ${Math.round((1 - f) * 100)}% 0 0)` : '';
+function machineHTML(i, n) {
+  const a = MACHINE_ART[i], f = n / 10;
+  if (a.fill === 'art') return `<span class="mfill wa"><img src="${a.pic}" alt="" draggable="false">` + HOLES.map((h, p) =>
+    `<span class="hole" style="left:${h[0] * 100}%;top:${h[1] * 100}%;width:${h[2] * 100}%;height:${h[3] * 100}%">` +
+    Array.from({ length: STRIPS[p] }, (_, s) => { const k = STRIPS.slice(0, p).reduce((x, y) => x + y, 0) + s;
+      return `<i class="${k < n ? 'on' : ''}" style="left:${s / STRIPS[p] * 100}%;width:${100 / STRIPS[p] + .5}%;` +
+        `background:url(${ui('machines/wa-painting-' + (p + 1))}) ${STRIPS[p] > 1 ? s / (STRIPS[p] - 1) * 100 : 0}% 50%/${STRIPS[p] * 100}% 100%"></i>`; }).join('') +
+    `</span>`).join('') + `</span>`;
+  const round = a.fill === 'round' ? `-webkit-mask-image:conic-gradient(#000 ${f * 360}deg,transparent 0);mask-image:conic-gradient(#000 ${f * 360}deg,transparent 0)` :
+    `clip-path:${fillMask(a.fill, f)}`;
+  return `<span class="mfill"><img class="ghost" src="${a.pic}" alt="" draggable="false"><img class="lit" src="${a.pic}" alt="" draggable="false" style="${round}"></span>`;
 }
+const pieceArt = (i, k) => MACHINE_ART[i].pieces ? `<img src="${ui(MACHINE_ART[i].pieces, k)}" alt="">` :
+  (([p, s]) => `<i class="strip" style="background:url(${ui('machines/wa-painting-' + (p + 1))}) ${STRIPS[p] > 1 ? s / (STRIPS[p] - 1) * 100 : 0}% 50%/${STRIPS[p] * 100}% 100%"></i>`)(stripOf(k - 1));
+
+let roomBuilt = false;
+const placed = {}; // id -> { x, y (top), w, h } in room units, for things that stand on others
+function roomHTML() {
+  let h = `<div class="panels">` + [1, 2, 3].map(i => `<img class="pn" src="${ui('room/room-night-' + i)}" alt="" draggable="false" style="left:${(i - 1) * PANEL}px">` +
+    `<img class="pn day" src="${ui('room/room-day-' + i)}" alt="" draggable="false" style="left:${(i - 1) * PANEL}px">`).join('') + `</div><div class="nightglow"></div>`;
+  for (const [id, src, x, yb, w, o = {}] of ROOM) {
+    const [kind, arg] = src.split(':'), isPic = !/^(machine|pet)$/.test(kind);
+    const pic = isPic ? src : kind === 'pet' ? ui('pets/' + arg, PETS[arg].idle) : MACHINE_ART[arg].pic;
+    const hh = w * ratio(pic) * (o.flat || 1), base = o.on && placed[o.on], bottom = base ? base.y + base.h * (o.inset ?? .1) : yb;
+    placed[id] = { x, y: bottom - hh, w, h: hh };
+    const tap = kind === 'machine' ? 'machine:' + arg : kind === 'pet' ? 'pet:' + arg : o.tap || '';
+    const inner = kind === 'machine' ? machineHTML(+arg, save.machines.pieces[arg]) + `<b class="mcount" id="mc${arg}"></b>` :
+      (o.hole ? `<img class="inhole" src="${o.hole[4]}" alt="" style="left:${o.hole[0] * 100}%;top:${o.hole[1] * 100}%;width:${o.hole[2] * 100}%;height:${o.hole[3] * 100}%">` : '') +
+      `<img src="${pic}" alt="" draggable="false"${o.swap ? ` data-swap="${o.swap}"` : ''}>`;
+    h += `<div class="o${tap ? ' hot' : ''}${o.cls ? ' ' + o.cls : ''}${kind === 'pet' ? ' pet' : ''}" id="${o.id || 'o-' + id}" data-tap="${tap}" ` +
+      `style="left:${x - w / 2}px;top:${bottom - hh}px;width:${w}px;height:${hh}px;z-index:${o.z || 2}">${inner}</div>`;
+  }
+  const fish = [9, 10, 11, 13, 14].map((n, i) => `<img class="fish f${i}" src="${ui('room/world-bits', n)}" alt="">`).join('');
+  const train = [1, 2, 3].map(n => `<img class="car" src="${ui('room/world-bits', n)}" alt="">`).join('');
+  const q = placed.aquarium; // the fish swim inside the aquarium's glass
+  return h + `<div class="tank" id="tank" style="left:${q.x - q.w * .42}px;top:${q.y + q.h * .2}px;width:${q.w * .84}px;height:${q.h * .55}px">${fish}</div><div class="train" id="train">${train}</div>`;
+}
+const room = $('#room'), rcam = $('#rcam');
+const view = { pan: 0, s: 1 };
+function fitRoom() {
+  view.s = innerHeight / 900;
+  rcam.style.transform = `translate(${view.pan}px,0) scale(${view.s})`;
+  const min = innerWidth - RW * view.s;
+  room.classList.toggle('atL', view.pan > -4);
+  room.classList.toggle('atR', view.pan < min + 4);
+}
+function panTo(x, glide) {
+  view.pan = Math.max(innerWidth - RW * view.s, Math.min(0, x));
+  rcam.classList.toggle('glide', !!glide);
+  fitRoom();
+}
+const lookAt = id => { const p = placed[id]; if (p) panTo(innerWidth / 2 - p.x * view.s, true); };
+function buildRoom() {
+  if (roomBuilt) return refreshMachines();
+  roomBuilt = true;
+  rcam.innerHTML = roomHTML();
+  view.s = innerHeight / 900;
+  view.pan = innerWidth / 2 - 2440 * view.s;
+  fitRoom();
+  refreshMachines();
+  setInterval(roomLife, 2600);
+  requestAnimationFrame(trainLoop);
+}
+function refreshMachines() { // the room shows exactly the pieces earned
+  MACHINES.forEach((m, i) => {
+    const el = $(`[data-tap="machine:${i}"]`);
+    if (!el) return;
+    el.querySelector('.mfill').outerHTML = machineHTML(i, save.machines.pieces[i]);
+    $('#mc' + i).textContent = `${save.machines.pieces[i]}/10`;
+  });
+}
+// dragging the room: follow the finger, then coast to a stop; a tap (no drag) goes to the thing under it
+let drag = null;
+room.addEventListener('pointerdown', e => { drag = { x: e.clientX, p: view.pan, t: e.timeStamp, v: 0, moved: false }; rcam.classList.remove('glide'); });
+room.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.x;
+  if (Math.abs(dx) > 8) drag.moved = true;
+  if (!drag.moved) return;
+  const p = drag.p + dx;
+  drag.v = (p - view.pan) / Math.max(1, e.timeStamp - drag.t) * 16;
+  drag.t = e.timeStamp;
+  panTo(p);
+});
+room.addEventListener('pointerup', e => {
+  const d = drag;
+  drag = null;
+  if (!d) return;
+  if (d.moved) { let v = d.v; const coast = () => { if (Math.abs(v) < .5 || drag) return; panTo(view.pan + v); v *= .93; requestAnimationFrame(coast); }; return coast(); }
+  const hit = e.target.closest('.hot');
+  if (hit) roomTap(hit.dataset.tap, hit); else poof(e.clientX, e.clientY);
+});
+room.addEventListener('pointercancel', () => { drag = null; });
+room.addEventListener('wheel', e => { panTo(view.pan - (e.deltaX || e.deltaY)); }, { passive: true });
+addEventListener('resize', () => { if (roomBuilt) panTo(view.pan); });
+$('#wl').onclick = () => panTo(view.pan + innerWidth * .7, true);
+$('#wr').onclick = () => panTo(view.pan - innerWidth * .7, true);
+$('#showme').onclick = () => { room.classList.remove('showing'); void room.offsetWidth; room.classList.add('showing'); };
+function roomTap(tap, el) {
+  const [kind, arg] = tap.split(':');
+  if (kind !== 'pet') petNear(el);
+  if (kind === 'world') { bump(el); return setTimeout(() => ACT.world(arg), 260); }
+  if (kind === 'machine') return ACT.machine(arg);
+  if (kind === 'pet') return petReact(arg);
+  if (kind === 'settings') { bump(el); return setTimeout(() => show('settings'), 200); }
+  if (kind === 'outside') return show('title');
+  if (kind === 'daynight') return setDay(!isDay);
+  if (kind === 'carpet') { el.classList.remove('loop'); void el.offsetWidth; el.classList.add('loop'); }
+}
+const bump = el => { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); };
+let isDay = false;
+function setDay(on) {
+  isDay = on;
+  document.body.classList.toggle('day', on);
+  $('#dial').style.rotate = on ? '180deg' : '0deg';
+}
+function poof(x, y) { // a tap on nothing: a small puff of sparkles where the finger was
+  const s = document.createElement('i');
+  s.className = 'poof';
+  s.style.cssText = `left:${x}px;top:${y}px`;
+  s.innerHTML = sparks;
+  document.body.append(s);
+  setTimeout(() => s.remove(), 900);
+}
+// Pets: tapping one plays its next move (surprised, happy, its own trick); tapping near one makes it look.
+const petTurn = {};
+function petReact(k) {
+  const el = $('#o-pet-' + k), img = el && el.querySelector('img');
+  if (!img || el.classList.contains('acting')) return;
+  const p = PETS[k], move = petTurn[k] = ((petTurn[k] ?? -1) + 1) % p.moves.length;
+  img.src = ui('pets/' + k, p.moves[move]);
+  el.classList.add('acting', ['jump', 'wiggle', 'trick'][move]);
+  setTimeout(() => { img.src = ui('pets/' + k, p.idle); el.classList.remove('acting', 'jump', 'wiggle', 'trick'); }, 1300);
+}
+function petNear(el) {
+  const x = parseFloat(el.style.left) + parseFloat(el.style.width) / 2;
+  let best = null, d = 900;
+  for (const k in PETS) { const p = $('#o-pet-' + k), dd = p && Math.abs(parseFloat(p.style.left) - x); if (p && dd < d) { d = dd; best = k; } }
+  if (best) petReact(best);
+}
+// Life in the room: photos change pose, the cat strolls, fish swim (CSS); every few seconds something wiggles.
+function roomLife() {
+  if (cur.screen !== 'home' || document.hidden) return;
+  const photos = $$('[data-swap]'), ph = photos[Math.floor(Math.random() * photos.length)];
+  if (ph) { const a = ph.src, b = ph.dataset.swap; ph.src = new URL(b, location.href).href; ph.dataset.swap = a; }
+  const hots = $$('#room .hot:not(.pet)'), w = hots[Math.floor(Math.random() * hots.length)];
+  if (w) { w.classList.remove('wiggle'); void w.offsetWidth; w.classList.add('wiggle'); }
+  const cat = $('#o-pet-cat');
+  if (cat && !cat.classList.contains('acting') && Math.random() < .5) {
+    const img = cat.querySelector('img'), x = 1750 + Math.random() * 1300, from = parseFloat(cat.style.left);
+    img.src = ui('pets/cat', PETS.cat.walk);
+    cat.style.scale = x < from ? '-1 1' : '1 1';
+    cat.style.transition = `left ${Math.abs(x - from) / 220}s linear`;
+    cat.style.left = x + 'px';
+    setTimeout(() => { if (!cat.classList.contains('acting')) img.src = ui('pets/cat', PETS.cat.idle); }, Math.abs(x - from) / .22);
+  }
+}
+function trainLoop(t) { // three toy cars run round the oval track on the table
+  const track = placed.track, cars = $$('#train .car');
+  if (track && cars.length && cur.screen === 'home') {
+    const cx = track.x, cy = track.y + track.h * .5, rx = track.w * .42, ry = track.h * .32;
+    cars.forEach((c, i) => {
+      const a = t / 2600 - i * .42, x = cx + rx * Math.cos(a), y = cy + ry * Math.sin(a), back = Math.sin(a) < 0;
+      c.style.cssText = `left:${x - 26}px;top:${y - 34}px;z-index:${back ? 3 : 5};scale:${-Math.sin(a) > 0 ? -1 : 1} 1`;
+    });
+  }
+  requestAnimationFrame(trainLoop);
+}
+
+// The title: the evening front door. Only the door goes in; the rabbit, the tree door, the mushroom house and the
+// pond each hide a surprise. Scene units: the 1200 x 896 painting.
+const TITLE_BITS = [ // [id, picture, centre x, bottom y, width, tap]
+  ['sign', ui('title/title-sign'), 612, 440, 270, ''],
+  ['owl', ui('title/title-sheet-1', 6), 1040, 430, 60, 'owl'],
+  ['cat', ui('title/title-sheet-1', 7), 800, 620, 70, ''],
+  ['witch', ui('title/title-sheet-1', 13), 612, 300, 70, ''],
+  ['fdoor', ui('title/title-sheet-2', 1), 222, 740, 50, 'fairydoor'],
+  ['mdoor', ui('title/title-sheet-2', 3), 132, 838, 38, 'mushroom'],
+  ['gnome', ui('title/title-sheet-1', 12), 132, 812, 34, ''],
+  ['rabbit', ui('title/title-sheet-1', 1), 330, 830, 80, 'rabbit'],
+  ['frog', ui('title/title-sheet-2', 6), 930, 800, 70, 'pond'],
+  ['pond', '', 960, 840, 330, 'pond'],
+  ['dragon', ui('title/title-sheet-1', 14), 300, 120, 110, '']
+];
+function titleHTML() {
+  return `<div class="tcam" id="tcam"><img class="tbg" src="${ui('title/title-bg')}" alt="" draggable="false">` +
+    TITLE_BITS.map(([id, src, x, yb, w, tap]) => { const h = src ? w * ratio(src) : 90;
+      return `<div class="t-${id}${tap ? ' hot' : ''}" data-tt="${tap}" style="left:${x - w / 2}px;top:${yb - h}px;width:${w}px;height:${h}px">${src ? `<img src="${src}" alt="" draggable="false">` : ''}</div>`; }).join('') +
+    `<div class="frontdoor hot" data-tt="door"><div class="door3d">${'<i></i>'.repeat(12)}<img class="face" src="${ui('title/title-sheet-1', 3)}" alt="" draggable="false"></div></div>` +
+    `<div class="fairies">${[9, 10, 11].map(n => `<img src="${ui('title/title-sheet-1', n)}" alt="">`).join('')}</div></div>`;
+}
+function fitTitle() {
+  const s = Math.max(innerWidth / 1200, innerHeight / 896), tc = $('#tcam');
+  // keep the door in view on a tall phone: centre on it, never past the painting's edges
+  const x = Math.min(0, Math.max(innerWidth - 1200 * s, innerWidth / 2 - 612 * s));
+  if (tc) tc.style.transform = `translate(${x}px,${(innerHeight - 896 * s) / 2}px) scale(${s})`;
+}
+addEventListener('resize', fitTitle);
+const titleEl = $('#title');
+titleEl.addEventListener('click', e => {
+  const t = e.target.closest('[data-tt]'), k = t && t.dataset.tt;
+  if (!k) return poof(e.clientX, e.clientY);
+  if (k === 'door') {
+    if (titleEl.classList.contains('open')) return;
+    titleEl.classList.add('open');
+    return setTimeout(() => { titleEl.classList.remove('open'); show('home'); }, 1500);
+  }
+  const el = titleEl.querySelector('.t-' + ({ fairydoor: 'fdoor', mushroom: 'mdoor', pond: 'frog' }[k] || k));
+  titleEl.classList.add('tt-' + k);
+  setTimeout(() => titleEl.classList.remove('tt-' + k), 2600);
+  if (k === 'fairydoor') el.querySelector('img').src = ui('title/title-sheet-2', 2);
+  if (k === 'fairydoor') setTimeout(() => { el.querySelector('img').src = ui('title/title-sheet-2', 1); }, 2600);
+  if (k === 'rabbit') { const img = el.querySelector('img'); img.src = ui('title/title-sheet-1', 5); setTimeout(() => { img.src = ui('title/title-sheet-1', 1); }, 2600); }
+});
+
+// A world's menu: its own framed panel and buttons slide up over the room. Games in four groups, then its ten stages.
+const STAGE_ART = s => ui(`menus/${LOOK[cur.world].menu}/stages`, s); // 1 finished, 2 next to play, 3 locked, 4 pressed
+function menuHTML(inner) {
+  const w = WORLDS.find(w => w.id === cur.world), lk = LOOK[w.id], m = lk.menu;
+  return `<div class="sheet" style="--ink:${lk.ink};--pl:url(${ui(`menus/${m}/panel-landscape`)});--pp:url(${ui(`menus/${m}/panel-portrait`)})">` +
+    `<div class="shead"><h1>${w.name}</h1>${btn('', '', `<img src="${button(w.id, 13)}" alt=""><span>${LABELS.ui.together}<small>${LABELS.ui.soon}</small></span>`, 'wbtn wide', true)}` +
+    btn('show', 'home', `<img src="${button(w.id, 12)}" alt=""><span>${LABELS.ui.home}</span>`, 'wbtn wide') + `</div>${inner}</div>`;
+}
+SCREENS.home = () => '';
+SCREENS.title = () => '';
+SCREENS.modes = () => menuHTML(`<div class="groups">` + CATEGORIES.map(c => `<section class="grp"><h2>${LABELS.cat[c.id]}</h2><div>` +
+  c.modes.map(m => btn('mode', m, `<img src="${button(cur.world, MODES.indexOf(m) + 1)}" alt="" draggable="false">` +
+    `<span>${LABELS.mode[m]}<small>${modeProgress(cur.world, m).clearedSubStages.length} / 10</small></span>`, 'wbtn mode')).join('') +
+  `</div></section>`).join('') + `</div>`);
+SCREENS.stages = () => {
+  const cleared = modeProgress(cur.world, cur.mode).clearedSubStages;
+  return menuHTML(`<div class="stagehead">${btn('show', 'modes', `<img src="${button(cur.world, MODES.indexOf(cur.mode) + 1)}" alt="">` +
+    `<span>${LABELS.ui.back}</span>`, 'wbtn back')}<h2>${LABELS.mode[cur.mode]}: ${LABELS.ui.stages}</h2></div><div class="nums">` +
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => {
+      const open = isUnlocked(cur.world, cur.mode, n), done = cleared.includes(n), going = inProgress()[roundKey(cur.world, cur.mode, n)];
+      const face = `<span class="sb"><img src="${STAGE_ART(done ? 1 : open ? 2 : 3)}" alt="" draggable="false"><b>${n}</b></span>`;
+      if (!open) return btn('stage', n, face, 'stage', true);
+      const tile = btn('stage', n, face + (going ?
+        `<small id="go-${n}">${going.found.length}${cur.mode === 'count' ? '' : ' / ' + deal(cur.world, cur.mode, n).need.length} — ${LABELS.ui.resume}</small>` : ''), 'stage');
+      return going ? `<span class="cell">${tile}<button class="reset" data-act="reset" data-arg="${n}" aria-label="${LABELS.ui.reset}">` +
+        `<span class="med">${glyph('reset')}</span></button></span>` : tile;
+    }).join('') + `</div>`);
+};
+// A machine up close: big, with its count and what it gives when finished.
+SCREENS.machine = () => {
+  if (save.machines.justEarned) { delete save.machines.justEarned; storeSave(); }
+  const i = cur.home, m = MACHINES[i], n = save.machines.pieces[i], p = POWERS[m.id];
+  return `<div class="mview"><div class="mbig">${machineHTML(i, n)}</div><div class="mcap"><h1>${m.name}</h1>` +
+    `<p><b>${n} / 10</b> ${LABELS.ui.pieces}${n === 10 ? ` · ${LABELS.ui.runs}` : i > save.machines.current ? ` · ${LABELS.ui.later}` : ''}</p>` +
+    `<div class="powers">${save.powers.includes(p) ? `<span class="mb">${icon(p)}<span>${LABELS.power[p]}</span></span>` : ''}</div>` +
+    btn('show', 'home', LABELS.ui.back, 'pill') + `</div></div>`;
+};
 
 // ---------- Settings and music ----------
 let armed = ''; // which two-tap confirm is waiting for its second tap
@@ -927,7 +1263,8 @@ function readCode(code) { // validates prefix, checksum, JSON shape and version;
 }
 SCREENS.settings = () => {
   const st = save.settings, soon = label => btn('', '', `<span>${label}<small>${LABELS.ui.soon}</small></span>`, 'pill', true);
-  return bar(LABELS.ui.settings, 'home') + `<div class="sets">` +
+  return `<div class="sheet setsheet" style="--ink:#3a2618;--pl:url(${ui('menus/attic/panel-landscape')});--pp:url(${ui('menus/attic/panel-portrait')})">` +
+    bar(LABELS.ui.settings, 'home') + `<div class="sets">` +
     `<section class="cat"><h2>${LABELS.ui.saveCode}</h2><p class="code" id="code">${exportCode()}</p>${btn('copy', '', LABELS.ui.copy)}</section>` +
     `<section class="cat"><h2>${LABELS.ui.loadCode}</h2><input class="field" id="paste" placeholder="${LABELS.ui.paste}" autocomplete="off" autocapitalize="off" spellcheck="false">` +
     `${btn('load', '', LABELS.ui.load)}<p id="loadmsg"></p></section>` +
@@ -936,34 +1273,25 @@ SCREENS.settings = () => {
     `<input class="slider" id="volume" type="range" min="0" max="100" value="${st.volume}" aria-label="${LABELS.ui.volume}"></section>` +
     `<section class="cat"><h2>${LABELS.ui.music}</h2><button class="toggle" data-act="music" role="switch" aria-checked="${st.music}" aria-label="${LABELS.ui.music}">` +
     `<span class="med">${glyph('note')}</span><b>${st.music ? LABELS.ui.on : LABELS.ui.off}</b>${art(`assets/ui/music-toggle-${st.music ? 'on' : 'off'}.png`)}</button></section>` +
-    `<section class="cat"><h2>${LABELS.ui.startOver}</h2>${btn('wipe', '', LABELS.ui.startOver)}<p id="wipemsg"></p></section></div>`;
+    `<section class="cat"><h2>${LABELS.ui.startOver}</h2>${btn('wipe', '', LABELS.ui.startOver)}<p id="wipemsg"></p></section></div></div>`;
 };
 function show(screen) {
   cur.screen = screen;
   round = null;
   armed = '';
-  document.body.className = screen === 'play' ? 'playing' : '';
+  document.body.className = (screen === 'play' ? 'playing' : '') + (isDay ? ' day' : '');
+  document.body.dataset.screen = screen;
+  if (screen === 'title') { if (!titleEl.firstChild) titleEl.innerHTML = titleHTML() + `<p class="tap-hint">${LABELS.ui.tapDoor}</p>`; fitTitle(); }
+  else if (screen !== 'play') buildRoom();
   app.innerHTML = SCREENS[screen]();
-  document.body.style.setProperty('--a1', MACHINES[cur.home].a1);
-  document.body.style.setProperty('--a2', MACHINES[cur.home].a2);
   if (screen === 'play') mountPlay();
-  if (screen === 'home') {
-    const st = $('#mstage'), id = MACHINES[cur.home].id, t0 = st.querySelector('.fly') ? 1000 : 300;
-    let x0; // swipe between the five homes
-    $('.room').onpointerdown = e => { x0 = e.clientX; };
-    $('.room').onpointerup = e => { if (Math.abs(e.clientX - x0) > 50) ACT.machine(cur.home - Math.sign(e.clientX - x0)); };
-    fitStage();
-    if (LIVE[id] && MACH.machines[id]) LIVE[id](st, MACH.machines[id], save.machines.pieces[cur.home], t0);
-  }
-  renderNav();
   tune();
 }
 const ACT = {
   show,
   world(id) { cur.world = id; show('modes'); },
-  cat(id) { cur.cat = id || null; show('modes'); },
   mode(id) { cur.mode = id; show('stages'); },
-  machine(i) { if (MACHINES[i]) { cur.home = +i; show('home'); } },
+  machine(i) { if (MACHINES[i]) { cur.home = +i; show('machine'); } },
   stage(n) { cur.n = +n; show('play'); },
   panel() { // one tap slides the whole sheet down to its slim bar, or back; the scene re-fits as it moves
     const side = $('.side'), size = () => ({ width: side.offsetWidth + 'px', height: side.offsetHeight + 'px' }), from = size();
@@ -1190,15 +1518,19 @@ function land(k) { // a found thing has reached the tray: checklist, count and c
   $('#powers').innerHTML = powerBar(true);
   if (r.landed === r.need.length) win(); else if (r.sets) showSet();
 }
-function win() {
-  const got = clearSubStage(cur.world, cur.mode, cur.n), earned = save.machines.justEarned;
+function win() { // the world's own card: its frame, ornament and confetti, the light rays, and the piece just earned
+  const got = clearSubStage(cur.world, cur.mode, cur.n), earned = save.machines.justEarned, [f, frame, orn, ...conf] = LOOK[cur.world].win;
   delete inProgress()[roundKey(cur.world, cur.mode, cur.n)];
   storeSave();
-  app.insertAdjacentHTML('beforeend', `<div class="win"><div class="wincard"><h1>${LABELS.ui.win}</h1>` +
+  const pic = n => ui('win/win-' + f, n), rain = Array.from({ length: 18 }, (_, i) =>
+    `<img class="conf" src="${pic(conf[i % conf.length])}" alt="" style="left:${(i * 37) % 96}%;--d:${(i % 6) * .25}s;--r:${(i * 97) % 360}deg">`).join('');
+  app.insertAdjacentHTML('beforeend', `<div class="win"><img class="rays" src="${ui('win/rays')}" alt="">${rain}` +
+    `<div class="wincard art" style="--ink:${LOOK[cur.world].ink};--frame:url(${pic(frame)})"><img class="orn" src="${pic(orn)}" alt=""><h1>${LABELS.ui.win}</h1>` +
     (round && round.mode === 'count' ? `<p>${LABELS.ui.countWin} ${round.need.length}!</p>` : '') +
+    (got ? `<span class="piece">${pieceArt(earned.machine, earned.piece)}</span>` : '') +
     `<p>${got ? `${LABELS.ui.newPiece} ${MACHINES[earned.machine].name}.` : LABELS.ui.oldPiece}</p>` +
     (got && earned.piece === 10 ? `<p>${LABELS.ui.newPower} <b>${LABELS.power[POWERS[MACHINES[earned.machine].id]]}</b></p>` : '') +
-    btn('show', 'home', LABELS.ui.seeMachine) + (cur.n < 10 ? btn('stage', cur.n + 1, LABELS.ui.next) : '') +
+    btn('machine', got ? earned.machine : save.machines.current, LABELS.ui.seeMachine) + (cur.n < 10 ? btn('stage', cur.n + 1, LABELS.ui.next) : '') +
     btn('show', 'stages', LABELS.ui.back) + `</div></div>`);
 }
 // ---------- Powers: one free use of each per round, once its machine is finished ----------
@@ -1291,27 +1623,35 @@ async function selfTest() {
     const first = clearSubStage(W, M, 1), replay = clearSubStage(W, M, 1);
     return first && !replay && save.machines.pieces[0] === 1 && JSON.parse(stored()).machines.pieces[0] === 1;
   });
-  await test('g', 'The 10th piece flips the machine to its runs state', () => {
+  await test('g', 'The 10th piece finishes the machine: the room shows it fully lit at 10/10', () => {
     reset(); clear(9); show('home');
-    const before = count('.runs') + count('.marble') - 1; // one marble already rolls the part-built rail
+    const nine = $('#mc0').textContent === '9/10' && $('#o-robot .lit').getAttribute('style').includes('inset(10%');
     clear(10); show('home');
-    return !before && save.machines.pieces[0] === 10 && save.machines.completed.includes(0) && count('.room .runs') === 1 && count('.marble') === 2 && count('#chest-open') === 1;
+    return nine && save.machines.pieces[0] === 10 && save.machines.completed.includes(0) && $('#mc0').textContent === '10/10' &&
+      $('#o-robot .lit').getAttribute('style').includes('inset(0% 0 0 0)');
   });
-  await test('h', 'Home differs at 0, 3 and 10 pieces (pieces and lit lamps match the count); the new-piece animation fires once', () => {
-    const pages = [0, 3, 10].map(n => {
-      reset(); clear(n);
-      delete save.machines.justEarned;
-      cur.home = 0; show('home');
-      return count('.piece.on') === n && count('.bulb.lit') === n && count('.bulb') === 10 && !count('.fly') && $('.room').innerHTML;
-    });
-    reset(); clear(1); show('home');
-    const flew = count('.piece.fly') === 1 && !save.machines.justEarned && !JSON.parse(stored()).machines.justEarned;
+  await test('h', 'The room and the close-up show exactly the pieces earned at 0, 3 and 10 for all five machines; the new-piece note is cleared once the machine is seen', () => {
+    const lit = (i, n) => i === 4 ? count('.mbig .wa i.on') === n && count('#o-wallart .wa i.on') === n :
+      [`#o-${['robot', 'puzzlebox', 'terrarium', 'starmap'][i]} .lit`, '.mbig .lit'].every(sel => $(sel).getAttribute('style').includes(i === 3 ? `${n * 36}deg` : `${Math.round((1 - n / 10) * 100)}%`));
+    const ok = MACHINES.every((_, i) => [0, 3, 10].every(n => {
+      reset(); save.machines.pieces[i] = n; show('home');
+      const room = $('#mc' + i).textContent === `${n}/10`;
+      ACT.machine(i);
+      return room && cur.screen === 'machine' && $('.mcap b').textContent === `${n} / 10` && lit(i, n);
+    }));
+    reset(); clear(1);
+    const noted = !!save.machines.justEarned;
+    ACT.machine(0);
+    return ok && noted && !save.machines.justEarned && !JSON.parse(stored()).machines.justEarned;
+  });
+  await test('i', 'No bottom banner: the title has the door; the room holds all 10 worlds, 5 machines, 6 pets, the settings toolbox and the way back outside', () => {
+    show('title');
+    const door = count('#title .frontdoor') === 1;
     show('home');
-    return pages.every(Boolean) && new Set(pages).size === 3 && flew && !count('.fly');
+    const worlds = $$('#room [data-tap^="world:"]').map(e => e.dataset.tap.slice(6));
+    return door && !$('#nav') && WORLDS.every(w => worlds.includes(w.id)) && worlds.length === 10 && count('#room [data-tap^="machine:"]') === 5 &&
+      count('#room .pet') === 6 && count('#room [data-tap=settings]') === 1 && count('#room [data-tap=outside]') === 1;
   });
-  await test('i', 'The banner shows exactly 5 medallions on all 5 home screens, World select, Mode select and Settings, and 1 during play', () =>
-    MACHINES.every((_, i) => { ACT.machine(i); return cur.home === i && count('.home') === 1 && count('#nav .med') === 5; }) &&
-    ['worlds', 'modes', 'settings'].every(scr => { show(scr); return count('#nav .med') === 5; }) && (show('play'), count('#nav .med') === 1));
   await test('j', 'Save code round trip restores progress exactly; a corrupted code is rejected with the save untouched; loading over progress needs two taps', () => {
     reset();
     const freshCode = exportCode();
@@ -1331,14 +1671,12 @@ async function selfTest() {
   await test('k', 'No emoji anywhere in the rendered UI text or the game data', async () => {
     let text = JSON.stringify([LABELS, WORLDS, MACHINES]);
     const grab = () => {
-      text += app.textContent + nav.textContent;
+      text += app.textContent + titleEl.textContent;
       document.querySelectorAll('[aria-label],[placeholder],[title],[alt]').forEach(el => { text += [...el.attributes].map(a => a.value).join(' '); });
     };
     reset(); clear(3);
     MACHINES.forEach((_, i) => { ACT.machine(i); grab(); });
-    ['worlds', 'modes', 'stages', 'settings'].forEach(scr => { show(scr); grab(); });
-    CATEGORIES.forEach(c => { ACT.cat(c.id); grab(); });
-    ACT.cat('');
+    ['title', 'home', 'modes', 'stages', 'settings'].forEach(scr => { show(scr); grab(); });
     MODES.forEach(m => { open(m); grab(); });
     open(M); win(); grab();
     return text.length > 5000 && !/\p{Extended_Pictographic}|[\u{1F1E6}-\u{1F1FF}\u{1F3FB}-\u{1F3FF}️⃣]/u.test(text);
@@ -1420,7 +1758,8 @@ async function selfTest() {
     $('.cell [data-act=stage]').click();
     const again = $('#count').textContent.startsWith('5 / 20') && count('#tray .got') === 5;
     await find(1);
-    $('#nav [data-act=show]').click();
+    $('.side [data-act=show]').click();
+    $('.sheet [data-act=show][data-arg=home]').click();
     const home = cur.screen === 'home' && entry().found.length === 6;
     save.inProgress[roundKey(W, M, 2)] = { found: [], updatedAt: 1 };
     clear(1); show('stages');
@@ -1521,25 +1860,18 @@ async function selfTest() {
       return targets.every(p => p.item.cls !== 'DECOY-ONLY') && (m === 'twins' ? twinsIn.length === 2 && targets.length === 2 && targets[0].item.twin === targets[1].item.id :
         !twinsIn.length && new Set(looks).size === looks.length);
     }))));
-  await test('x', 'All five machines grow 0, 3, 10: base alone, then exactly that many pieces of the frozen art (Marble Rail pieces are cuts of the route master), and at 10 the runs state with finale art; every sprite file exists', async () => {
+  await test('x', 'Every picture the title, the room, the machines, the world menus and the win cards use is a real file', async () => {
+    const srcs = new Set();
+    show('title'); show('home');
+    WORLDS.forEach(w => { cur.world = w.id; show('modes'); cur.mode = 'count'; show('stages'); [1, 2, 3, 4].forEach(k => srcs.add(STAGE_ART(k)));
+      const [f, ...ns] = LOOK[w.id].win; ns.forEach(n => srcs.add(ui('win/win-' + f, n))); $$('.sheet img').forEach(i => srcs.add(i.getAttribute('src'))); });
+    MACHINES.forEach((_, i) => { for (let k = 1; k <= 10; k++) srcs.add((pieceArt(i, k).match(/(?:src="|url\()([^")]+)/) || [])[1]); });
+    $$('#title img,#room img').forEach(i => srcs.add(i.getAttribute('src')));
+    Object.keys(PETS).forEach(k => [PETS[k].idle, PETS[k].walk, ...PETS[k].moves].filter(Boolean).forEach(n => srcs.add(ui('pets/' + k, n))));
     const bad = [];
-    for (let i = 0; i < 5; i++) {
-      const id = MACHINES[i].id, a = MACH.machines[id], pages = [];
-      for (const n of [0, 3, 10]) {
-        reset();
-        save.machines.pieces[i] = n;
-        cur.home = i; show('home');
-        const srcs = $$('#mstage img').map(img => img.getAttribute('src'));
-        pages.push($('#mstage').innerHTML);
-        if (!(count('#base') === 1 && count('.piece.on') === n && count('.bulb.lit') === n && $('#mstage').style.backgroundImage.includes(`${id}/web/home.jpg`) &&
-          count('.mstage.runs') === (n === 10 ? 1 : 0) && (n < 10 ? !count('.fx') : count('.fx') + count('.marble') >= 2) &&
-          TEN.slice(0, n).every(k => srcs.includes(`assets/machines/${id}/web/piece-${String(k).padStart(2, '0')}.webp`)))) bad.push(`${id} at ${n}`);
-        if (n === 10) for (const src of [...new Set(srcs), `assets/machines/${id}/web/home.jpg`]) if (!(await fetch(src)).ok) bad.push(src);
-      }
-      if (new Set(pages).size !== 3 || a.pieces.length !== 10 || (id === 'marble-rail') !== a.pieces.every(p => p.cut && p.route)) bad.push(id);
-    }
+    for (const src of srcs) if (!src || !(await fetch(src)).ok) bad.push(src);
     if (bad.length) throw new Error(bad.join(', '));
-    return true;
+    return srcs.size > 150;
   });
   await test('y', 'Machines fill in order 1 to 5, the tenth piece grants that machine\'s power for good, and after all five are finished first clears still count for the world', () => {
     reset();
@@ -1547,11 +1879,10 @@ async function selfTest() {
     MODES.slice(0, 5).forEach((m, i) => { clear(10, m); got.push(save.powers.join()); });
     const all = save.machines.pieces.join() === '10,10,10,10,10' && same(save.machines.completed, [0, 1, 2, 3, 4]) && same(save.powers, MACHINES.map(m => POWERS[m.id]));
     const more = !clearSubStage(W, MODES[5], 1) && clearedIn(W) === 51 && isUnlocked(W, MODES[5], 2);
-    show('home');
-    const bar5 = count('.home .powers .mb') === 5 && !count('.home .powers .off');
-    reset(); show('home');
-    return all && more && bar5 && same(got, ['zoom', 'zoom,scanner', 'zoom,scanner,hint', 'zoom,scanner,hint,echo', 'zoom,scanner,hint,echo,shield']) &&
-      count('.home .powers .off') === 5 && (open(M), count('#powers .off') === 5);
+    const shown = MACHINES.every((_, i) => (ACT.machine(i), count('.mcap .powers .mb') === 1));
+    reset(); ACT.machine(0);
+    return all && more && shown && same(got, ['zoom', 'zoom,scanner', 'zoom,scanner,hint', 'zoom,scanner,hint,echo', 'zoom,scanner,hint,echo,shield']) &&
+      !count('.mcap .powers .mb') && (open(M), count('#powers .off') === 5);
   });
   await test('z', 'Each power performs its effect once per round: Super Zoom adds a zoom level, Hint rings the target\'s zone, Echo Replay re-shows the scene, Truth Scanner answers without guessing, Oops Shield forgives one wrong tap', async () => {
     Object.assign(TIME, quick);
@@ -1602,7 +1933,7 @@ async function selfTest() {
     reset();
     const src = () => music.getAttribute('src'), seen = [];
     show('home'); seen.push(src());
-    show('worlds'); seen.push(src());
+    show('title'); seen.push(src());
     for (const w of WORLDS) { open(M, 1, w.id); seen.push(src()); }
     show('settings'); seen.push(src());
     const want = ['home', 'home', ...WORLDS.map((w, i) => `world-${String(i + 1).padStart(2, '0')}-${w.id}`), 'home'].map(n => `assets/music/${n}.m4a`);
@@ -1645,8 +1976,8 @@ async function selfTest() {
     for (const id of ids) if (!(await fetch(A.byId[id].sprite)).ok) throw new Error(id);
     reset(); open(M);
     const drawn = round.placed.every(p => !!$(`#i-${p.k} img.art`) === ids.includes(p.item.id) && !!$(`#i-${p.k} .chip b`) !== ids.includes(p.item.id));
-    show('worlds');
-    const worlds = count('.tile:not(:disabled)') === 10;
+    show('home');
+    const worlds = count('#room .hot[data-tap^="world:"]') === 10;
     ACT.world(W2);
     const modes = count('.mode:not(:disabled)') === 11;
     show('settings');
@@ -1666,11 +1997,11 @@ async function selfTest() {
 }
 const FROZEN_HASH = 1073733438, FROZEN_MORE = [1678322787, 1910762161, 4100156888]; // frozen layout hashes: Attic Hidden Object 1, and three more sub-stages
 
-loadData().then(() => {
+Promise.all([loadData(), loadAtelier()]).then(() => {
   loadSave();
   applyAudio();
   cur.home = save.machines.current;
-  show('home');
+  show('title');
   if (new URLSearchParams(location.search).get('selftest') === '1') selfTest();
 });
 </script>
