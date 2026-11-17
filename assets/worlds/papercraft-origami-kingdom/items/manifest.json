@@ -1,4 +1,605 @@
 {
  "world": "papercraft-origami-kingdom",
- "items": {}
+ "items": {
+  "papercraft-origami-kingdom-001": {
+   "file": "red-paper-origami-crane.png",
+   "w": 193,
+   "h": 163,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-002": {
+   "file": "blue-paper-origami-crane.png",
+   "w": 194,
+   "h": 163,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-003": {
+   "file": "origami-swan-with-a-curved-neck.png",
+   "w": 186,
+   "h": 178,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-004": {
+   "file": "origami-owl-with-big-eyes.png",
+   "w": 146,
+   "h": 194,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-005": {
+   "file": "origami-fox-with-a-pointed-tail.png",
+   "w": 194,
+   "h": 181,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-006": {
+   "file": "origami-rabbit-with-long-ears.png",
+   "w": 136,
+   "h": 203,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-007": {
+   "file": "origami-elephant-with-a-folded-trunk.png",
+   "w": 220,
+   "h": 180,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-008": {
+   "file": "origami-frog-ready-to-jump.png",
+   "w": 198,
+   "h": 143,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-009": {
+   "file": "origami-fish-with-fan-fins.png",
+   "w": 188,
+   "h": 165,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-010": {
+   "file": "origami-whale-with-a-paper-spout.png",
+   "w": 195,
+   "h": 146,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-011": {
+   "file": "striped-hull-paper-boat.png",
+   "w": 204,
+   "h": 190,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-012": {
+   "file": "spotted-hull-paper-boat.png",
+   "w": 203,
+   "h": 189,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-013": {
+   "file": "paper-aeroplane-with-wide-wings.png",
+   "w": 206,
+   "h": 151,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-014": {
+   "file": "paper-rocket-with-fins.png",
+   "w": 115,
+   "h": 212,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-015": {
+   "file": "folded-paper-sailor-hat.png",
+   "w": 204,
+   "h": 123,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-016": {
+   "file": "paper-crown-with-zigzag-points.png",
+   "w": 177,
+   "h": 140,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-017": {
+   "file": "cone-party-hat-with-a-pompom.png",
+   "w": 132,
+   "h": 202,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-018": {
+   "file": "paper-fortune-teller-folder.png",
+   "w": 194,
+   "h": 185,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-019": {
+   "file": "paper-pinwheel-on-a-stick.png",
+   "w": 147,
+   "h": 208,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-020": {
+   "file": "paper-fan-half-open.png",
+   "w": 210,
+   "h": 134,
+   "sheet": 1
+  },
+  "papercraft-origami-kingdom-021": {
+   "file": "orange-handles-scissors.png",
+   "w": 170,
+   "h": 184,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-022": {
+   "file": "teal-handles-scissors.png",
+   "w": 171,
+   "h": 184,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-023": {
+   "file": "zigzag-edge-craft-scissors.png",
+   "w": 188,
+   "h": 189,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-024": {
+   "file": "tiny-round-tip-scissors.png",
+   "w": 123,
+   "h": 168,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-025": {
+   "file": "glue-stick-with-the-cap-off.png",
+   "w": 135,
+   "h": 195,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-026": {
+   "file": "bottle-of-white-glue-with-a-nozzle.png",
+   "w": 92,
+   "h": 205,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-027": {
+   "file": "roll-of-patterned-washi-tape.png",
+   "w": 151,
+   "h": 161,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-028": {
+   "file": "bone-folder-creasing-tool.png",
+   "w": 189,
+   "h": 194,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-029": {
+   "file": "craft-knife-with-a-safety-cap.png",
+   "w": 173,
+   "h": 193,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-030": {
+   "file": "hole-punch-with-paper-dots.png",
+   "w": 187,
+   "h": 160,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-031": {
+   "file": "round-tails-ribbon-bow.png",
+   "w": 188,
+   "h": 168,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-032": {
+   "file": "pointed-tails-ribbon-bow.png",
+   "w": 188,
+   "h": 166,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-033": {
+   "file": "curled-ribbon-spiral.png",
+   "w": 93,
+   "h": 199,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-034": {
+   "file": "reel-of-satin-ribbon.png",
+   "w": 183,
+   "h": 137,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-035": {
+   "file": "ball-of-bakers-twine-red-and-white.png",
+   "w": 156,
+   "h": 158,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-036": {
+   "file": "knotted-string-with-three-beads.png",
+   "w": 192,
+   "h": 90,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-037": {
+   "file": "tassel-made-of-paper-strips.png",
+   "w": 117,
+   "h": 205,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-038": {
+   "file": "paper-rosette-with-ribbon-tails.png",
+   "w": 145,
+   "h": 202,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-039": {
+   "file": "gift-tag-on-a-string-loop.png",
+   "w": 173,
+   "h": 211,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-040": {
+   "file": "lace-paper-doily.png",
+   "w": 210,
+   "h": 211,
+   "sheet": 2
+  },
+  "papercraft-origami-kingdom-041": {
+   "file": "silver-paperclip-classic-shape.png",
+   "w": 60,
+   "h": 154,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-042": {
+   "file": "gold-paperclip-classic-shape.png",
+   "w": 61,
+   "h": 155,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-043": {
+   "file": "heart-shaped-paperclip.png",
+   "w": 132,
+   "h": 110,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-044": {
+   "file": "paperclip-chain-of-three.png",
+   "w": 46,
+   "h": 205,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-045": {
+   "file": "split-pin-brass-fastener.png",
+   "w": 158,
+   "h": 169,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-046": {
+   "file": "drawing-pin-with-a-flat-blue-head.png",
+   "w": 107,
+   "h": 136,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-047": {
+   "file": "tiny-wooden-peg-clip.png",
+   "w": 152,
+   "h": 88,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-048": {
+   "file": "mini-stapler.png",
+   "w": 182,
+   "h": 128,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-049": {
+   "file": "strip-of-staples.png",
+   "w": 185,
+   "h": 144,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-050": {
+   "file": "star-shaped-paper-punch-out.png",
+   "w": 115,
+   "h": 112,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-051": {
+   "file": "heart-sticker-seal-envelope.png",
+   "w": 187,
+   "h": 140,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-052": {
+   "file": "star-sticker-seal-envelope.png",
+   "w": 187,
+   "h": 140,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-053": {
+   "file": "airmail-envelope-with-striped-edges.png",
+   "w": 195,
+   "h": 137,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-054": {
+   "file": "tiny-envelope-with-its-flap-open.png",
+   "w": 124,
+   "h": 142,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-055": {
+   "file": "postage-stamp-with-a-bird-picture.png",
+   "w": 118,
+   "h": 148,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-056": {
+   "file": "stamp-with-a-flower-picture.png",
+   "w": 121,
+   "h": 148,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-057": {
+   "file": "round-ink-pad-and-rubber-stamp.png",
+   "w": 205,
+   "h": 160,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-058": {
+   "file": "brown-paper-parcel-tied-with-string.png",
+   "w": 196,
+   "h": 145,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-059": {
+   "file": "rolled-paper-scroll-with-a-ribbon.png",
+   "w": 196,
+   "h": 184,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-060": {
+   "file": "postcard-with-a-mountain-picture.png",
+   "w": 204,
+   "h": 142,
+   "sheet": 3
+  },
+  "papercraft-origami-kingdom-061": {
+   "file": "red-flag-pop-up-castle-tower-half-unfolded-and-lying-flat.png",
+   "w": 194,
+   "h": 209,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-062": {
+   "file": "green-flag-pop-up-castle-tower-half-unfolded-and-lying-flat.png",
+   "w": 194,
+   "h": 208,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-063": {
+   "file": "cardboard-lighthouse-with-stripes.png",
+   "w": 98,
+   "h": 209,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-064": {
+   "file": "paper-ferris-wheel-with-four-seats.png",
+   "w": 165,
+   "h": 217,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-065": {
+   "file": "little-cardboard-house-with-a-chimney.png",
+   "w": 182,
+   "h": 184,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-066": {
+   "file": "paper-tent-with-bunting.png",
+   "w": 204,
+   "h": 162,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-067": {
+   "file": "milk-carton-cottage-with-a-round-door.png",
+   "w": 161,
+   "h": 207,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-068": {
+   "file": "folded-paper-arch-bridge.png",
+   "w": 200,
+   "h": 123,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-069": {
+   "file": "cardboard-portcullis-gate-with-a-pull-string.png",
+   "w": 193,
+   "h": 209,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-070": {
+   "file": "paper-lantern-post.png",
+   "w": 93,
+   "h": 208,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-071": {
+   "file": "two-layers-cone-paper-tree.png",
+   "w": 134,
+   "h": 189,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-072": {
+   "file": "three-layers-cone-paper-tree.png",
+   "w": 136,
+   "h": 203,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-073": {
+   "file": "accordion-fold-paper-tree.png",
+   "w": 140,
+   "h": 198,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-074": {
+   "file": "paper-palm-tree-with-fringed-leaves.png",
+   "w": 186,
+   "h": 208,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-075": {
+   "file": "tissue-paper-flower-pompom.png",
+   "w": 185,
+   "h": 186,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-076": {
+   "file": "paper-tulip-on-a-straw-stem.png",
+   "w": 83,
+   "h": 212,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-077": {
+   "file": "quilled-paper-spiral-rose.png",
+   "w": 184,
+   "h": 187,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-078": {
+   "file": "paper-cloud-on-a-string.png",
+   "w": 178,
+   "h": 216,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-079": {
+   "file": "paper-sun-with-folded-rays.png",
+   "w": 189,
+   "h": 189,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-080": {
+   "file": "paper-crescent-moon-with-a-star-dangling.png",
+   "w": 197,
+   "h": 179,
+   "sheet": 4
+  },
+  "papercraft-origami-kingdom-081": {
+   "file": "star-emblem-cardboard-shield.png",
+   "w": 157,
+   "h": 180,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-082": {
+   "file": "heart-emblem-cardboard-shield.png",
+   "w": 157,
+   "h": 180,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-083": {
+   "file": "cardboard-helmet-with-a-feather.png",
+   "w": 143,
+   "h": 213,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-084": {
+   "file": "foil-covered-card-sword.png",
+   "w": 185,
+   "h": 194,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-085": {
+   "file": "paper-pennant-flag-on-a-stick.png",
+   "w": 135,
+   "h": 169,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-086": {
+   "file": "string-of-bunting-with-three-flags.png",
+   "w": 230,
+   "h": 103,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-087": {
+   "file": "paper-trumpet-with-a-ribbon.png",
+   "w": 209,
+   "h": 126,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-088": {
+   "file": "corrugated-card-hobby-horse.png",
+   "w": 172,
+   "h": 213,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-089": {
+   "file": "cardboard-cart-with-bottle-top-wheels.png",
+   "w": 198,
+   "h": 116,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-090": {
+   "file": "paper-cup-drum-with-pencil-sticks.png",
+   "w": 181,
+   "h": 160,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-091": {
+   "file": "round-body-paper-lantern.png",
+   "w": 154,
+   "h": 195,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-092": {
+   "file": "tall-body-paper-lantern.png",
+   "w": 106,
+   "h": 204,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-093": {
+   "file": "honeycomb-paper-ball.png",
+   "w": 178,
+   "h": 179,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-094": {
+   "file": "paper-bag-lantern-with-star-cut-outs.png",
+   "w": 133,
+   "h": 184,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-095": {
+   "file": "paper-chain-of-four-links.png",
+   "w": 149,
+   "h": 185,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-096": {
+   "file": "paper-snowflake-cut-out.png",
+   "w": 178,
+   "h": 204,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-097": {
+   "file": "paper-doll-chain-of-three.png",
+   "w": 195,
+   "h": 156,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-098": {
+   "file": "tiny-gift-box-with-a-lid.png",
+   "w": 155,
+   "h": 167,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-099": {
+   "file": "paper-cone-of-sweets.png",
+   "w": 138,
+   "h": 182,
+   "sheet": 5
+  },
+  "papercraft-origami-kingdom-100": {
+   "file": "paper-cracker-with-frilled-ends.png",
+   "w": 212,
+   "h": 213,
+   "sheet": 5
+  }
+ }
 }

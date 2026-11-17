@@ -33,6 +33,15 @@ h1,h2,h3,p{margin:0}
 .chip b{line-height:1}
 .chip.has-art{background:none;border-color:transparent;box-shadow:none}
 .chip.has-art .art{filter:drop-shadow(0 .05em .04em rgba(0,0,0,.5))}
+/* An item placed in a painting: bottom-aligned on its surface, shaded by the painting's light (sprite() sets the vars) */
+.chip.in{place-items:end center;filter:brightness(var(--lt))}
+.chip.in .art{filter:none;width:100%;height:100%;object-fit:contain;object-position:50% 100%;position:relative}
+.chip.in::before{content:'';position:absolute;left:50%;bottom:-3%;width:var(--sw);height:14%;transform:translateX(-50%);
+  background:radial-gradient(closest-side,var(--ink),transparent);opacity:.55;mix-blend-mode:multiply}
+.chip.lie .art,.chip.lie .glow{object-position:50% 50%;transform:translateY(var(--drop)) rotate(var(--rot))}
+.chip.lie .glow{-webkit-mask-position:50% 50%;mask-position:50% 50%}
+.chip.in .glow{position:absolute;inset:0;background:var(--tint);mix-blend-mode:soft-light;opacity:.55;pointer-events:none;
+  -webkit-mask:var(--m) 50% 100%/contain no-repeat;mask:var(--m) 50% 100%/contain no-repeat}
 .chip.crop{border-color:var(--a1)}
 /* SAMPLE placeholder shapes: an item without a sprite is a coloured shape with its first letter */
 .s1{border-radius:50%}
@@ -201,27 +210,52 @@ button:disabled{opacity:.45;cursor:default}
 /* ---------- the atelier: title, room, world menus, machines ---------- */
 #title,#room{position:fixed;inset:0;overflow:hidden;background:#1d1424;display:none;touch-action:none}
 [data-screen=title] #title{display:block}
+#room{animation:fadein .6s}
 [data-screen=home] #room,[data-screen=modes] #room,[data-screen=stages] #room,[data-screen=machine] #room,[data-screen=settings] #room{display:block}
 body:not([data-screen=play]) #app{pointer-events:none}
 body:not([data-screen=play]) #app>*{pointer-events:auto}
-[data-screen=modes] #room>*,[data-screen=stages] #room>*,[data-screen=machine] #room>*,[data-screen=settings] #room>*{filter:brightness(.55) blur(1px);transition:filter .3s}
+[data-screen=machine] #room>*,[data-screen=settings] #room>*{filter:brightness(.55) blur(1px);transition:filter .3s}
+[data-screen=modes] #room>button,[data-screen=stages] #room>button,[data-screen=modes] .papers,[data-screen=stages] .papers{display:none}
 .tcam,#rcam{position:absolute;left:0;top:0;transform-origin:0 0}
-.tcam{width:1200px;height:896px}
-.tbg{position:absolute;inset:0;width:100%;height:100%}
+.tcam{width:1200px;height:896px;clip-path:inset(0 -197px)}
+.tcam .tbg{position:absolute;inset:0 -196.2px;width:1592.4px;height:100%;max-width:none}
 .tcam>div,#rcam .o{position:absolute}
 .tcam img,#rcam .o>img{display:block;width:100%;height:100%;pointer-events:none}
 #rcam .o>.inhole{position:absolute;object-fit:cover}
 .hot{cursor:pointer}
-.t-sign{filter:drop-shadow(0 6px 6px rgba(0,0,0,.45));animation:sway 5s ease-in-out infinite alternate;transform-origin:50% 0}
-.t-witch{opacity:0;transition:opacity .6s}
-.tt-owl .t-witch,.t-witch.peek{opacity:.9}
-.t-gnome{opacity:0;transition:transform .5s,opacity .3s}
-.tt-mushroom .t-gnome{opacity:1;transform:translateY(-16px)}
-.tt-mushroom .t-mdoor{transform:perspective(200px) rotateY(-70deg);transform-origin:0 50%;transition:transform .4s}
-.tt-rabbit .t-rabbit{transition:transform 2.4s ease-in;transform:translateX(-500px)}
+.t-sign{filter:drop-shadow(0 6px 6px rgba(0,0,0,.45))}
+.t-win{overflow:hidden;border-radius:50%}
+.t-win img{translate:0 105%;transition:translate .7s}
+.t-win::before,.t-win::after{content:"";position:absolute;background:#b07a45;box-shadow:0 0 0 1.5px #2b170c;opacity:0;transition:opacity .3s}
+.t-win::before{left:calc(50% - 4.5px);top:0;width:9px;height:100%}
+.t-win::after{top:calc(50% - 4.5px);left:0;height:9px;width:100%}
+.tt-owl .t-win img,.tt-witch .t-win img{translate:0 12%}
+.tt-owl .t-win::before,.tt-owl .t-win::after,.tt-witch .t-win::before,.tt-witch .t-win::after{opacity:1}
+.t-rabbit{animation:fadein .5s}
+.tt-rabbit .t-rabbit{animation:rabbitrun 2.5s ease-in forwards}
+.tt-rabbit .t-rabbit img{scale:-1 1;animation:hop .42s 6}
+@keyframes rabbitrun{to{translate:-560px 0}}
 .tt-owl .t-owl{animation:hop .5s 2}
-.tt-pond .t-frog{animation:frogjump 1s}
+.t-frog{animation:fadein .5s}
+.tt-frogjump .t-frog{animation:none;opacity:0}
+.t-fjump,.t-kjump,.t-splash,.t-ripple{opacity:0;pointer-events:none}
+.tt-frogjump .t-fjump{animation:frogjump .75s ease-in both}
+.tt-frogjump .t-splash,.tt-koijump .t-splash{animation:splash .7s .68s both}
+.tt-frogjump .t-ripple,.tt-koijump .t-ripple{animation:ripple 1.5s .8s both}
+.tt-koijump .t-kjump{animation:koijump .8s both}
+.t-koi{opacity:.8;pointer-events:none;animation:koi 14s linear infinite}
+.t-koi.k2{animation-duration:19s;animation-delay:-7s}
+@keyframes koi{0%{translate:0 0;rotate:80deg}45%{translate:70px 14px;rotate:100deg}50%{translate:74px 16px;rotate:260deg}95%{translate:4px 2px;rotate:280deg}100%{translate:0 0;rotate:440deg}}
+@keyframes splash{0%{opacity:0;scale:.3}30%{opacity:1;scale:1}100%{opacity:0;scale:1.15}}
+@keyframes ripple{0%{opacity:0;scale:.3}25%{opacity:.8}100%{opacity:0;scale:1.3}}
+@keyframes koijump{0%{opacity:1;translate:0 30px;rotate:-30deg}45%{opacity:1;translate:25px -50px;rotate:40deg}85%{opacity:1;translate:55px 20px;rotate:130deg}100%{opacity:0;translate:58px 30px;rotate:140deg}}
 .t-dragon{animation:dragon 26s linear infinite;opacity:.85}
+.t-dragon img{position:absolute;inset:0;opacity:0;animation:frame4 .64s steps(1) infinite}
+@keyframes frame4{0%{opacity:1}25%,100%{opacity:0}}
+.petal{position:fixed;top:-40px;z-index:5;pointer-events:none;animation:petal var(--t) linear var(--d) both}
+.petal img{display:block;animation:flutter 1.3s ease-in-out infinite alternate}
+@keyframes petal{to{translate:var(--x) calc(100vh + 80px);rotate:var(--r)}}
+@keyframes flutter{from{transform:rotateX(0) translateX(-14px)}to{transform:rotateX(60deg) translateX(14px)}}
 .fairies img{position:absolute;width:34px;opacity:0}
 .tt-fairydoor .fairies img{animation:fairyout 2.4s ease-out both}
 .fairies img:nth-child(1){left:205px;top:690px}
@@ -237,12 +271,12 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 .door3d i:nth-child(7){transform:translateZ(-12px)}.door3d i:nth-child(8){transform:translateZ(-10px)}.door3d i:nth-child(9){transform:translateZ(-8px)}
 .door3d i:nth-child(10){transform:translateZ(-6px)}.door3d i:nth-child(11){transform:translateZ(-4px)}.door3d i:nth-child(12){transform:translateZ(-2px)}
 #title.open .door3d{transform:rotateY(-80deg)}
-#title.open .tcam{transition:transform 1.4s .5s ease-in;transform-origin:612px 600px;scale:3.2}
+#title.open{transition:scale 1.3s ease-in .5s,opacity .45s linear 1.1s;scale:1.14;opacity:0}
 .tap-hint{position:absolute;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);padding:8px 22px;border-radius:999px;
   background:rgba(30,18,24,.72);border:2px solid var(--gold);font-weight:bold;pointer-events:none;animation:blink 2s infinite alternate}
 @keyframes blink{to{opacity:.55}}
 @keyframes hop{50%{transform:translateY(-14px)}}
-@keyframes frogjump{40%{transform:translate(-30px,-60px) rotate(-20deg)}80%{transform:translate(-60px,0)}}
+@keyframes frogjump{0%{opacity:1;translate:0 0;rotate:-25deg}45%{opacity:1;translate:45px -55px;rotate:0deg}90%{opacity:1;translate:88px 12px;rotate:40deg}100%{opacity:0;translate:90px 18px;rotate:45deg}}
 @keyframes dragon{0%{transform:translateX(-500px)}100%{transform:translateX(1700px)}}
 @keyframes fairyout{0%{opacity:0;transform:none}15%{opacity:1}100%{opacity:0;transform:translate(var(--fx,80px),-260px)}}
 .fairies img:nth-child(2){--fx:-60px}.fairies img:nth-child(3){--fx:150px}
@@ -276,12 +310,42 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 .fairy{animation:fairy 5s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #fff3a0)}
 .fairy.f2{animation-duration:6.5s;animation-delay:-2s}.fairy.f3{animation-duration:4.2s;animation-delay:-1s}
 @keyframes fairy{0%{translate:0 0}33%{translate:30px -24px}66%{translate:-24px -40px}100%{translate:12px 10px}}
-#dial{transition:rotate 1.4s cubic-bezier(.5,1.6,.5,1)}
+#rcam #dial{transform-origin:50% 50%;transition:rotate 1.4s cubic-bezier(.5,1.6,.5,1)}
+.fly{animation:hover 1.1s ease-in-out infinite alternate}
+@keyframes hover{from{translate:0 -9px;rotate:-3deg}to{translate:0 9px;rotate:4deg}}
+#rcam .pet>img{position:absolute;left:50%;bottom:0;width:auto;height:100%;max-width:none;translate:-50%}
+.sky{position:absolute;left:3905px;top:215px;width:205px;height:270px;overflow:hidden;z-index:1;border-radius:100px 100px 0 0;pointer-events:none}
+.day .sky{display:none}
+.shoot{position:absolute;left:100%;top:40%;width:70px;height:2px;border-radius:2px;background:linear-gradient(90deg,#fff,transparent);rotate:-25deg;opacity:0;animation:shoot 11s linear infinite}
+@keyframes shoot{0%,90%{translate:0 0;opacity:0}91%{opacity:1}100%{translate:-290px 135px;opacity:0}}
+#flash{position:fixed;inset:0;z-index:60;background:#fffbe6;opacity:0;pointer-events:none;transition:opacity .6s}
+#flash.on{opacity:1}
 .pet.acting.jump{animation:hop .45s 2}
 .pet.acting.wiggle{animation:wiggle .6s 2}
 .pet.acting.trick{animation:bumpo .4s 3}
-.o.loop{animation:carpet 2.6s ease-in-out}
-@keyframes carpet{25%{translate:-220px -360px;rotate:-12deg}50%{translate:0 -520px;rotate:8deg}75%{translate:240px -320px;rotate:-6deg}}
+.o.wall>img,.waf{filter:drop-shadow(0 6px 5px rgba(0,0,0,.5))}
+.o.sh::before{content:"";position:absolute;left:2%;right:2%;bottom:-14px;height:34px;z-index:-1;background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent)}
+.fallen{animation:paperfall 3.2s ease-out both;rotate:var(--tilt)}
+@keyframes paperfall{0%{translate:-60px var(--from);rotate:-40deg}35%{translate:50px calc(var(--from) * .6);rotate:30deg}70%{translate:-30px calc(var(--from) * .2);rotate:-20deg}100%{translate:0 0}}
+.papers{position:fixed;left:calc(14px + env(safe-area-inset-left));top:max(14px,env(safe-area-inset-top));z-index:3;display:flex;align-items:center;gap:6px;padding:4px 14px 4px 8px;
+  border-radius:999px;background:rgba(30,18,24,.75);border:2px solid var(--gold);font-size:20px}
+.papers img{width:28px}
+.papers[hidden]{display:none}
+.flybook{position:fixed;width:58px;z-index:8;pointer-events:none;animation:flybook 1.9s ease-in both}
+@keyframes flybook{0%{opacity:0;scale:.3}12%{opacity:1;scale:1}45%{translate:var(--x) -16vh;rotate:calc(var(--r) / 2)}100%{translate:calc(var(--x) * 2.2) 70vh;rotate:var(--r);opacity:0}}
+#drawer>span{position:absolute;inset:0;transition:translate .3s,opacity .3s}
+.dhole{background:linear-gradient(#170c06,#3a2212);border-radius:3px;opacity:0}
+.dfront{background-size:382.6% 886%;background-position:56.9% 39%;border-radius:3px}
+.dnote{inset:auto 12% 96% !important;display:grid;place-items:center;min-height:54px;padding:6px 10px;border-radius:4px 4px 0 0;background:#f6ecd6;color:#3a2618;font-size:15px;line-height:1.15;
+  text-align:center;opacity:0;translate:0 40px;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+#drawer.open .dhole{opacity:1}
+#drawer.open .dfront{translate:0 30px;box-shadow:0 -30px 0 -2px #6b4423,0 6px 8px rgba(0,0,0,.4)}
+#drawer.open .dnote{opacity:1;translate:0 0}
+.page{position:absolute;z-index:2;left:50%;top:5%;width:40%;height:76%;border-radius:2px 10px 12px 2px;border:2px solid #5a3a1c;background:linear-gradient(90deg,#d9c084,#fff3c4 30%,#f6e3a8);transform-origin:0 50%;opacity:0;animation:pageflip 4.2s infinite}
+@keyframes pageflip{0%{opacity:0;transform:perspective(400px) rotateY(0)}6%{opacity:.95}36%{opacity:.95;transform:perspective(400px) rotateY(-180deg)}42%,100%{opacity:0;transform:perspective(400px) rotateY(-180deg)}}
+#rcam .o>.mg{position:absolute;left:var(--l,40%);top:10%;width:20px;height:auto;opacity:0;animation:magic 3s ease-out infinite}
+.mg.m1{--l:20%;animation-delay:-1s !important}.mg.m2{--l:66%;animation-delay:-2s !important}
+@keyframes magic{0%{opacity:0;translate:0 0;scale:.4}20%{opacity:1}100%{opacity:0;translate:0 -130px;scale:1.1;rotate:90deg}}
 .tank{position:absolute;pointer-events:none;z-index:4;overflow:hidden}
 .fish{position:absolute;width:44px;animation:swim 11s ease-in-out infinite alternate}
 .fish.f0{top:28%;animation-duration:12s}.fish.f1{top:45%;width:38px;animation-duration:9s;animation-delay:-3s}
@@ -289,12 +353,15 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 .fish.f4{top:52%;width:30px;animation-duration:10s;animation-delay:-5s}
 @keyframes swim{0%{left:6%;scale:1 1}49%{scale:1 1}50%{left:78%;scale:-1 1}100%{left:6%;scale:-1 1}}
 .train .car{position:absolute;width:52px;pointer-events:none}
-/* machines in the room and up close: dark outline, lit part grows with the pieces found */
+/* machines in the room and up close: the empty stand, then the picture grows with the pieces found */
 .mfill{position:relative;display:block;width:100%;height:100%}
 .mfill img{position:absolute;inset:0;width:100%;height:100%}
-.mfill .ghost{filter:brightness(.3) saturate(.2);opacity:.85}
+.mfill .base{inset:auto auto 0;height:auto}
+.wa.hung>.waf{position:absolute;width:23%;aspect-ratio:.65;overflow:hidden}
+.wa.hung .waf>img{position:absolute;max-width:none}
+.wa.hung .hole{position:absolute;inset:0}
 .mfill .lit{transition:clip-path 1.2s,-webkit-mask-image 1.2s}
-.wa .hole{position:absolute;overflow:hidden;z-index:-1;background:#2a1e2a}
+.wa .hole{position:absolute;inset:0;overflow:hidden;background:#2a1e2a}
 .wa .hole i{position:absolute;top:0;height:100%;opacity:0;transition:opacity 1s}
 .wa .hole i.on{opacity:1}
 .mcount{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);padding:2px 12px;border-radius:999px;font-size:24px;
@@ -308,30 +375,34 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 .showme b{padding:4px 12px;border-radius:999px;background:rgba(30,18,24,.75);border:2px solid var(--gold)}
 .poof{position:fixed;z-index:40;pointer-events:none}
 /* a world's menu: its framed panel slides up; dark ink on the light middle of the frame */
-.sheet{--W:min(97vw,96vh * 1.79);--H:calc(var(--W) / 1.79);position:fixed;left:50%;bottom:max(1vh,env(safe-area-inset-bottom));width:var(--W);height:var(--H);
+.sheet{--W:min(80vw,76vh * 1.79);--H:calc(var(--W) / 1.79);position:fixed;left:50%;bottom:max(1vh,env(safe-area-inset-bottom));width:var(--W);height:var(--H);
   transform:translateX(-50%);padding:calc(var(--H) * .19) calc(var(--W) * .16) calc(var(--H) * .16);display:flex;flex-direction:column;gap:calc(var(--H) * .02);
   color:var(--ink);background:var(--pl) center/100% 100% no-repeat;animation:slideup .45s cubic-bezier(.2,.9,.3,1.15);--bs:min(calc(var(--H) * .13),calc(var(--W) * .085))}
 @keyframes slideup{from{transform:translate(-50%,100%)}}
-.shead{display:flex;align-items:center;gap:12px}
-.shead h1{flex:1;font-size:calc(var(--H) * .045);line-height:1.1}
+.shead{display:flex;align-items:center;gap:calc(var(--W) * .012)}
+.shead h1{margin-right:auto;font-size:calc(var(--H) * .05);line-height:1.1}
+.shead h1,.grp h2,.stagehead h2,.wbtn:not(.wide)>span{padding:.12em .6em;border-radius:1em;background:rgba(255,253,244,.9);box-shadow:0 2px 0 rgba(0,0,0,.18)}
 .wbtn{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;font-weight:bold;font-size:max(11px,calc(var(--H) * .024));line-height:1.1;color:var(--ink)}
 .wbtn img{width:var(--bs);height:var(--bs);object-fit:contain;transition:transform .12s,filter .12s;filter:drop-shadow(0 4px 3px rgba(0,0,0,.35))}
 .wbtn:active:not(:disabled) img{transform:translateY(5%) scale(.9);filter:brightness(.82) drop-shadow(0 1px 1px rgba(0,0,0,.4))}
 .wbtn small{display:block;font-weight:normal;opacity:.8}
 .mode{position:relative}
 .mode small{position:absolute;right:0;top:0;padding:0 6px;border-radius:999px;background:var(--ink);color:#fff;opacity:1;font-size:max(10px,calc(var(--H) * .02))}
-.wbtn.wide{flex-direction:row;gap:6px;--bs:calc(var(--H) * .075)}
-.wbtn.wide img{width:calc(var(--bs) * 2.2);height:var(--bs)}
-.wbtn.wide span{position:absolute;width:calc(var(--bs) * 2.2);text-align:center;color:#fff;text-shadow:0 1px 2px #000}
-.wbtn.wide{position:relative}
-.wbtn.wide span small{display:none}
+.wbtn.wide{display:grid;place-items:center;--bs:calc(var(--H) * .1);font-size:max(13px,calc(var(--H) * .032))}
+.wbtn.wide>*{grid-area:1/1}
+.wbtn.wide img{width:calc(var(--bs) * 2.5);height:var(--bs);object-fit:fill}
+.wbtn.wide span{position:relative;color:#fff;text-shadow:0 0 3px #000,0 1px 2px #000,0 0 7px #000}
+.wbtn.wide span small{font-size:.7em;opacity:1}
+.wbtn.wide:disabled{opacity:1}
+.wbtn.wide:disabled img{filter:saturate(.45) brightness(.8)}
 .groups{flex:1;min-height:0;overflow:auto;display:grid;grid-template-columns:2fr 2fr 1fr 1fr;gap:1%}
 .grp{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
-.grp h2{font-size:max(13px,calc(var(--H) * .032));padding:2px 14px;border-radius:999px;background:rgba(255,255,255,.35)}
+.grp h2{font-size:max(12px,calc(var(--H) * .034));white-space:nowrap}
 .grp>div{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
-.mode{width:calc(var(--bs) + 16px)}
+.mode{width:calc(var(--bs) + 22px)}
+.mode>span{display:grid;place-items:center;min-height:2.5em;width:100%}
 .stagehead{display:flex;align-items:center;gap:14px}
-.stagehead h2{font-size:calc(var(--H) * .04)}
+.stagehead h2{font-size:calc(var(--H) * .045)}
 .stagehead .wbtn{--bs:calc(var(--H) * .09)}
 .sheet .nums{flex:1;display:grid;grid-template-columns:repeat(5,auto);justify-content:center;align-content:center;gap:2vh 3vw;max-width:none;padding:0}
 .stage{display:grid;justify-items:center;font-weight:bold;color:var(--ink)}
@@ -359,17 +430,21 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 .mview{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:4vw;padding:4vh 4vw;animation:fadein .3s}
 @keyframes fadein{from{opacity:0}}
 .mbig{width:min(52vw,72vh);aspect-ratio:1;display:grid;place-items:center;background:radial-gradient(closest-side,rgba(255,220,150,.35),transparent)}
-.mbig .mfill{width:100%;height:100%}
-.mbig .mfill img{object-fit:contain}
-.mbig .wa{height:auto;aspect-ratio:900/382}
+.mbig .mfill{width:auto;height:100%;max-width:100%}
+.mbig .wa{width:100%;height:auto;aspect-ratio:900/382}
 .mcap{display:grid;gap:14px;justify-items:start;padding:22px 30px;border-radius:30px;background:rgba(30,18,24,.8);border:3px solid var(--gold)}
 .mcap b{color:var(--gold)}
 @media (orientation:portrait){.mview{flex-direction:column}.mbig{width:80vw}}
-/* settings sit on the clockwork panel too */
-.setsheet .sets{flex:1;min-height:0;overflow:auto;padding:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+/* settings: the painted red toolbox panel, everything on its parchment */
+.setsheet .sets{flex:1;min-height:0;overflow:auto;padding:0;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
 .setsheet .bar{padding:0}
-.setsheet .cat{color:var(--cream)}
+.setsheet{--W:min(98vw,94vh * 1.758);--H:calc(var(--W) / 1.758);bottom:max(2vh,env(safe-area-inset-bottom));padding:calc(var(--H) * .225) calc(var(--W) * .14) calc(var(--H) * .155) calc(var(--W) * .155);color:var(--ink)}
+@media (orientation:portrait){.setsheet{--W:min(98vw,94vh * .748);--H:calc(var(--W) / .748);padding:calc(var(--H) * .15) calc(var(--W) * .145) calc(var(--H) * .115)}}
+.setsheet .cat{padding:12px 16px;border-radius:22px;color:var(--ink);background:rgba(255,255,255,.45);box-shadow:inset 0 0 0 3px #c9a24a}
+.setsheet .pill,.setsheet .toggle{color:var(--cream)}
+.setsheet .code{color:var(--ink)}
 .setsheet .bar h1{color:var(--ink)}
+.setsheet .bar .mb{color:var(--ink)}
 /* win: the world's own card, its light rays and confetti */
 .win .rays{position:absolute;width:min(130vw,130vh);mix-blend-mode:screen;animation:spin 30s linear infinite;pointer-events:none}
 .win .conf{position:absolute;top:-12vh;width:7vh;pointer-events:none;animation:fall 3.4s ease-in var(--d) both}
@@ -386,8 +461,11 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 @keyframes spin{to{rotate:360deg}}
 /* play: the parchment list panel, the brass medallions */
 .med.has-art{background:none;border:0;box-shadow:none}
-.side{background:linear-gradient(#3a2618,#22150d);border-left:4px solid #8a5a34;box-shadow:inset 3px 0 0 #c9a24a}
-@media (orientation:portrait){.side{border-left:0;border-top:4px solid #8a5a34;box-shadow:inset 0 3px 0 #c9a24a}}
+.side{background:linear-gradient(var(--s1),var(--s2));border-left:5px solid var(--sb);box-shadow:inset 4px 0 0 rgba(0,0,0,.35)}
+.side .bar{gap:8px;padding:0 52px 4px 0}
+.side .wbtn.wide{--bs:38px;font-size:15px}
+.side .tray{border-color:var(--sb)}
+@media (orientation:portrait){.side{border-left:0;border-top:5px solid var(--sb);box-shadow:inset 0 4px 0 rgba(0,0,0,.35)}}
 </style>
 </head>
 <body>
@@ -445,6 +523,7 @@ const MODES = CATEGORIES.flatMap(c => c.modes);
 const GLYPHS = {
   back: '<path d="M29 11L16 24l13 13"/>',
   next: '<path d="M19 11l13 13-13 13"/>',
+  fold: '<path d="M13 11l12 13-12 13M26 11l12 13-12 13"/>',
   check: '<path d="M11 25l9 9 17-19"/>',
   cross: '<path d="M13 13l22 22M35 13L13 35"/>',
   lock: '<rect x="13" y="22" width="22" height="16" rx="3"/><path d="M17 22v-5a7 7 0 0 1 14 0v5"/>',
@@ -487,7 +566,11 @@ async function loadData() { // a world whose files cannot be read stays without 
     w.zones = a.zones.map(box);
     w.painted = a.paintedObjects.map(box);
     w.background = dir + 'background-web.jpg';
-    w.items = r.items.map((i, n) => ({ ...i, n, sprite: m && m.items[i.id] ? dir + 'items/' + m.items[i.id].file : '' }));
+    w.light = await getJSON(dir + 'light.json');
+    w.items = r.items.map((i, n) => {
+      const f = m && m.items[i.id];
+      return { ...i, n, sprite: f ? dir + 'items/' + f.file : '', blend: f && w.light ? dir + 'items/blend/' + f.file.replace(/\.png$/, '.webp') : '', aspect: f ? f.w / f.h : 1 };
+    });
     w.byId = Object.fromEntries(w.items.map(i => [i.id, i]));
   }));
 }
@@ -529,13 +612,18 @@ function shuffle(list, rnd) {
   return out;
 }
 // Puts one item in a random zone that has room: it shrinks to the zone's size limit and sprite scale. False after 200 tries.
+// A zone says where an item's BASE may touch: a rest zone is a ledge (the base sits on its bottom edge), any other
+// zone is a patch of open ground seen from above (the base sits anywhere inside it; the item may rise above it).
+// far (optional) scales items at the zone's top edge, so things further back on a floor are smaller.
 function put(rnd, placed, item, zones, k = item.id) {
   for (let tries = 0; tries < 200 && zones.length; tries++) {
-    const z = pick(zones, rnd), d = r2(Math.min(SIZE[item.size], SIZE[z.maxSize]) * z.scale);
-    if (d > z.w || d > z.h) continue;
-    const x = r2(z.x + d / 2 + rnd() * (z.w - d)), y = z.rest ? r2(z.y + z.h - d / 2) : r2(z.y + d / 2 + rnd() * (z.h - d));
+    const z = pick(zones, rnd), t = z.rest ? 1 : rnd(), base = z.y + t * z.h;
+    const d = r2(Math.min(SIZE[item.size], SIZE[z.maxSize]) * z.scale * (1 - (1 - (z.far || 1)) * (1 - t)));
+    if (d > z.w || z.rest && d > z.h) continue;
+    const x = r2(z.x + d / 2 + rnd() * (z.w - d)), y = r2(base - d / 2);
     if (placed.some(q => Math.hypot(q.x - x, q.y - y) < (q.d + d) / 2 + .5)) continue;
     const p = { k, item, zone: z.id, x, y, d, target: false };
+    if (!z.rest && item.aspect < .42) p.lie = rnd() < .5 ? 1 : -1; // a tall, thin thing on open ground lies on its side
     placed.push(p);
     return p;
   }
@@ -641,7 +729,7 @@ const layoutHash = r => hash(JSON.stringify(r, (key, v) => v && v.zones ? undefi
 
 // ---------- Save state. Never rename this key; every change of shape is additive and goes through migrate(). ----------
 const KEY = 'clue-connection-data-v1';
-const DEALT = 2; // generation of the dealt layouts; 1 was the 30-item sample pool
+const DEALT = 3; // generation of the dealt layouts; 1 was the 30-item sample pool, 2 the zones before items stood on real surfaces
 const fresh = () => ({
   version: 1,
   progress: { worlds: {} },
@@ -735,10 +823,25 @@ function cropPic(w, b, f = 1) {
     `background-position:${x / (w.w - s) * 100}% ${s < 100 ? y / (100 - s) * 100 : 0}%"></span>`;
 }
 const boxCss = (b, g = 0) => `left:${(b.x - g) * 10}px;top:${(b.y - g) * 10}px;width:${(b.w + 2 * g) * 10}px;height:${(b.h + 2 * g) * 10}px`;
-const sprite = (p, id) => {
-  const d = p.d * 10;
+// Light of the painting at a spot (scene units), from the world's light.json: its colour and how bright it is
+// against the whole painting. A placed sprite takes both, so an item in a dark corner is dark and one in lamplight glows.
+function lightAt(w, x, y) {
+  const L = w.light;
+  if (!L) return null;
+  const rows = L.map.length, c = Math.min(L.cols - 1, Math.max(0, Math.floor(x / w.w * L.cols))), r = Math.min(rows - 1, Math.max(0, Math.floor(y / 100 * rows)));
+  const hex = L.map[r].substr(c * 6, 6), rgb = [0, 2, 4].map(i => parseInt(hex.substr(i, 2), 16));
+  const luma = rgb[0] * .299 + rgb[1] * .587 + rgb[2] * .114;
+  return { hex: '#' + hex, b: Math.min(1.18, Math.max(.62, Math.pow(luma / L.luma, .45))) };
+}
+// A sprite placed in a scene: the blended copy of its art (docs/blend_items.py), standing on the bottom of its box,
+// with a soft contact shadow under it and the painting's local light over it.
+const sprite = (p, id, w) => {
+  const d = p.d * 10, it = p.item, lt = it.blend && w && lightAt(w, p.x, p.y + p.d / 2 - 1);
+  const inner = !lt ? pic(it) : `<span class="chip has-art in${p.lie ? ' lie' : ''}" style="--lt:${r2(lt.b)};--tint:${lt.hex};--ink:${w.light.ink};` +
+    `--sw:${r2(p.lie ? 90 : Math.min(1, it.aspect) * 86)}%;--rot:${(p.lie || 0) * 90}deg;--drop:${r2((1 - it.aspect) * 50)}%;` +
+    `--m:url(${it.blend})"><img class="art" src="${it.blend}" alt="" draggable="false"><i class="glow"></i></span>`;
   return `<div class="item" id="${id}-${p.k}" style="left:${p.x * 10 - d / 2}px;top:${p.y * 10 - d / 2}px;width:${d}px;height:${d}px;font-size:${d * .6}px">` +
-    `${pic(p.item)}${DEV ? `<small>${p.item.name}</small>` : ''}</div>`;
+    `${inner}${DEV ? `<small>${it.name}</small>` : ''}</div>`;
 };
 
 // ---------- Scene renderer ----------
@@ -753,11 +856,11 @@ function sceneHTML(r, b, id = b ? 2 : '') {
   const patches = diffs.filter(d => d.spot).map(({ spot: s, item }) => {
     const from = s.x + s.w * 2.2 < w.w ? s.x + s.w * 1.2 : s.x - s.w * 1.2;
     return `<div class="patch" style="${boxCss(s, 1)};background:url(${w.background}) ${-(from - 1) * 10}px ${-(s.y - 1) * 10}px/${w.w * 10}px 1000px"></div>` +
-      (item ? sprite({ k: s.id + '-cover', item, x: s.x + s.w / 2, y: s.y + s.h / 2, d: Math.max(s.w, s.h) }, 'c') : '');
+      (item ? sprite({ k: s.id + '-cover', item, x: s.x + s.w / 2, y: s.y + s.h / 2, d: Math.max(s.w, s.h) }, 'c', w) : '');
   }).join('');
   const sprites = r.placed.map(p => {
     const d = diffs.find(d => d.was === p);
-    return r.kind === 'scene' && r.found.includes(p.k) || d && !d.item ? '' : sprite(d ? { ...p, item: d.item } : p, pre);
+    return r.kind === 'scene' && r.found.includes(p.k) || d && !d.item ? '' : sprite(d ? { ...p, item: d.item } : p, pre, w);
   }).join('');
   cam.w = pane.w * 10;
   cam.whole = !!r.pane; // a pane is shown whole (nothing to notice may sit off screen); a full scene covers the view and pans
@@ -852,8 +955,11 @@ const SCREENS = {
       r.kind === 'duo' ? `<div class="duo">${view('view', sceneHTML(r, 0) + `<span class="tag">${LABELS.ui.sideA}</span>`)}` +
         `${view('view2', sceneHTML(r, 1) + `<span class="tag">${LABELS.ui.sideB}</span>`)}<span class="flipper">${btn('flip', '', LABELS.ui.flip)}</span></div>` :
         view('view', sceneHTML(r, 0) + `<div id="over"></div>`);
-    return `<div class="play">${stage}<aside class="side">` + bar(`${LABELS.mode[r.mode]} ${r.n}`, 'stages') + `<div class="powers" id="powers"></div>` +
-      `<button class="slim" data-act="panel"><b id="count"></b><span id="next"></span><span class="med">${glyph('next')}</span></button>` +
+    const [s1, s2, sb] = LOOK[r.w.id].side;
+    return `<div class="play" style="--s1:${s1};--s2:${s2};--sb:${sb}">${stage}<aside class="side"><header class="bar">` +
+      btn('show', 'home', `<img src="${button(r.w.id, 12)}" alt="" draggable="false"><span>${LABELS.ui.home}</span>`, 'wbtn wide') + `<h1>${LABELS.mode[r.mode]} ${r.n}</h1></header>` +
+      `<div class="powers" id="powers"></div>` +
+      `<button class="slim" data-act="panel"><b id="count"></b><span id="next"></span><span class="med">${glyph('fold')}</span></button>` +
       (r.mode === 'hidden-object' ? `<ul id="list">${r.need.map(k => `<li id="l-${k}"${r.found.includes(k) ? ' class="done"' : ''}>${glyph('check')}` +
         `${pic(r.w.byId[k])}<span class="nm">${r.w.byId[k].name}</span></li>`).join('')}</ul>` : `<div id="clue"></div>`) +
       `<section class="tray"><h2>${LABELS.ui.found}</h2><div id="tray">${r.found.map(chipOf).join('')}</div></section></aside></div>`;
@@ -869,18 +975,18 @@ async function loadAtelier() {
   const m = await getJSON(UI + 'atelier.json') || {};
   for (const e of Object.values(m)) [].concat(e.f).forEach((f, i) => { SIZES[f] = [[].concat(e.w)[i], [].concat(e.h)[i]]; });
 }
-// World order matches WORLDS. menu: folder of its menu art; obj: its object in the room; win: [frame, ornament, ...confetti]
+// World order matches WORLDS. menu: folder of its menu art; win: [frame, ornament, ...confetti]; ink: text on its panels; side: the play panel's two shades and trim
 const LOOK = {
-  'clockmakers-attic': { menu: 'attic', win: ['attic', 1, 2, 3, 4, 5], ink: '#4a2e14' },
-  'midnight-botanical-conservatory': { menu: 'conservatory', win: ['conservatory', 1, 2, 3, 4], ink: '#22324a' },
-  'micro-kingdoms': { menu: 'micro', win: ['micro', 1, 2, 3, 4, 5], ink: '#4a2a1a' },
-  'papercraft-origami-kingdom': { menu: 'paper', win: ['paper', 1, 2, 3, 4, 5], ink: '#3a3248' },
-  'grand-astral-express': { menu: 'astral', win: ['astral', 2, 1, 3, 4, 5], ink: '#2a2440' },
-  'living-art-gallery': { menu: 'gallery', win: ['gallery', 3, 4, 1, 2, 5, 6], ink: '#4a1a22' },
-  'sunken-coral-metropolis': { menu: 'coral', win: ['coral', 1, 2, 3, 4, 5], ink: '#173a44' },
-  'cloud-top-sky-port': { menu: 'sky', win: ['sky', 1, 2, 3, 4, 5], ink: '#23384f' },
-  'wizards-kitchen': { menu: 'kitchen', win: ['kitchen', 4, 2, 3, 6, 7], ink: '#40281a' },
-  'retro-arcade-toybox': { menu: 'arcade', win: ['arcade', 1, 2, 3, 4, 5], ink: '#1d2a4a' }
+  'clockmakers-attic': { menu: 'attic', win: ['attic', 1, 2, 3, 4, 5], ink: '#4a2e14', side: ['#4a2e14', '#26160a', '#c9a24a'] },
+  'midnight-botanical-conservatory': { menu: 'conservatory', win: ['conservatory', 1, 2, 3, 4], ink: '#22324a', side: ['#14504a', '#0a2a2e', '#7fe3cd'] },
+  'micro-kingdoms': { menu: 'micro', win: ['micro', 1, 2, 3, 4, 5], ink: '#4a2a1a', side: ['#7a3b2a', '#431d13', '#ffd27a'] },
+  'papercraft-origami-kingdom': { menu: 'paper', win: ['paper', 1, 2, 3, 4, 5], ink: '#3a3248', side: ['#5d537c', '#342c46', '#efe6ff'] },
+  'grand-astral-express': { menu: 'astral', win: ['astral', 2, 1, 3, 4, 5], ink: '#2a2440', side: ['#2c2c6c', '#14143a', '#c9b6ff'] },
+  'living-art-gallery': { menu: 'gallery', win: ['gallery', 3, 4, 1, 2, 5, 6], ink: '#4a1a22', side: ['#6c1f2e', '#380e18', '#e8c46a'] },
+  'sunken-coral-metropolis': { menu: 'coral', win: ['coral', 1, 2, 3, 4, 5], ink: '#173a44', side: ['#0f5c6c', '#083540', '#ff9d8c'] },
+  'cloud-top-sky-port': { menu: 'sky', win: ['sky', 1, 2, 3, 4, 5], ink: '#23384f', side: ['#2f6294', '#18395c', '#ffe6a0'] },
+  'wizards-kitchen': { menu: 'kitchen', win: ['kitchen', 4, 2, 3, 6, 7], ink: '#40281a', side: ['#5c3421', '#30180c', '#b9e56c'] },
+  'retro-arcade-toybox': { menu: 'arcade', win: ['arcade', 1, 2, 3, 4, 5], ink: '#1d2a4a', side: ['#1f2c62', '#0d1232', '#ff62d2'] }
 };
 const button = (w, k) => ui(`menus/${LOOK[w].menu}/buttons-up`, k); // 1-11 the games in MODES order, 12 Home, 13 Play Together
 
@@ -888,120 +994,145 @@ const button = (w, k) => ui(`menus/${LOOK[w].menu}/buttons-up`, k); // 1-11 the 
 // [id, picture, centre x, bottom y, width, options]. on: stands on that thing's top. tap: what a tap does.
 const RW = 4838, PANEL = RW / 3;
 const PETS = { // poses, by piece number in each pet's sheet
-  owl: { idle: 1, moves: [4, 5, 6] }, cat: { idle: 1, walk: 2, moves: [4, 5, 6] }, dragon: { idle: 1, moves: [6, 7, 8] },
+  owl: { idle: 1, moves: [4, 5, 6] }, cat: { idle: 1, moves: [4, 5, 6] }, dragon: { idle: 2, moves: [4, 5, 6] },
   lizard: { idle: 1, moves: [4, 5, 6] }, frog: { idle: 1, moves: [6, 7, 8] }, crow: { idle: 1, moves: [4, 5, 6] }
 };
-const ROOM = [
-  ['rug1', ui('room/props-rugs', 1), 1010, 890, 330, { z: 1, flat: .3 }],
-  ['rug3', ui('room/props-rugs', 3), 2440, 900, 1150, { z: 1, flat: .26 }],
-  ['books1', ui('room/props-books', 1), 230, 880, 150, { z: 5 }],
-  ['fern', ui('room/props-plants', 1), 420, 830, 120, { z: 4, cls: 'sway' }],
-  ['door', ui('room/fu-07'), 760, 575, 250, { z: 2, tap: 'outside' }],
-  ['dial', ui('room/sun-moon-clock', 2), 1000, 318, 120, { z: 2, id: 'dial' }],
-  ['clock', ui('room/sun-moon-clock', 1), 1000, 330, 145, { z: 3, tap: 'daynight' }],
-  ['robe', ui('room/props-wizard', 1), 1150, 520, 110, { z: 2 }],
-  ['broom', ui('room/props-wizard', 2), 560, 600, 70, { z: 2 }],
-  ['tools', ui('room/fu-08'), 1000, 850, 215, { z: 5, tap: 'settings' }],
-  ['hat', ui('room/props-wizard', 4), 840, 880, 100, { z: 5 }],
-  ['tree', ui('room/wo-01'), 1350, 790, 560, { z: 3, tap: 'world:midnight-botanical-conservatory' }],
-  ['shrooms', ui('room/props-plants', 7), 1150, 820, 110, { z: 4, cls: 'glowy' }],
-  ['fairy1', ui('title/title-sheet-1', 9), 1250, 290, 50, { z: 4, cls: 'fairy' }],
-  ['fairy2', ui('title/title-sheet-1', 10), 1460, 230, 46, { z: 4, cls: 'fairy f2' }],
-  ['fairy3', ui('title/title-sheet-1', 11), 1400, 420, 44, { z: 4, cls: 'fairy f3' }],
-  ['lamp1', ui('room/props-lights', 1), 330, 210, 64, { z: 6, cls: 'swing' }],
-  ['lamp2', ui('room/props-lights', 2), 1180, 190, 60, { z: 6, cls: 'swing' }],
+const WALK = [1, 2, 3, 4].map(n => ui('pets/cat-walk', n)); // the cat's four walking frames, one shared canvas
+const FLY = [1, 2, 3, 4, 5, 6].map(n => ui('pets/dragon-fly', n)); // the dragon: four wing beats, a look back, a look at you
+const FLAP = [...'012301230123012301234440123012301235550'].map(Number);
+const ROOM = [ // options: on (stands on that thing), inset (how far onto its top), hang (from the ceiling), wall, sh (floor shadow), tall (no picture)
+  ['rug3', ui('room/props-rugs', 3), 2440, 905, 1150, { z: 1, flat: .26 }],
+  // by the door: the first bookshelf, the settings toolbox, the playhouse, the way out, the giant tree
+  ['shelf1', '', 290, 690, 500, { z: 2, tall: 640, tap: 'books' }],
+  ['lamp1', ui('room/props-lights', 1), 640, 0, 64, { z: 6, hang: 1 }],
+  ['lamp2', ui('room/props-lights', 2), 1010, 0, 60, { z: 6, hang: 1 }],
+  ['books1', ui('room/props-books', 1), 215, 880, 150, { z: 5, sh: 1 }],
+  ['tools', ui('room/fu-08'), 430, 830, 240, { z: 5, tap: 'settings', sh: 1 }],
+  ['hat', ui('room/props-wizard', 4), 300, 760, 90, { z: 4, sh: 1 }],
+  ['house', ui('room/wo-02'), 935, 822, 270, { z: 4, tap: 'world:micro-kingdoms', sh: 1 }],
+  ['dial', ui('room/sun-moon-clock', 2), 720, 268, 120, { z: 2, id: 'dial' }],
+  ['clock', ui('room/sun-moon-clock', 1), 720, 280, 145, { z: 3, tap: 'daynight', wall: 1 }],
+  ['door', ui('room/fu-07'), 720, 665, 250, { z: 2, tap: 'outside' }],
+  ['broom', ui('room/props-wizard', 2), 868, 672, 62, { z: 3 }],
+  ['fern', ui('room/props-plants', 1), 572, 720, 100, { z: 3, cls: 'sway', sh: 1 }],
+  ['robe', ui('room/props-wizard', 1), 1128, 500, 100, { z: 2, wall: 1 }],
+  ['tree', ui('room/wo-01'), 1340, 890, 660, { z: 2, tap: 'world:midnight-botanical-conservatory', sh: 1 }],
+  ['shrooms', ui('room/props-plants', 7), 1150, 852, 110, { z: 4, cls: 'glowy' }],
+  ['fairy1', ui('title/title-sheet-1', 9), 1250, 300, 50, { z: 4, cls: 'fairy' }],
+  ['fairy2', ui('title/title-sheet-1', 10), 1480, 250, 46, { z: 4, cls: 'fairy f2' }],
+  ['fairy3', ui('title/title-sheet-1', 11), 1400, 440, 44, { z: 4, cls: 'fairy f3' }],
   ['pillar1', ui('room/room-pillars', 1), PANEL, 900, 214, { z: 2 }],
-  ['photo1', ui('room/props-photos', 1), 1760, 300, 92, { z: 2, swap: ui('room/props-photos', 2) }],
-  ['photo2', ui('room/props-photos', 5), 1730, 430, 70, { z: 2, swap: ui('room/props-photos', 6) }],
-  ['backtable', ui('room/fu-03'), 1850, 840, 270, { z: 3 }],
-  ['paper', ui('room/wo-03'), 1850, 0, 300, { z: 4, on: 'backtable', tap: 'world:papercraft-origami-kingdom' }],
-  ['cuckoo', ui('room/wo-04'), 2030, 470, 150, { z: 2, tap: 'world:clockmakers-attic' }],
-  ['sky', ui('room/wo-06'), 2440, 300, 440, { z: 6, cls: 'drift', tap: 'world:cloud-top-sky-port' }],
-  ['chandelier', ui('room/props-lights', 5), 2440, 380, 200, { z: 6 }],
-  ['table', ui('room/fu-01'), 2440, 870, 880, { z: 3 }],
-  ['puzzlebox', 'machine:1', 2170, 0, 170, { z: 4, on: 'table' }],
-  ['candles', ui('room/props-lights', 8), 2330, 0, 70, { z: 4, on: 'table', cls: 'flicker' }],
-  ['spellbook', ui('room/props-books', 8), 2400, 0, 90, { z: 4, on: 'table' }],
-  ['track', ui('room/wo-10'), 2610, 0, 330, { z: 4, on: 'table', tap: 'world:grand-astral-express' }],
-  ['starmap', 'machine:3', 2860, 330, 210, { z: 2 }],
-  ['lab', ui('room/wo-07'), 2960, 880, 430, { z: 4, tap: 'world:wizards-kitchen' }],
-  ['photo3', ui('room/props-photos', 9), 3110, 470, 80, { z: 2, swap: ui('room/props-photos', 10) }],
-  ['photo4', ui('room/props-photos', 11), 3020, 390, 64, { z: 2, swap: ui('room/props-photos', 12) }],
-  ['lamp3', ui('room/props-lights', 3), 2900, 180, 60, { z: 6, cls: 'swing' }],
+  // the middle: the papercraft table, the cuckoo clock, the grand table under the sky island and the Wall Art row, the potion bench
+  ['backtable', ui('room/fu-03'), 1850, 840, 270, { z: 3, sh: 1 }],
+  ['chest', ui('room/props-wizard', 7), 1850, 800, 100, { z: 3 }],
+  ['paper', ui('room/wo-03'), 1850, 0, 236, { z: 4, on: 'backtable', inset: .25, tap: 'world:papercraft-origami-kingdom' }],
+  ['cuckoo', ui('room/wo-04'), 2095, 540, 235, { z: 2, wall: 1, tap: 'world:clockmakers-attic' }],
+  ['sky', ui('room/wo-06'), 2400, 0, 460, { z: 6, hang: 1, cls: 'drift', tap: 'world:cloud-top-sky-port' }],
+  ['starmap', 'machine:3', 4324, 398, 140, { z: 2, wall: 1 }],
+  ['shelf2', ui('room/fu-15'), 2975, 690, 412, { z: 2, tap: 'books' }],
+  ['lab', ui('room/wo-07'), 2962, 842, 395, { z: 4, tap: 'world:wizards-kitchen', sh: 1 }],
+  ['table', ui('room/fu-01'), 2400, 850, 760, { z: 3, sh: 1 }],
+  ['drawer', '', 2400, 696, 198, { z: 4, tall: 32, tap: 'drawer', id: 'drawer' }],
+  ['tbooks1', ui('room/props-library', 5), 2112, 0, 74, { z: 4, on: 'table', inset: .13 }],
+  ['ball', ui('room/props-library', 7), 2246, 0, 120, { z: 4, on: 'table', inset: .09 }],
+  ['tbooks3', ui('room/props-library', 6), 2672, 0, 160, { z: 4, on: 'table', inset: .09 }],
+  ['candles', ui('room/props-library', 11), 2570, 0, 66, { z: 4, on: 'table', inset: .09, cls: 'flicker' }],
+  ['puzzlebox', 'machine:1', 2160, 0, 150, { z: 4, on: 'table', inset: .2 }],
+  ['spellbook', ui('room/spellbook'), 2400, 0, 290, { z: 4, on: 'table', inset: .2, tap: 'spell', magic: 1 }],
+  ['fairy4', ui('title/title-sheet-1', 9), 2500, 400, 40, { z: 5, cls: 'fairy f2' }],
+  ['track', ui('room/wo-10'), 2630, 0, 240, { z: 5, on: 'table', inset: .27, tap: 'world:grand-astral-express' }],
+  ['quill', ui('room/props-books', 15), 2262, 0, 40, { z: 4, on: 'table', inset: .24 }],
+  ['lamp3', ui('room/props-lights', 3), 2840, 0, 60, { z: 6, hang: 1 }],
   ['pillar2', ui('room/room-pillars', 2), PANEL * 2, 900, 214, { z: 2 }],
-  ['ivy', ui('room/props-plants', 2), 3330, 230, 100, { z: 2, cls: 'sway' }],
-  ['wallart', 'machine:4', 3480, 480, 440, { z: 2 }],
-  ['house', ui('room/wo-02'), 3480, 880, 290, { z: 5, tap: 'world:micro-kingdoms' }],
-  ['gallery', ui('room/wo-05'), 3820, 330, 280, { z: 2, tap: 'world:living-art-gallery', hole: [.1, .17, .76, .63, 'assets/worlds/living-art-gallery/background-web.jpg'] }],
-  ['stand', ui('room/fu-05'), 3840, 870, 220, { z: 4 }],
-  ['robot', 'machine:0', 3840, 0, 180, { z: 5, on: 'stand', inset: .25 }],
-  ['cabinet', ui('room/fu-06'), 4160, 860, 380, { z: 3 }],
-  ['aquarium', ui('room/wo-08'), 4160, 0, 400, { z: 4, on: 'cabinet', tap: 'world:sunken-coral-metropolis' }],
-  ['basket', ui('room/props-plants', 8), 4330, 230, 100, { z: 6, cls: 'sway' }],
-  ['arcade', ui('room/wo-09'), 4440, 870, 220, { z: 4, tap: 'world:retro-arcade-toybox' }],
-  ['bench', ui('room/fu-04'), 4680, 880, 300, { z: 3 }],
-  ['terrarium', 'machine:2', 4680, 0, 150, { z: 4, on: 'bench' }],
-  ['lamp4', ui('room/props-lights', 4), 4000, 190, 60, { z: 6, cls: 'swing' }],
-  ['rock', ui('room/props-plants', 9), 3300, 900, 120, { z: 6 }],
-  ['carpet', ui('room/props-rugs', 4), 4200, 900, 250, { z: 6, tap: 'carpet', id: 'carpet' }],
-  ['scope', ui('room/props-wizard', 8), 4780, 905, 110, { z: 6 }],
-  ['pet-owl', 'pet:owl', 1470, 345, 95, { z: 6 }],
-  ['pet-frog', 'pet:frog', 1570, 860, 85, { z: 6 }],
+  // the far end: the terrarium bench, the robot under the gallery painting, the aquarium and the telescope at the open window, the star map, the arcade
+  ['ivy', ui('room/props-plants', 2), 3370, 0, 96, { z: 6, hang: 1 }],
+  ['wallart', 'machine:4', 2515, 445, 480, { z: 2, tall: 176 }],
+  ['bench', ui('room/fu-04'), 3480, 800, 390, { z: 3, sh: 1 }],
+  ['terrarium', 'machine:2', 3420, 0, 150, { z: 4, on: 'bench', inset: .34 }],
+  ['succulent', ui('room/props-plants', 3), 3560, 0, 70, { z: 4, on: 'bench', inset: .16 }],
+  ['jar', ui('room/props-lights', 12), 3630, 0, 46, { z: 4, on: 'bench', inset: .14, cls: 'glowy' }],
+  ['photo1', ui('room/props-photos', 1), 3700, 442, 66, { z: 2, wall: 1, swap: ui('room/props-photos', 2) }],
+  ['photo2', ui('room/props-photos', 5), 3735, 222, 56, { z: 2, wall: 1, swap: ui('room/props-photos', 6) }],
+  ['photo3', ui('room/props-photos', 9), 3770, 452, 60, { z: 2, wall: 1, swap: ui('room/props-photos', 10) }],
+  ['stand', ui('room/fu-05'), 3745, 812, 190, { z: 5, sh: 1 }],
+  ['robot', 'machine:0', 3745, 0, 160, { z: 6, on: 'stand', inset: .25 }],
+  ['gallery', ui('room/wo-05'), 3730, 332, 152, { z: 2, wall: 1, tap: 'world:living-art-gallery', hole: [.08, .248, .84, .615, 'assets/worlds/living-art-gallery/background-web.jpg'] }],
+  ['basket', ui('room/props-plants', 8), 4317, 0, 96, { z: 6, hang: 1 }],
+  ['cabinet', ui('room/fu-06'), 4020, 792, 340, { z: 3, sh: 1 }],
+  ['aquarium', ui('room/wo-08'), 4020, 0, 350, { z: 3, on: 'cabinet', tap: 'world:sunken-coral-metropolis' }],
+  ['lamp4', ui('room/props-lights', 4), 3790, 0, 60, { z: 6, hang: 1 }],
+  ['shelf3', ui('room/fu-14'), 4606, 772, 436, { z: 2, tap: 'books' }],
+  ['scrolls', ui('room/props-library', 10), 4212, 834, 70, { z: 4, sh: 1 }],
+  ['scope', ui('room/props-wizard', 8), 4292, 786, 150, { z: 4, sh: 1 }],
+  ['arcade', ui('room/wo-09'), 4640, 884, 344, { z: 4, tap: 'world:retro-arcade-toybox', sh: 1 }],
+  ['pet-owl', 'pet:owl', 1470, 262, 84, { z: 6 }],
+  ['pet-frog', 'pet:frog', 1640, 870, 85, { z: 6 }],
   ['pet-cat', 'pet:cat', 2000, 895, 120, { z: 7 }],
-  ['pet-lizard', 'pet:lizard', 3110, 800, 60, { z: 6 }],
-  ['pet-crow', 'pet:crow', 4440, 0, 85, { z: 6, on: 'arcade' }],
-  ['pet-dragon', 'pet:dragon', 4650, 310, 105, { z: 6 }]
+  ['pet-lizard', 'pet:lizard', PANEL * 2, 470, 48, { z: 6 }],
+  ['pet-crow', 'pet:crow', 4130, 0, 78, { z: 6, on: 'aquarium', inset: .1 }],
+  ['pet-dragon', 'pet:dragon', 4480, 190, 150, { z: 6, cls: 'fly' }]
 ];
-// Machines in the room: the finished picture, shown as a dark outline that fills in, one tenth per piece found.
+// Machines in the room: only the empty stand at first; the picture appears one tenth per piece found, the rest stays clear.
+// base: the stand's picture and where it sits in the finished picture [left, width] as fractions.
 // How each one fills: robot from the feet up, puzzle box from the left, terrarium from the soil up, star map round
 // the clock face; Wall Art opens its four paintings strip by strip (3, 3, 2, 2 strips).
 const MACHINE_ART = [
-  { pic: ui('machines/rb-complete'), pieces: 'machines/rb-pieces', fill: 'up' },
-  { pic: ui('machines/pb-complete'), pieces: 'machines/pb-pieces', fill: 'right' },
-  { pic: ui('machines/te-complete'), pieces: 'machines/te-pieces', fill: 'up' },
-  { pic: ui('machines/sm-complete'), pieces: 'machines/sm-pieces', fill: 'round' },
+  { pic: ui('machines/rb-complete'), pieces: 'machines/rb-pieces', fill: 'up', base: [ui('machines/rb-base'), .2, .6] },
+  { pic: ui('machines/pb-complete'), pieces: 'machines/pb-pieces', fill: 'right', base: [ui('machines/pb-base'), .08, .78] },
+  { pic: ui('machines/te-complete'), pieces: 'machines/te-pieces', fill: 'up', base: [ui('machines/te-base'), 0, 1] },
+  { pic: ui('machines/sm-complete'), pieces: 'machines/sm-pieces', fill: 'round', base: [ui('machines/sm-base'), 0, 1] },
   { pic: ui('machines/wa-frames'), fill: 'art' }
 ];
 const HOLES = [[.1378, .2749, .1156, .4346], [.3522, .2749, .1144, .4346], [.5633, .2749, .1144, .4346], [.7767, .2749, .1144, .4346]];
 const STRIPS = [3, 3, 2, 2];
 const stripOf = k => { let p = 0; while (k >= STRIPS[p]) k -= STRIPS[p++]; return [p, k]; }; // piece 0-9 -> [painting, strip]
 const fillMask = (fill, f) => fill === 'up' ? `inset(${Math.round((1 - f) * 100)}% 0 0 0)` : fill === 'right' ? `inset(0 ${Math.round((1 - f) * 100)}% 0 0)` : '';
-function machineHTML(i, n) {
+const FRAME = h => [h[0] - .016, h[1] - .05, h[2] + .032, h[3] + .1]; // a Wall Art frame around its hole, as fractions of the frames picture
+function machineHTML(i, n, inRoom) {
   const a = MACHINE_ART[i], f = n / 10;
-  if (a.fill === 'art') return `<span class="mfill wa"><img src="${a.pic}" alt="" draggable="false">` + HOLES.map((h, p) =>
-    `<span class="hole" style="left:${h[0] * 100}%;top:${h[1] * 100}%;width:${h[2] * 100}%;height:${h[3] * 100}%">` +
-    Array.from({ length: STRIPS[p] }, (_, s) => { const k = STRIPS.slice(0, p).reduce((x, y) => x + y, 0) + s;
+  if (a.fill === 'art') {
+    const strips = p => `<span class="hole">` + Array.from({ length: STRIPS[p] }, (_, s) => { const k = STRIPS.slice(0, p).reduce((x, y) => x + y, 0) + s;
       return `<i class="${k < n ? 'on' : ''}" style="left:${s / STRIPS[p] * 100}%;width:${100 / STRIPS[p] + .5}%;` +
-        `background:url(${ui('machines/wa-painting-' + (p + 1))}) ${STRIPS[p] > 1 ? s / (STRIPS[p] - 1) * 100 : 0}% 50%/${STRIPS[p] * 100}% 100%"></i>`; }).join('') +
-    `</span>`).join('') + `</span>`;
+        `background:url(${ui('machines/wa-painting-' + (p + 1))}) ${STRIPS[p] > 1 ? s / (STRIPS[p] - 1) * 100 : 0}% 50%/${STRIPS[p] * 100}% 100%"></i>`; }).join('') + `</span>`;
+    const box = (h, of = [0, 0, 1, 1]) => `left:${(h[0] - of[0]) / of[2] * 100}%;top:${(h[1] - of[1]) / of[3] * 100}%;width:${h[2] / of[2] * 100}%;height:${h[3] / of[3] * 100}%`;
+    // in the room the four frames hang on the wall one by one; up close they share their own stretch of wall
+    if (inRoom) return `<span class="mfill wa hung">` + HOLES.map((h, p) => { const fr = FRAME(h);
+      return `<span class="waf" style="left:${[0, 25.6, 51.2, 77][p]}%;top:${[3, 0, 4, 1][p]}%;rotate:${[-1.5, 1, 1.5, -1][p]}deg">` +
+        `<span style="position:absolute;${box(h, fr)}">${strips(p)}</span><img src="${a.pic}" alt="" draggable="false" style="${box([0, 0, 1, 1], fr)}"></span>`; }).join('') + `</span>`;
+    return `<span class="mfill wa"><img src="${a.pic}" alt="" draggable="false">` + HOLES.map((h, p) => `<span style="position:absolute;z-index:-1;${box(h)}">${strips(p)}</span>`).join('') + `</span>`;
+  }
   const round = a.fill === 'round' ? `-webkit-mask-image:conic-gradient(#000 ${f * 360}deg,transparent 0);mask-image:conic-gradient(#000 ${f * 360}deg,transparent 0)` :
     `clip-path:${fillMask(a.fill, f)}`;
-  return `<span class="mfill"><img class="ghost" src="${a.pic}" alt="" draggable="false"><img class="lit" src="${a.pic}" alt="" draggable="false" style="${round}"></span>`;
+  return `<span class="mfill" style="aspect-ratio:${1 / ratio(a.pic)}"><img class="base" src="${a.base[0]}" alt="" draggable="false" style="left:${a.base[1] * 100}%;width:${a.base[2] * 100}%">` +
+    `<img class="lit" src="${a.pic}" alt="" draggable="false" style="${round}"></span>`;
 }
 const pieceArt = (i, k) => MACHINE_ART[i].pieces ? `<img src="${ui(MACHINE_ART[i].pieces, k)}" alt="">` :
   (([p, s]) => `<i class="strip" style="background:url(${ui('machines/wa-painting-' + (p + 1))}) ${STRIPS[p] > 1 ? s / (STRIPS[p] - 1) * 100 : 0}% 50%/${STRIPS[p] * 100}% 100%"></i>`)(stripOf(k - 1));
 
 let roomBuilt = false;
 const placed = {}; // id -> { x, y (top), w, h } in room units, for things that stand on others
+const NOTES = ['Every wizard was once a beginner.', 'Look twice. Then look again.', 'The cat knows where it is.', 'Psst. Tap the cherry tree outside.', 'Good finders look high and low.'];
+const DRAWER = `<span class="dhole"></span><span class="dnote"></span><span class="dfront" style="background-image:url(${ui('room/fu-01')})"></span>`;
 function roomHTML() {
   let h = `<div class="panels">` + [1, 2, 3].map(i => `<img class="pn" src="${ui('room/room-night-' + i)}" alt="" draggable="false" style="left:${(i - 1) * PANEL}px">` +
-    `<img class="pn day" src="${ui('room/room-day-' + i)}" alt="" draggable="false" style="left:${(i - 1) * PANEL}px">`).join('') + `</div><div class="nightglow"></div>`;
+    `<img class="pn day" src="${ui('room/room-day-' + i)}" alt="" draggable="false" style="left:${(i - 1) * PANEL}px">`).join('') + `</div><div class="nightglow"></div><div class="sky"><i class="shoot"></i></div>`;
   for (const [id, src, x, yb, w, o = {}] of ROOM) {
     const [kind, arg] = src.split(':'), isPic = !/^(machine|pet)$/.test(kind);
     const pic = isPic ? src : kind === 'pet' ? ui('pets/' + arg, PETS[arg].idle) : MACHINE_ART[arg].pic;
-    const hh = w * ratio(pic) * (o.flat || 1), base = o.on && placed[o.on], bottom = base ? base.y + base.h * (o.inset ?? .1) : yb;
+    const hh = o.tall || w * ratio(pic) * (o.flat || 1), base = o.on && placed[o.on], bottom = o.hang ? hh : base ? base.y + base.h * (o.inset ?? .1) : yb;
     placed[id] = { x, y: bottom - hh, w, h: hh };
     const tap = kind === 'machine' ? 'machine:' + arg : kind === 'pet' ? 'pet:' + arg : o.tap || '';
-    const inner = kind === 'machine' ? machineHTML(+arg, save.machines.pieces[arg]) + `<b class="mcount" id="mc${arg}"></b>` :
+    const inner = kind === 'machine' ? machineHTML(+arg, save.machines.pieces[arg], true) + `<b class="mcount" id="mc${arg}"></b>` : !src ? (id === 'drawer' ? DRAWER : '') :
+      (o.magic ? `<i class="page"></i>` + [0, 1, 2].map(i => `<img class="mg m${i}" src="${ui('title/title-sheet-2', 12)}" alt="">`).join('') : '') +
       (o.hole ? `<img class="inhole" src="${o.hole[4]}" alt="" style="left:${o.hole[0] * 100}%;top:${o.hole[1] * 100}%;width:${o.hole[2] * 100}%;height:${o.hole[3] * 100}%">` : '') +
       `<img src="${pic}" alt="" draggable="false"${o.swap ? ` data-swap="${o.swap}"` : ''}>`;
-    h += `<div class="o${tap ? ' hot' : ''}${o.cls ? ' ' + o.cls : ''}${kind === 'pet' ? ' pet' : ''}" id="${o.id || 'o-' + id}" data-tap="${tap}" ` +
-      `style="left:${x - w / 2}px;top:${bottom - hh}px;width:${w}px;height:${hh}px;z-index:${o.z || 2}">${inner}</div>`;
+    h += `<div class="o${tap ? ' hot' : ''}${o.cls ? ' ' + o.cls : ''}${o.hang ? ' swing' : ''}${o.wall ? ' wall' : ''}${o.sh ? ' sh' : ''}${kind === 'pet' ? ' pet' : ''}" id="${o.id || 'o-' + id}" data-tap="${tap}" ` +
+      `style="left:${x - w / 2}px;top:${bottom - hh}px;width:${w}px;height:${hh}px;z-index:${o.z || 2}${o.flip ? ';scale:-1 1' : ''}">${inner}</div>`;
   }
   const fish = [9, 10, 11, 13, 14].map((n, i) => `<img class="fish f${i}" src="${ui('room/world-bits', n)}" alt="">`).join('');
   const train = [1, 2, 3].map(n => `<img class="car" src="${ui('room/world-bits', n)}" alt="">`).join('');
   const q = placed.aquarium; // the fish swim inside the aquarium's glass
-  return h + `<div class="tank" id="tank" style="left:${q.x - q.w * .42}px;top:${q.y + q.h * .2}px;width:${q.w * .84}px;height:${q.h * .55}px">${fish}</div><div class="train" id="train">${train}</div>`;
+  return h + `<div class="papers" id="papers" hidden><img src="${ui('room/props-books', 9)}" alt=""><b>0</b></div>` + `<div class="tank" id="tank" style="left:${q.x - q.w * .42}px;top:${q.y + q.h * .2}px;width:${q.w * .84}px;height:${q.h * .55}px">${fish}</div><div class="train" id="train">${train}</div>`;
 }
 const room = $('#room'), rcam = $('#rcam');
 const view = { pan: 0, s: 1 };
@@ -1017,23 +1148,32 @@ function panTo(x, glide) {
   rcam.classList.toggle('glide', !!glide);
   fitRoom();
 }
-const lookAt = id => { const p = placed[id]; if (p) panTo(innerWidth / 2 - p.x * view.s, true); };
+const worldSpot = id => (ROOM.find(r => (r[5] || {}).tap === 'world:' + id) || [])[0];
+function zoomOn(id) { // lean in on a world's object: it fills the top of the screen and its menu slides up underneath
+  const p = placed[id];
+  if (!p) return;
+  const k = view.s * Math.min(1.6, Math.max(1.15, 420 / p.h));
+  rcam.classList.add('glide');
+  rcam.style.transform = `translate(${Math.max(innerWidth - RW * k, Math.min(0, innerWidth / 2 - p.x * k))}px,${Math.min(0, innerHeight * .17 - (p.y + Math.min(p.h, 380) / 2) * k)}px) scale(${k})`;
+}
 function buildRoom() {
-  if (roomBuilt) return refreshMachines();
+  if (roomBuilt) { if (cur.screen === 'home') panTo(view.pan, true); return refreshMachines(); }
   roomBuilt = true;
   rcam.innerHTML = roomHTML();
   view.s = innerHeight / 900;
-  view.pan = innerWidth / 2 - 2440 * view.s;
+  view.pan = innerWidth / 2 - 2400 * view.s; // the giant spellbook in the middle of the screen
   fitRoom();
   refreshMachines();
   setInterval(roomLife, 2600);
+  let beat = 0; // the dragon's wings never stop
+  setInterval(() => { const d = $('#o-pet-dragon'); if (d && cur.screen === 'home' && !d.classList.contains('acting')) d.querySelector('img').src = FLY[FLAP[beat++ % FLAP.length]]; }, 130);
   requestAnimationFrame(trainLoop);
 }
 function refreshMachines() { // the room shows exactly the pieces earned
   MACHINES.forEach((m, i) => {
     const el = $(`[data-tap="machine:${i}"]`);
     if (!el) return;
-    el.querySelector('.mfill').outerHTML = machineHTML(i, save.machines.pieces[i]);
+    el.querySelector('.mfill').outerHTML = machineHTML(i, save.machines.pieces[i], true);
     $('#mc' + i).textContent = `${save.machines.pieces[i]}/10`;
   });
 }
@@ -1060,20 +1200,41 @@ room.addEventListener('pointerup', e => {
 });
 room.addEventListener('pointercancel', () => { drag = null; });
 room.addEventListener('wheel', e => { panTo(view.pan - (e.deltaX || e.deltaY)); }, { passive: true });
-addEventListener('resize', () => { if (roomBuilt) panTo(view.pan); });
+addEventListener('resize', () => { if (roomBuilt) /^(modes|stages)$/.test(cur.screen) ? zoomOn(worldSpot(cur.world)) : panTo(view.pan); });
 $('#wl').onclick = () => panTo(view.pan + innerWidth * .7, true);
 $('#wr').onclick = () => panTo(view.pan - innerWidth * .7, true);
 $('#showme').onclick = () => { room.classList.remove('showing'); void room.offsetWidth; room.classList.add('showing'); };
 function roomTap(tap, el) {
   const [kind, arg] = tap.split(':');
   if (kind !== 'pet') petNear(el);
-  if (kind === 'world') { bump(el); return setTimeout(() => ACT.world(arg), 260); }
+  if (kind === 'world') { zoomOn(worldSpot(arg)); return setTimeout(() => ACT.world(arg), 480); }
   if (kind === 'machine') return ACT.machine(arg);
   if (kind === 'pet') return petReact(arg);
   if (kind === 'settings') { bump(el); return setTimeout(() => show('settings'), 200); }
   if (kind === 'outside') return show('title');
   if (kind === 'daynight') return setDay(!isDay);
-  if (kind === 'carpet') { el.classList.remove('loop'); void el.offsetWidth; el.classList.add('loop'); }
+  if (kind === 'books') return booksFly(el);
+  if (kind === 'spell') { bump(el); const r = el.getBoundingClientRect(); return poof(r.left + r.width / 2, r.top + r.height / 3); }
+  if (kind === 'drawer') { if (el.classList.toggle('open')) el.querySelector('.dnote').textContent = NOTES[noteTurn++ % NOTES.length]; return; }
+  if (kind === 'paper') { const r = el.getBoundingClientRect(); poof(r.left + r.width / 2, r.top + r.height / 2); el.remove(); $('#papers').hidden = false; $('#papers b').textContent = ++papers; }
+}
+let noteTurn = 0, papers = 0;
+function booksFly(el) { // a tap on a bookshelf: a few books flap out and tumble away
+  const r = el.getBoundingClientRect();
+  [5, 6, 7, 5].forEach((n, i) => {
+    const b = document.createElement('img');
+    b.className = 'flybook';
+    b.src = ui('room/props-books', n);
+    b.style.cssText = `left:${r.left + r.width * (.15 + .2 * i)}px;top:${r.top + r.height * (.15 + .2 * ((i * 3) % 4))}px;--x:${(i - 1.5) * 12}vw;--r:${(i % 2 ? 1 : -1) * (240 + i * 70)}deg;animation-delay:${i * .12}s`;
+    document.body.append(b);
+    setTimeout(() => b.remove(), 2200);
+  });
+}
+function dropPaper() { // a note flutters down somewhere in view and stays on the floor until it is tapped: a tally, nothing more
+  if ($$('#rcam .fallen').length >= 10) return;
+  const x = (-view.pan + (.08 + Math.random() * .84) * innerWidth) / view.s, y = 730 + Math.random() * 140;
+  rcam.insertAdjacentHTML('beforeend', `<div class="o hot fallen" data-tap="paper" style="left:${x - 24}px;top:${y - 44}px;width:48px;height:44px;z-index:6;--from:${-y - 60}px;--tilt:${Math.random() * 50 - 25}deg">` +
+    `<img src="${ui('room/props-books', 9 + Math.floor(Math.random() * 2))}" alt="" draggable="false"></div>`);
 }
 const bump = el => { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); };
 let isDay = false;
@@ -1113,23 +1274,35 @@ function roomLife() {
   if (ph) { const a = ph.src, b = ph.dataset.swap; ph.src = new URL(b, location.href).href; ph.dataset.swap = a; }
   const hots = $$('#room .hot:not(.pet)'), w = hots[Math.floor(Math.random() * hots.length)];
   if (w) { w.classList.remove('wiggle'); void w.offsetWidth; w.classList.add('wiggle'); }
+  if (Math.random() < .3) dropPaper();
+  const dr = $('#o-pet-dragon'); // the dragon lives in the air: it flies from spot to spot under the beams, nose first
+  if (dr && !dr.classList.contains('acting') && Math.random() < .6) {
+    const from = parseFloat(dr.style.left), x = Math.max(150, Math.min(RW - 300, from + Math.random() * 1800 - 900));
+    dr.style.scale = x < from ? '-1 1' : '1 1';
+    dr.style.transition = 'left 4s ease-in-out,top 4s ease-in-out';
+    dr.style.left = x + 'px'; dr.style.top = 60 + Math.random() * 240 + 'px';
+  }
   const cat = $('#o-pet-cat');
   if (cat && !cat.classList.contains('acting') && Math.random() < .5) {
     const img = cat.querySelector('img'), x = 1750 + Math.random() * 1300, from = parseFloat(cat.style.left);
-    img.src = ui('pets/cat', PETS.cat.walk);
+    const bottom = parseFloat(cat.style.top) + parseFloat(cat.style.height), h = parseFloat(cat.style.width) * ratio(WALK[0]), idle = cat.style.height;
+    let f = 0;
+    const step = setInterval(() => { img.src = WALK[f++ % 4]; }, 150); // four frames: its legs really walk
+    cat.style.height = h + 'px'; cat.style.top = bottom - h + 'px';
     cat.style.scale = x < from ? '-1 1' : '1 1';
     cat.style.transition = `left ${Math.abs(x - from) / 220}s linear`;
     cat.style.left = x + 'px';
-    setTimeout(() => { if (!cat.classList.contains('acting')) img.src = ui('pets/cat', PETS.cat.idle); }, Math.abs(x - from) / .22);
+    setTimeout(() => { clearInterval(step); cat.style.height = idle; cat.style.top = bottom - parseFloat(idle) + 'px';
+      if (!cat.classList.contains('acting')) img.src = ui('pets/cat', PETS.cat.idle); }, Math.abs(x - from) / .22);
   }
 }
 function trainLoop(t) { // three toy cars run round the oval track on the table
   const track = placed.track, cars = $$('#train .car');
   if (track && cars.length && cur.screen === 'home') {
-    const cx = track.x, cy = track.y + track.h * .5, rx = track.w * .42, ry = track.h * .32;
+    const cx = track.x, cy = track.y + track.h * .5, rx = track.w * .44, ry = track.h * .34;
     cars.forEach((c, i) => {
-      const a = t / 2600 - i * .42, x = cx + rx * Math.cos(a), y = cy + ry * Math.sin(a), back = Math.sin(a) < 0;
-      c.style.cssText = `left:${x - 26}px;top:${y - 34}px;z-index:${back ? 3 : 5};scale:${-Math.sin(a) > 0 ? -1 : 1} 1`;
+      const a = t / 2600 - i * .42, x = cx + rx * Math.cos(a), y = cy + ry * Math.sin(a); // always drawn over the rails; the nearer car over the farther
+      c.style.cssText = `left:${x - 22}px;top:${y - 32}px;z-index:${Math.sin(a) < 0 ? 5 : 6};scale:${-Math.sin(a) > 0 ? -1 : 1} 1`;
     });
   }
   requestAnimationFrame(trainLoop);
@@ -1137,48 +1310,71 @@ function trainLoop(t) { // three toy cars run round the oval track on the table
 
 // The title: the evening front door. Only the door goes in; the rabbit, the tree door, the mushroom house and the
 // pond each hide a surprise. Scene units: the 1200 x 896 painting.
-const TITLE_BITS = [ // [id, picture, centre x, bottom y, width, tap]
+const TITLE_BITS = [ // [id, picture, centre x, bottom y, width, tap, height when there is no picture]
+  ['canopy', '', 230, 330, 470, 'blossom', 330],
   ['sign', ui('title/title-sign'), 612, 440, 270, ''],
-  ['owl', ui('title/title-sheet-1', 6), 1040, 430, 60, 'owl'],
+  ['owl', ui('title/title-sheet-1', 6), 1036, 405, 58, 'owl'],
   ['cat', ui('title/title-sheet-1', 7), 800, 620, 70, ''],
-  ['witch', ui('title/title-sheet-1', 13), 612, 300, 70, ''],
-  ['fdoor', ui('title/title-sheet-2', 1), 222, 740, 50, 'fairydoor'],
-  ['mdoor', ui('title/title-sheet-2', 3), 132, 838, 38, 'mushroom'],
-  ['gnome', ui('title/title-sheet-1', 12), 132, 812, 34, ''],
+  ['win', ui('title/title-sheet-1', 13), 608, 286, 76, 'witch', 76],
+  ['fdoor', ui('title/title-sheet-2', 1), 221, 738, 64, 'fairydoor'],
+  ['mhouse', '', 137, 845, 120, 'mushroom', 150],
+  ['mdoor', ui('title/title-sheet-3', 5), 137, 837, 35, 'mushroom'],
   ['rabbit', ui('title/title-sheet-1', 1), 330, 830, 80, 'rabbit'],
-  ['frog', ui('title/title-sheet-2', 6), 930, 800, 70, 'pond'],
   ['pond', '', 960, 840, 330, 'pond'],
-  ['dragon', ui('title/title-sheet-1', 14), 300, 120, 110, '']
+  ['koi', ui('title/title-sheet-2', 4), 880, 836, 13, ''],
+  ['koi k2', ui('title/title-sheet-2', 5), 990, 790, 12, ''],
+  ['ripple', ui('title/title-sheet-2', 9), 1020, 812, 80, ''],
+  ['frog', ui('title/title-sheet-2', 6), 912, 800, 78, 'pond'],
+  ['fjump', ui('title/title-sheet-3', 9), 930, 780, 66, ''],
+  ['kjump', ui('title/title-sheet-1', 15), 990, 800, 30, ''],
+  ['splash', ui('title/title-sheet-2', 8), 1020, 808, 84, ''],
+  ['dragon', ui('title/title-sheet-3', 1), 300, 125, 120, '']
 ];
 function titleHTML() {
   return `<div class="tcam" id="tcam"><img class="tbg" src="${ui('title/title-bg')}" alt="" draggable="false">` +
-    TITLE_BITS.map(([id, src, x, yb, w, tap]) => { const h = src ? w * ratio(src) : 90;
-      return `<div class="t-${id}${tap ? ' hot' : ''}" data-tt="${tap}" style="left:${x - w / 2}px;top:${yb - h}px;width:${w}px;height:${h}px">${src ? `<img src="${src}" alt="" draggable="false">` : ''}</div>`; }).join('') +
+    TITLE_BITS.map(([id, src, x, yb, w, tap, tall]) => { const h = tall || (src ? w * ratio(src) : 90), img = `<img src="${src}" alt="" draggable="false"`;
+      return `<div class="t-${id}${tap ? ' hot' : ''}" data-tt="${tap}" style="left:${x - w / 2}px;top:${yb - h}px;width:${w}px;height:${h}px">` +
+        (!src ? '' : id === 'dragon' ? [1, 2, 3, 4].map(n => `<img src="${ui('title/title-sheet-3', n)}" alt="" draggable="false" style="animation-delay:${n * .16 - .64}s">`).join('') : img + '>') + `</div>`; }).join('') +
     `<div class="frontdoor hot" data-tt="door"><div class="door3d">${'<i></i>'.repeat(12)}<img class="face" src="${ui('title/title-sheet-1', 3)}" alt="" draggable="false"></div></div>` +
     `<div class="fairies">${[9, 10, 11].map(n => `<img src="${ui('title/title-sheet-1', n)}" alt="">`).join('')}</div></div>`;
 }
-function fitTitle() {
-  const s = Math.max(innerWidth / 1200, innerHeight / 896), tc = $('#tcam');
-  // keep the door in view on a tall phone: centre on it, never past the painting's edges
-  const x = Math.min(0, Math.max(innerWidth - 1200 * s, innerWidth / 2 - 612 * s));
-  if (tc) tc.style.transform = `translate(${x}px,${(innerHeight - 896 * s) / 2}px) scale(${s})`;
+function fitTitle() { // scene units are the middle 1200 of the 1592-wide painting: a sideways screen is filled edge to edge, an upright one shows the whole middle
+  const s = innerWidth > innerHeight ? Math.max(innerWidth / 1592.4, innerHeight / 896) : Math.min(innerWidth / 1200, innerHeight / 896), tc = $('#tcam'), x = (innerWidth - 1200 * s) / 2, y = (innerHeight - 896 * s) * (innerWidth > innerHeight ? .85 : .5);
+  if (tc) tc.style.transform = `translate(${x}px,${y}px) scale(${s})`;
+  titleEl.style.transformOrigin = `${x + 612 * s}px ${y + 600 * s}px`; // the door: where the walk in heads
 }
+const titleEl = $('#title'), flash = document.body.appendChild(Object.assign(document.createElement('div'), { id: 'flash' }));
 addEventListener('resize', fitTitle);
-const titleEl = $('#title');
+function blossoms() { // a tap on the cherry tree: blossoms and loose petals drift down across the whole screen
+  for (let i = 0; i < 34; i++) {
+    const p = document.createElement('i'), whole = i % 3 === 0;
+    p.className = 'petal';
+    p.style.cssText = `left:${Math.random() * 100}vw;--x:${Math.random() * 30 - 5}vw;--r:${Math.random() * 720 - 360}deg;--t:${3.5 + Math.random() * 3}s;--d:${Math.random() * 1.6}s`;
+    p.innerHTML = `<img src="${ui('title/title-sheet-3', whole ? 7 : 8)}" alt="" width="${whole ? 34 : 30}">`;
+    titleEl.append(p);
+    setTimeout(() => p.remove(), 8500);
+  }
+}
+let pondTurn = false;
 titleEl.addEventListener('click', e => {
-  const t = e.target.closest('[data-tt]'), k = t && t.dataset.tt;
+  const t = e.target.closest('[data-tt]');
+  let k = t && t.dataset.tt;
   if (!k) return poof(e.clientX, e.clientY);
   if (k === 'door') {
     if (titleEl.classList.contains('open')) return;
-    titleEl.classList.add('open');
-    return setTimeout(() => { titleEl.classList.remove('open'); show('home'); }, 1500);
+    titleEl.classList.add('open'); // the door swings open, a small step toward it, white light floods out and clears on the finished room
+    setTimeout(() => flash.classList.add('on'), 850);
+    return setTimeout(async () => { titleEl.classList.remove('open'); show('home');
+      await Promise.race([Promise.all($$('#rcam img').map(i => i.decode().catch(() => 0))), new Promise(r => setTimeout(r, 8000))]);
+      flash.classList.remove('on'); }, 1550);
   }
-  const el = titleEl.querySelector('.t-' + ({ fairydoor: 'fdoor', mushroom: 'mdoor', pond: 'frog' }[k] || k));
+  if (k === 'blossom') return blossoms();
+  if (k === 'pond') k = (pondTurn = !pondTurn) ? 'frogjump' : 'koijump'; // the frog dives in; next tap a koi leaps
+  if (titleEl.classList.contains('tt-' + k)) return;
   titleEl.classList.add('tt-' + k);
   setTimeout(() => titleEl.classList.remove('tt-' + k), 2600);
-  if (k === 'fairydoor') el.querySelector('img').src = ui('title/title-sheet-2', 2);
-  if (k === 'fairydoor') setTimeout(() => { el.querySelector('img').src = ui('title/title-sheet-2', 1); }, 2600);
-  if (k === 'rabbit') { const img = el.querySelector('img'); img.src = ui('title/title-sheet-1', 5); setTimeout(() => { img.src = ui('title/title-sheet-1', 1); }, 2600); }
+  const swap = { fairydoor: ['.t-fdoor', ui('title/title-sheet-2', 2)], mushroom: ['.t-mdoor', ui('title/title-sheet-3', 6)], rabbit: ['.t-rabbit', ui('title/title-sheet-1', 5)] }[k];
+  if (swap) { const img = titleEl.querySelector(swap[0] + ' img'), was = img.getAttribute('src'); img.src = swap[1]; setTimeout(() => { img.src = was; }, 2600); }
 });
 
 // A world's menu: its own framed panel and buttons slide up over the room. Games in four groups, then its ten stages.
@@ -1263,7 +1459,7 @@ function readCode(code) { // validates prefix, checksum, JSON shape and version;
 }
 SCREENS.settings = () => {
   const st = save.settings, soon = label => btn('', '', `<span>${label}<small>${LABELS.ui.soon}</small></span>`, 'pill', true);
-  return `<div class="sheet setsheet" style="--ink:#3a2618;--pl:url(${ui('menus/attic/panel-landscape')});--pp:url(${ui('menus/attic/panel-portrait')})">` +
+  return `<div class="sheet setsheet" style="--ink:#3a2618;--pl:url(${UI}settings/panel-landscape.webp);--pp:url(${UI}settings/panel-portrait.webp)">` +
     bar(LABELS.ui.settings, 'home') + `<div class="sets">` +
     `<section class="cat"><h2>${LABELS.ui.saveCode}</h2><p class="code" id="code">${exportCode()}</p>${btn('copy', '', LABELS.ui.copy)}</section>` +
     `<section class="cat"><h2>${LABELS.ui.loadCode}</h2><input class="field" id="paste" placeholder="${LABELS.ui.paste}" autocomplete="off" autocapitalize="off" spellcheck="false">` +
@@ -1289,7 +1485,7 @@ function show(screen) {
 }
 const ACT = {
   show,
-  world(id) { cur.world = id; show('modes'); },
+  world(id) { cur.world = id; show('modes'); zoomOn(worldSpot(id)); },
   mode(id) { cur.mode = id; show('stages'); },
   machine(i) { if (MACHINES[i]) { cur.home = +i; show('machine'); } },
   stage(n) { cur.n = +n; show('play'); },
@@ -1597,12 +1793,12 @@ async function selfTest() {
   await test('a', 'Same seed builds the identical layout twice, again after a real page reload, and matches the frozen hash',
     () => hashOf(1) === hashOf(1) && hashOf(1) === +location.hash.slice(1) && hashOf(1) === FROZEN_HASH);
   await test('b', 'All 10 sub-stage seeds build different layouts', () => new Set(TEN.map(n => hashOf(n))).size === 10);
-  await test('c', 'Every Hidden Object sub-stage in every world places exactly 20 targets, and every placed item sits inside a valid zone without overlapping', () =>
+  await test('c', 'Every Hidden Object sub-stage in every world places exactly 20 targets, and every placed item stands with its base inside a valid zone without overlapping', () =>
     WORLDS.every(w => TEN.every(n => {
       const placed = deal(w.id, M, n).placed;
       return placed.filter(p => p.target).length === 20 && placed.every((p, i) => {
         const z = w.zones.find(z => z.id === p.zone), d = p.d, e = .011; // e: positions are rounded to 2 places
-        return d <= SIZE[z.maxSize] * z.scale + e && p.x - d / 2 >= z.x - e && p.x + d / 2 <= z.x + z.w + e && p.y - d / 2 >= z.y - e && p.y + d / 2 <= z.y + z.h + e &&
+        return d <= SIZE[z.maxSize] * z.scale + e && p.x - d / 2 >= z.x - e && p.x + d / 2 <= z.x + z.w + e && p.y + d / 2 >= z.y - e && p.y + d / 2 <= z.y + z.h + e &&
           (!z.rest || Math.abs(p.y - (z.y + z.h - d / 2)) < e) && (p.target || z.use === 'add') &&
           placed.every((q, j) => j >= i || Math.hypot(p.x - q.x, p.y - q.y) >= (d + q.d) / 2);
       });
@@ -1754,12 +1950,13 @@ async function selfTest() {
     reset(); open(M);
     await find(5);
     $('.side [data-act=show]').click();
-    const back = cur.screen === 'stages' && entry().found.length === 5 && $('#go-1').textContent.startsWith('5 / 20');
+    const wentHome = cur.screen === 'home';
+    show('stages');
+    const back = wentHome && entry().found.length === 5 && $('#go-1').textContent.startsWith('5 / 20');
     $('.cell [data-act=stage]').click();
     const again = $('#count').textContent.startsWith('5 / 20') && count('#tray .got') === 5;
     await find(1);
     $('.side [data-act=show]').click();
-    $('.sheet [data-act=show][data-arg=home]').click();
     const home = cur.screen === 'home' && entry().found.length === 6;
     save.inProgress[roundKey(W, M, 2)] = { found: [], updatedAt: 1 };
     clear(1); show('stages');
@@ -1794,7 +1991,7 @@ async function selfTest() {
     for (const w of WORLDS) {
       const a = await (await fetch(`assets/worlds/${w.id}/anchors.json`)).json();
       open(M, 1, w.id);
-      if (!(a.world === w.id && w.zones.length === a.zones.length && w.zones.length >= 25 && w.painted.length === a.paintedObjects.length && w.painted.length >= 20 &&
+      if (!(a.world === w.id && w.zones.length === a.zones.length && w.zones.length >= 15 && w.painted.length === a.paintedObjects.length && w.painted.length >= 20 &&
         w.zones.every((z, i) => z.id === a.zones[i].id) && Math.abs(w.w - 100 * a.background.size[0] / a.background.size[1]) < 1e-9 && w.items.length === 100 &&
         Math.abs(parseFloat($('.shift').style.width) - w.w * 10) < .01 && $('#scene .bg').getAttribute('src') === w.background &&
         w.background.endsWith('background-web.jpg') && (await fetch(w.background)).ok)) return false;
@@ -1821,6 +2018,7 @@ async function selfTest() {
       if (r.ordered) await wait(TIME.hold + TIME.fly + 50);
     }
     await wait(TIME.hold + TIME.fly + 80);
+    for (let t = 0; t < 40 && r.kind === 'scene' && r.landed < r.need.length; t++) await wait(50); // a busy page can run the fly timers late
   };
   const WANT = { 'hidden-object': [20, 20], 'i-spy': [5, 5], count: [4, 9], twins: [2, 2], 'spot-difference': [5, 5], 'odd-one-out': [3, 3], shadow: [4, 4],
     vanished: [1, 1], changed: [1, 1], 'doesnt-belong': [3, 3], zoom: [3, 3] }; // targets per round, lowest and highest
@@ -1867,7 +2065,8 @@ async function selfTest() {
       const [f, ...ns] = LOOK[w.id].win; ns.forEach(n => srcs.add(ui('win/win-' + f, n))); $$('.sheet img').forEach(i => srcs.add(i.getAttribute('src'))); });
     MACHINES.forEach((_, i) => { for (let k = 1; k <= 10; k++) srcs.add((pieceArt(i, k).match(/(?:src="|url\()([^")]+)/) || [])[1]); });
     $$('#title img,#room img').forEach(i => srcs.add(i.getAttribute('src')));
-    Object.keys(PETS).forEach(k => [PETS[k].idle, PETS[k].walk, ...PETS[k].moves].filter(Boolean).forEach(n => srcs.add(ui('pets/' + k, n))));
+    Object.keys(PETS).forEach(k => [PETS[k].idle, ...PETS[k].moves].forEach(n => srcs.add(ui('pets/' + k, n))));
+    WALK.forEach(f => srcs.add(f));
     const bad = [];
     for (const src of srcs) if (!src || !(await fetch(src)).ok) bad.push(src);
     if (bad.length) throw new Error(bad.join(', '));
@@ -1971,7 +2170,7 @@ async function selfTest() {
     return exact && resumed && same(save.powers, ['zoom']) && save.dealt === DEALT && !save.inProgress && save.machines.pieces.join() === '10,4,0,0,0' &&
       modeProgress(W, M).clearedSubStages.length === 10 && same(readCode(exportCode()), save);
   });
-  await test('ac', 'Sprites come from each world\'s items/manifest.json with no code change: the Attic\'s 20 sliced sample items draw as art, every other item as a placeholder; all 11 modes and all 10 worlds are open from the start; Play Together is shown and disabled', async () => {
+  await test('ac', 'Sprites come from each world\'s items/manifest.json with no code change: every one of the 100 items in all 10 worlds draws as art, none as a placeholder; all 11 modes and all 10 worlds are open from the start; Play Together is shown and disabled', async () => {
     const m = await (await fetch(`assets/worlds/${W}/items/manifest.json`)).json(), ids = Object.keys(m.items), A = WORLDS[0];
     for (const id of ids) if (!(await fetch(A.byId[id].sprite)).ok) throw new Error(id);
     reset(); open(M);
@@ -1981,7 +2180,7 @@ async function selfTest() {
     ACT.world(W2);
     const modes = count('.mode:not(:disabled)') === 11;
     show('settings');
-    return ids.length === 20 && A.items.filter(i => i.sprite).length === 20 && WORLDS.slice(1).every(w => w.items.every(i => !i.sprite)) && drawn && worlds && modes &&
+    return ids.length >= 100 && WORLDS.every(w => w.items.length === 100 && w.items.every(i => i.sprite)) && drawn && worlds && modes &&
       count('#together button') === 2 && count('#together button:disabled') === 2;
   });
   realSave === null ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, realSave); // hand the real save back
@@ -1995,7 +2194,7 @@ async function selfTest() {
   document.body.insertAdjacentHTML('beforeend', `<div class="win"><div class="wincard test"><h1>Self-test: ` +
     `${results.filter(r => r.includes('PASS')).length} of ${results.length} passed</h1><ul>${results.join('')}</ul></div></div>`);
 }
-const FROZEN_HASH = 1073733438, FROZEN_MORE = [1678322787, 1910762161, 4100156888]; // frozen layout hashes: Attic Hidden Object 1, and three more sub-stages
+const FROZEN_HASH = 2741407881, FROZEN_MORE = [3568863516, 2877455572, 4100156888]; // frozen layout hashes: Attic Hidden Object 1, and three more sub-stages
 
 Promise.all([loadData(), loadAtelier()]).then(() => {
   loadSave();

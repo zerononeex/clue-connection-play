@@ -4,7 +4,7 @@
    "Front door scene, evening (background)"
   ],
   "f": "assets/ui/title/title-bg.webp",
-  "w": 2560,
+  "w": 3397,
   "h": 1911
  },
  "TS-02": {
@@ -168,8 +168,8 @@
    "Room panel 3 of 3 (right), night"
   ],
   "f": "assets/ui/room/room-night-3.webp",
-  "w": 2580,
-  "h": 1440
+  "w": 2576,
+  "h": 1438
  },
  "RM-04": {
   "names": [
@@ -192,8 +192,8 @@
    "Room panel 3 of 3 (right), day"
   ],
   "f": "assets/ui/room/room-day-3.webp",
-  "w": 2580,
-  "h": 1440
+  "w": 2576,
+  "h": 1438
  },
  "RM-07": {
   "names": [
@@ -235,7 +235,7 @@
   ],
   "f": "assets/ui/room/fu-03.webp",
   "w": 1600,
-  "h": 1553
+  "h": 1467
  },
  "FU-04": {
   "names": [
@@ -624,7 +624,7 @@
    "Conservatory: the giant tree"
   ],
   "f": "assets/ui/room/wo-01.webp",
-  "w": 1215,
+  "w": 1150,
   "h": 1600
  },
  "WO-02": {
@@ -633,7 +633,7 @@
   ],
   "f": "assets/ui/room/wo-02.webp",
   "w": 1600,
-  "h": 1559
+  "h": 1410
  },
  "WO-03": {
   "names": [
@@ -641,7 +641,7 @@
   ],
   "f": "assets/ui/room/wo-03.webp",
   "w": 1600,
-  "h": 852
+  "h": 773
  },
  "WO-04": {
   "names": [
@@ -657,7 +657,7 @@
   ],
   "f": "assets/ui/room/wo-05.webp",
   "w": 1600,
-  "h": 905
+  "h": 938
  },
  "WO-06": {
   "names": [
@@ -673,7 +673,7 @@
   ],
   "f": "assets/ui/room/wo-07.webp",
   "w": 1600,
-  "h": 869
+  "h": 1204
  },
  "WO-08": {
   "names": [
@@ -1249,33 +1249,27 @@
    "assets/ui/pets/dragon/05.webp",
    "assets/ui/pets/dragon/06.webp",
    "assets/ui/pets/dragon/07.webp",
-   "assets/ui/pets/dragon/08.webp",
-   "assets/ui/pets/dragon/09.webp",
-   "assets/ui/pets/dragon/10.webp"
+   "assets/ui/pets/dragon/08.webp"
   ],
   "w": [
-   645,
+   611,
    900,
    900,
-   900,
-   900,
-   684,
-   684,
-   900,
-   731,
-   739
+   500,
+   521,
+   877,
+   711,
+   655
   ],
   "h": [
    900,
-   843,
-   575,
-   716,
-   681,
+   692,
+   662,
    900,
    900,
-   831,
-   725,
-   741
+   900,
+   676,
+   646
   ]
  },
  "PE-LI": {
@@ -3603,5 +3597,209 @@
    900,
    900
   ]
+ },
+ "FU-10": {
+  "names": [
+   "Settings toolbox panel, landscape"
+  ],
+  "f": "assets/ui/settings/panel-landscape.webp",
+  "w": 1600,
+  "h": 910
+ },
+ "FU-11": {
+  "names": [
+   "Settings toolbox panel, portrait"
+  ],
+  "f": "assets/ui/settings/panel-portrait.webp",
+  "w": 1197,
+  "h": 1600
+ },
+ "PE-CA2": {
+  "names": [
+   "Walk frame 1: front left leg forward, back right leg forward",
+   "Walk frame 2: legs passing under the body, body slightly raised",
+   "Walk frame 3: front right leg forward, back left leg forward",
+   "Walk frame 4: legs passing under the body again, tail swung the other way"
+  ],
+  "f": [
+   "assets/ui/pets/cat-walk/01.webp",
+   "assets/ui/pets/cat-walk/02.webp",
+   "assets/ui/pets/cat-walk/03.webp",
+   "assets/ui/pets/cat-walk/04.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900
+  ],
+  "h": [
+   614,
+   614,
+   614,
+   614
+  ]
+ },
+ "TS-05": {
+  "names": [
+   "A small dragon silhouette flying, side view facing right, flat deep purple: wings fully UP, tail curled up",
+   "The same dragon silhouette: wings level, tail straight out behind",
+   "The same dragon silhouette: wings fully DOWN, tail curled down",
+   "The same dragon silhouette: wings level again, tail flicking up",
+   "The mushroom house's little front door, closed: a small round-topped wooden plank door exactly like the one on the mushroom house in the attached TS-01",
+   "The same doorway with the door swung open inward and a tiny smiling gnome in a green pointed hat leaning out and waving",
+   "One cherry blossom flower, five soft pink petals with a notch at each tip and a yellow centre",
+   "Three loose cherry blossom petals in slightly different pinks",
+   "A green frog diving head first with legs stretched straight back"
+  ],
+  "f": [
+   "assets/ui/title/title-sheet-3/01.webp",
+   "assets/ui/title/title-sheet-3/02.webp",
+   "assets/ui/title/title-sheet-3/03.webp",
+   "assets/ui/title/title-sheet-3/04.webp",
+   "assets/ui/title/title-sheet-3/05.webp",
+   "assets/ui/title/title-sheet-3/06.webp",
+   "assets/ui/title/title-sheet-3/07.webp",
+   "assets/ui/title/title-sheet-3/08.webp",
+   "assets/ui/title/title-sheet-3/09.webp"
+  ],
+  "w": [
+   900,
+   900,
+   900,
+   900,
+   657,
+   600,
+   836,
+   732,
+   900
+  ],
+  "h": [
+   853,
+   853,
+   853,
+   853,
+   900,
+   900,
+   789,
+   759,
+   613
+  ]
+ },
+ "FU-12": {
+  "names": [
+   "A GIANT open spellbook with thick gilded pages, a ribbon marker and jewelled corners, both pages lying flat, pages showing only stars, moons and swirls",
+   "The same giant spellbook with one page lifting up from the right side",
+   "The same giant spellbook with that page standing straight up in the middle, mid-turn",
+   "The same giant spellbook with the page falling onto the left side",
+   "A tall leaning tower of eight mismatched old books",
+   "A long row of twelve books standing between two brass bookends",
+   "A pile of three huge closed books with a crystal ball on top",
+   "A wooden book stand holding one open book",
+   "A wooden bird perch on a tall brass stand, empty",
+   "A bundle of rolled scrolls in a tall clay pot",
+   "A stack of books with a lit candle stuck on top with dripped wax",
+   "A small swirl of gold fairy sparkles"
+  ],
+  "f": [
+   "assets/ui/room/props-library/01.webp",
+   "assets/ui/room/props-library/02.webp",
+   "assets/ui/room/props-library/03.webp",
+   "assets/ui/room/props-library/04.webp",
+   "assets/ui/room/props-library/05.webp",
+   "assets/ui/room/props-library/06.webp",
+   "assets/ui/room/props-library/07.webp",
+   "assets/ui/room/props-library/08.webp",
+   "assets/ui/room/props-library/09.webp",
+   "assets/ui/room/props-library/10.webp",
+   "assets/ui/room/props-library/11.webp",
+   "assets/ui/room/props-library/12.webp"
+  ],
+  "w": [
+   900,
+   745,
+   698,
+   866,
+   557,
+   900,
+   900,
+   715,
+   553,
+   444,
+   645,
+   566
+  ],
+  "h": [
+   551,
+   868,
+   900,
+   821,
+   900,
+   331,
+   453,
+   900,
+   900,
+   900,
+   900,
+   550
+  ]
+ },
+ "PE-DR2": {
+  "names": [
+   "Wings up",
+   "Wings level",
+   "Wings down",
+   "Wings level, tail up",
+   "Looking back",
+   "Looking at the viewer"
+  ],
+  "f": [
+   "assets/ui/pets/dragon-fly/01.webp",
+   "assets/ui/pets/dragon-fly/02.webp",
+   "assets/ui/pets/dragon-fly/03.webp",
+   "assets/ui/pets/dragon-fly/04.webp",
+   "assets/ui/pets/dragon-fly/05.webp",
+   "assets/ui/pets/dragon-fly/06.webp"
+  ],
+  "w": [
+   694,
+   694,
+   694,
+   694,
+   694,
+   694
+  ],
+  "h": [
+   566,
+   566,
+   566,
+   566,
+   566,
+   566
+  ]
+ },
+ "FU-13": {
+  "names": [
+   "Giant spellbook without the ribbon"
+  ],
+  "f": "assets/ui/room/spellbook.webp",
+  "w": 1600,
+  "h": 845
+ },
+ "FU-14": {
+  "names": [
+   "Far bookcase (cut-out object)"
+  ],
+  "f": "assets/ui/room/fu-14.webp",
+  "w": 1060,
+  "h": 1600
+ },
+ "FU-15": {
+  "names": [
+   "Potion cabinet (cut-out object)"
+  ],
+  "f": "assets/ui/room/fu-15.webp",
+  "w": 1074,
+  "h": 1600
  }
 }

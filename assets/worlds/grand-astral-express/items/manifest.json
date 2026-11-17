@@ -1,4 +1,605 @@
 {
  "world": "grand-astral-express",
- "items": {}
+ "items": {
+  "grand-astral-express-001": {
+   "file": "star-shaped-hole-golden-ticket.png",
+   "w": 203,
+   "h": 115,
+   "sheet": 1
+  },
+  "grand-astral-express-002": {
+   "file": "moon-shaped-hole-golden-ticket.png",
+   "w": 203,
+   "h": 115,
+   "sheet": 1
+  },
+  "grand-astral-express-003": {
+   "file": "strip-of-three-perforated-tickets.png",
+   "w": 193,
+   "h": 192,
+   "sheet": 1
+  },
+  "grand-astral-express-004": {
+   "file": "ticket-stub-with-a-torn-edge.png",
+   "w": 182,
+   "h": 135,
+   "sheet": 1
+  },
+  "grand-astral-express-005": {
+   "file": "leather-travel-pass-wallet.png",
+   "w": 167,
+   "h": 202,
+   "sheet": 1
+  },
+  "grand-astral-express-006": {
+   "file": "round-brass-travel-token-with-a-comet-picture.png",
+   "w": 126,
+   "h": 129,
+   "sheet": 1
+  },
+  "grand-astral-express-007": {
+   "file": "luggage-claim-tag-on-a-string.png",
+   "w": 164,
+   "h": 180,
+   "sheet": 1
+  },
+  "grand-astral-express-008": {
+   "file": "conductors-ticket-punch.png",
+   "w": 201,
+   "h": 202,
+   "sheet": 1
+  },
+  "grand-astral-express-009": {
+   "file": "ticket-roll-on-a-brass-spindle.png",
+   "w": 202,
+   "h": 158,
+   "sheet": 1
+  },
+  "grand-astral-express-010": {
+   "file": "rubber-stamp-with-a-star-face.png",
+   "w": 172,
+   "h": 177,
+   "sheet": 1
+  },
+  "grand-astral-express-011": {
+   "file": "two-belt-straps-leather-suitcase.png",
+   "w": 212,
+   "h": 185,
+   "sheet": 1
+  },
+  "grand-astral-express-012": {
+   "file": "three-belt-straps-leather-suitcase.png",
+   "w": 213,
+   "h": 185,
+   "sheet": 1
+  },
+  "grand-astral-express-013": {
+   "file": "small-round-hat-box-with-a-ribbon.png",
+   "w": 172,
+   "h": 152,
+   "sheet": 1
+  },
+  "grand-astral-express-014": {
+   "file": "steamer-trunk-with-brass-corners.png",
+   "w": 230,
+   "h": 192,
+   "sheet": 1
+  },
+  "grand-astral-express-015": {
+   "file": "carpet-bag-with-a-clasp.png",
+   "w": 215,
+   "h": 190,
+   "sheet": 1
+  },
+  "grand-astral-express-016": {
+   "file": "doctor-style-travel-bag.png",
+   "w": 200,
+   "h": 179,
+   "sheet": 1
+  },
+  "grand-astral-express-017": {
+   "file": "drawstring-pouch-with-a-star-pattern.png",
+   "w": 148,
+   "h": 163,
+   "sheet": 1
+  },
+  "grand-astral-express-018": {
+   "file": "brass-luggage-trolley.png",
+   "w": 189,
+   "h": 222,
+   "sheet": 1
+  },
+  "grand-astral-express-019": {
+   "file": "umbrella-with-a-duck-head-handle.png",
+   "w": 197,
+   "h": 203,
+   "sheet": 1
+  },
+  "grand-astral-express-020": {
+   "file": "rolled-travel-blanket-in-a-strap.png",
+   "w": 214,
+   "h": 155,
+   "sheet": 1
+  },
+  "grand-astral-express-021": {
+   "file": "red-needle-brass-compass.png",
+   "w": 175,
+   "h": 192,
+   "sheet": 2
+  },
+  "grand-astral-express-022": {
+   "file": "blue-needle-brass-compass.png",
+   "w": 176,
+   "h": 192,
+   "sheet": 2
+  },
+  "grand-astral-express-023": {
+   "file": "pocket-compass-with-a-flip-lid.png",
+   "w": 203,
+   "h": 215,
+   "sheet": 2
+  },
+  "grand-astral-express-024": {
+   "file": "compass-rose-pendant.png",
+   "w": 141,
+   "h": 211,
+   "sheet": 2
+  },
+  "grand-astral-express-025": {
+   "file": "brass-sextant.png",
+   "w": 196,
+   "h": 206,
+   "sheet": 2
+  },
+  "grand-astral-express-026": {
+   "file": "folding-star-map-ruler.png",
+   "w": 211,
+   "h": 159,
+   "sheet": 2
+  },
+  "grand-astral-express-027": {
+   "file": "pair-of-navigation-dividers.png",
+   "w": 127,
+   "h": 207,
+   "sheet": 2
+  },
+  "grand-astral-express-028": {
+   "file": "small-celestial-globe-on-a-stand.png",
+   "w": 195,
+   "h": 219,
+   "sheet": 2
+  },
+  "grand-astral-express-029": {
+   "file": "orrery-with-three-little-planets.png",
+   "w": 214,
+   "h": 196,
+   "sheet": 2
+  },
+  "grand-astral-express-030": {
+   "file": "pocket-sundial-ring.png",
+   "w": 120,
+   "h": 153,
+   "sheet": 2
+  },
+  "grand-astral-express-031": {
+   "file": "gold-cord-rolled-star-chart.png",
+   "w": 187,
+   "h": 208,
+   "sheet": 2
+  },
+  "grand-astral-express-032": {
+   "file": "silver-cord-rolled-star-chart.png",
+   "w": 187,
+   "h": 208,
+   "sheet": 2
+  },
+  "grand-astral-express-033": {
+   "file": "open-star-chart-showing-a-bear-constellation.png",
+   "w": 228,
+   "h": 192,
+   "sheet": 2
+  },
+  "grand-astral-express-034": {
+   "file": "round-star-wheel-chart.png",
+   "w": 205,
+   "h": 218,
+   "sheet": 2
+  },
+  "grand-astral-express-035": {
+   "file": "brass-telescope-on-a-tripod.png",
+   "w": 207,
+   "h": 218,
+   "sheet": 2
+  },
+  "grand-astral-express-036": {
+   "file": "hand-held-spyglass-extended.png",
+   "w": 201,
+   "h": 191,
+   "sheet": 2
+  },
+  "grand-astral-express-037": {
+   "file": "opera-glasses-with-a-handle.png",
+   "w": 190,
+   "h": 212,
+   "sheet": 2
+  },
+  "grand-astral-express-038": {
+   "file": "jar-holding-a-captured-shooting-star.png",
+   "w": 139,
+   "h": 210,
+   "sheet": 2
+  },
+  "grand-astral-express-039": {
+   "file": "meteorite-pebble-with-sparkles.png",
+   "w": 149,
+   "h": 143,
+   "sheet": 2
+  },
+  "grand-astral-express-040": {
+   "file": "constellation-card-with-dots-and-lines.png",
+   "w": 152,
+   "h": 189,
+   "sheet": 2
+  },
+  "grand-astral-express-041": {
+   "file": "pink-glass-shade-brass-table-lamp.png",
+   "w": 151,
+   "h": 209,
+   "sheet": 3
+  },
+  "grand-astral-express-042": {
+   "file": "green-glass-shade-brass-table-lamp.png",
+   "w": 135,
+   "h": 208,
+   "sheet": 3
+  },
+  "grand-astral-express-043": {
+   "file": "wall-lamp-shaped-like-a-tulip.png",
+   "w": 156,
+   "h": 183,
+   "sheet": 3
+  },
+  "grand-astral-express-044": {
+   "file": "reading-lamp-on-a-bendy-arm.png",
+   "w": 178,
+   "h": 212,
+   "sheet": 3
+  },
+  "grand-astral-express-045": {
+   "file": "conductors-signal-lantern-with-a-handle.png",
+   "w": 122,
+   "h": 216,
+   "sheet": 3
+  },
+  "grand-astral-express-046": {
+   "file": "candle-lamp-in-a-glass-globe.png",
+   "w": 140,
+   "h": 188,
+   "sheet": 3
+  },
+  "grand-astral-express-047": {
+   "file": "star-shaped-night-light.png",
+   "w": 160,
+   "h": 184,
+   "sheet": 3
+  },
+  "grand-astral-express-048": {
+   "file": "brass-hand-bell-for-the-dining-car.png",
+   "w": 168,
+   "h": 218,
+   "sheet": 3
+  },
+  "grand-astral-express-049": {
+   "file": "service-bell-with-a-push-button.png",
+   "w": 148,
+   "h": 146,
+   "sheet": 3
+  },
+  "grand-astral-express-050": {
+   "file": "signal-flag-pair-crossed.png",
+   "w": 221,
+   "h": 165,
+   "sheet": 3
+  },
+  "grand-astral-express-051": {
+   "file": "gold-rim-teacup-on-a-saucer.png",
+   "w": 196,
+   "h": 155,
+   "sheet": 3
+  },
+  "grand-astral-express-052": {
+   "file": "blue-rim-teacup-on-a-saucer.png",
+   "w": 196,
+   "h": 152,
+   "sheet": 3
+  },
+  "grand-astral-express-053": {
+   "file": "silver-teapot-with-a-long-spout.png",
+   "w": 204,
+   "h": 209,
+   "sheet": 3
+  },
+  "grand-astral-express-054": {
+   "file": "sugar-bowl-with-tongs.png",
+   "w": 199,
+   "h": 204,
+   "sheet": 3
+  },
+  "grand-astral-express-055": {
+   "file": "three-tier-cake-stand.png",
+   "w": 178,
+   "h": 221,
+   "sheet": 3
+  },
+  "grand-astral-express-056": {
+   "file": "slice-of-star-sprinkle-cake-on-a-plate.png",
+   "w": 197,
+   "h": 160,
+   "sheet": 3
+  },
+  "grand-astral-express-057": {
+   "file": "croissant-on-a-napkin.png",
+   "w": 212,
+   "h": 133,
+   "sheet": 3
+  },
+  "grand-astral-express-058": {
+   "file": "silver-serving-dome-with-a-knob.png",
+   "w": 208,
+   "h": 173,
+   "sheet": 3
+  },
+  "grand-astral-express-059": {
+   "file": "folded-napkin-shaped-like-a-swan.png",
+   "w": 189,
+   "h": 184,
+   "sheet": 3
+  },
+  "grand-astral-express-060": {
+   "file": "fork-and-spoon-tied-with-a-ribbon.png",
+   "w": 141,
+   "h": 201,
+   "sheet": 3
+  },
+  "grand-astral-express-061": {
+   "file": "gold-band-conductors-cap.png",
+   "w": 186,
+   "h": 158,
+   "sheet": 4
+  },
+  "grand-astral-express-062": {
+   "file": "silver-band-conductors-cap.png",
+   "w": 185,
+   "h": 158,
+   "sheet": 4
+  },
+  "grand-astral-express-063": {
+   "file": "porters-round-pillbox-cap.png",
+   "w": 174,
+   "h": 137,
+   "sheet": 4
+  },
+  "grand-astral-express-064": {
+   "file": "white-gloves-a-pair.png",
+   "w": 192,
+   "h": 173,
+   "sheet": 4
+  },
+  "grand-astral-express-065": {
+   "file": "brass-whistle-on-a-chain.png",
+   "w": 188,
+   "h": 178,
+   "sheet": 4
+  },
+  "grand-astral-express-066": {
+   "file": "conductors-pocket-watch-with-a-train-engraved.png",
+   "w": 152,
+   "h": 207,
+   "sheet": 4
+  },
+  "grand-astral-express-067": {
+   "file": "hand-held-signal-paddle.png",
+   "w": 172,
+   "h": 199,
+   "sheet": 4
+  },
+  "grand-astral-express-068": {
+   "file": "ring-of-carriage-keys.png",
+   "w": 209,
+   "h": 210,
+   "sheet": 4
+  },
+  "grand-astral-express-069": {
+   "file": "route-booklet-with-a-train-picture-on-the-cover.png",
+   "w": 182,
+   "h": 223,
+   "sheet": 4
+  },
+  "grand-astral-express-070": {
+   "file": "brass-carriage-door-handle.png",
+   "w": 154,
+   "h": 207,
+   "sheet": 4
+  },
+  "grand-astral-express-071": {
+   "file": "orange-glow-glowing-star-coal-lump.png",
+   "w": 176,
+   "h": 161,
+   "sheet": 4
+  },
+  "grand-astral-express-072": {
+   "file": "blue-glow-glowing-star-coal-lump.png",
+   "w": 173,
+   "h": 161,
+   "sheet": 4
+  },
+  "grand-astral-express-073": {
+   "file": "brass-scoop-of-stardust.png",
+   "w": 182,
+   "h": 150,
+   "sheet": 4
+  },
+  "grand-astral-express-074": {
+   "file": "stardust-canister-with-a-window.png",
+   "w": 108,
+   "h": 211,
+   "sheet": 4
+  },
+  "grand-astral-express-075": {
+   "file": "heart-shaped-brass-pressure-gauge.png",
+   "w": 156,
+   "h": 188,
+   "sheet": 4
+  },
+  "grand-astral-express-076": {
+   "file": "green-valve-wheel-with-a-star-hub.png",
+   "w": 190,
+   "h": 191,
+   "sheet": 4
+  },
+  "grand-astral-express-077": {
+   "file": "steam-whistle-with-a-pull-chain.png",
+   "w": 169,
+   "h": 150,
+   "sheet": 4
+  },
+  "grand-astral-express-078": {
+   "file": "copper-elbow-pipe.png",
+   "w": 170,
+   "h": 194,
+   "sheet": 4
+  },
+  "grand-astral-express-079": {
+   "file": "piston-rod-with-a-brass-joint.png",
+   "w": 183,
+   "h": 213,
+   "sheet": 4
+  },
+  "grand-astral-express-080": {
+   "file": "engine-oil-can-with-a-star-stamp.png",
+   "w": 128,
+   "h": 202,
+   "sheet": 4
+  },
+  "grand-astral-express-081": {
+   "file": "star-embroidery-plump-pillow.png",
+   "w": 188,
+   "h": 178,
+   "sheet": 5
+  },
+  "grand-astral-express-082": {
+   "file": "moon-embroidery-plump-pillow.png",
+   "w": 188,
+   "h": 178,
+   "sheet": 5
+  },
+  "grand-astral-express-083": {
+   "file": "folded-quilt-with-a-patchwork-corner.png",
+   "w": 214,
+   "h": 172,
+   "sheet": 5
+  },
+  "grand-astral-express-084": {
+   "file": "sleep-mask-with-closed-eye-stitching.png",
+   "w": 213,
+   "h": 129,
+   "sheet": 5
+  },
+  "grand-astral-express-085": {
+   "file": "pair-of-velvet-slippers.png",
+   "w": 215,
+   "h": 170,
+   "sheet": 5
+  },
+  "grand-astral-express-086": {
+   "file": "nightcap-with-a-pompom.png",
+   "w": 199,
+   "h": 204,
+   "sheet": 5
+  },
+  "grand-astral-express-087": {
+   "file": "dressing-gown-belt-tassel.png",
+   "w": 199,
+   "h": 192,
+   "sheet": 5
+  },
+  "grand-astral-express-088": {
+   "file": "hot-water-bottle-in-a-knitted-cover.png",
+   "w": 163,
+   "h": 220,
+   "sheet": 5
+  },
+  "grand-astral-express-089": {
+   "file": "bedside-carafe-and-glass.png",
+   "w": 194,
+   "h": 197,
+   "sheet": 5
+  },
+  "grand-astral-express-090": {
+   "file": "tiny-teddy-bear-in-a-scarf.png",
+   "w": 155,
+   "h": 204,
+   "sheet": 5
+  },
+  "grand-astral-express-091": {
+   "file": "ivory-handle-detective-magnifying-glass.png",
+   "w": 188,
+   "h": 209,
+   "sheet": 5
+  },
+  "grand-astral-express-092": {
+   "file": "ebony-handle-detective-magnifying-glass.png",
+   "w": 187,
+   "h": 209,
+   "sheet": 5
+  },
+  "grand-astral-express-093": {
+   "file": "fingerprint-brush-and-powder-pot.png",
+   "w": 184,
+   "h": 192,
+   "sheet": 5
+  },
+  "grand-astral-express-094": {
+   "file": "pocket-torch.png",
+   "w": 214,
+   "h": 210,
+   "sheet": 5
+  },
+  "grand-astral-express-095": {
+   "file": "detective-notebook-with-a-pencil-loop.png",
+   "w": 172,
+   "h": 187,
+   "sheet": 5
+  },
+  "grand-astral-express-096": {
+   "file": "envelope-of-paw-print-cards.png",
+   "w": 166,
+   "h": 175,
+   "sheet": 5
+  },
+  "grand-astral-express-097": {
+   "file": "folded-map-with-a-dotted-trail.png",
+   "w": 217,
+   "h": 181,
+   "sheet": 5
+  },
+  "grand-astral-express-098": {
+   "file": "tweed-detective-cap.png",
+   "w": 204,
+   "h": 153,
+   "sheet": 5
+  },
+  "grand-astral-express-099": {
+   "file": "false-moustache-on-a-stick.png",
+   "w": 163,
+   "h": 200,
+   "sheet": 5
+  },
+  "grand-astral-express-100": {
+   "file": "round-dark-spectacles.png",
+   "w": 209,
+   "h": 92,
+   "sheet": 5
+  }
+ }
 }

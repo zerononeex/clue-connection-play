@@ -1,4 +1,605 @@
 {
  "world": "micro-kingdoms",
- "items": {}
+ "items": {
+  "micro-kingdoms-001": {
+   "file": "red-thread-cotton-reel.png",
+   "w": 160,
+   "h": 179,
+   "sheet": 1
+  },
+  "micro-kingdoms-002": {
+   "file": "blue-thread-cotton-reel.png",
+   "w": 159,
+   "h": 166,
+   "sheet": 1
+  },
+  "micro-kingdoms-003": {
+   "file": "empty-wooden-cotton-reel.png",
+   "w": 123,
+   "h": 182,
+   "sheet": 1
+  },
+  "micro-kingdoms-004": {
+   "file": "tangled-ball-of-yarn-with-a-loose-end.png",
+   "w": 169,
+   "h": 170,
+   "sheet": 1
+  },
+  "micro-kingdoms-005": {
+   "file": "sewing-needle-threaded-with-gold-thread.png",
+   "w": 124,
+   "h": 152,
+   "sheet": 1
+  },
+  "micro-kingdoms-006": {
+   "file": "safety-pin-closed.png",
+   "w": 160,
+   "h": 117,
+   "sheet": 1
+  },
+  "micro-kingdoms-007": {
+   "file": "pincushion-shaped-like-a-tomato.png",
+   "w": 173,
+   "h": 154,
+   "sheet": 1
+  },
+  "micro-kingdoms-008": {
+   "file": "silver-thimble-with-dimples.png",
+   "w": 96,
+   "h": 121,
+   "sheet": 1
+  },
+  "micro-kingdoms-009": {
+   "file": "tiny-embroidery-scissors-shaped-like-a-stork.png",
+   "w": 162,
+   "h": 178,
+   "sheet": 1
+  },
+  "micro-kingdoms-010": {
+   "file": "rolled-tape-measure-with-tick-marks.png",
+   "w": 178,
+   "h": 145,
+   "sheet": 1
+  },
+  "micro-kingdoms-011": {
+   "file": "two-holes-round-button.png",
+   "w": 134,
+   "h": 132,
+   "sheet": 1
+  },
+  "micro-kingdoms-012": {
+   "file": "four-holes-round-button.png",
+   "w": 134,
+   "h": 133,
+   "sheet": 1
+  },
+  "micro-kingdoms-013": {
+   "file": "toggle-button-shaped-like-a-horn.png",
+   "w": 162,
+   "h": 131,
+   "sheet": 1
+  },
+  "micro-kingdoms-014": {
+   "file": "heart-shaped-pink-button.png",
+   "w": 137,
+   "h": 123,
+   "sheet": 1
+  },
+  "micro-kingdoms-015": {
+   "file": "string-of-five-wooden-beads.png",
+   "w": 181,
+   "h": 149,
+   "sheet": 1
+  },
+  "micro-kingdoms-016": {
+   "file": "single-glass-bead-with-a-swirl.png",
+   "w": 116,
+   "h": 115,
+   "sheet": 1
+  },
+  "micro-kingdoms-017": {
+   "file": "star-shaped-sequin.png",
+   "w": 95,
+   "h": 90,
+   "sheet": 1
+  },
+  "micro-kingdoms-018": {
+   "file": "hook-and-eye-clasp.png",
+   "w": 184,
+   "h": 92,
+   "sheet": 1
+  },
+  "micro-kingdoms-019": {
+   "file": "zip-pull-with-a-few-teeth.png",
+   "w": 138,
+   "h": 121,
+   "sheet": 1
+  },
+  "micro-kingdoms-020": {
+   "file": "shiny-press-stud.png",
+   "w": 146,
+   "h": 105,
+   "sheet": 1
+  },
+  "micro-kingdoms-021": {
+   "file": "pink-eraser-tip-short-stubby-pencil.png",
+   "w": 153,
+   "h": 111,
+   "sheet": 2
+  },
+  "micro-kingdoms-022": {
+   "file": "green-eraser-tip-short-stubby-pencil.png",
+   "w": 154,
+   "h": 112,
+   "sheet": 2
+  },
+  "micro-kingdoms-023": {
+   "file": "pencil-sharpener-with-a-curl-of-shaving.png",
+   "w": 185,
+   "h": 136,
+   "sheet": 2
+  },
+  "micro-kingdoms-024": {
+   "file": "wax-crayon-worn-to-a-nub.png",
+   "w": 174,
+   "h": 126,
+   "sheet": 2
+  },
+  "micro-kingdoms-025": {
+   "file": "paperclip-bent-into-a-bridge-shape.png",
+   "w": 171,
+   "h": 101,
+   "sheet": 2
+  },
+  "micro-kingdoms-026": {
+   "file": "bulldog-clip.png",
+   "w": 156,
+   "h": 157,
+   "sheet": 2
+  },
+  "micro-kingdoms-027": {
+   "file": "drawing-pin-with-a-round-red-head.png",
+   "w": 128,
+   "h": 133,
+   "sheet": 2
+  },
+  "micro-kingdoms-028": {
+   "file": "pink-eraser-with-a-worn-corner.png",
+   "w": 170,
+   "h": 135,
+   "sheet": 2
+  },
+  "micro-kingdoms-029": {
+   "file": "rubber-band-twisted-in-a-figure-of-eight.png",
+   "w": 146,
+   "h": 162,
+   "sheet": 2
+  },
+  "micro-kingdoms-030": {
+   "file": "roll-of-sticky-tape-on-a-little-dispenser.png",
+   "w": 171,
+   "h": 166,
+   "sheet": 2
+  },
+  "micro-kingdoms-031": {
+   "file": "black-dots-white-dice.png",
+   "w": 159,
+   "h": 160,
+   "sheet": 2
+  },
+  "micro-kingdoms-032": {
+   "file": "red-dots-white-dice.png",
+   "w": 158,
+   "h": 160,
+   "sheet": 2
+  },
+  "micro-kingdoms-033": {
+   "file": "tiny-translucent-blue-dice.png",
+   "w": 81,
+   "h": 86,
+   "sheet": 2
+  },
+  "micro-kingdoms-034": {
+   "file": "domino-tile-with-dots.png",
+   "w": 186,
+   "h": 187,
+   "sheet": 2
+  },
+  "micro-kingdoms-035": {
+   "file": "wooden-chess-knight.png",
+   "w": 109,
+   "h": 193,
+   "sheet": 2
+  },
+  "micro-kingdoms-036": {
+   "file": "round-red-draughts-piece.png",
+   "w": 155,
+   "h": 128,
+   "sheet": 2
+  },
+  "micro-kingdoms-037": {
+   "file": "yellow-pawn-from-a-board-game.png",
+   "w": 112,
+   "h": 171,
+   "sheet": 2
+  },
+  "micro-kingdoms-038": {
+   "file": "single-jigsaw-piece-with-a-bit-of-sky.png",
+   "w": 184,
+   "h": 144,
+   "sheet": 2
+  },
+  "micro-kingdoms-039": {
+   "file": "glass-marble-with-a-green-swirl.png",
+   "w": 128,
+   "h": 128,
+   "sheet": 2
+  },
+  "micro-kingdoms-040": {
+   "file": "playing-card-house-of-three-cards.png",
+   "w": 172,
+   "h": 186,
+   "sheet": 2
+  },
+  "micro-kingdoms-041": {
+   "file": "star-picture-crinkled-bottle-cap.png",
+   "w": 152,
+   "h": 118,
+   "sheet": 3
+  },
+  "micro-kingdoms-042": {
+   "file": "sun-picture-crinkled-bottle-cap.png",
+   "w": 151,
+   "h": 118,
+   "sheet": 3
+  },
+  "micro-kingdoms-043": {
+   "file": "plastic-screw-top-lid.png",
+   "w": 149,
+   "h": 126,
+   "sheet": 3
+  },
+  "micro-kingdoms-044": {
+   "file": "cork-from-a-bottle.png",
+   "w": 105,
+   "h": 138,
+   "sheet": 3
+  },
+  "micro-kingdoms-045": {
+   "file": "copper-coin-with-a-leaf-picture.png",
+   "w": 160,
+   "h": 145,
+   "sheet": 3
+  },
+  "micro-kingdoms-046": {
+   "file": "small-silver-door-key.png",
+   "w": 127,
+   "h": 147,
+   "sheet": 3
+  },
+  "micro-kingdoms-047": {
+   "file": "split-key-ring.png",
+   "w": 140,
+   "h": 105,
+   "sheet": 3
+  },
+  "micro-kingdoms-048": {
+   "file": "cross-head-screw.png",
+   "w": 133,
+   "h": 100,
+   "sheet": 3
+  },
+  "micro-kingdoms-049": {
+   "file": "hex-nut-and-bolt-together.png",
+   "w": 156,
+   "h": 119,
+   "sheet": 3
+  },
+  "micro-kingdoms-050": {
+   "file": "tiny-spring-from-a-pen.png",
+   "w": 51,
+   "h": 130,
+   "sheet": 3
+  },
+  "micro-kingdoms-051": {
+   "file": "red-thread-matchstick-ladder.png",
+   "w": 136,
+   "h": 203,
+   "sheet": 3
+  },
+  "micro-kingdoms-052": {
+   "file": "green-thread-matchstick-ladder.png",
+   "w": 135,
+   "h": 202,
+   "sheet": 3
+  },
+  "micro-kingdoms-053": {
+   "file": "coil-of-string-rope-with-a-paperclip-hook.png",
+   "w": 196,
+   "h": 155,
+   "sheet": 3
+  },
+  "micro-kingdoms-054": {
+   "file": "cocktail-stick-walking-pole-with-a-flag.png",
+   "w": 110,
+   "h": 180,
+   "sheet": 3
+  },
+  "micro-kingdoms-055": {
+   "file": "walnut-shell-tent-with-a-leaf-door.png",
+   "w": 166,
+   "h": 161,
+   "sheet": 3
+  },
+  "micro-kingdoms-056": {
+   "file": "thimble-cooking-pot-on-a-twig-tripod.png",
+   "w": 190,
+   "h": 192,
+   "sheet": 3
+  },
+  "micro-kingdoms-057": {
+   "file": "acorn-cap-bowl-with-a-splinter-spoon.png",
+   "w": 160,
+   "h": 158,
+   "sheet": 3
+  },
+  "micro-kingdoms-058": {
+   "file": "matchbox-backpack-with-straps.png",
+   "w": 154,
+   "h": 189,
+   "sheet": 3
+  },
+  "micro-kingdoms-059": {
+   "file": "birthday-candle-torch.png",
+   "w": 30,
+   "h": 177,
+   "sheet": 3
+  },
+  "micro-kingdoms-060": {
+   "file": "bottle-cap-shield-with-a-needle-sword.png",
+   "w": 194,
+   "h": 182,
+   "sheet": 3
+  },
+  "micro-kingdoms-061": {
+   "file": "chocolate-chips-biscuit-with-a-bite-out.png",
+   "w": 179,
+   "h": 179,
+   "sheet": 4
+  },
+  "micro-kingdoms-062": {
+   "file": "pink-icing-biscuit-with-a-bite-out.png",
+   "w": 179,
+   "h": 180,
+   "sheet": 4
+  },
+  "micro-kingdoms-063": {
+   "file": "cracker-with-a-corner-missing.png",
+   "w": 163,
+   "h": 153,
+   "sheet": 4
+  },
+  "micro-kingdoms-064": {
+   "file": "pretzel-twist.png",
+   "w": 168,
+   "h": 143,
+   "sheet": 4
+  },
+  "micro-kingdoms-065": {
+   "file": "wrapped-sweet-with-twisted-ends.png",
+   "w": 198,
+   "h": 153,
+   "sheet": 4
+  },
+  "micro-kingdoms-066": {
+   "file": "jelly-bean.png",
+   "w": 143,
+   "h": 132,
+   "sheet": 4
+  },
+  "micro-kingdoms-067": {
+   "file": "lollipop-with-a-spiral.png",
+   "w": 106,
+   "h": 175,
+   "sheet": 4
+  },
+  "micro-kingdoms-068": {
+   "file": "single-popcorn-piece.png",
+   "w": 123,
+   "h": 121,
+   "sheet": 4
+  },
+  "micro-kingdoms-069": {
+   "file": "cheese-cube-on-a-cocktail-stick.png",
+   "w": 134,
+   "h": 192,
+   "sheet": 4
+  },
+  "micro-kingdoms-070": {
+   "file": "peanut-in-its-shell.png",
+   "w": 168,
+   "h": 132,
+   "sheet": 4
+  },
+  "micro-kingdoms-071": {
+   "file": "four-studs-plastic-building-brick.png",
+   "w": 176,
+   "h": 147,
+   "sheet": 4
+  },
+  "micro-kingdoms-072": {
+   "file": "six-studs-plastic-building-brick.png",
+   "w": 196,
+   "h": 143,
+   "sheet": 4
+  },
+  "micro-kingdoms-073": {
+   "file": "wooden-picture-block-with-a-purple-moon-standing-on-its-corner.png",
+   "w": 172,
+   "h": 148,
+   "sheet": 4
+  },
+  "micro-kingdoms-074": {
+   "file": "toy-train-wheel.png",
+   "w": 138,
+   "h": 165,
+   "sheet": 4
+  },
+  "micro-kingdoms-075": {
+   "file": "tiny-purple-three-wheeled-toy-car.png",
+   "w": 190,
+   "h": 149,
+   "sheet": 4
+  },
+  "micro-kingdoms-076": {
+   "file": "wind-up-key-lost-from-a-toy.png",
+   "w": 154,
+   "h": 150,
+   "sheet": 4
+  },
+  "micro-kingdoms-077": {
+   "file": "rubber-duck.png",
+   "w": 151,
+   "h": 163,
+   "sheet": 4
+  },
+  "micro-kingdoms-078": {
+   "file": "toy-soldier-with-a-drum.png",
+   "w": 82,
+   "h": 198,
+   "sheet": 4
+  },
+  "micro-kingdoms-079": {
+   "file": "plastic-dinosaur-friendly-and-green.png",
+   "w": 196,
+   "h": 215,
+   "sheet": 4
+  },
+  "micro-kingdoms-080": {
+   "file": "spinning-top-with-stripes.png",
+   "w": 160,
+   "h": 168,
+   "sheet": 4
+  },
+  "micro-kingdoms-081": {
+   "file": "smooth-cap-acorn.png",
+   "w": 124,
+   "h": 148,
+   "sheet": 5
+  },
+  "micro-kingdoms-082": {
+   "file": "bumpy-cap-acorn.png",
+   "w": 125,
+   "h": 153,
+   "sheet": 5
+  },
+  "micro-kingdoms-083": {
+   "file": "empty-snail-shell.png",
+   "w": 166,
+   "h": 135,
+   "sheet": 5
+  },
+  "micro-kingdoms-084": {
+   "file": "sycamore-seed-wing.png",
+   "w": 178,
+   "h": 110,
+   "sheet": 5
+  },
+  "micro-kingdoms-085": {
+   "file": "curled-autumn-leaf-used-as-a-boat.png",
+   "w": 199,
+   "h": 170,
+   "sheet": 5
+  },
+  "micro-kingdoms-086": {
+   "file": "daisy-head.png",
+   "w": 173,
+   "h": 162,
+   "sheet": 5
+  },
+  "micro-kingdoms-087": {
+   "file": "feather-small-and-blue.png",
+   "w": 147,
+   "h": 170,
+   "sheet": 5
+  },
+  "micro-kingdoms-088": {
+   "file": "pebble-painted-like-a-ladybird.png",
+   "w": 169,
+   "h": 126,
+   "sheet": 5
+  },
+  "micro-kingdoms-089": {
+   "file": "clothes-peg.png",
+   "w": 192,
+   "h": 137,
+   "sheet": 5
+  },
+  "micro-kingdoms-090": {
+   "file": "plant-label-stick-with-a-flower-picture.png",
+   "w": 124,
+   "h": 204,
+   "sheet": 5
+  },
+  "micro-kingdoms-091": {
+   "file": "leaf-sail-walnut-shell-boat.png",
+   "w": 172,
+   "h": 207,
+   "sheet": 5
+  },
+  "micro-kingdoms-092": {
+   "file": "paper-sail-walnut-shell-boat.png",
+   "w": 172,
+   "h": 207,
+   "sheet": 5
+  },
+  "micro-kingdoms-093": {
+   "file": "sardine-tin-raft-with-a-straw-mast.png",
+   "w": 182,
+   "h": 195,
+   "sheet": 5
+  },
+  "micro-kingdoms-094": {
+   "file": "bottle-cap-coracle-with-a-matchstick-paddle.png",
+   "w": 183,
+   "h": 146,
+   "sheet": 5
+  },
+  "micro-kingdoms-095": {
+   "file": "matchbox-cart-with-button-wheels.png",
+   "w": 199,
+   "h": 140,
+   "sheet": 5
+  },
+  "micro-kingdoms-096": {
+   "file": "cotton-reel-wheelbarrow.png",
+   "w": 203,
+   "h": 139,
+   "sheet": 5
+  },
+  "micro-kingdoms-097": {
+   "file": "roller-skate-bus-with-a-thimble-seat.png",
+   "w": 173,
+   "h": 176,
+   "sheet": 5
+  },
+  "micro-kingdoms-098": {
+   "file": "clothes-peg-catapult.png",
+   "w": 189,
+   "h": 175,
+   "sheet": 5
+  },
+  "micro-kingdoms-099": {
+   "file": "teaspoon-seesaw-on-an-eraser.png",
+   "w": 206,
+   "h": 135,
+   "sheet": 5
+  },
+  "micro-kingdoms-100": {
+   "file": "drinking-straw-water-pipe-with-a-bend.png",
+   "w": 133,
+   "h": 190,
+   "sheet": 5
+  }
+ }
 }
