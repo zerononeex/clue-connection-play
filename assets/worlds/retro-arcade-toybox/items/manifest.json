@@ -1,4 +1,605 @@
 {
  "world": "retro-arcade-toybox",
- "items": {}
+ "items": {
+  "retro-arcade-toybox-001": {
+   "file": "rocket-picture-label-chunky-game-cartridge.png",
+   "w": 183,
+   "h": 206,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-002": {
+   "file": "star-picture-label-chunky-game-cartridge.png",
+   "w": 182,
+   "h": 206,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-003": {
+   "file": "tiny-handheld-game-cartridge.png",
+   "w": 111,
+   "h": 126,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-004": {
+   "file": "gold-special-edition-cartridge.png",
+   "w": 188,
+   "h": 175,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-005": {
+   "file": "floppy-disk-with-a-metal-slider.png",
+   "w": 170,
+   "h": 187,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-006": {
+   "file": "cassette-tape-with-two-reels.png",
+   "w": 204,
+   "h": 189,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-007": {
+   "file": "shiny-game-disc-in-a-paper-sleeve.png",
+   "w": 188,
+   "h": 185,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-008": {
+   "file": "cartridge-carry-case-with-a-handle.png",
+   "w": 192,
+   "h": 206,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-009": {
+   "file": "stack-of-three-cartridges.png",
+   "w": 190,
+   "h": 179,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-010": {
+   "file": "cartridge-with-a-puff-of-dust-being-blown-out.png",
+   "w": 190,
+   "h": 208,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-011": {
+   "file": "eight-silver-legs-black-microchip.png",
+   "w": 166,
+   "h": 143,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-012": {
+   "file": "twelve-silver-legs-black-microchip.png",
+   "w": 183,
+   "h": 148,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-013": {
+   "file": "square-processor-chip-with-gold-pins.png",
+   "w": 205,
+   "h": 164,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-014": {
+   "file": "chip-in-a-little-socket.png",
+   "w": 152,
+   "h": 125,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-015": {
+   "file": "green-circuit-board-corner-with-gold-tracks.png",
+   "w": 217,
+   "h": 214,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-016": {
+   "file": "round-coin-sized-circuit-board.png",
+   "w": 195,
+   "h": 191,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-017": {
+   "file": "circuit-board-shaped-like-a-heart.png",
+   "w": 200,
+   "h": 173,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-018": {
+   "file": "striped-resistor.png",
+   "w": 175,
+   "h": 103,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-019": {
+   "file": "red-light-emitting-diode-with-two-legs.png",
+   "w": 64,
+   "h": 167,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-020": {
+   "file": "tiny-capacitor-barrel.png",
+   "w": 78,
+   "h": 151,
+   "sheet": 1
+  },
+  "retro-arcade-toybox-021": {
+   "file": "red-wrapper-fat-battery.png",
+   "w": 201,
+   "h": 162,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-022": {
+   "file": "blue-wrapper-fat-battery.png",
+   "w": 201,
+   "h": 163,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-023": {
+   "file": "flat-round-button-battery.png",
+   "w": 171,
+   "h": 140,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-024": {
+   "file": "square-battery-with-two-snap-terminals.png",
+   "w": 152,
+   "h": 206,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-025": {
+   "file": "power-plug-with-a-coiled-cable.png",
+   "w": 196,
+   "h": 176,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-026": {
+   "file": "battery-clip-with-red-and-black-wires.png",
+   "w": 167,
+   "h": 178,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-027": {
+   "file": "charging-dock-with-a-green-glow-light.png",
+   "w": 206,
+   "h": 164,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-028": {
+   "file": "big-red-toggle-switch.png",
+   "w": 189,
+   "h": 177,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-029": {
+   "file": "fuse-with-a-glass-tube.png",
+   "w": 188,
+   "h": 179,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-030": {
+   "file": "hand-crank-dynamo-with-a-bulb.png",
+   "w": 187,
+   "h": 197,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-031": {
+   "file": "red-ball-top-arcade-joystick.png",
+   "w": 170,
+   "h": 205,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-032": {
+   "file": "yellow-ball-top-arcade-joystick.png",
+   "w": 170,
+   "h": 204,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-033": {
+   "file": "flight-style-joystick-with-a-trigger.png",
+   "w": 193,
+   "h": 213,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-034": {
+   "file": "tiny-thumb-stick-cap.png",
+   "w": 132,
+   "h": 148,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-035": {
+   "file": "chunky-rectangular-gamepad-with-a-cross-pad-and-two-buttons.png",
+   "w": 216,
+   "h": 154,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-036": {
+   "file": "round-paddle-controller-with-a-dial.png",
+   "w": 189,
+   "h": 175,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-037": {
+   "file": "handheld-game-console-with-a-small-screen.png",
+   "w": 184,
+   "h": 210,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-038": {
+   "file": "big-dome-arcade-button-green.png",
+   "w": 176,
+   "h": 170,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-039": {
+   "file": "row-of-four-coloured-buttons-on-a-strip.png",
+   "w": 222,
+   "h": 131,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-040": {
+   "file": "spinner-knob.png",
+   "w": 182,
+   "h": 171,
+   "sheet": 2
+  },
+  "retro-arcade-toybox-041": {
+   "file": "star-picture-brass-arcade-token.png",
+   "w": 166,
+   "h": 165,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-042": {
+   "file": "crown-picture-brass-arcade-token.png",
+   "w": 166,
+   "h": 165,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-043": {
+   "file": "stack-of-four-tokens.png",
+   "w": 192,
+   "h": 173,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-044": {
+   "file": "token-cup-half-full.png",
+   "w": 147,
+   "h": 204,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-045": {
+   "file": "strip-of-five-prize-tickets-with-star-pictures.png",
+   "w": 192,
+   "h": 199,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-046": {
+   "file": "single-golden-prize-ticket.png",
+   "w": 214,
+   "h": 156,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-047": {
+   "file": "ticket-roll-unspooling.png",
+   "w": 193,
+   "h": 197,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-048": {
+   "file": "coin-slot-plate-with-a-glowing-slot.png",
+   "w": 131,
+   "h": 205,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-049": {
+   "file": "coin-return-flap.png",
+   "w": 134,
+   "h": 205,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-050": {
+   "file": "piggy-bank-shaped-like-a-robot-head.png",
+   "w": 206,
+   "h": 206,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-051": {
+   "file": "square-antenna-tip-boxy-tin-robot.png",
+   "w": 166,
+   "h": 229,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-052": {
+   "file": "round-antenna-tip-boxy-tin-robot.png",
+   "w": 167,
+   "h": 229,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-053": {
+   "file": "tiny-robot-with-tank-treads.png",
+   "w": 182,
+   "h": 214,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-054": {
+   "file": "tall-robot-with-spring-arms.png",
+   "w": 192,
+   "h": 221,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-055": {
+   "file": "robot-claw-hand.png",
+   "w": 199,
+   "h": 205,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-056": {
+   "file": "robot-head-with-bulb-eyes.png",
+   "w": 193,
+   "h": 199,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-057": {
+   "file": "wind-up-key-for-a-robot.png",
+   "w": 179,
+   "h": 177,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-058": {
+   "file": "robot-dog-with-a-coil-tail.png",
+   "w": 204,
+   "h": 214,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-059": {
+   "file": "robot-bird-on-a-perch.png",
+   "w": 170,
+   "h": 211,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-060": {
+   "file": "robot-fish-with-a-propeller-tail.png",
+   "w": 200,
+   "h": 169,
+   "sheet": 3
+  },
+  "retro-arcade-toybox-061": {
+   "file": "red-scarf-plush-bear.png",
+   "w": 173,
+   "h": 222,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-062": {
+   "file": "blue-scarf-plush-bear.png",
+   "w": 173,
+   "h": 222,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-063": {
+   "file": "plush-bunny-with-one-floppy-ear.png",
+   "w": 170,
+   "h": 215,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-064": {
+   "file": "plush-orange-dinosaur-with-blue-felt-spikes.png",
+   "w": 211,
+   "h": 205,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-065": {
+   "file": "bendy-astronaut-figure.png",
+   "w": 188,
+   "h": 219,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-066": {
+   "file": "knight-figure-with-a-plastic-shield.png",
+   "w": 174,
+   "h": 209,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-067": {
+   "file": "racing-driver-figure-with-a-helmet.png",
+   "w": 165,
+   "h": 214,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-068": {
+   "file": "stacking-doll-biggest-one.png",
+   "w": 145,
+   "h": 215,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-069": {
+   "file": "sock-puppet-with-button-eyes.png",
+   "w": 161,
+   "h": 210,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-070": {
+   "file": "finger-puppet-frog.png",
+   "w": 168,
+   "h": 190,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-071": {
+   "file": "spiral-side-yo-yo.png",
+   "w": 181,
+   "h": 195,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-072": {
+   "file": "star-side-yo-yo.png",
+   "w": 182,
+   "h": 195,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-073": {
+   "file": "spinning-top-with-a-pull-string.png",
+   "w": 180,
+   "h": 196,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-074": {
+   "file": "fidget-pinwheel.png",
+   "w": 155,
+   "h": 220,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-075": {
+   "file": "stack-of-three-wooden-blocks-with-pictures.png",
+   "w": 213,
+   "h": 200,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-076": {
+   "file": "plastic-construction-brick-red.png",
+   "w": 198,
+   "h": 172,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-077": {
+   "file": "toy-crane-truck.png",
+   "w": 202,
+   "h": 206,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-078": {
+   "file": "wind-up-penguin.png",
+   "w": 177,
+   "h": 209,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-079": {
+   "file": "pull-along-duck-on-wheels.png",
+   "w": 206,
+   "h": 204,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-080": {
+   "file": "slinky-spring-walking-down-a-step.png",
+   "w": 211,
+   "h": 186,
+   "sheet": 4
+  },
+  "retro-arcade-toybox-081": {
+   "file": "white-dots-chunky-red-dice.png",
+   "w": 190,
+   "h": 194,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-082": {
+   "file": "yellow-dots-chunky-red-dice.png",
+   "w": 190,
+   "h": 194,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-083": {
+   "file": "purple-many-sided-dice-with-dots.png",
+   "w": 170,
+   "h": 194,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-084": {
+   "file": "pair-of-mini-dice-in-a-cup.png",
+   "w": 135,
+   "h": 205,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-085": {
+   "file": "rocket-shaped-board-game-piece.png",
+   "w": 108,
+   "h": 194,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-086": {
+   "file": "stack-of-coloured-counters.png",
+   "w": 193,
+   "h": 167,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-087": {
+   "file": "spinner-arrow-on-a-round-card.png",
+   "w": 200,
+   "h": 167,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-088": {
+   "file": "colour-twist-puzzle-cube.png",
+   "w": 181,
+   "h": 201,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-089": {
+   "file": "sliding-tile-puzzle-with-a-picture.png",
+   "w": 186,
+   "h": 186,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-090": {
+   "file": "maze-ball-with-a-tiny-bead-inside.png",
+   "w": 200,
+   "h": 204,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-091": {
+   "file": "star-handles-gold-trophy-cup.png",
+   "w": 204,
+   "h": 213,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-092": {
+   "file": "heart-handles-gold-trophy-cup.png",
+   "w": 206,
+   "h": 213,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-093": {
+   "file": "medal-on-a-striped-ribbon.png",
+   "w": 158,
+   "h": 218,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-094": {
+   "file": "rosette-prize-ribbon-blue.png",
+   "w": 141,
+   "h": 212,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-095": {
+   "file": "bouncy-ball-with-a-swirl.png",
+   "w": 179,
+   "h": 178,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-096": {
+   "file": "ring-with-a-giant-plastic-gem.png",
+   "w": 122,
+   "h": 195,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-097": {
+   "file": "whistle-shaped-like-a-rocket.png",
+   "w": 196,
+   "h": 120,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-098": {
+   "file": "giant-lollipop-with-a-swirl.png",
+   "w": 173,
+   "h": 209,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-099": {
+   "file": "toy-keyboard-with-rainbow-keys.png",
+   "w": 214,
+   "h": 138,
+   "sheet": 5
+  },
+  "retro-arcade-toybox-100": {
+   "file": "glow-stick-necklace.png",
+   "w": 197,
+   "h": 193,
+   "sheet": 5
+  }
+ }
 }

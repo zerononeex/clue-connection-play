@@ -1,4 +1,605 @@
 {
  "world": "living-art-gallery",
- "items": {}
+ "items": {
+  "living-art-gallery-001": {
+   "file": "red-paint-tip-round-paint-brush.png",
+   "w": 200,
+   "h": 208,
+   "sheet": 1
+  },
+  "living-art-gallery-002": {
+   "file": "blue-paint-tip-round-paint-brush.png",
+   "w": 200,
+   "h": 208,
+   "sheet": 1
+  },
+  "living-art-gallery-003": {
+   "file": "wide-flat-brush-with-a-wooden-handle.png",
+   "w": 167,
+   "h": 192,
+   "sheet": 1
+  },
+  "living-art-gallery-004": {
+   "file": "tiny-detail-brush.png",
+   "w": 152,
+   "h": 157,
+   "sheet": 1
+  },
+  "living-art-gallery-005": {
+   "file": "fan-shaped-blending-brush.png",
+   "w": 196,
+   "h": 217,
+   "sheet": 1
+  },
+  "living-art-gallery-006": {
+   "file": "chunky-stencil-brush.png",
+   "w": 133,
+   "h": 195,
+   "sheet": 1
+  },
+  "living-art-gallery-007": {
+   "file": "house-painting-brush-dripping-yellow.png",
+   "w": 169,
+   "h": 194,
+   "sheet": 1
+  },
+  "living-art-gallery-008": {
+   "file": "jar-of-five-mixed-brushes.png",
+   "w": 111,
+   "h": 196,
+   "sheet": 1
+  },
+  "living-art-gallery-009": {
+   "file": "rolled-canvas-brush-wrap.png",
+   "w": 200,
+   "h": 194,
+   "sheet": 1
+  },
+  "living-art-gallery-010": {
+   "file": "brush-resting-across-a-water-pot.png",
+   "w": 206,
+   "h": 180,
+   "sheet": 1
+  },
+  "living-art-gallery-011": {
+   "file": "five-paint-blobs-wooden-palette-with-a-thumb-hole.png",
+   "w": 201,
+   "h": 187,
+   "sheet": 1
+  },
+  "living-art-gallery-012": {
+   "file": "seven-paint-blobs-wooden-palette-with-a-thumb-hole.png",
+   "w": 212,
+   "h": 202,
+   "sheet": 1
+  },
+  "living-art-gallery-013": {
+   "file": "round-china-mixing-dish.png",
+   "w": 183,
+   "h": 136,
+   "sheet": 1
+  },
+  "living-art-gallery-014": {
+   "file": "palette-knife-with-a-paint-smear.png",
+   "w": 171,
+   "h": 170,
+   "sheet": 1
+  },
+  "living-art-gallery-015": {
+   "file": "squeezed-paint-tube-with-a-curl-of-green.png",
+   "w": 199,
+   "h": 173,
+   "sheet": 1
+  },
+  "living-art-gallery-016": {
+   "file": "fat-tube-of-crimson-paint-capped.png",
+   "w": 190,
+   "h": 210,
+   "sheet": 1
+  },
+  "living-art-gallery-017": {
+   "file": "box-of-watercolour-pans.png",
+   "w": 200,
+   "h": 181,
+   "sheet": 1
+  },
+  "living-art-gallery-018": {
+   "file": "open-pot-of-gold-paint.png",
+   "w": 123,
+   "h": 156,
+   "sheet": 1
+  },
+  "living-art-gallery-019": {
+   "file": "ink-bottle-with-a-dropper.png",
+   "w": 195,
+   "h": 162,
+   "sheet": 1
+  },
+  "living-art-gallery-020": {
+   "file": "splat-of-purple-paint-shaped-like-a-star.png",
+   "w": 212,
+   "h": 198,
+   "sheet": 1
+  },
+  "living-art-gallery-021": {
+   "file": "oval-small-ornate-gold-frame.png",
+   "w": 161,
+   "h": 212,
+   "sheet": 2
+  },
+  "living-art-gallery-022": {
+   "file": "square-small-ornate-gold-frame.png",
+   "w": 177,
+   "h": 182,
+   "sheet": 2
+  },
+  "living-art-gallery-023": {
+   "file": "plain-wooden-frame-with-a-hanging-wire.png",
+   "w": 205,
+   "h": 215,
+   "sheet": 2
+  },
+  "living-art-gallery-024": {
+   "file": "tiny-heart-shaped-frame.png",
+   "w": 171,
+   "h": 183,
+   "sheet": 2
+  },
+  "living-art-gallery-025": {
+   "file": "gold-frame-corner-piece-with-a-leaf-curl.png",
+   "w": 195,
+   "h": 204,
+   "sheet": 2
+  },
+  "living-art-gallery-026": {
+   "file": "length-of-carved-frame-moulding.png",
+   "w": 198,
+   "h": 163,
+   "sheet": 2
+  },
+  "living-art-gallery-027": {
+   "file": "brass-picture-hook.png",
+   "w": 63,
+   "h": 124,
+   "sheet": 2
+  },
+  "living-art-gallery-028": {
+   "file": "coil-of-picture-wire.png",
+   "w": 179,
+   "h": 158,
+   "sheet": 2
+  },
+  "living-art-gallery-029": {
+   "file": "little-brass-plaque-blank.png",
+   "w": 186,
+   "h": 82,
+   "sheet": 2
+  },
+  "living-art-gallery-030": {
+   "file": "spirit-level-with-a-bubble.png",
+   "w": 213,
+   "h": 201,
+   "sheet": 2
+  },
+  "living-art-gallery-031": {
+   "file": "sun-torn-canvas-scrap.png",
+   "w": 199,
+   "h": 200,
+   "sheet": 2
+  },
+  "living-art-gallery-032": {
+   "file": "moon-torn-canvas-scrap.png",
+   "w": 198,
+   "h": 200,
+   "sheet": 2
+  },
+  "living-art-gallery-033": {
+   "file": "canvas-scrap-showing-a-bit-of-sea.png",
+   "w": 162,
+   "h": 160,
+   "sheet": 2
+  },
+  "living-art-gallery-034": {
+   "file": "canvas-scrap-showing-a-castle-turret.png",
+   "w": 201,
+   "h": 208,
+   "sheet": 2
+  },
+  "living-art-gallery-035": {
+   "file": "blank-stretched-canvas.png",
+   "w": 161,
+   "h": 208,
+   "sheet": 2
+  },
+  "living-art-gallery-036": {
+   "file": "rolled-canvas-tied-with-tape.png",
+   "w": 200,
+   "h": 155,
+   "sheet": 2
+  },
+  "living-art-gallery-037": {
+   "file": "mini-canvas-on-a-mini-easel.png",
+   "w": 144,
+   "h": 212,
+   "sheet": 2
+  },
+  "living-art-gallery-038": {
+   "file": "yellow-sketchbook-open-to-a-duck-drawing.png",
+   "w": 196,
+   "h": 189,
+   "sheet": 2
+  },
+  "living-art-gallery-039": {
+   "file": "paper-cut-silhouette-of-a-tree.png",
+   "w": 199,
+   "h": 209,
+   "sheet": 2
+  },
+  "living-art-gallery-040": {
+   "file": "stack-of-colour-swatch-cards.png",
+   "w": 228,
+   "h": 228,
+   "sheet": 2
+  },
+  "living-art-gallery-041": {
+   "file": "laurel-wreath-marble-bust.png",
+   "w": 133,
+   "h": 212,
+   "sheet": 3
+  },
+  "living-art-gallery-042": {
+   "file": "party-hat-marble-bust.png",
+   "w": 128,
+   "h": 224,
+   "sheet": 3
+  },
+  "living-art-gallery-043": {
+   "file": "small-bronze-horse-statue.png",
+   "w": 180,
+   "h": 214,
+   "sheet": 3
+  },
+  "living-art-gallery-044": {
+   "file": "clay-bird-sculpture.png",
+   "w": 181,
+   "h": 160,
+   "sheet": 3
+  },
+  "living-art-gallery-045": {
+   "file": "sculptors-chisel.png",
+   "w": 205,
+   "h": 216,
+   "sheet": 3
+  },
+  "living-art-gallery-046": {
+   "file": "wooden-carving-mallet.png",
+   "w": 184,
+   "h": 207,
+   "sheet": 3
+  },
+  "living-art-gallery-047": {
+   "file": "lump-of-clay-with-thumb-prints.png",
+   "w": 167,
+   "h": 160,
+   "sheet": 3
+  },
+  "living-art-gallery-048": {
+   "file": "statues-lost-marble-hand-holding-an-apple.png",
+   "w": 143,
+   "h": 202,
+   "sheet": 3
+  },
+  "living-art-gallery-049": {
+   "file": "broken-column-top.png",
+   "w": 195,
+   "h": 216,
+   "sheet": 3
+  },
+  "living-art-gallery-050": {
+   "file": "wire-sculpture-of-a-dancing-figure.png",
+   "w": 125,
+   "h": 208,
+   "sheet": 3
+  },
+  "living-art-gallery-051": {
+   "file": "red-rope-end-brass-rope-barrier-post.png",
+   "w": 186,
+   "h": 208,
+   "sheet": 3
+  },
+  "living-art-gallery-052": {
+   "file": "purple-rope-end-brass-rope-barrier-post.png",
+   "w": 186,
+   "h": 208,
+   "sheet": 3
+  },
+  "living-art-gallery-053": {
+   "file": "museum-bench-cushion.png",
+   "w": 212,
+   "h": 114,
+   "sheet": 3
+  },
+  "living-art-gallery-054": {
+   "file": "velvet-curtain-tie-back-with-a-tassel.png",
+   "w": 127,
+   "h": 215,
+   "sheet": 3
+  },
+  "living-art-gallery-055": {
+   "file": "brass-picture-light.png",
+   "w": 217,
+   "h": 113,
+   "sheet": 3
+  },
+  "living-art-gallery-056": {
+   "file": "spotlight-on-a-stand.png",
+   "w": 123,
+   "h": 205,
+   "sheet": 3
+  },
+  "living-art-gallery-057": {
+   "file": "skylight-window-crank-handle.png",
+   "w": 101,
+   "h": 198,
+   "sheet": 3
+  },
+  "living-art-gallery-058": {
+   "file": "folding-step-ladder.png",
+   "w": 195,
+   "h": 217,
+   "sheet": 3
+  },
+  "living-art-gallery-059": {
+   "file": "feather-duster.png",
+   "w": 207,
+   "h": 218,
+   "sheet": 3
+  },
+  "living-art-gallery-060": {
+   "file": "guards-cap-with-a-badge-shaped-like-a-paint-drop.png",
+   "w": 200,
+   "h": 130,
+   "sheet": 3
+  },
+  "living-art-gallery-061": {
+   "file": "orange-tip-colour-pencil.png",
+   "w": 228,
+   "h": 228,
+   "sheet": 4
+  },
+  "living-art-gallery-062": {
+   "file": "violet-tip-colour-pencil.png",
+   "w": 191,
+   "h": 195,
+   "sheet": 4
+  },
+  "living-art-gallery-063": {
+   "file": "stick-of-charcoal.png",
+   "w": 112,
+   "h": 106,
+   "sheet": 4
+  },
+  "living-art-gallery-064": {
+   "file": "chunky-pastel-crayon-with-a-paper-sleeve.png",
+   "w": 148,
+   "h": 156,
+   "sheet": 4
+  },
+  "living-art-gallery-065": {
+   "file": "kneaded-eraser-blob.png",
+   "w": 150,
+   "h": 112,
+   "sheet": 4
+  },
+  "living-art-gallery-066": {
+   "file": "brass-pencil-sharpener.png",
+   "w": 166,
+   "h": 159,
+   "sheet": 4
+  },
+  "living-art-gallery-067": {
+   "file": "pencil-shaving-curl.png",
+   "w": 138,
+   "h": 149,
+   "sheet": 4
+  },
+  "living-art-gallery-068": {
+   "file": "wooden-artists-mannequin-figure.png",
+   "w": 115,
+   "h": 217,
+   "sheet": 4
+  },
+  "living-art-gallery-069": {
+   "file": "set-square-triangle.png",
+   "w": 196,
+   "h": 160,
+   "sheet": 4
+  },
+  "living-art-gallery-070": {
+   "file": "drawing-board-clip.png",
+   "w": 202,
+   "h": 169,
+   "sheet": 4
+  },
+  "living-art-gallery-071": {
+   "file": "gold-tip-cotton-swab.png",
+   "w": 190,
+   "h": 193,
+   "sheet": 4
+  },
+  "living-art-gallery-072": {
+   "file": "blue-tip-cotton-swab.png",
+   "w": 191,
+   "h": 193,
+   "sheet": 4
+  },
+  "living-art-gallery-073": {
+   "file": "folded-polishing-cloth.png",
+   "w": 206,
+   "h": 155,
+   "sheet": 4
+  },
+  "living-art-gallery-074": {
+   "file": "sea-sponge.png",
+   "w": 164,
+   "h": 147,
+   "sheet": 4
+  },
+  "living-art-gallery-075": {
+   "file": "bottle-of-varnish-with-a-cork.png",
+   "w": 102,
+   "h": 208,
+   "sheet": 4
+  },
+  "living-art-gallery-076": {
+   "file": "spray-mister-bottle.png",
+   "w": 127,
+   "h": 217,
+   "sheet": 4
+  },
+  "living-art-gallery-077": {
+   "file": "tiny-bottle-of-cleaning-drops.png",
+   "w": 69,
+   "h": 183,
+   "sheet": 4
+  },
+  "living-art-gallery-078": {
+   "file": "book-of-gold-leaf-with-one-sheet-lifting.png",
+   "w": 216,
+   "h": 165,
+   "sheet": 4
+  },
+  "living-art-gallery-079": {
+   "file": "restorers-magnifier-headband.png",
+   "w": 197,
+   "h": 145,
+   "sheet": 4
+  },
+  "living-art-gallery-080": {
+   "file": "pointed-tweezers-holding-a-paint-flake.png",
+   "w": 204,
+   "h": 207,
+   "sheet": 4
+  },
+  "living-art-gallery-081": {
+   "file": "castle-inside-snow-globe.png",
+   "w": 180,
+   "h": 215,
+   "sheet": 5
+  },
+  "living-art-gallery-082": {
+   "file": "sailboat-inside-snow-globe.png",
+   "w": 180,
+   "h": 215,
+   "sheet": 5
+  },
+  "living-art-gallery-083": {
+   "file": "souvenir-mug-with-a-paintbrush-handle.png",
+   "w": 160,
+   "h": 191,
+   "sheet": 5
+  },
+  "living-art-gallery-084": {
+   "file": "mini-statue-keyring.png",
+   "w": 95,
+   "h": 151,
+   "sheet": 5
+  },
+  "living-art-gallery-085": {
+   "file": "postcard-of-a-sunflower-painting.png",
+   "w": 191,
+   "h": 151,
+   "sheet": 5
+  },
+  "living-art-gallery-086": {
+   "file": "rolled-poster-in-a-tube.png",
+   "w": 199,
+   "h": 200,
+   "sheet": 5
+  },
+  "living-art-gallery-087": {
+   "file": "sticker-sheet-of-tiny-frames.png",
+   "w": 157,
+   "h": 215,
+   "sheet": 5
+  },
+  "living-art-gallery-088": {
+   "file": "paint-by-dots-kit-box.png",
+   "w": 204,
+   "h": 176,
+   "sheet": 5
+  },
+  "living-art-gallery-089": {
+   "file": "tin-of-colouring-pencils.png",
+   "w": 204,
+   "h": 146,
+   "sheet": 5
+  },
+  "living-art-gallery-090": {
+   "file": "art-smock-for-a-teddy-bear.png",
+   "w": 200,
+   "h": 162,
+   "sheet": 5
+  },
+  "living-art-gallery-091": {
+   "file": "red-painted-apple-with-visible-brush-strokes.png",
+   "w": 174,
+   "h": 186,
+   "sheet": 5
+  },
+  "living-art-gallery-092": {
+   "file": "green-painted-apple-with-visible-brush-strokes.png",
+   "w": 173,
+   "h": 186,
+   "sheet": 5
+  },
+  "living-art-gallery-093": {
+   "file": "painted-pear-with-a-leaf.png",
+   "w": 123,
+   "h": 193,
+   "sheet": 5
+  },
+  "living-art-gallery-094": {
+   "file": "painted-teapot-with-a-blue-flower.png",
+   "w": 204,
+   "h": 158,
+   "sheet": 5
+  },
+  "living-art-gallery-095": {
+   "file": "tiny-painted-sailboat.png",
+   "w": 144,
+   "h": 184,
+   "sheet": 5
+  },
+  "living-art-gallery-096": {
+   "file": "painted-seagull-standing-on-one-leg.png",
+   "w": 194,
+   "h": 196,
+   "sheet": 5
+  },
+  "living-art-gallery-097": {
+   "file": "painted-wave-curl-with-foam.png",
+   "w": 195,
+   "h": 193,
+   "sheet": 5
+  },
+  "living-art-gallery-098": {
+   "file": "painted-castle-flag-on-a-pole-blue-and-white-checks.png",
+   "w": 164,
+   "h": 203,
+   "sheet": 5
+  },
+  "living-art-gallery-099": {
+   "file": "painted-crown-with-brush-stroke-jewels.png",
+   "w": 179,
+   "h": 144,
+   "sheet": 5
+  },
+  "living-art-gallery-100": {
+   "file": "painted-duck-with-a-wet-paint-drip.png",
+   "w": 161,
+   "h": 193,
+   "sheet": 5
+  }
+ }
 }

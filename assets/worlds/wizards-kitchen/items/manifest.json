@@ -1,4 +1,605 @@
 {
  "world": "wizards-kitchen",
- "items": {}
+ "items": {
+  "wizards-kitchen-001": {
+   "file": "purple-liquid-corked-round-potion-bottle.png",
+   "w": 152,
+   "h": 206,
+   "sheet": 1
+  },
+  "wizards-kitchen-002": {
+   "file": "green-liquid-corked-round-potion-bottle.png",
+   "w": 153,
+   "h": 206,
+   "sheet": 1
+  },
+  "wizards-kitchen-003": {
+   "file": "heart-shaped-bottle-of-pink-potion.png",
+   "w": 165,
+   "h": 200,
+   "sheet": 1
+  },
+  "wizards-kitchen-004": {
+   "file": "tiny-teardrop-vial.png",
+   "w": 72,
+   "h": 147,
+   "sheet": 1
+  },
+  "wizards-kitchen-005": {
+   "file": "tall-thin-bottle-with-a-spiral-neck.png",
+   "w": 72,
+   "h": 207,
+   "sheet": 1
+  },
+  "wizards-kitchen-006": {
+   "file": "square-bottle-with-a-wax-sealed-top.png",
+   "w": 135,
+   "h": 200,
+   "sheet": 1
+  },
+  "wizards-kitchen-007": {
+   "file": "bottle-with-a-glowing-star-inside.png",
+   "w": 134,
+   "h": 192,
+   "sheet": 1
+  },
+  "wizards-kitchen-008": {
+   "file": "two-necked-sharing-bottle.png",
+   "w": 170,
+   "h": 190,
+   "sheet": 1
+  },
+  "wizards-kitchen-009": {
+   "file": "bottle-shaped-like-a-sleeping-cat.png",
+   "w": 197,
+   "h": 174,
+   "sheet": 1
+  },
+  "wizards-kitchen-010": {
+   "file": "fizzing-bottle-with-a-popped-cork-and-bubbles.png",
+   "w": 138,
+   "h": 203,
+   "sheet": 1
+  },
+  "wizards-kitchen-011": {
+   "file": "three-stubby-legs-small-iron-cauldron.png",
+   "w": 161,
+   "h": 200,
+   "sheet": 1
+  },
+  "wizards-kitchen-012": {
+   "file": "four-stubby-legs-small-iron-cauldron.png",
+   "w": 162,
+   "h": 200,
+   "sheet": 1
+  },
+  "wizards-kitchen-013": {
+   "file": "copper-cauldron-with-ring-handles.png",
+   "w": 216,
+   "h": 181,
+   "sheet": 1
+  },
+  "wizards-kitchen-014": {
+   "file": "tiny-travel-cauldron-with-a-lid.png",
+   "w": 178,
+   "h": 173,
+   "sheet": 1
+  },
+  "wizards-kitchen-015": {
+   "file": "copper-saucepan-with-a-long-handle.png",
+   "w": 230,
+   "h": 153,
+   "sheet": 1
+  },
+  "wizards-kitchen-016": {
+   "file": "bubbling-soup-pot-with-a-wobbling-lid.png",
+   "w": 217,
+   "h": 209,
+   "sheet": 1
+  },
+  "wizards-kitchen-017": {
+   "file": "clay-honey-crock.png",
+   "w": 153,
+   "h": 193,
+   "sheet": 1
+  },
+  "wizards-kitchen-018": {
+   "file": "grumpy-teapot-with-a-frowning-face.png",
+   "w": 218,
+   "h": 163,
+   "sheet": 1
+  },
+  "wizards-kitchen-019": {
+   "file": "whistling-kettle-with-a-puff-of-steam.png",
+   "w": 186,
+   "h": 197,
+   "sheet": 1
+  },
+  "wizards-kitchen-020": {
+   "file": "milk-pan-boiling-over-with-star-foam.png",
+   "w": 167,
+   "h": 198,
+   "sheet": 1
+  },
+  "wizards-kitchen-021": {
+   "file": "blue-liquid-inside-looping-glass-tube.png",
+   "w": 205,
+   "h": 205,
+   "sheet": 2
+  },
+  "wizards-kitchen-022": {
+   "file": "orange-liquid-inside-looping-glass-tube.png",
+   "w": 204,
+   "h": 206,
+   "sheet": 2
+  },
+  "wizards-kitchen-023": {
+   "file": "glass-spiral-condenser-coil.png",
+   "w": 153,
+   "h": 227,
+   "sheet": 2
+  },
+  "wizards-kitchen-024": {
+   "file": "u-bend-glass-tube-with-a-bubble.png",
+   "w": 179,
+   "h": 204,
+   "sheet": 2
+  },
+  "wizards-kitchen-025": {
+   "file": "round-bottom-flask-on-a-ring-stand.png",
+   "w": 158,
+   "h": 208,
+   "sheet": 2
+  },
+  "wizards-kitchen-026": {
+   "file": "cone-flask-with-a-swirl-of-smoke.png",
+   "w": 115,
+   "h": 214,
+   "sheet": 2
+  },
+  "wizards-kitchen-027": {
+   "file": "test-tube-rack-with-three-tubes.png",
+   "w": 198,
+   "h": 168,
+   "sheet": 2
+  },
+  "wizards-kitchen-028": {
+   "file": "glass-funnel.png",
+   "w": 167,
+   "h": 192,
+   "sheet": 2
+  },
+  "wizards-kitchen-029": {
+   "file": "dropper-pipette-with-a-rubber-bulb.png",
+   "w": 120,
+   "h": 162,
+   "sheet": 2
+  },
+  "wizards-kitchen-030": {
+   "file": "glass-stirring-rod-with-a-twisted-top.png",
+   "w": 128,
+   "h": 221,
+   "sheet": 2
+  },
+  "wizards-kitchen-031": {
+   "file": "smiling-face-wooden-spoon.png",
+   "w": 181,
+   "h": 191,
+   "sheet": 2
+  },
+  "wizards-kitchen-032": {
+   "file": "winking-face-wooden-spoon.png",
+   "w": 181,
+   "h": 191,
+   "sheet": 2
+  },
+  "wizards-kitchen-033": {
+   "file": "ladle-that-stirs-itself-with-little-wings.png",
+   "w": 165,
+   "h": 175,
+   "sheet": 2
+  },
+  "wizards-kitchen-034": {
+   "file": "honey-dipper-dripping-gold.png",
+   "w": 189,
+   "h": 201,
+   "sheet": 2
+  },
+  "wizards-kitchen-035": {
+   "file": "balloon-whisk-with-tiny-feet.png",
+   "w": 125,
+   "h": 210,
+   "sheet": 2
+  },
+  "wizards-kitchen-036": {
+   "file": "butter-knife-with-a-rounded-tip-and-a-bow.png",
+   "w": 187,
+   "h": 202,
+   "sheet": 2
+  },
+  "wizards-kitchen-037": {
+   "file": "rolling-pin-with-stars-carved-in.png",
+   "w": 210,
+   "h": 201,
+   "sheet": 2
+  },
+  "wizards-kitchen-038": {
+   "file": "self-pouring-measuring-jug.png",
+   "w": 183,
+   "h": 157,
+   "sheet": 2
+  },
+  "wizards-kitchen-039": {
+   "file": "salt-and-pepper-shakers-holding-hands.png",
+   "w": 217,
+   "h": 157,
+   "sheet": 2
+  },
+  "wizards-kitchen-040": {
+   "file": "pair-of-dancing-oven-gloves.png",
+   "w": 218,
+   "h": 175,
+   "sheet": 2
+  },
+  "wizards-kitchen-041": {
+   "file": "purple-string-bunch-of-lavender.png",
+   "w": 193,
+   "h": 209,
+   "sheet": 3
+  },
+  "wizards-kitchen-042": {
+   "file": "yellow-string-bunch-of-lavender.png",
+   "w": 192,
+   "h": 209,
+   "sheet": 3
+  },
+  "wizards-kitchen-043": {
+   "file": "sprig-of-rosemary.png",
+   "w": 175,
+   "h": 201,
+   "sheet": 3
+  },
+  "wizards-kitchen-044": {
+   "file": "bay-leaf-wreath.png",
+   "w": 204,
+   "h": 204,
+   "sheet": 3
+  },
+  "wizards-kitchen-045": {
+   "file": "garlic-bulb-with-a-sprout.png",
+   "w": 141,
+   "h": 193,
+   "sheet": 3
+  },
+  "wizards-kitchen-046": {
+   "file": "ginger-root-shaped-like-a-little-person.png",
+   "w": 129,
+   "h": 172,
+   "sheet": 3
+  },
+  "wizards-kitchen-047": {
+   "file": "bunch-of-three-radishes.png",
+   "w": 202,
+   "h": 213,
+   "sheet": 3
+  },
+  "wizards-kitchen-048": {
+   "file": "mint-leaf-pair.png",
+   "w": 141,
+   "h": 136,
+   "sheet": 3
+  },
+  "wizards-kitchen-049": {
+   "file": "dish-of-rose-petals.png",
+   "w": 212,
+   "h": 110,
+   "sheet": 3
+  },
+  "wizards-kitchen-050": {
+   "file": "dried-orange-slice.png",
+   "w": 140,
+   "h": 140,
+   "sheet": 3
+  },
+  "wizards-kitchen-051": {
+   "file": "gold-spoon-pinch-of-star-dust.png",
+   "w": 182,
+   "h": 166,
+   "sheet": 3
+  },
+  "wizards-kitchen-052": {
+   "file": "silver-spoon-pinch-of-star-dust.png",
+   "w": 182,
+   "h": 166,
+   "sheet": 3
+  },
+  "wizards-kitchen-053": {
+   "file": "slice-of-moon-cheese-with-holes.png",
+   "w": 190,
+   "h": 160,
+   "sheet": 3
+  },
+  "wizards-kitchen-054": {
+   "file": "bottled-giggle-with-bubbles.png",
+   "w": 178,
+   "h": 196,
+   "sheet": 3
+  },
+  "wizards-kitchen-055": {
+   "file": "rainbow-sugar-cube.png",
+   "w": 131,
+   "h": 126,
+   "sheet": 3
+  },
+  "wizards-kitchen-056": {
+   "file": "glowing-dragonfruit-half.png",
+   "w": 160,
+   "h": 202,
+   "sheet": 3
+  },
+  "wizards-kitchen-057": {
+   "file": "snowflake-kept-in-a-tiny-jar.png",
+   "w": 117,
+   "h": 188,
+   "sheet": 3
+  },
+  "wizards-kitchen-058": {
+   "file": "jumping-bean-with-legs.png",
+   "w": 127,
+   "h": 152,
+   "sheet": 3
+  },
+  "wizards-kitchen-059": {
+   "file": "egg-with-gold-speckles.png",
+   "w": 153,
+   "h": 172,
+   "sheet": 3
+  },
+  "wizards-kitchen-060": {
+   "file": "chilli-pepper-breathing-a-tiny-flame.png",
+   "w": 110,
+   "h": 127,
+   "sheet": 3
+  },
+  "wizards-kitchen-061": {
+   "file": "round-pans-brass-balance-scale.png",
+   "w": 223,
+   "h": 204,
+   "sheet": 4
+  },
+  "wizards-kitchen-062": {
+   "file": "square-pans-brass-balance-scale.png",
+   "w": 221,
+   "h": 202,
+   "sheet": 4
+  },
+  "wizards-kitchen-063": {
+   "file": "hanging-spring-scale-with-a-hook.png",
+   "w": 112,
+   "h": 217,
+   "sheet": 4
+  },
+  "wizards-kitchen-064": {
+   "file": "kitchen-scale-with-a-single-bowl.png",
+   "w": 164,
+   "h": 203,
+   "sheet": 4
+  },
+  "wizards-kitchen-065": {
+   "file": "set-of-three-nested-measuring-spoons.png",
+   "w": 183,
+   "h": 157,
+   "sheet": 4
+  },
+  "wizards-kitchen-066": {
+   "file": "measuring-cup-with-tick-marks.png",
+   "w": 190,
+   "h": 161,
+   "sheet": 4
+  },
+  "wizards-kitchen-067": {
+   "file": "sand-timer-with-purple-sand.png",
+   "w": 131,
+   "h": 209,
+   "sheet": 4
+  },
+  "wizards-kitchen-068": {
+   "file": "stone-mortar-and-pestle.png",
+   "w": 187,
+   "h": 191,
+   "sheet": 4
+  },
+  "wizards-kitchen-069": {
+   "file": "pepper-mill-with-a-crank.png",
+   "w": 106,
+   "h": 211,
+   "sheet": 4
+  },
+  "wizards-kitchen-070": {
+   "file": "tiny-nutmeg-grater.png",
+   "w": 133,
+   "h": 189,
+   "sheet": 4
+  },
+  "wizards-kitchen-071": {
+   "file": "sun-symbol-spell-card.png",
+   "w": 167,
+   "h": 216,
+   "sheet": 4
+  },
+  "wizards-kitchen-072": {
+   "file": "moon-symbol-spell-card.png",
+   "w": 168,
+   "h": 215,
+   "sheet": 4
+  },
+  "wizards-kitchen-073": {
+   "file": "spell-card-with-a-spoon-symbol.png",
+   "w": 135,
+   "h": 189,
+   "sheet": 4
+  },
+  "wizards-kitchen-074": {
+   "file": "fan-of-three-recipe-cards-with-pictures.png",
+   "w": 188,
+   "h": 147,
+   "sheet": 4
+  },
+  "wizards-kitchen-075": {
+   "file": "floating-recipe-book-with-flapping-pages.png",
+   "w": 208,
+   "h": 206,
+   "sheet": 4
+  },
+  "wizards-kitchen-076": {
+   "file": "tiny-pocket-spell-book-with-a-clasp.png",
+   "w": 177,
+   "h": 180,
+   "sheet": 4
+  },
+  "wizards-kitchen-077": {
+   "file": "book-with-a-ribbon-marker-and-a-cake-on-the-cover.png",
+   "w": 190,
+   "h": 207,
+   "sheet": 4
+  },
+  "wizards-kitchen-078": {
+   "file": "wand-with-a-star-tip.png",
+   "w": 200,
+   "h": 208,
+   "sheet": 4
+  },
+  "wizards-kitchen-079": {
+   "file": "yellow-pointed-wizard-hat-with-a-moon-patch.png",
+   "w": 214,
+   "h": 183,
+   "sheet": 4
+  },
+  "wizards-kitchen-080": {
+   "file": "quill-that-writes-by-itself.png",
+   "w": 146,
+   "h": 193,
+   "sheet": 4
+  },
+  "wizards-kitchen-081": {
+   "file": "cork-stopper-jar-of-starry-dust.png",
+   "w": 124,
+   "h": 204,
+   "sheet": 5
+  },
+  "wizards-kitchen-082": {
+   "file": "glass-stopper-jar-of-starry-dust.png",
+   "w": 114,
+   "h": 205,
+   "sheet": 5
+  },
+  "wizards-kitchen-083": {
+   "file": "jar-of-pickled-moonbeams.png",
+   "w": 162,
+   "h": 211,
+   "sheet": 5
+  },
+  "wizards-kitchen-084": {
+   "file": "jar-of-fireflies-lemonade.png",
+   "w": 156,
+   "h": 219,
+   "sheet": 5
+  },
+  "wizards-kitchen-085": {
+   "file": "jam-jar-with-a-cloth-top.png",
+   "w": 171,
+   "h": 195,
+   "sheet": 5
+  },
+  "wizards-kitchen-086": {
+   "file": "cookie-jar-shaped-like-an-owl.png",
+   "w": 153,
+   "h": 203,
+   "sheet": 5
+  },
+  "wizards-kitchen-087": {
+   "file": "spice-tin-with-a-shaker-lid.png",
+   "w": 123,
+   "h": 199,
+   "sheet": 5
+  },
+  "wizards-kitchen-088": {
+   "file": "flour-sack-with-a-puff-of-flour.png",
+   "w": 172,
+   "h": 200,
+   "sheet": 5
+  },
+  "wizards-kitchen-089": {
+   "file": "egg-basket-with-three-eggs.png",
+   "w": 194,
+   "h": 192,
+   "sheet": 5
+  },
+  "wizards-kitchen-090": {
+   "file": "bread-bin-with-a-loaf-peeking-out.png",
+   "w": 220,
+   "h": 207,
+   "sheet": 5
+  },
+  "wizards-kitchen-091": {
+   "file": "red-leather-side-fireplace-bellows.png",
+   "w": 209,
+   "h": 219,
+   "sheet": 5
+  },
+  "wizards-kitchen-092": {
+   "file": "blue-leather-side-fireplace-bellows.png",
+   "w": 209,
+   "h": 219,
+   "sheet": 5
+  },
+  "wizards-kitchen-093": {
+   "file": "fire-poker-with-a-curled-handle.png",
+   "w": 205,
+   "h": 212,
+   "sheet": 5
+  },
+  "wizards-kitchen-094": {
+   "file": "matchbox-with-one-match-out.png",
+   "w": 190,
+   "h": 145,
+   "sheet": 5
+  },
+  "wizards-kitchen-095": {
+   "file": "dripping-candle-in-a-saucer-holder.png",
+   "w": 182,
+   "h": 208,
+   "sheet": 5
+  },
+  "wizards-kitchen-096": {
+   "file": "candle-lantern-with-star-cut-outs.png",
+   "w": 104,
+   "h": 197,
+   "sheet": 5
+  },
+  "wizards-kitchen-097": {
+   "file": "three-arm-candlestick.png",
+   "w": 182,
+   "h": 223,
+   "sheet": 5
+  },
+  "wizards-kitchen-098": {
+   "file": "tiny-pink-bristled-hand-broom-with-a-bow.png",
+   "w": 172,
+   "h": 220,
+   "sheet": 5
+  },
+  "wizards-kitchen-099": {
+   "file": "dustpan-full-of-star-dust.png",
+   "w": 194,
+   "h": 187,
+   "sheet": 5
+  },
+  "wizards-kitchen-100": {
+   "file": "checked-tea-towel-on-a-hook.png",
+   "w": 115,
+   "h": 221,
+   "sheet": 5
+  }
+ }
 }

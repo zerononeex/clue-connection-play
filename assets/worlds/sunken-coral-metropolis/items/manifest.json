@@ -1,4 +1,605 @@
 {
  "world": "sunken-coral-metropolis",
- "items": {}
+ "items": {
+  "sunken-coral-metropolis-001": {
+   "file": "pink-lip-spiral-conch-shell.png",
+   "w": 192,
+   "h": 187,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-002": {
+   "file": "orange-lip-spiral-conch-shell.png",
+   "w": 191,
+   "h": 186,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-003": {
+   "file": "tall-pointed-turret-shell.png",
+   "w": 128,
+   "h": 219,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-004": {
+   "file": "tiny-moon-snail-shell.png",
+   "w": 110,
+   "h": 91,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-005": {
+   "file": "scallop-shell-with-ridges.png",
+   "w": 199,
+   "h": 193,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-006": {
+   "file": "pair-of-hinged-clam-shells-open.png",
+   "w": 196,
+   "h": 190,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-007": {
+   "file": "cockle-shell.png",
+   "w": 151,
+   "h": 146,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-008": {
+   "file": "nautilus-shell-cut-to-show-its-spiral.png",
+   "w": 201,
+   "h": 199,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-009": {
+   "file": "spiky-murex-shell.png",
+   "w": 204,
+   "h": 164,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-010": {
+   "file": "shell-with-a-hermit-crabs-eyes-peeking-out.png",
+   "w": 203,
+   "h": 180,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-011": {
+   "file": "white-open-oyster-pearl.png",
+   "w": 206,
+   "h": 207,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-012": {
+   "file": "golden-open-oyster-pearl.png",
+   "w": 206,
+   "h": 207,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-013": {
+   "file": "string-of-five-pearls.png",
+   "w": 208,
+   "h": 126,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-014": {
+   "file": "big-pink-pearl-on-a-cushion-of-sea-moss.png",
+   "w": 204,
+   "h": 155,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-015": {
+   "file": "pearl-lens-in-a-brass-ring-with-a-handle.png",
+   "w": 200,
+   "h": 205,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-016": {
+   "file": "pair-of-pearl-lens-goggles.png",
+   "w": 212,
+   "h": 141,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-017": {
+   "file": "pearl-lens-telescope-tube.png",
+   "w": 214,
+   "h": 157,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-018": {
+   "file": "pearl-ring.png",
+   "w": 130,
+   "h": 182,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-019": {
+   "file": "pearl-topped-hairpin.png",
+   "w": 183,
+   "h": 193,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-020": {
+   "file": "pearl-in-a-soap-bubble.png",
+   "w": 131,
+   "h": 131,
+   "sheet": 1
+  },
+  "sunken-coral-metropolis-021": {
+   "file": "four-spokes-ancient-bronze-valve-wheel.png",
+   "w": 206,
+   "h": 206,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-022": {
+   "file": "six-spokes-ancient-bronze-valve-wheel.png",
+   "w": 207,
+   "h": 207,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-023": {
+   "file": "lever-valve-with-a-ball-handle.png",
+   "w": 190,
+   "h": 203,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-024": {
+   "file": "shell-shaped-tap.png",
+   "w": 183,
+   "h": 202,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-025": {
+   "file": "small-bronze-elbow-pipe-wearing-a-starfish.png",
+   "w": 149,
+   "h": 148,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-026": {
+   "file": "t-shaped-pipe-junction.png",
+   "w": 208,
+   "h": 207,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-027": {
+   "file": "short-pipe-with-a-bubble-stream.png",
+   "w": 180,
+   "h": 208,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-028": {
+   "file": "bronze-pipe-clamp.png",
+   "w": 169,
+   "h": 115,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-029": {
+   "file": "round-drain-grate-with-a-fish-pattern.png",
+   "w": 194,
+   "h": 187,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-030": {
+   "file": "cork-plug-on-a-chain.png",
+   "w": 152,
+   "h": 168,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-031": {
+   "file": "pink-branch-coral-on-a-rock.png",
+   "w": 162,
+   "h": 212,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-032": {
+   "file": "orange-branch-coral-on-a-rock.png",
+   "w": 167,
+   "h": 214,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-033": {
+   "file": "blue-staghorn-coral-sprig.png",
+   "w": 198,
+   "h": 205,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-034": {
+   "file": "sea-fan-coral-lacy-and-purple.png",
+   "w": 214,
+   "h": 213,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-035": {
+   "file": "brain-coral-dome.png",
+   "w": 218,
+   "h": 158,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-036": {
+   "file": "mushroom-coral-disc.png",
+   "w": 207,
+   "h": 163,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-037": {
+   "file": "bubble-coral-cluster.png",
+   "w": 218,
+   "h": 177,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-038": {
+   "file": "yellow-tube-sponge-trio.png",
+   "w": 176,
+   "h": 205,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-039": {
+   "file": "barrel-sponge.png",
+   "w": 208,
+   "h": 208,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-040": {
+   "file": "sea-anemone-with-waving-tips.png",
+   "w": 209,
+   "h": 212,
+   "sheet": 2
+  },
+  "sunken-coral-metropolis-041": {
+   "file": "rope-loop-iron-anchor.png",
+   "w": 185,
+   "h": 216,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-042": {
+   "file": "chain-loop-iron-anchor.png",
+   "w": 185,
+   "h": 216,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-043": {
+   "file": "small-grappling-anchor-with-four-hooks.png",
+   "w": 161,
+   "h": 200,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-044": {
+   "file": "anchor-shaped-pendant.png",
+   "w": 118,
+   "h": 148,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-045": {
+   "file": "broken-half-of-a-ships-wheel-with-three-handles.png",
+   "w": 212,
+   "h": 216,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-046": {
+   "file": "brass-porthole-frame.png",
+   "w": 212,
+   "h": 212,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-047": {
+   "file": "ships-bell-with-a-rope-pull.png",
+   "w": 135,
+   "h": 220,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-048": {
+   "file": "coiled-rope-with-a-knot.png",
+   "w": 205,
+   "h": 152,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-049": {
+   "file": "wooden-pulley-block.png",
+   "w": 125,
+   "h": 221,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-050": {
+   "file": "ship-in-a-bottle.png",
+   "w": 213,
+   "h": 135,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-051": {
+   "file": "one-handle-clay-treasure-pot.png",
+   "w": 164,
+   "h": 205,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-052": {
+   "file": "two-handles-clay-treasure-pot.png",
+   "w": 201,
+   "h": 205,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-053": {
+   "file": "tall-amphora-jar-with-a-pointed-base.png",
+   "w": 141,
+   "h": 223,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-054": {
+   "file": "small-lidded-jar-overflowing-with-beads.png",
+   "w": 178,
+   "h": 200,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-055": {
+   "file": "gold-coin-with-a-turtle-picture.png",
+   "w": 135,
+   "h": 140,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-056": {
+   "file": "stack-of-five-gold-coins.png",
+   "w": 186,
+   "h": 174,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-057": {
+   "file": "coin-stuck-in-a-barnacle.png",
+   "w": 180,
+   "h": 158,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-058": {
+   "file": "jewelled-goblet.png",
+   "w": 130,
+   "h": 213,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-059": {
+   "file": "golden-comb-shaped-like-a-wave.png",
+   "w": 200,
+   "h": 198,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-060": {
+   "file": "small-treasure-chest-with-a-rounded-lid.png",
+   "w": 201,
+   "h": 187,
+   "sheet": 3
+  },
+  "sunken-coral-metropolis-061": {
+   "file": "five-arms-starfish.png",
+   "w": 202,
+   "h": 192,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-062": {
+   "file": "six-arms-starfish.png",
+   "w": 200,
+   "h": 190,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-063": {
+   "file": "tiny-blue-starfish.png",
+   "w": 114,
+   "h": 110,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-064": {
+   "file": "brittle-star-with-curly-arms.png",
+   "w": 204,
+   "h": 208,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-065": {
+   "file": "yellow-seahorse-with-a-curled-tail.png",
+   "w": 113,
+   "h": 216,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-066": {
+   "file": "striped-clownfish.png",
+   "w": 220,
+   "h": 146,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-067": {
+   "file": "round-pufferfish-puffed-up-and-smiling.png",
+   "w": 206,
+   "h": 189,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-068": {
+   "file": "red-crab-waving-one-claw.png",
+   "w": 214,
+   "h": 203,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-069": {
+   "file": "hermit-crab-in-a-painted-shell.png",
+   "w": 212,
+   "h": 181,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-070": {
+   "file": "sea-snail-with-a-spotted-shell.png",
+   "w": 174,
+   "h": 121,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-071": {
+   "file": "coral-hook-pearl-lantern.png",
+   "w": 168,
+   "h": 217,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-072": {
+   "file": "bronze-hook-pearl-lantern.png",
+   "w": 155,
+   "h": 217,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-073": {
+   "file": "standing-pearl-street-lamp.png",
+   "w": 104,
+   "h": 228,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-074": {
+   "file": "pearl-lantern-in-a-net.png",
+   "w": 160,
+   "h": 217,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-075": {
+   "file": "glass-jar-of-glowing-plankton.png",
+   "w": 134,
+   "h": 209,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-076": {
+   "file": "bottle-lantern-with-a-tiny-light-fish-picture.png",
+   "w": 101,
+   "h": 206,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-077": {
+   "file": "glowing-jelly-lamp-shaped-like-a-jellyfish.png",
+   "w": 140,
+   "h": 223,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-078": {
+   "file": "shell-horn-for-signalling.png",
+   "w": 203,
+   "h": 196,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-079": {
+   "file": "brass-divers-lamp.png",
+   "w": 124,
+   "h": 212,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-080": {
+   "file": "lighthouse-shaped-night-light.png",
+   "w": 113,
+   "h": 227,
+   "sheet": 4
+  },
+  "sunken-coral-metropolis-081": {
+   "file": "three-leaves-kelp-frond.png",
+   "w": 149,
+   "h": 215,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-082": {
+   "file": "five-leaves-kelp-frond.png",
+   "w": 183,
+   "h": 215,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-083": {
+   "file": "kelp-bulb-float.png",
+   "w": 125,
+   "h": 216,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-084": {
+   "file": "knotted-kelp-ribbon.png",
+   "w": 209,
+   "h": 198,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-085": {
+   "file": "tuft-of-sea-grass-in-sand.png",
+   "w": 179,
+   "h": 209,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-086": {
+   "file": "sea-lettuce-leaf.png",
+   "w": 185,
+   "h": 216,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-087": {
+   "file": "red-feather-seaweed.png",
+   "w": 144,
+   "h": 221,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-088": {
+   "file": "sea-grape-bunch.png",
+   "w": 178,
+   "h": 210,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-089": {
+   "file": "potted-sea-anemone-in-a-shell-pot.png",
+   "w": 206,
+   "h": 217,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-090": {
+   "file": "seaweed-wreath.png",
+   "w": 216,
+   "h": 214,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-091": {
+   "file": "round-window-brass-diving-helmet.png",
+   "w": 181,
+   "h": 226,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-092": {
+   "file": "square-window-brass-diving-helmet.png",
+   "w": 181,
+   "h": 226,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-093": {
+   "file": "shell-hard-hat-with-a-strap.png",
+   "w": 184,
+   "h": 208,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-094": {
+   "file": "snorkel-and-mask.png",
+   "w": 173,
+   "h": 214,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-095": {
+   "file": "crab-builders-trowel.png",
+   "w": 200,
+   "h": 204,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-096": {
+   "file": "coral-handled-hammer.png",
+   "w": 190,
+   "h": 215,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-097": {
+   "file": "shell-bucket-of-sand-mortar.png",
+   "w": 176,
+   "h": 208,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-098": {
+   "file": "divers-flipper-single.png",
+   "w": 169,
+   "h": 206,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-099": {
+   "file": "waterproof-map-tube.png",
+   "w": 204,
+   "h": 208,
+   "sheet": 5
+  },
+  "sunken-coral-metropolis-100": {
+   "file": "bubble-blowing-reed-pipe.png",
+   "w": 189,
+   "h": 205,
+   "sheet": 5
+  }
+ }
 }

@@ -3,123 +3,603 @@
  "items": {
   "clockmakers-attic-001": {
    "file": "star-shaped-centre-hole-brass-cog.png",
-   "w": 173,
-   "h": 176,
+   "w": 194,
+   "h": 192,
    "sheet": 1
   },
   "clockmakers-attic-002": {
    "file": "heart-shaped-centre-hole-brass-cog.png",
-   "w": 173,
-   "h": 176,
+   "w": 198,
+   "h": 200,
    "sheet": 1
   },
   "clockmakers-attic-003": {
    "file": "tiny-copper-pinion-gear.png",
-   "w": 117,
-   "h": 111,
+   "w": 86,
+   "h": 90,
    "sheet": 1
   },
   "clockmakers-attic-004": {
    "file": "big-iron-spur-gear-with-thick-teeth.png",
-   "w": 214,
-   "h": 198,
+   "w": 217,
+   "h": 219,
    "sheet": 1
   },
   "clockmakers-attic-005": {
    "file": "escape-wheel-with-hooked-teeth.png",
-   "w": 202,
-   "h": 205,
+   "w": 207,
+   "h": 206,
    "sheet": 1
   },
   "clockmakers-attic-006": {
    "file": "crown-gear-with-upright-teeth.png",
-   "w": 190,
-   "h": 157,
+   "w": 181,
+   "h": 141,
    "sheet": 1
   },
   "clockmakers-attic-007": {
    "file": "wooden-gear-with-round-peg-teeth.png",
-   "w": 200,
-   "h": 197,
+   "w": 187,
+   "h": 187,
    "sheet": 1
   },
   "clockmakers-attic-008": {
    "file": "two-meshed-mini-gears-on-a-brass-plate.png",
-   "w": 201,
-   "h": 127,
+   "w": 149,
+   "h": 130,
    "sheet": 1
   },
   "clockmakers-attic-009": {
    "file": "stack-of-three-cogs-on-one-axle.png",
-   "w": 188,
-   "h": 181,
+   "w": 203,
+   "h": 162,
    "sheet": 1
   },
   "clockmakers-attic-010": {
    "file": "worm-gear-on-a-short-shaft.png",
-   "w": 215,
-   "h": 96,
+   "w": 188,
+   "h": 59,
    "sheet": 1
   },
   "clockmakers-attic-011": {
    "file": "red-end-cap-coiled-steel-spring.png",
-   "w": 172,
-   "h": 164,
+   "w": 175,
+   "h": 181,
    "sheet": 1
   },
   "clockmakers-attic-012": {
    "file": "blue-end-cap-coiled-steel-spring.png",
    "w": 174,
-   "h": 164,
+   "h": 181,
    "sheet": 1
   },
   "clockmakers-attic-013": {
    "file": "flat-spiral-mainspring.png",
-   "w": 193,
-   "h": 179,
+   "w": 173,
+   "h": 184,
    "sheet": 1
   },
   "clockmakers-attic-014": {
    "file": "long-stretched-wobbly-spring.png",
-   "w": 220,
-   "h": 133,
+   "w": 203,
+   "h": 105,
    "sheet": 1
   },
   "clockmakers-attic-015": {
    "file": "brass-pendulum-with-a-round-bob.png",
-   "w": 107,
-   "h": 218,
+   "w": 96,
+   "h": 215,
    "sheet": 1
   },
   "clockmakers-attic-016": {
    "file": "pendulum-with-a-crescent-moon-bob.png",
-   "w": 120,
-   "h": 227,
+   "w": 104,
+   "h": 216,
    "sheet": 1
   },
   "clockmakers-attic-017": {
    "file": "pine-cone-clock-weight-on-a-chain.png",
-   "w": 108,
-   "h": 226,
+   "w": 68,
+   "h": 232,
    "sheet": 1
   },
   "clockmakers-attic-018": {
    "file": "balance-wheel-with-a-hairspring.png",
-   "w": 176,
-   "h": 193,
+   "w": 164,
+   "h": 186,
    "sheet": 1
   },
   "clockmakers-attic-019": {
    "file": "wooden-metronome-with-a-swinging-arm.png",
-   "w": 155,
-   "h": 220,
+   "w": 140,
+   "h": 202,
    "sheet": 1
   },
   "clockmakers-attic-020": {
    "file": "steel-tuning-fork.png",
-   "w": 165,
-   "h": 223,
+   "w": 116,
+   "h": 157,
    "sheet": 1
+  },
+  "clockmakers-attic-021": {
+   "file": "round-bow-clock-winding-key.png",
+   "w": 132,
+   "h": 147,
+   "sheet": 2
+  },
+  "clockmakers-attic-022": {
+   "file": "clover-shaped-bow-clock-winding-key.png",
+   "w": 181,
+   "h": 232,
+   "sheet": 2
+  },
+  "clockmakers-attic-023": {
+   "file": "skeleton-key-with-a-long-shank.png",
+   "w": 159,
+   "h": 188,
+   "sheet": 2
+  },
+  "clockmakers-attic-024": {
+   "file": "tiny-butterfly-winding-key.png",
+   "w": 84,
+   "h": 78,
+   "sheet": 2
+  },
+  "clockmakers-attic-025": {
+   "file": "brass-padlock-with-a-heart-keyhole.png",
+   "w": 134,
+   "h": 189,
+   "sheet": 2
+  },
+  "clockmakers-attic-026": {
+   "file": "iron-padlock-with-an-open-shackle.png",
+   "w": 133,
+   "h": 198,
+   "sheet": 2
+  },
+  "clockmakers-attic-027": {
+   "file": "keyhole-plate-with-a-swinging-cover.png",
+   "w": 108,
+   "h": 155,
+   "sheet": 2
+  },
+  "clockmakers-attic-028": {
+   "file": "ring-of-five-mixed-keys.png",
+   "w": 180,
+   "h": 181,
+   "sheet": 2
+  },
+  "clockmakers-attic-029": {
+   "file": "wooden-key-rack-with-one-key-hanging.png",
+   "w": 201,
+   "h": 146,
+   "sheet": 2
+  },
+  "clockmakers-attic-030": {
+   "file": "key-on-a-chain-with-a-little-bell.png",
+   "w": 180,
+   "h": 166,
+   "sheet": 2
+  },
+  "clockmakers-attic-031": {
+   "file": "gold-case-pocket-watch.png",
+   "w": 159,
+   "h": 210,
+   "sheet": 2
+  },
+  "clockmakers-attic-032": {
+   "file": "silver-case-pocket-watch.png",
+   "w": 160,
+   "h": 210,
+   "sheet": 2
+  },
+  "clockmakers-attic-033": {
+   "file": "open-pocket-watch-showing-its-gears.png",
+   "w": 162,
+   "h": 212,
+   "sheet": 2
+  },
+  "clockmakers-attic-034": {
+   "file": "wristwatch-with-a-leather-strap.png",
+   "w": 132,
+   "h": 198,
+   "sheet": 2
+  },
+  "clockmakers-attic-035": {
+   "file": "tiny-blue-roofed-cuckoo-clock-with-a-pine-cone-weight.png",
+   "w": 157,
+   "h": 217,
+   "sheet": 2
+  },
+  "clockmakers-attic-036": {
+   "file": "round-alarm-clock-with-twin-bells.png",
+   "w": 139,
+   "h": 193,
+   "sheet": 2
+  },
+  "clockmakers-attic-037": {
+   "file": "mantel-clock-with-a-domed-top.png",
+   "w": 218,
+   "h": 178,
+   "sheet": 2
+  },
+  "clockmakers-attic-038": {
+   "file": "hourglass-in-a-brass-frame.png",
+   "w": 125,
+   "h": 207,
+   "sheet": 2
+  },
+  "clockmakers-attic-039": {
+   "file": "stone-sundial-disc.png",
+   "w": 186,
+   "h": 164,
+   "sheet": 2
+  },
+  "clockmakers-attic-040": {
+   "file": "owl-shaped-wind-up-egg-timer.png",
+   "w": 130,
+   "h": 183,
+   "sheet": 2
+  },
+  "clockmakers-attic-041": {
+   "file": "red-wooden-handle-screwdriver.png",
+   "w": 176,
+   "h": 195,
+   "sheet": 3
+  },
+  "clockmakers-attic-042": {
+   "file": "green-wooden-handle-screwdriver.png",
+   "w": 206,
+   "h": 213,
+   "sheet": 3
+  },
+  "clockmakers-attic-043": {
+   "file": "tiny-jewellers-screwdriver.png",
+   "w": 170,
+   "h": 176,
+   "sheet": 3
+  },
+  "clockmakers-attic-044": {
+   "file": "hand-drill-with-a-crank-wheel.png",
+   "w": 211,
+   "h": 218,
+   "sheet": 3
+  },
+  "clockmakers-attic-045": {
+   "file": "fine-pointed-tweezers.png",
+   "w": 175,
+   "h": 191,
+   "sheet": 3
+  },
+  "clockmakers-attic-046": {
+   "file": "needle-nose-pliers.png",
+   "w": 170,
+   "h": 202,
+   "sheet": 3
+  },
+  "clockmakers-attic-047": {
+   "file": "small-brass-spanner.png",
+   "w": 184,
+   "h": 183,
+   "sheet": 3
+  },
+  "clockmakers-attic-048": {
+   "file": "wooden-mallet.png",
+   "w": 184,
+   "h": 214,
+   "sheet": 3
+  },
+  "clockmakers-attic-049": {
+   "file": "tiny-ball-headed-hammer.png",
+   "w": 178,
+   "h": 195,
+   "sheet": 3
+  },
+  "clockmakers-attic-050": {
+   "file": "brass-measuring-calipers.png",
+   "w": 181,
+   "h": 201,
+   "sheet": 3
+  },
+  "clockmakers-attic-051": {
+   "file": "red-ribbon-rolled-blue-blueprint.png",
+   "w": 195,
+   "h": 199,
+   "sheet": 3
+  },
+  "clockmakers-attic-052": {
+   "file": "yellow-ribbon-rolled-blue-blueprint.png",
+   "w": 195,
+   "h": 199,
+   "sheet": 3
+  },
+  "clockmakers-attic-053": {
+   "file": "blueprint-folded-into-a-fan-with-a-red-wax-seal.png",
+   "w": 202,
+   "h": 201,
+   "sheet": 3
+  },
+  "clockmakers-attic-054": {
+   "file": "blueprint-tube-with-a-brass-cap.png",
+   "w": 202,
+   "h": 214,
+   "sheet": 3
+  },
+  "clockmakers-attic-055": {
+   "file": "leather-sketchbook-with-a-strap.png",
+   "w": 208,
+   "h": 232,
+   "sheet": 3
+  },
+  "clockmakers-attic-056": {
+   "file": "stack-of-three-notebooks-tied-with-string.png",
+   "w": 196,
+   "h": 190,
+   "sheet": 3
+  },
+  "clockmakers-attic-057": {
+   "file": "paper-aeroplane-folded-from-a-blueprint.png",
+   "w": 205,
+   "h": 168,
+   "sheet": 3
+  },
+  "clockmakers-attic-058": {
+   "file": "brass-compass-for-drawing-circles.png",
+   "w": 124,
+   "h": 216,
+   "sheet": 3
+  },
+  "clockmakers-attic-059": {
+   "file": "wooden-ruler-with-tick-marks.png",
+   "w": 187,
+   "h": 197,
+   "sheet": 3
+  },
+  "clockmakers-attic-060": {
+   "file": "white-goose-feather-quill-in-a-round-inkwell.png",
+   "w": 149,
+   "h": 202,
+   "sheet": 3
+  },
+  "clockmakers-attic-061": {
+   "file": "wooden-handle-magnifying-glass.png",
+   "w": 174,
+   "h": 190,
+   "sheet": 4
+  },
+  "clockmakers-attic-062": {
+   "file": "brass-handle-magnifying-glass.png",
+   "w": 174,
+   "h": 189,
+   "sheet": 4
+  },
+  "clockmakers-attic-063": {
+   "file": "jewellers-loupe-eyepiece.png",
+   "w": 170,
+   "h": 119,
+   "sheet": 4
+  },
+  "clockmakers-attic-064": {
+   "file": "folding-brass-spyglass.png",
+   "w": 202,
+   "h": 176,
+   "sheet": 4
+  },
+  "clockmakers-attic-065": {
+   "file": "oil-lantern-with-a-glass-chimney.png",
+   "w": 128,
+   "h": 215,
+   "sheet": 4
+  },
+  "clockmakers-attic-066": {
+   "file": "candle-stub-in-a-brass-holder.png",
+   "w": 177,
+   "h": 143,
+   "sheet": 4
+  },
+  "clockmakers-attic-067": {
+   "file": "desk-lamp-with-a-green-glass-shade.png",
+   "w": 159,
+   "h": 203,
+   "sheet": 4
+  },
+  "clockmakers-attic-068": {
+   "file": "round-wire-spectacles.png",
+   "w": 208,
+   "h": 101,
+   "sheet": 4
+  },
+  "clockmakers-attic-069": {
+   "file": "tinker-goggles-with-a-leather-strap.png",
+   "w": 213,
+   "h": 128,
+   "sheet": 4
+  },
+  "clockmakers-attic-070": {
+   "file": "monocle-on-a-fine-chain.png",
+   "w": 199,
+   "h": 193,
+   "sheet": 4
+  },
+  "clockmakers-attic-071": {
+   "file": "straight-long-spout-oil-can.png",
+   "w": 194,
+   "h": 191,
+   "sheet": 4
+  },
+  "clockmakers-attic-072": {
+   "file": "curly-long-spout-oil-can.png",
+   "w": 187,
+   "h": 197,
+   "sheet": 4
+  },
+  "clockmakers-attic-073": {
+   "file": "squat-copper-oil-can.png",
+   "w": 195,
+   "h": 194,
+   "sheet": 4
+  },
+  "clockmakers-attic-074": {
+   "file": "tiny-oil-dropper-bottle.png",
+   "w": 55,
+   "h": 136,
+   "sheet": 4
+  },
+  "clockmakers-attic-075": {
+   "file": "brass-hex-nut.png",
+   "w": 93,
+   "h": 83,
+   "sheet": 4
+  },
+  "clockmakers-attic-076": {
+   "file": "wing-nut.png",
+   "w": 185,
+   "h": 157,
+   "sheet": 4
+  },
+  "clockmakers-attic-077": {
+   "file": "dome-headed-bolt.png",
+   "w": 88,
+   "h": 134,
+   "sheet": 4
+  },
+  "clockmakers-attic-078": {
+   "file": "open-tin-of-mixed-screws.png",
+   "w": 194,
+   "h": 180,
+   "sheet": 4
+  },
+  "clockmakers-attic-079": {
+   "file": "glass-jar-of-brass-rivets.png",
+   "w": 136,
+   "h": 208,
+   "sheet": 4
+  },
+  "clockmakers-attic-080": {
+   "file": "grease-pot-with-a-little-brush.png",
+   "w": 197,
+   "h": 204,
+   "sheet": 4
+  },
+  "clockmakers-attic-081": {
+   "file": "blue-tail-carved-wooden-cuckoo-bird.png",
+   "w": 202,
+   "h": 188,
+   "sheet": 5
+  },
+  "clockmakers-attic-082": {
+   "file": "yellow-tail-carved-wooden-cuckoo-bird.png",
+   "w": 202,
+   "h": 188,
+   "sheet": 5
+  },
+  "clockmakers-attic-083": {
+   "file": "cuckoo-bird-on-a-spring-perch.png",
+   "w": 118,
+   "h": 198,
+   "sheet": 5
+  },
+  "clockmakers-attic-084": {
+   "file": "pair-of-tiny-cuckoo-clock-doors.png",
+   "w": 172,
+   "h": 158,
+   "sheet": 5
+  },
+  "clockmakers-attic-085": {
+   "file": "brass-hand-bell-with-a-wooden-handle.png",
+   "w": 161,
+   "h": 194,
+   "sheet": 5
+  },
+  "clockmakers-attic-086": {
+   "file": "row-of-three-tube-chimes.png",
+   "w": 142,
+   "h": 199,
+   "sheet": 5
+  },
+  "clockmakers-attic-087": {
+   "file": "clock-gong-with-a-tiny-hammer.png",
+   "w": 201,
+   "h": 182,
+   "sheet": 5
+  },
+  "clockmakers-attic-088": {
+   "file": "music-box-cylinder-covered-in-pins.png",
+   "w": 194,
+   "h": 128,
+   "sheet": 5
+  },
+  "clockmakers-attic-089": {
+   "file": "wind-up-music-box-with-a-crank.png",
+   "w": 191,
+   "h": 142,
+   "sheet": 5
+  },
+  "clockmakers-attic-090": {
+   "file": "brass-gramophone-horn.png",
+   "w": 188,
+   "h": 194,
+   "sheet": 5
+  },
+  "clockmakers-attic-091": {
+   "file": "red-bow-tie-wind-up-tin-mouse.png",
+   "w": 189,
+   "h": 152,
+   "sheet": 5
+  },
+  "clockmakers-attic-092": {
+   "file": "blue-bow-tie-wind-up-tin-mouse.png",
+   "w": 189,
+   "h": 151,
+   "sheet": 5
+  },
+  "clockmakers-attic-093": {
+   "file": "wind-up-tin-bird-with-a-key-in-its-back.png",
+   "w": 187,
+   "h": 171,
+   "sheet": 5
+  },
+  "clockmakers-attic-094": {
+   "file": "clockwork-robot-with-a-dial-on-its-chest.png",
+   "w": 168,
+   "h": 216,
+   "sheet": 5
+  },
+  "clockmakers-attic-095": {
+   "file": "teacup-painted-with-a-gear-pattern.png",
+   "w": 189,
+   "h": 132,
+   "sheet": 5
+  },
+  "clockmakers-attic-096": {
+   "file": "dented-tin-biscuit-box.png",
+   "w": 194,
+   "h": 168,
+   "sheet": 5
+  },
+  "clockmakers-attic-097": {
+   "file": "small-framed-picture-of-a-clock-tower.png",
+   "w": 175,
+   "h": 176,
+   "sheet": 5
+  },
+  "clockmakers-attic-098": {
+   "file": "wooden-spinning-top.png",
+   "w": 136,
+   "h": 187,
+   "sheet": 5
+  },
+  "clockmakers-attic-099": {
+   "file": "brass-thimble.png",
+   "w": 107,
+   "h": 125,
+   "sheet": 5
+  },
+  "clockmakers-attic-100": {
+   "file": "dusty-top-hat-wearing-goggles.png",
+   "w": 198,
+   "h": 176,
+   "sheet": 5
   }
  }
 }
