@@ -443,6 +443,38 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 .setsheet .cat{padding:12px 16px;border-radius:22px;color:var(--ink);background:rgba(255,255,255,.45);box-shadow:inset 0 0 0 3px #c9a24a}
 .setsheet .pill,.setsheet .toggle{color:var(--cream)}
 .setsheet .code{color:var(--ink)}
+/* Play Together: pets as player badges, the race code, the race track over the scene, the 3-2-1 and the podium */
+.face{display:inline-grid;place-items:center;flex:none;width:52px;height:52px;border-radius:50%;background:var(--cream);border:4px solid var(--c,var(--a2));box-shadow:0 3px 0 rgba(0,0,0,.3)}
+.face{overflow:hidden}
+.face img{width:100%;height:100%;min-height:0;padding:9%;object-fit:contain}
+.pets{display:flex;flex-wrap:wrap;gap:10px}
+.pets .face{width:64px;height:64px;opacity:.75}
+.pets .face.on{opacity:1;border-color:var(--gold);box-shadow:0 0 0 4px #7a4a10,0 3px 0 rgba(0,0,0,.3);transform:scale(1.08)}
+.rcode{font-size:44px;font-weight:bold;letter-spacing:.22em;-webkit-user-select:all;user-select:all}
+.field.big{font-size:26px;font-weight:bold;letter-spacing:.3em;text-transform:uppercase}
+.field.big::placeholder{font-size:17px;font-weight:normal;letter-spacing:normal;text-transform:none}
+.who{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0}
+.who>span{display:grid;justify-items:center;font-weight:bold;font-size:13px}
+.choose{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.sets .choose .pill{margin:0}
+@media (orientation:landscape){.sets.lobby{grid-template-columns:1fr 1.5fr 1fr}}
+.pill.sm{min-height:34px;padding:3px 12px;font-size:14px}
+.choose.nums10{display:grid;grid-template-columns:repeat(5,auto);justify-content:start}
+.choose.nums10 .pill{justify-content:center;min-width:42px;padding:3px 6px}
+.pill.on{color:#3a2618;border-color:#7a4a10;background:linear-gradient(#ffe08a,#e0a830)}
+.race{position:fixed;z-index:6;left:max(8px,env(safe-area-inset-left));top:max(8px,env(safe-area-inset-top));display:grid;gap:4px;width:min(44vw,420px);padding:6px 12px;
+  border-radius:22px;border:3px solid var(--gold);background:rgba(28,18,12,.85);pointer-events:none}
+.lane{display:grid;grid-template-columns:auto 1fr 3.2em;align-items:center;gap:8px;font-weight:bold;font-size:14px;font-variant-numeric:tabular-nums}
+.lane .face{width:32px;height:32px;border-width:3px}
+.lane.me b{color:var(--gold)}
+.track{height:12px;border-radius:999px;background:rgba(255,255,255,.15);overflow:hidden}
+.track i{display:block;height:100%;border-radius:999px;transition:width .4s}
+.go{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:rgba(20,12,8,.6);pointer-events:none}
+.go b{font-size:30vmin;color:var(--gold);text-shadow:0 6px 0 #5a3a12,0 0 40px rgba(255,201,40,.6);animation:gopop .9s both}
+@keyframes gopop{from{transform:scale(.3);opacity:0}30%{transform:scale(1.1);opacity:1}to{transform:scale(1);opacity:.9}}
+.podium{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.podium li{display:flex;align-items:center;gap:10px;font-size:18px;color:var(--ink)}
+.podium li>b,.podium li>span:last-child{padding:.1em .6em;border-radius:1em;color:var(--ink);background:rgba(255,253,244,.9)}
 .setsheet .bar h1{color:var(--ink)}
 .setsheet .bar .mb{color:var(--ink)}
 /* win: the world's own card, its light rays and confetti */
@@ -493,7 +525,7 @@ const LABELS = {
   },
   power: { zoom: 'Super Zoom', hint: 'Hint', echo: 'Echo Replay', scanner: 'Truth Scanner', shield: 'Oops Shield' },
   ui: {
-    back: 'Back', home: 'Home', settings: 'Settings', soon: 'Coming soon',
+    back: 'Back', home: 'Home', settings: 'Settings',
     stages: 'Pick a Puzzle', found: 'Found', foundCount: 'found', pieces: 'pieces', powers: 'Powers', runs: 'It runs!',
     later: 'This machine comes later', win: 'You did it!', newPiece: 'You earned a new piece for the',
     oldPiece: 'You already earned the piece for this puzzle.', seeMachine: 'See my machine', next: 'Next puzzle',
@@ -505,7 +537,14 @@ const LABELS = {
     saveCode: 'My Save Code', copy: 'Copy', copied: 'Copied', loadCode: 'Load a Save Code', load: 'Load',
     paste: 'Paste a save code here', badCode: 'That code did not work. Please check it and try again. Your game is unchanged.',
     confirmLoad: 'Tap again to replace your game', loaded: 'Save code loaded.', together: 'Play Together',
-    host: 'Host', join: 'Join', volume: 'Volume', music: 'Music', on: 'On', off: 'Off',
+    host: 'Host a race', join: 'Join a race', roomCode: 'Race code', typeCode: 'Type the race code', pickPet: 'Pick your pet',
+    opening: 'Opening a race room...', joining: 'Joining...', waitHost: 'Waiting for the host to pick a game and start',
+    pickGame: 'Pick a game', pickPuzzle: 'Puzzle', start: 'Start the race', needFriend: 'Waiting for a friend to join', leave: 'Leave',
+    you: 'You', raceAgain: 'Race again', raceRoom: 'Back to the race room', racing: 'A race is on. You join the next one.',
+    noRoom: 'No race with that code. Check the letters with the host.', full: 'That race already has four players.',
+    noNet: 'Could not connect. Are you on the internet?', old: 'This iPad has an older game. Close the game and open it again.',
+    closed: 'The race room closed.', place: ['1st', '2nd', '3rd', '4th'],
+    volume: 'Volume', music: 'Music', on: 'On', off: 'Off',
     tapDoor: 'Tap the door to go in',
     startOver: 'Start Over', confirmWipe: 'Tap again to erase everything', wiped: 'Your game has been reset.'
   }
@@ -946,7 +985,7 @@ const powerBar = play => MACHINES.map(m => {
 }).join('');
 const SCREENS = {
   play() { // a round left part-way resumes: same seeded round, what was found already in the tray
-    const r = round = deal(cur.world, cur.mode, cur.n), going = inProgress()[roundKey(cur.world, cur.mode, cur.n)];
+    const r = round = deal(cur.world, cur.mode, cur.n), going = !racing() && inProgress()[roundKey(cur.world, cur.mode, cur.n)];
     r.found = going ? going.found.filter(k => r.need.includes(k)) : [];
     Object.assign(r, { landed: r.found.length, used: {}, wrong: 0 });
     if (going) keepRound();
@@ -956,7 +995,7 @@ const SCREENS = {
         `${view('view2', sceneHTML(r, 1) + `<span class="tag">${LABELS.ui.sideB}</span>`)}<span class="flipper">${btn('flip', '', LABELS.ui.flip)}</span></div>` :
         view('view', sceneHTML(r, 0) + `<div id="over"></div>`);
     const [s1, s2, sb] = LOOK[r.w.id].side;
-    return `<div class="play" style="--s1:${s1};--s2:${s2};--sb:${sb}">${stage}<aside class="side"><header class="bar">` +
+    return `<div class="play" style="--s1:${s1};--s2:${s2};--sb:${sb}">${stage}${racing() ? `<div class="race" id="race">${raceHTML()}</div>` : ''}<aside class="side"><header class="bar">` +
       btn('show', 'home', `<img src="${button(r.w.id, 12)}" alt="" draggable="false"><span>${LABELS.ui.home}</span>`, 'wbtn wide') + `<h1>${LABELS.mode[r.mode]} ${r.n}</h1></header>` +
       `<div class="powers" id="powers"></div>` +
       `<button class="slim" data-act="panel"><b id="count"></b><span id="next"></span><span class="med">${glyph('fold')}</span></button>` +
@@ -1382,7 +1421,7 @@ const STAGE_ART = s => ui(`menus/${LOOK[cur.world].menu}/stages`, s); // 1 finis
 function menuHTML(inner) {
   const w = WORLDS.find(w => w.id === cur.world), lk = LOOK[w.id], m = lk.menu;
   return `<div class="sheet" style="--ink:${lk.ink};--pl:url(${ui(`menus/${m}/panel-landscape`)});--pp:url(${ui(`menus/${m}/panel-portrait`)})">` +
-    `<div class="shead"><h1>${w.name}</h1>${btn('', '', `<img src="${button(w.id, 13)}" alt=""><span>${LABELS.ui.together}<small>${LABELS.ui.soon}</small></span>`, 'wbtn wide', true)}` +
+    `<div class="shead"><h1>${w.name}</h1>${btn('show', 'together', `<img src="${button(w.id, 13)}" alt=""><span>${LABELS.ui.together}</span>`, 'wbtn wide')}` +
     btn('show', 'home', `<img src="${button(w.id, 12)}" alt=""><span>${LABELS.ui.home}</span>`, 'wbtn wide') + `</div>${inner}</div>`;
 }
 SCREENS.home = () => '';
@@ -1458,13 +1497,13 @@ function readCode(code) { // validates prefix, checksum, JSON shape and version;
   } catch (e) { return null; }
 }
 SCREENS.settings = () => {
-  const st = save.settings, soon = label => btn('', '', `<span>${label}<small>${LABELS.ui.soon}</small></span>`, 'pill', true);
+  const st = save.settings;
   return `<div class="sheet setsheet" style="--ink:#3a2618;--pl:url(${UI}settings/panel-landscape.webp);--pp:url(${UI}settings/panel-portrait.webp)">` +
     bar(LABELS.ui.settings, 'home') + `<div class="sets">` +
     `<section class="cat"><h2>${LABELS.ui.saveCode}</h2><p class="code" id="code">${exportCode()}</p>${btn('copy', '', LABELS.ui.copy)}</section>` +
     `<section class="cat"><h2>${LABELS.ui.loadCode}</h2><input class="field" id="paste" placeholder="${LABELS.ui.paste}" autocomplete="off" autocapitalize="off" spellcheck="false">` +
     `${btn('load', '', LABELS.ui.load)}<p id="loadmsg"></p></section>` +
-    `<section class="cat" id="together"><h2>${LABELS.ui.together}</h2>${soon(LABELS.ui.host)}${soon(LABELS.ui.join)}</section>` +
+    `<section class="cat" id="together"><h2>${LABELS.ui.together}</h2>${btn('show', 'together', LABELS.ui.together)}</section>` +
     `<section class="cat"><h2>${LABELS.ui.volume} <span id="vol">${st.volume}</span>%</h2>` +
     `<input class="slider" id="volume" type="range" min="0" max="100" value="${st.volume}" aria-label="${LABELS.ui.volume}"></section>` +
     `<section class="cat"><h2>${LABELS.ui.music}</h2><button class="toggle" data-act="music" role="switch" aria-checked="${st.music}" aria-label="${LABELS.ui.music}">` +
@@ -1472,6 +1511,7 @@ SCREENS.settings = () => {
     `<section class="cat"><h2>${LABELS.ui.startOver}</h2>${btn('wipe', '', LABELS.ui.startOver)}<p id="wipemsg"></p></section></div></div>`;
 };
 function show(screen) {
+  if (T && screen !== 'play' && screen !== 'together') leaveRoom();
   cur.screen = screen;
   round = null;
   armed = '';
@@ -1622,7 +1662,8 @@ function mountPlay() {
   showClue();
   if (r.landed === r.need.length) win(); else if (r.kind === 'memory') peek();
 }
-function keepRound() { // stores the live round in the save: on every find, and refreshed when a round is resumed
+function keepRound() { // stores the live round in the save: on every find, and refreshed when a round is resumed (a race is never kept)
+  if (racing()) return;
   (save.inProgress = save.inProgress || {})[roundKey(cur.world, cur.mode, cur.n)] = { found: round.found, updatedAt: Date.now() };
   storeSave();
 }
@@ -1712,6 +1753,7 @@ function land(k) { // a found thing has reached the tray: checklist, count and c
     strip.classList.add('pulse');
   }
   $('#powers').innerHTML = powerBar(true);
+  if (racing()) report(r.landed === r.need.length ? { t: 'done', ms: Math.round(performance.now() - T.t0) } : { t: 'f', f: r.landed });
   if (r.landed === r.need.length) win(); else if (r.sets) showSet();
 }
 function win() { // the world's own card: its frame, ornament and confetti, the light rays, and the piece just earned
@@ -1726,9 +1768,284 @@ function win() { // the world's own card: its frame, ornament and confetti, the 
     (got ? `<span class="piece">${pieceArt(earned.machine, earned.piece)}</span>` : '') +
     `<p>${got ? `${LABELS.ui.newPiece} ${MACHINES[earned.machine].name}.` : LABELS.ui.oldPiece}</p>` +
     (got && earned.piece === 10 ? `<p>${LABELS.ui.newPower} <b>${LABELS.power[POWERS[MACHINES[earned.machine].id]]}</b></p>` : '') +
+    (racing() ? `<ol class="podium" id="podium">${podiumHTML()}</ol>` + (T.host ? btn('again', '', LABELS.ui.raceAgain) : btn('show', 'together', LABELS.ui.raceRoom)) :
     btn('machine', got ? earned.machine : save.machines.current, LABELS.ui.seeMachine) + (cur.n < 10 ? btn('stage', cur.n + 1, LABELS.ui.next) : '') +
-    btn('show', 'stages', LABELS.ui.back) + `</div></div>`);
+    btn('show', 'stages', LABELS.ui.back)) + `</div></div>`);
 }
+// ---------- PLAY TOGETHER: 2 to 4 iPads race the same round (the Hungry Hole pattern) ----------
+// Transport: WebRTC through PeerJS (peerjs.min.js, MIT, in this folder, fetched only when a race room opens), whose
+// free public broker only introduces the iPads; then traffic goes iPad to iPad. ?nettest=bc swaps in a
+// BroadcastChannel between tabs of one browser, for tests. One iPad hosts and is the truth: a guest sends only its
+// own progress, the host sends everyone the room. A round is dealt from its id, so only world, game and puzzle travel.
+const NET_V = 1, MAXG = 3, ALPHA = 'ABCDEFGHJKLMNPQRSTUVWXYZ', PREFIX = 'clue-connection-v1-';
+const NET = (() => {
+  const test = new URLSearchParams(location.search).get('nettest') === 'bc';
+  const code = () => Array.from(crypto.getRandomValues(new Uint32Array(6)), v => ALPHA[v % ALPHA.length]).join('');
+  const ready = () => test ? typeof BroadcastChannel === 'function' : typeof window.Peer === 'function';
+  let waiting = null;
+  const load = cb => { // the script is fetched once, the first time it is needed; solo play never touches it
+    if (ready() || test) return cb(ready());
+    if (!waiting) {
+      waiting = [];
+      const el = Object.assign(document.createElement('script'), { src: 'peerjs.min.js', async: true });
+      const done = () => { const q = waiting; waiting = null; q.forEach(f => f(ready())); };
+      el.onload = el.onerror = done;
+      document.head.append(el);
+    }
+    waiting.push(cb);
+  };
+  const mk = (tx, end) => { // a link: send(m) and close() from this side; gone() when the other side went away
+    const L = { open: true, onmsg: null, onclose: null,
+      send(m) { if (L.open) try { tx(m); } catch (e) { /* the close follows */ } },
+      close() { if (L.open) { L.open = false; try { end(); } catch (e) { /* gone */ } } },
+      gone() { if (L.open) { L.open = false; if (L.onclose) L.onclose(); } } };
+    return L;
+  };
+  const wire = (conn, L) => { conn.on('data', d => L.open && L.onmsg && L.onmsg(d)); conn.on('close', () => L.gone()); conn.on('error', () => L.gone()); };
+  function host(cb) { // cb.ready(code), cb.link(link) once per friend, cb.fail(why); returns { cancel }
+    const c = code(), links = new Set(), H = { done: false };
+    H.cancel = () => { H.done = true; [...links].forEach(L => L.close()); if (H.end) H.end(); };
+    const add = (tx, end) => { const L = mk(tx, () => { links.delete(L); end(); }); links.add(L); return L; };
+    if (test) {
+      const ch = new BroadcastChannel('cc-room-' + c), me = 'h' + Math.random(), by = new Map();
+      ch.onmessage = ({ data: v }) => {
+        if (H.done || !v) return;
+        if (v.k === 'join') {
+          if (links.size >= MAXG) return ch.postMessage({ k: 'full', to: v.from });
+          ch.postMessage({ k: 'ok', to: v.from, from: me });
+          const L = add(m => ch.postMessage({ k: 'm', to: v.from, from: me, d: m }), () => ch.postMessage({ k: 'bye', to: v.from, from: me }));
+          by.set(v.from, L);
+          return cb.link(L);
+        }
+        const L = v.to === me && by.get(v.from);
+        if (L && v.k === 'm') L.open && L.onmsg && L.onmsg(v.d);
+        if (L && v.k === 'bye') { links.delete(L); L.gone(); }
+      };
+      H.end = () => setTimeout(() => ch.close());
+      setTimeout(() => cb.ready(c));
+      return H;
+    }
+    let peer, opened = false;
+    try { peer = new window.Peer(PREFIX + c, { debug: 0 }); } catch (e) { setTimeout(() => cb.fail('net')); return H; }
+    H.end = () => { try { peer.destroy(); } catch (e) { /* gone */ } };
+    const t = setTimeout(() => { if (!opened && !H.done) { H.cancel(); cb.fail('net'); } }, 15000);
+    peer.on('open', () => { opened = true; clearTimeout(t); if (!H.done) cb.ready(c); });
+    peer.on('connection', conn => conn.on('open', () => {
+      if (H.done || links.size >= MAXG) { try { conn.send({ t: 'nope', why: 'full' }); } catch (e) { /* gone */ } return setTimeout(() => conn.close(), 500); }
+      const L = add(m => conn.send(m), () => conn.close());
+      wire(conn, L);
+      cb.link(L);
+    }));
+    peer.on('error', e => { if (H.done || opened) return; H.cancel(); cb.fail(e && e.type === 'unavailable-id' ? 'retry' : 'net'); });
+    return H;
+  }
+  function join(c, cb) { // cb.link(link) or cb.fail(why); returns { cancel }
+    const J = { done: false };
+    if (test) {
+      const ch = new BroadcastChannel('cc-room-' + c), me = 'g' + Math.random();
+      const t = setTimeout(() => { if (!J.done) { J.cancel(); cb.fail('noroom'); } }, 15000);
+      J.cancel = () => { J.done = true; clearTimeout(t); ch.close(); };
+      let L = null;
+      ch.onmessage = ({ data: v }) => {
+        if (!v || v.to !== me) return;
+        if (!L && !J.done && v.k === 'full') { J.cancel(); cb.fail('full'); }
+        if (!L && !J.done && v.k === 'ok') {
+          J.done = true; clearTimeout(t);
+          L = mk(m => ch.postMessage({ k: 'm', to: v.from, from: me, d: m }), () => { ch.postMessage({ k: 'bye', to: v.from, from: me }); ch.close(); });
+          cb.link(L);
+        } else if (L && v.k === 'm') L.open && L.onmsg && L.onmsg(v.d);
+        else if (L && v.k === 'bye') { L.gone(); ch.close(); }
+      };
+      ch.postMessage({ k: 'join', from: me });
+      return J;
+    }
+    let peer;
+    try { peer = new window.Peer({ debug: 0 }); } catch (e) { setTimeout(() => cb.fail('net')); return J; }
+    const t = setTimeout(() => { if (!J.done) { J.cancel(); cb.fail('net'); } }, 15000);
+    const end = () => { try { peer.destroy(); } catch (e) { /* gone */ } };
+    J.cancel = () => { J.done = true; clearTimeout(t); end(); };
+    peer.on('open', () => {
+      if (J.done) return;
+      const conn = peer.connect(PREFIX + c, { reliable: true, serialization: 'json' });
+      conn.on('open', () => {
+        if (J.done) return;
+        J.done = true; clearTimeout(t);
+        const L = mk(m => conn.send(m), () => { conn.close(); setTimeout(end, 400); });
+        wire(conn, L);
+        conn.on('close', end);
+        cb.link(L);
+      });
+    });
+    peer.on('error', e => { if (J.done) return; J.cancel(); cb.fail(e && e.type === 'peer-unavailable' ? 'noroom' : 'net'); });
+    return J;
+  }
+  return { host, join, load, code };
+})();
+// Nothing from another iPad is used until it passes these checks.
+const PET_IDS = Object.keys(PETS), COLOURS = ['#ffc928', '#4fa3e0', '#e0574f', '#6cc46a'];
+const okCode = c => typeof c === 'string' && c.length === 6 && [...c].every(ch => ALPHA.includes(ch));
+const okInt = (v, lo, hi) => Number.isInteger(v) && v >= lo && v <= hi;
+const okRace = m => WORLDS.some(w => w.id === m.world) && MODES.includes(m.mode) && okInt(m.n, 1, 10);
+const okPlayer = p => !!p && okInt(p.id, 0, MAXG) && PET_IDS.includes(p.pet) && okInt(p.f, 0, 99) && (p.ms === null || okInt(p.ms, 0, 864e5)) && okInt(p.place, 0, MAXG + 1);
+const okRoom = m => okRace(m) && okCode(m.code) && typeof m.racing === 'boolean' && okInt(m.need, 1, 99) && okInt(m.you, 0, MAXG) &&
+  Array.isArray(m.players) && m.players.length <= MAXG + 1 && m.players.every(okPlayer);
+
+// The room: { host, code, me, players: [{ id, pet, f (found), ms (finish time), place }], world, mode, n, need, racing, t0 }
+let T = null, tmsg = '';
+const racing = () => !!(T && T.racing && cur.screen === 'play');
+const myPet = () => PET_IDS.includes(save.settings.pet) ? save.settings.pet : PET_IDS[1];
+const petPic = p => ui('pets/' + p, PETS[p].idle);
+const face = p => `<span class="face" style="--c:${COLOURS[p.id]}"><img src="${petPic(p.pet)}" alt="" draggable="false"></span>`;
+const clock = ms => `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, '0')}`;
+const needOf = () => deal(T.world, T.mode, T.n).need.length;
+function raceHTML() {
+  return T.players.map(p => `<div class="lane${p.id === T.me ? ' me' : ''}">${face(p)}<span class="track"><i style="width:${Math.min(100, p.f / T.need * 100)}%;background:${COLOURS[p.id]}"></i></span>` +
+    `<b>${p.place ? LABELS.ui.place[p.place - 1] : `${p.f}/${T.need}`}</b></div>`).join('');
+}
+const podiumHTML = () => T.players.filter(p => p.place).sort((a, b) => a.place - b.place)
+  .map(p => `<li>${face(p)}<b>${LABELS.ui.place[p.place - 1]}</b><span>${clock(p.ms)}${p.id === T.me ? ' · ' + LABELS.ui.you : ''}</span></li>`).join('');
+function redraw() { // whatever is on screen shows the room as it is now
+  if (cur.screen === 'together' && $('.together')) { // only the panel's contents change, so it does not slide up again
+    const t = document.createElement('template');
+    t.innerHTML = SCREENS.together();
+    $('.together .sets').replaceWith(t.content.querySelector('.sets'));
+  }
+  if ($('#race')) $('#race').innerHTML = raceHTML();
+  if ($('#podium')) $('#podium').innerHTML = podiumHTML();
+}
+function fail(why) { T = null; tmsg = LABELS.ui[{ noroom: 'noRoom', full: 'full', old: 'old' }[why] || 'noNet']; if (cur.screen !== 'play') show('together'); }
+function leaveRoom() {
+  if (!T) return;
+  const t = T;
+  T = null;
+  if (t.h) t.h.cancel(); else if (t.link) t.link.close(); else if (t.j) t.j.cancel();
+}
+function countdown() { // 3, 2, 1 on every iPad, then the same round everywhere
+  T.racing = true;
+  T.players.forEach(p => Object.assign(p, { f: 0, ms: null, place: 0 }));
+  T.need = needOf();
+  $$('.win,.go').forEach(el => el.remove());
+  [3, 2, 1].forEach((n, i) => setTimeout(() => {
+    if (!T) return;
+    $$('.go').forEach(el => el.remove());
+    document.body.insertAdjacentHTML('beforeend', `<div class="go"><b>${n}</b></div>`);
+  }, i * 900));
+  setTimeout(() => {
+    $$('.go').forEach(el => el.remove());
+    if (!T || !T.racing) return;
+    Object.assign(cur, { world: T.world, mode: T.mode, n: T.n });
+    T.t0 = performance.now();
+    show('play');
+  }, 2700);
+}
+// host side
+function roomFor(id) { return { t: 'room', code: T.code, world: T.world, mode: T.mode, n: T.n, need: T.need, racing: T.racing, players: T.players, you: id }; }
+function tell() { T.links.forEach(L => L.send(roomFor(L.id))); redraw(); }
+function settle(p, m) { // a player's progress, checked: the host's own, or what a guest sent
+  if (!T.racing || p.place) return;
+  if (m.t === 'f' && okInt(m.f, 0, T.need - 1)) p.f = m.f;
+  if (m.t === 'done' && okInt(m.ms, 0, 864e5)) Object.assign(p, { f: T.need, ms: m.ms, place: T.players.filter(q => q.place).length + 1 });
+  tell();
+}
+function hostRoom() {
+  T = { host: true, me: 0, players: [{ id: 0, pet: myPet(), f: 0, ms: null, place: 0 }], links: new Set(), world: cur.world, mode: 'hidden-object', n: 1, racing: false };
+  T.need = needOf();
+  const t = T;
+  NET.load(ok => {
+    if (T !== t) return;
+    if (!ok) return fail('net');
+    t.h = NET.host({
+      ready(c) { if (T === t) { t.code = c; redraw(); } },
+      fail(why) { if (T === t) why === 'retry' ? hostRoom() : fail(why); },
+      link(L) {
+        L.onmsg = m => {
+          if (T !== t || !m || typeof m !== 'object') return;
+          if (m.t === 'hi' && L.id === undefined) {
+            if (m.v !== NET_V) return L.send({ t: 'nope', why: 'old' });
+            const used = t.players.map(p => p.id);
+            L.id = [1, 2, 3].find(i => !used.includes(i));
+            t.players.push({ id: L.id, pet: PET_IDS.includes(m.pet) ? m.pet : PET_IDS[0], f: 0, ms: null, place: 0 });
+            t.links.add(L);
+            return tell();
+          }
+          const p = t.players.find(q => q.id === L.id);
+          if (p) settle(p, m);
+        };
+        L.onclose = () => {
+          if (T !== t || L.id === undefined) return;
+          t.links.delete(L);
+          t.players = t.players.filter(p => p.id !== L.id);
+          tell();
+        };
+      }
+    });
+  });
+}
+function report(m) { if (T.host) settle(T.players[0], m); else T.link.send(m); }
+// guest side
+function joinRoom(c) {
+  T = { host: false, code: c, me: -1, players: [], racing: false, idle: false }; // idle: has seen the room between races
+  const t = T;
+  NET.load(ok => {
+    if (T !== t) return;
+    if (!ok) return fail('net');
+    t.j = NET.join(c, {
+      fail(why) { if (T === t) fail(why); },
+      link(L) {
+        if (T !== t) return L.close();
+        t.link = L;
+        L.onclose = () => { if (T !== t) return; T = null; toast(LABELS.ui.closed); if (cur.screen === 'together') show('together'); };
+        L.onmsg = m => {
+          if (T !== t || !m || typeof m !== 'object') return;
+          if (m.t === 'nope') { leaveRoom(); return fail(m.why); }
+          if (m.t === 'room' && okRoom(m)) {
+            const start = m.racing && t.idle; // a friend who arrives mid-race waits for the next one
+            t.idle = !m.racing;
+            Object.assign(t, { world: m.world, mode: m.mode, n: m.n, need: m.need, players: m.players, me: m.you });
+            if (!m.racing) t.racing = false;
+            if (start) countdown(); else redraw();
+          }
+        };
+        L.send({ t: 'hi', v: NET_V, pet: myPet() });
+        redraw();
+      }
+    });
+  });
+}
+SCREENS.together = () => {
+  const w = WORLDS.find(w => w.id === (T && T.world || cur.world)), msg = tmsg;
+  tmsg = '';
+  const head = `<div class="sheet setsheet together" style="--ink:#3a2618;--pl:url(${UI}settings/panel-landscape.webp);--pp:url(${UI}settings/panel-portrait.webp)">` +
+    bar(LABELS.ui.together, 'home') + `<div class="sets">`;
+  if (!T) return head + `<section class="cat"><h2>${LABELS.ui.pickPet}</h2><div class="pets">` +
+    PET_IDS.map(p => btn('pet', p, `<img src="${petPic(p)}" alt="${p}" draggable="false">`, 'face' + (p === myPet() ? ' on' : ''))).join('') + `</div></section>` +
+    `<section class="cat"><h2>${LABELS.ui.host}</h2><p>${w.name}</p>${btn('host', '', LABELS.ui.host)}</section>` +
+    `<section class="cat"><h2>${LABELS.ui.join}</h2><input class="field big" id="rcodein" placeholder="${LABELS.ui.typeCode}" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false">` +
+    `${btn('join', '', LABELS.ui.join)}<p id="tmsg">${msg}</p></section></div></div>`;
+  if (!T.players.length || !T.code) return head + `<section class="cat"><h2>${T.host ? LABELS.ui.opening : LABELS.ui.joining}</h2>${btn('leave', '', LABELS.ui.leave)}</section></div></div>`;
+  const who = `<div class="who">${T.players.map(p => `<span>${face(p)}${p.id === T.me ? `<small>${LABELS.ui.you}</small>` : ''}</span>`).join('')}</div>`;
+  const pick = T.host ? `<section class="cat"><h2>${LABELS.ui.pickGame}</h2><div class="choose">` +
+    MODES.map(m => btn('tmode', m, LABELS.mode[m], 'pill sm' + (m === T.mode ? ' on' : ''))).join('') + `</div></section><section class="cat"><h2>${LABELS.ui.pickPuzzle}</h2><div class="choose nums10">` +
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => btn('tn', n, n, 'pill sm' + (n === T.n ? ' on' : ''))).join('') + `</div>` +
+    btn('start', '', T.players.length > 1 ? LABELS.ui.start : LABELS.ui.needFriend, 'pill on', T.players.length < 2) + btn('leave', '', LABELS.ui.leave) + `</section>` :
+    `<section class="cat"><h2>${LABELS.mode[T.mode]} ${T.n}</h2><p>${T.racing ? LABELS.ui.racing : LABELS.ui.waitHost}</p></section>`;
+  return head.replace('class="sets"', 'class="sets lobby"') + `<section class="cat"><h2>${LABELS.ui.roomCode}</h2><p class="rcode">${T.code}</p><p>${w.name}</p>${who}${T.host ? '' : btn('leave', '', LABELS.ui.leave)}</section>` + pick + `</div></div>`;
+};
+Object.assign(ACT, {
+  pet(p) { if (PET_IDS.includes(p)) { save.settings.pet = p; storeSave(); show('together'); } },
+  host() { hostRoom(); show('together'); },
+  join() {
+    const c = $('#rcodein').value.toUpperCase().replace(/[^A-Z]/g, '');
+    if (!okCode(c)) { $('#tmsg').textContent = LABELS.ui.noRoom; return; }
+    joinRoom(c);
+    show('together');
+  },
+  leave() { leaveRoom(); show('together'); },
+  tmode(m) { if (T && T.host && MODES.includes(m)) { T.mode = m; T.need = needOf(); tell(); } },
+  tn(n) { if (T && T.host && okInt(+n, 1, 10)) { T.n = +n; T.need = needOf(); tell(); } },
+  start() { if (T && T.host && T.players.length > 1) { countdown(); tell(); } },
+  again() { if (T && T.host) { T.racing = false; tell(); } show('together'); }
+});
 // ---------- Powers: one free use of each per round, once its machine is finished ----------
 const POWER = {
   zoom() { // Super Zoom: one extra zoom level
@@ -2170,7 +2487,7 @@ async function selfTest() {
     return exact && resumed && same(save.powers, ['zoom']) && save.dealt === DEALT && !save.inProgress && save.machines.pieces.join() === '10,4,0,0,0' &&
       modeProgress(W, M).clearedSubStages.length === 10 && same(readCode(exportCode()), save);
   });
-  await test('ac', 'Sprites come from each world\'s items/manifest.json with no code change: every one of the 100 items in all 10 worlds draws as art, none as a placeholder; all 11 modes and all 10 worlds are open from the start; Play Together is shown and disabled', async () => {
+  await test('ac', 'Sprites come from each world\'s items/manifest.json with no code change: every one of the 100 items in all 10 worlds draws as art, none as a placeholder; all 11 modes and all 10 worlds are open from the start; Play Together is open in a world\'s menu and in Settings', async () => {
     const m = await (await fetch(`assets/worlds/${W}/items/manifest.json`)).json(), ids = Object.keys(m.items), A = WORLDS[0];
     for (const id of ids) if (!(await fetch(A.byId[id].sprite)).ok) throw new Error(id);
     reset(); open(M);
@@ -2178,10 +2495,18 @@ async function selfTest() {
     show('home');
     const worlds = count('#room .hot[data-tap^="world:"]') === 10;
     ACT.world(W2);
-    const modes = count('.mode:not(:disabled)') === 11;
+    const modes = count('.mode:not(:disabled)') === 11, menu = count('.shead [data-arg="together"]:not(:disabled)') === 1;
     show('settings');
     return ids.length >= 100 && WORLDS.every(w => w.items.length === 100 && w.items.every(i => i.sprite)) && drawn && worlds && modes &&
-      count('#together button') === 2 && count('#together button:disabled') === 2;
+      menu && count('#together [data-arg="together"]:not(:disabled)') === 1;
+  });
+  await test('ad', 'Play Together: race codes are 6 letters with no I or O; a room message from another iPad is used only when every field checks out', () => {
+    const codes = Array.from({ length: 200 }, NET.code), good = { code: 'ABCDEF', world: W, mode: M, n: 3, need: 20, racing: true, you: 1,
+      players: [{ id: 0, pet: 'owl', f: 4, ms: null, place: 0 }, { id: 1, pet: 'cat', f: 20, ms: 61000, place: 1 }] };
+    const bad = [{ code: 'ABCDEI' }, { world: 'nowhere' }, { mode: 'chess' }, { n: 11 }, { need: 0 }, { racing: 'yes' }, { you: 9 },
+      { players: [{ id: 0, pet: 'unicorn', f: 0, ms: null, place: 0 }] }, { players: [{ id: 0, pet: 'owl', f: -1, ms: null, place: 0 }] },
+      { players: Array(5).fill(good.players[0]) }].map(x => ({ ...good, ...x }));
+    return codes.every(okCode) && codes.every(c => !/[IO]/.test(c)) && okRoom(good) && bad.every(m => !okRoom(m));
   });
   realSave === null ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, realSave); // hand the real save back
   loadSave();
