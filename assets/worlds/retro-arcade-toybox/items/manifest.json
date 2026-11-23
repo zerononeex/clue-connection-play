@@ -347,13 +347,15 @@
    "file": "robot-dog-with-a-coil-tail.png",
    "w": 204,
    "h": 214,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "L"
   },
   "retro-arcade-toybox-059": {
    "file": "robot-bird-on-a-perch.png",
    "w": 170,
    "h": 211,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "R"
   },
   "retro-arcade-toybox-060": {
    "file": "robot-fish-with-a-propeller-tail.png",
@@ -473,7 +475,8 @@
    "file": "pull-along-duck-on-wheels.png",
    "w": 206,
    "h": 204,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "R"
   },
   "retro-arcade-toybox-080": {
    "file": "slinky-spring-walking-down-a-step.png",

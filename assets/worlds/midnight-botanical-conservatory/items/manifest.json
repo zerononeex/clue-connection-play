@@ -305,13 +305,15 @@
    "file": "rose-spout-copper-watering-can.png",
    "w": 215,
    "h": 165,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "R"
   },
   "midnight-botanical-conservatory-052": {
    "file": "long-thin-spout-copper-watering-can.png",
    "w": 203,
    "h": 157,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "R"
   },
   "midnight-botanical-conservatory-053": {
    "file": "glass-misting-bottle-with-a-squeeze-bulb.png",
@@ -449,7 +451,8 @@
    "file": "snail-carrying-a-glowing-acorn-on-its-back.png",
    "w": 197,
    "h": 185,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "R"
   },
   "midnight-botanical-conservatory-076": {
    "file": "ladybird-with-glowing-spots.png",
@@ -461,7 +464,8 @@
    "file": "stripy-caterpillar-on-a-twig.png",
    "w": 196,
    "h": 177,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "R"
   },
   "midnight-botanical-conservatory-078": {
    "file": "moon-moth-with-wide-pale-wings.png",
@@ -473,7 +477,8 @@
    "file": "firefly-with-a-big-golden-tail-light.png",
    "w": 148,
    "h": 152,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "L"
   },
   "midnight-botanical-conservatory-080": {
    "file": "dragonfly-with-stained-glass-wings.png",

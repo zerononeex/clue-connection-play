@@ -35,11 +35,10 @@ h1,h2,h3,p{margin:0}
 .chip.has-art .art{filter:drop-shadow(0 .05em .04em rgba(0,0,0,.5))}
 /* An item placed in a painting: bottom-aligned on its surface, shaded by the painting's light (sprite() sets the vars) */
 .chip.in{place-items:end center;filter:brightness(var(--lt))}
-.chip.in .art{filter:none;width:100%;height:100%;object-fit:contain;object-position:50% 100%;position:relative}
-.chip.in::before{content:'';position:absolute;left:50%;bottom:-3%;width:var(--sw);height:14%;transform:translateX(-50%);
-  background:radial-gradient(closest-side,var(--ink),transparent);opacity:.55;mix-blend-mode:multiply}
-.chip.lie .art,.chip.lie .glow{object-position:50% 50%;transform:translateY(var(--drop)) rotate(var(--rot))}
-.chip.lie .glow{-webkit-mask-position:50% 50%;mask-position:50% 50%}
+.chip.in .art{filter:none;width:100%;height:100%;object-fit:contain;object-position:50% 100%;position:absolute;left:0;top:0}
+.chip.in::before{content:'';position:absolute;left:50%;bottom:0;width:calc(var(--sw) * 1.15);height:12%;transform:translate(-50%,50%);
+  border-radius:50%;background:var(--ink);filter:blur(.07em);opacity:.35;mix-blend-mode:multiply}
+.chip.in.flip .art,.chip.in.flip .glow{transform:scaleX(-1)}
 .chip.in .glow{position:absolute;inset:0;background:var(--tint);mix-blend-mode:soft-light;opacity:.55;pointer-events:none;
   -webkit-mask:var(--m) 50% 100%/contain no-repeat;mask:var(--m) 50% 100%/contain no-repeat}
 .chip.crop{border-color:var(--a1)}
@@ -292,7 +291,7 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 .day .nightglow{opacity:0}
 #rcam .o{transform-origin:50% 100%}
 .o.hot>img{filter:drop-shadow(0 0 0 transparent)}
-.showing .o.hot{animation:showme 2.4s}
+.showing .o.hot,.o.beckon{animation:showme 2.4s}
 @keyframes showme{0%,100%{filter:none}15%,85%{filter:drop-shadow(0 0 6px #fff6a8) drop-shadow(0 0 16px #ffc928)}}
 .o.wiggle{animation:wiggle .8s}
 @keyframes wiggle{20%{rotate:-2deg}40%{rotate:2deg}60%{rotate:-1deg}80%{rotate:1deg}}
@@ -602,13 +601,14 @@ async function loadData() { // a world whose files cannot be read stays without 
     if (!a || !r) return;
     const box = b => ({ ...b, x: b.x * w.w, y: b.y * 100, w: b.w * w.w, h: b.h * 100 });
     w.w = 100 * a.background.size[0] / a.background.size[1];
-    w.zones = a.zones.map(box);
     w.painted = a.paintedObjects.map(box);
+    w.zones = a.zones.map(z => ({ ...box(z), top: (z.top ?? -1) * 100, near: (z.near || []).map(n => n.p ? w.painted.find(p => p.id === n.p) : box(n)) }));
+    w.guard = [...new Set([...w.painted, ...w.zones.flatMap(z => z.near.filter(n => !n.row))])]; // what an item may never stand on
     w.background = dir + 'background-web.jpg';
     w.light = await getJSON(dir + 'light.json');
     w.items = r.items.map((i, n) => {
       const f = m && m.items[i.id];
-      return { ...i, n, sprite: f ? dir + 'items/' + f.file : '', blend: f && w.light ? dir + 'items/blend/' + f.file.replace(/\.png$/, '.webp') : '', aspect: f ? f.w / f.h : 1 };
+      return { ...i, n, sprite: f ? dir + 'items/' + f.file : '', blend: f && w.light ? dir + 'items/blend/' + f.file.replace(/\.png$/, '.webp') : '', aspect: f ? f.w / f.h : 1, facing: f && f.facing || 'F', fixed: !!(f && f.fixed) };
     });
     w.byId = Object.fromEntries(w.items.map(i => [i.id, i]));
   }));
@@ -650,6 +650,8 @@ function shuffle(list, rnd) {
   }
   return out;
 }
+// PICKING (frozen): put() and fill() decide WHICH things a round deals, exactly as they always have; where those things
+// finally stand is decided afterwards by seat(). Changing put() or fill() would change every round's items.
 // Puts one item in a random zone that has room: it shrinks to the zone's size limit and sprite scale. False after 200 tries.
 // A zone says where an item's BASE may touch: a rest zone is a ledge (the base sits on its bottom edge), any other
 // zone is a patch of open ground seen from above (the base sits anywhere inside it; the item may rise above it).
@@ -662,7 +664,7 @@ function put(rnd, placed, item, zones, k = item.id) {
     const x = r2(z.x + d / 2 + rnd() * (z.w - d)), y = r2(base - d / 2);
     if (placed.some(q => Math.hypot(q.x - x, q.y - y) < (q.d + d) / 2 + .5)) continue;
     const p = { k, item, zone: z.id, x, y, d, target: false };
-    if (!z.rest && item.aspect < .42) p.lie = rnd() < .5 ? 1 : -1; // a tall, thin thing on open ground lies on its side
+    if (!z.rest && item.aspect < .42) rnd(); // kept: this draw is part of every frozen round's random stream
     placed.push(p);
     return p;
   }
@@ -755,12 +757,72 @@ const DEAL = { // how each mode assembles a round from the cast (the shuffled ro
     fill(r, rnd, cast, 0, 10);
   }
 };
+// ---------- Seating: where each dealt thing stands, so it belongs in the painting (the owner's embedding rules) ----------
+// 1 Surface only: its base on a zone's surface line (ledge) or inside its patch (ground), wholly inside the zone, the
+//   scene and clear of every other thing; never over a painted object or character (at most a fifth of it, or of the
+//   thing itself, may overlap).
+// 2 Replace first: a thing with a swappable painted twin stands exactly over it (same centre, same footprint).
+// 3 Scale from neighbours: its height is the median height of the painted things beside it on that surface, x0.8 (S),
+//   x1 (M) or x1.2 (L) (wide things lower, never under x0.75), always inside the owner's +-25% band; never above the
+//   zone's top (the underside of a table it stands under). 4 Facing: mirrored to face the way its neighbours face;
+//   a thing that cannot match prefers another zone. 6 Zone semantics: only categories the zone holds (anchors.json).
+// A thing that finds no legal spot is not dealt this round. Seating has its own random stream, so picking stays frozen.
+const BAND = { S: .8, M: 1, L: 1.2 };
+const median = a => { const s = a.slice().sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const area = b => b.w * b.h;
+const cover = (a, b) => Math.max(0, Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x)) * Math.max(0, Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y));
+const artOf = p => { const a = p.item.aspect, w = p.d * Math.min(1, a), h = p.d * Math.min(1, 1 / a); return { x: p.x - w / 2, y: p.y + p.d / 2 - h, w, h }; };
+const nearOf = (z, x) => z.near.slice().sort((a, b) => Math.abs(a.x + a.w / 2 - x) - Math.abs(b.x + b.w / 2 - x)).slice(0, 3); // the three beside a spot
+const overOf = (it, s) => { // a sprite fitted over a painted twin's box: same centre, same footprint
+  const aw = Math.min(s.w, s.h * it.aspect), d = Math.max(aw, aw / it.aspect);
+  return { x: r2(s.x + s.w / 2), y: r2(s.y + s.h / 2 + aw / it.aspect / 2 - d / 2), d: r2(d) };
+};
+const turned = (f, to) => f !== 'F' && to !== 'F' && f !== to; // L/R art that must be mirrored to face `to`
+function seat(r) {
+  const w = r.w, rnd = mulberry32(hash(`${w.id}/${r.mode}/${r.n}/seat`)), pane = r.pane || { x: 0, w: w.w };
+  const used = new Set([...(r.spots || []), ...(r.diffs || []).map(d => d.spot)]); // painted objects the round itself is about
+  const key = new Set([...(r.diffs || []).map(d => d.was), ...(r.choices || []).map(c => r.placed.find(p => p.k === c.k)),
+    ...r.placed.filter(p => p.target && /^(count|twins)$/.test(r.mode))]); // things a round cannot do without
+  const order = [...r.placed].sort((a, b) => (key.has(b) - key.has(a)) * 2 + (b.target - a.target)), seated = [];
+  const clear = (b, twin) => b.x >= Math.max(0, pane.x) && b.x + b.w <= Math.min(w.w, pane.x + pane.w) && b.y >= 0 && b.y + b.h <= 100 &&
+    seated.every(q => !cover(b, artOf(q))) && w.guard.every(g => g === twin || cover(b, g) <= Math.min(area(b), area(g)) * .2);
+  for (const p of order) {
+    const it = p.item, twin = p.k === it.id && w.painted.find(s => s.id === it.partner && s.swappable && !used.has(s));
+    if (twin && twin.x >= pane.x && twin.x + twin.w <= pane.x + pane.w) { // rule 2: same centre, same footprint
+      const q = { ...p, ...overOf(it, twin), zone: null, over: twin.id, flip: turned(it.facing, twin.facing || 'F') && !it.fixed };
+      if (clear(artOf(q), twin)) { used.add(twin); seated.push(Object.assign(p, q)); continue; }
+    }
+    const zones = w.zones.filter(z => z.near.length && z.holds.includes(it.cat) && (p.target || key.has(p) || z.use === 'add'));
+    for (let tries = 0, ok = false; tries < (key.has(p) ? 600 : 400) && zones.length && !ok; tries++) {
+      const z = pick(zones, rnd), loose = tries >= 200, low = tries >= 400; // first only zones it can face; a key thing may then go small
+      if (!loose && (it.fixed ? turned(it.facing, z.facing) : it.facing !== 'F' && z.facing === 'F')) continue;
+      const base = z.rest ? z.y + z.h : z.y + rnd() * z.h, x = r2(z.x + rnd() * z.w);
+      const h = median(nearOf(z, x).map(n => n.h)) * (low ? .76 : Math.max(.75, BAND[it.size] / Math.sqrt(Math.max(1, it.aspect)))); // wide things sit low in the band
+      const aw = h * it.aspect, d = r2(Math.max(aw, h)), q = { ...p, x, y: r2(base - d / 2), d, zone: z.id, over: null, flip: turned(it.facing, z.facing) && !it.fixed };
+      const b = artOf(q);
+      if (b.x < z.x || b.x + b.w > z.x + z.w || b.y < z.top || !clear(b)) continue;
+      ok = seated.push(Object.assign(p, q));
+    }
+  }
+  // a key thing that found no spot: Compare It loses that difference, Remember It asks about (or offers) another seated thing
+  const gone = p => p && !seated.includes(p);
+  if (r.kind === 'duo') r.need = (r.diffs = r.diffs.filter(d => !gone(d.was))).map(d => d.k);
+  (r.kind === 'memory' ? r.choices : []).forEach((c, i) => {
+    const p = r.placed.find(p => p.k === c.k), d = r.diffs[0], free = seated.filter(q => !r.choices.some(c => c.k === q.k));
+    if (!gone(p) || !free.length) return;
+    const q = pick(free, rnd);
+    if (d.was === p) Object.assign(d, { k: q.k, was: q });
+    r.choices[i] = { k: q.k, item: q.item };
+  });
+  r.placed = r.placed.filter(p => seated.includes(p));
+}
 const KIND = { 'spot-difference': 'duo', 'odd-one-out': 'sets', shadow: 'sets', 'doesnt-belong': 'sets', vanished: 'memory', changed: 'memory' };
 // Deals a round. Everything comes only from the sub-stage id: same id, same round, on any device, forever.
-function deal(worldId, modeId, n) {
+function deal(worldId, modeId, n, unseated) {
   const w = WORLDS.find(w => w.id === worldId), rnd = mulberry32(hash(`${worldId}/${modeId}/${n}`)), seen = new Set();
   const r = { w, mode: modeId, n, kind: KIND[modeId] || 'scene', placed: [], need: [] };
   DEAL[modeId](r, rnd, shuffle(w.items, rnd).filter(i => !i.look || !seen.has(i.look) && seen.add(i.look)));
+  if (!unseated) seat(r);
   if (!r.need.length) r.need = r.kind === 'memory' ? [r.diffs[0].k] : r.placed.filter(p => p.target).map(p => p.k);
   return r;
 }
@@ -768,7 +830,7 @@ const layoutHash = r => hash(JSON.stringify(r, (key, v) => v && v.zones ? undefi
 
 // ---------- Save state. Never rename this key; every change of shape is additive and goes through migrate(). ----------
 const KEY = 'clue-connection-data-v1';
-const DEALT = 3; // generation of the dealt layouts; 1 was the 30-item sample pool, 2 the zones before items stood on real surfaces
+const DEALT = 4; // generation of the dealt layouts; 1 was the 30-item sample pool, 2 the zones before items stood on real surfaces, 3 before seating
 const fresh = () => ({
   version: 1,
   progress: { worlds: {} },
@@ -876,9 +938,8 @@ function lightAt(w, x, y) {
 // with a soft contact shadow under it and the painting's local light over it.
 const sprite = (p, id, w) => {
   const d = p.d * 10, it = p.item, lt = it.blend && w && lightAt(w, p.x, p.y + p.d / 2 - 1);
-  const inner = !lt ? pic(it) : `<span class="chip has-art in${p.lie ? ' lie' : ''}" style="--lt:${r2(lt.b)};--tint:${lt.hex};--ink:${w.light.ink};` +
-    `--sw:${r2(p.lie ? 90 : Math.min(1, it.aspect) * 86)}%;--rot:${(p.lie || 0) * 90}deg;--drop:${r2((1 - it.aspect) * 50)}%;` +
-    `--m:url(${it.blend})"><img class="art" src="${it.blend}" alt="" draggable="false"><i class="glow"></i></span>`;
+  const inner = !lt ? pic(it) : `<span class="chip has-art in${p.flip ? ' flip' : ''}" style="--lt:${r2(lt.b)};--tint:${lt.hex};--ink:${w.light.ink};` +
+    `--sw:${r2(Math.min(1, it.aspect) * 86)}%;--m:url(${it.blend})"><img class="art" src="${it.blend}" alt="" draggable="false"><i class="glow"></i></span>`;
   return `<div class="item" id="${id}-${p.k}" style="left:${p.x * 10 - d / 2}px;top:${p.y * 10 - d / 2}px;width:${d}px;height:${d}px;font-size:${d * .6}px">` +
     `${inner}${DEV ? `<small>${it.name}</small>` : ''}</div>`;
 };
@@ -892,11 +953,12 @@ function sceneHTML(r, b, id = b ? 2 : '') {
   const zonesDev = !DEV ? '' : `<svg viewBox="0 0 ${w.w} 100" preserveAspectRatio="none">` + w.zones.map(z =>
     `<rect x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" fill="none" stroke="#c00" stroke-width=".3" stroke-dasharray="1"/>` +
     `<text x="${z.x}" y="${z.y - .5}" font-size="1.6" fill="#c00">${z.id} (max ${z.maxSize})</text>`).join('') + `</svg>`;
-  const patches = diffs.filter(d => d.spot).map(({ spot: s, item }) => {
+  const patch = s => { // hides a painted object under a soft copy of the painting next to it
     const from = s.x + s.w * 2.2 < w.w ? s.x + s.w * 1.2 : s.x - s.w * 1.2;
-    return `<div class="patch" style="${boxCss(s, 1)};background:url(${w.background}) ${-(from - 1) * 10}px ${-(s.y - 1) * 10}px/${w.w * 10}px 1000px"></div>` +
-      (item ? sprite({ k: s.id + '-cover', item, x: s.x + s.w / 2, y: s.y + s.h / 2, d: Math.max(s.w, s.h) }, 'c', w) : '');
-  }).join('');
+    return `<div class="patch" style="${boxCss(s, 1)};background:url(${w.background}) ${-(from - 1) * 10}px ${-(s.y - 1) * 10}px/${w.w * 10}px 1000px"></div>`;
+  };
+  const patches = r.placed.filter(p => p.over).map(p => patch(w.painted.find(s => s.id === p.over))).join('') + diffs.filter(d => d.spot).map(({ spot: s, item }) =>
+    patch(s) + (item ? sprite({ k: s.id + '-cover', item, ...overOf(item, s) }, 'c', w) : '')).join('');
   const sprites = r.placed.map(p => {
     const d = diffs.find(d => d.was === p);
     return r.kind === 'scene' && r.found.includes(p.k) || d && !d.item ? '' : sprite(d ? { ...p, item: d.item } : p, pre, w);
@@ -1275,7 +1337,7 @@ function dropPaper() { // a note flutters down somewhere in view and stays on th
   rcam.insertAdjacentHTML('beforeend', `<div class="o hot fallen" data-tap="paper" style="left:${x - 24}px;top:${y - 44}px;width:48px;height:44px;z-index:6;--from:${-y - 60}px;--tilt:${Math.random() * 50 - 25}deg">` +
     `<img src="${ui('room/props-books', 9 + Math.floor(Math.random() * 2))}" alt="" draggable="false"></div>`);
 }
-const bump = el => { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); };
+const bump = (el, cls = 'bump') => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
 let isDay = false;
 function setDay(on) {
   isDay = on;
@@ -1321,19 +1383,38 @@ function roomLife() {
     dr.style.transition = 'left 4s ease-in-out,top 4s ease-in-out';
     dr.style.left = x + 'px'; dr.style.top = 60 + Math.random() * 240 + 'px';
   }
+  if (!guide() && Math.random() < .5) catWalk(1750 + Math.random() * 1300);
+}
+function catWalk(x) { // the cat strolls to x (room units, its left edge) on its four walking frames
   const cat = $('#o-pet-cat');
-  if (cat && !cat.classList.contains('acting') && Math.random() < .5) {
-    const img = cat.querySelector('img'), x = 1750 + Math.random() * 1300, from = parseFloat(cat.style.left);
-    const bottom = parseFloat(cat.style.top) + parseFloat(cat.style.height), h = parseFloat(cat.style.width) * ratio(WALK[0]), idle = cat.style.height;
-    let f = 0;
-    const step = setInterval(() => { img.src = WALK[f++ % 4]; }, 150); // four frames: its legs really walk
-    cat.style.height = h + 'px'; cat.style.top = bottom - h + 'px';
-    cat.style.scale = x < from ? '-1 1' : '1 1';
-    cat.style.transition = `left ${Math.abs(x - from) / 220}s linear`;
-    cat.style.left = x + 'px';
-    setTimeout(() => { clearInterval(step); cat.style.height = idle; cat.style.top = bottom - parseFloat(idle) + 'px';
-      if (!cat.classList.contains('acting')) img.src = ui('pets/cat', PETS.cat.idle); }, Math.abs(x - from) / .22);
-  }
+  if (!cat || cat.classList.contains('acting') || cat.classList.contains('walking')) return;
+  const img = cat.querySelector('img'), from = parseFloat(cat.style.left), ms = Math.abs(x - from) / .22;
+  const bottom = parseFloat(cat.style.top) + parseFloat(cat.style.height), h = parseFloat(cat.style.width) * ratio(WALK[0]), idle = cat.style.height;
+  let f = 0;
+  const step = setInterval(() => { img.src = WALK[f++ % 4]; }, 150); // four frames: its legs really walk
+  cat.classList.add('walking');
+  cat.style.height = h + 'px'; cat.style.top = bottom - h + 'px';
+  cat.style.scale = x < from ? '-1 1' : '1 1';
+  cat.style.transition = `left ${ms / 1000}s linear`;
+  cat.style.left = x + 'px';
+  setTimeout(() => { clearInterval(step); cat.classList.remove('walking'); cat.style.height = idle; cat.style.top = bottom - parseFloat(idle) + 'px';
+    if (!cat.classList.contains('acting')) img.src = ui('pets/cat', PETS.cat.idle); }, ms);
+}
+// The room guide (no words, no arrows): until a world has ever been opened, the cat walks to the world nearest to it
+// and makes it glow on every beat of roomLife; after each win it walks to the nearest world not played yet and makes
+// that one glow once. The Show me button still lights everything.
+const guided = { opened: false, once: false };
+function guide() {
+  const first = !guided.opened && !Object.keys(save.progress.worlds).length, cat = $('#o-pet-cat');
+  if (!first && !guided.once || !cat) return false;
+  const left = parseFloat(cat.style.left), cw = parseFloat(cat.style.width), mid = left + cw / 2;
+  const id = WORLDS.map(w => w.id).filter(id => first || !save.progress.worlds[id] && id !== cur.world)
+    .sort((a, b) => Math.abs(placed[worldSpot(a)].x - mid) - Math.abs(placed[worldSpot(b)].x - mid))[0];
+  if (!id) return guided.once = false;
+  const to = Math.max(40, Math.min(RW - cw - 40, placed[worldSpot(id)].x - cw - 30)); // beside the world, on the floor
+  if (Math.abs(to - left) > 8) catWalk(to);
+  else if (!cat.classList.contains('walking')) { bump($(`[data-tap="world:${id}"]`), 'beckon'); guided.once = false; }
+  return true;
 }
 function trainLoop(t) { // three toy cars run round the oval track on the table
   const track = placed.track, cars = $$('#train .car');
@@ -1525,7 +1606,7 @@ function show(screen) {
 }
 const ACT = {
   show,
-  world(id) { cur.world = id; show('modes'); zoomOn(worldSpot(id)); },
+  world(id) { cur.world = id; guided.opened = true; show('modes'); zoomOn(worldSpot(id)); },
   mode(id) { cur.mode = id; show('stages'); },
   machine(i) { if (MACHINES[i]) { cur.home = +i; show('machine'); } },
   stage(n) { cur.n = +n; show('play'); },
@@ -1757,6 +1838,7 @@ function land(k) { // a found thing has reached the tray: checklist, count and c
   if (r.landed === r.need.length) win(); else if (r.sets) showSet();
 }
 function win() { // the world's own card: its frame, ornament and confetti, the light rays, and the piece just earned
+  guided.once = true;
   const got = clearSubStage(cur.world, cur.mode, cur.n), earned = save.machines.justEarned, [f, frame, orn, ...conf] = LOOK[cur.world].win;
   delete inProgress()[roundKey(cur.world, cur.mode, cur.n)];
   storeSave();
@@ -2053,10 +2135,10 @@ const POWER = {
     cam.max = 8;
     v.zoom(2, b.left + b.width / 2, b.top + b.height / 2);
   },
-  hint(r) { // Hint: rings the zone the next target sits in (on a tray, the card itself)
+  hint(r) { // Hint: rings the zone the next target sits in, or the painted twin it stands over (on a tray, the card itself)
     const k = r.ordered ? r.need[r.found.length] : r.need.find(k => !r.found.includes(k)), card = $(`.card[data-arg="${k}"]`);
     if (card) return card.classList.add('hinted');
-    const p = r.placed.find(p => p.k === k), z = p ? r.w.zones.find(z => z.id === p.zone) : spotOf(k), v = $('#view');
+    const p = r.placed.find(p => p.k === k), z = p ? r.w.zones.find(z => z.id === p.zone) || r.w.painted.find(s => s.id === p.over) : spotOf(k), v = $('#view');
     $$('.shift').forEach(sh => sh.insertAdjacentHTML('beforeend', `<div class="hintring" style="${boxCss(z, 3)}"></div>`));
     cam.x = v.clientWidth / 2 - (z.x + z.w / 2 - (r.pane || { x: 0 }).x) * 10 * cam.s;
     cam.y = v.clientHeight / 2 - (z.y + z.h / 2) * 10 * cam.s;
@@ -2104,22 +2186,29 @@ async function selfTest() {
   const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
   const test = async (id, name, fn) => {
     let ok = false, note = '';
-    try { ok = await fn(); } catch (e) { note = ` [${e.message}]`; }
+    try { ok = await fn(); if (typeof ok === 'string') note = ` [${ok}]`; } catch (e) { note = ` [${e.message}]`; }
     results.push(`<li class="${ok ? 'ok' : 'bad'}"><b>${ok ? 'PASS' : 'FAIL'}</b> (${id}) ${name}${note}</li>`);
   };
   await test('a', 'Same seed builds the identical layout twice, again after a real page reload, and matches the frozen hash',
     () => hashOf(1) === hashOf(1) && hashOf(1) === +location.hash.slice(1) && hashOf(1) === FROZEN_HASH);
   await test('b', 'All 10 sub-stage seeds build different layouts', () => new Set(TEN.map(n => hashOf(n))).size === 10);
-  await test('c', 'Every Hidden Object sub-stage in every world places exactly 20 targets, and every placed item stands with its base inside a valid zone without overlapping', () =>
-    WORLDS.every(w => TEN.every(n => {
-      const placed = deal(w.id, M, n).placed;
-      return placed.filter(p => p.target).length === 20 && placed.every((p, i) => {
-        const z = w.zones.find(z => z.id === p.zone), d = p.d, e = .011; // e: positions are rounded to 2 places
-        return d <= SIZE[z.maxSize] * z.scale + e && p.x - d / 2 >= z.x - e && p.x + d / 2 <= z.x + z.w + e && p.y + d / 2 >= z.y - e && p.y + d / 2 <= z.y + z.h + e &&
-          (!z.rest || Math.abs(p.y - (z.y + z.h - d / 2)) < e) && (p.target || z.use === 'add') &&
-          placed.every((q, j) => j >= i || Math.hypot(p.x - q.x, p.y - q.y) >= (d + q.d) / 2);
+  await test('c', 'Embedding rules on every dealt round of every world (10 worlds x 11 modes x 10): each placed item stands over its painted twin (same centre, same footprint) or on a zone that holds its category, base on the surface line or inside the ground patch, height inside +-25% of its painted neighbours, overlapping nothing', () => {
+    const e = .02, bad = [], n = { rounds: 0, items: 0, over: 0, zone: 0 };
+    for (const w of WORLDS) for (const m of MODES) for (const s of TEN) {
+      const r = deal(w.id, m, s), arts = r.placed.map(artOf);
+      if (r.placed.length) n.rounds++;
+      r.placed.forEach((p, i) => {
+        const b = arts[i], base = b.y + b.h, z = w.zones.find(z => z.id === p.zone), t = w.painted.find(t => t.id === p.over), med = z && median(nearOf(z, p.x).map(q => q.h));
+        const ok = t ? Math.abs(b.x + b.w / 2 - t.x - t.w / 2) < e && Math.abs(b.y + b.h / 2 - t.y - t.h / 2) < e && (Math.abs(b.w - t.w) < e || Math.abs(b.h - t.h) < e) :
+          z && z.holds.includes(p.item.cat) && b.x >= z.x - e && b.x + b.w <= z.x + z.w + e && base >= z.y - e && base <= z.y + z.h + e && (!z.rest || Math.abs(base - z.y - z.h) < e) &&
+          b.y >= z.top - e && b.h >= med * .75 - e && b.h <= med * 1.25 + e;
+        n.items++; n[t ? 'over' : 'zone']++;
+        if (!ok || b.x < -e || b.y < -e || b.x + b.w > w.w + e || base > 100 + e || arts.some((a, j) => j !== i && cover(a, b) > 1e-3)) bad.push(`${w.id}/${m}/${s}/${p.k}`);
       });
-    })));
+    }
+    if (bad.length) throw new Error(`${bad.length} bad: ${bad.slice(0, 4).join(', ')}`);
+    return `${n.items} items in ${n.rounds} rounds: ${n.over} over their painted twin, ${n.zone} on a surface zone, 0 outside the rules`;
+  });
   await test('d', 'Save, wipe memory, load: progress round-trips', () => {
     reset(); clear(4);
     const want = JSON.stringify(save);
@@ -2316,13 +2405,20 @@ async function selfTest() {
     return true;
   });
   await test('s', 'Every zone box and every painted-object box of every world sits inside its scene', () => WORLDS.every(w => w.zones.every(inScene(w)) && w.painted.every(inScene(w))));
-  await test('t', 'A placed round uses only real zones from anchors.json, every item drawn at its placed spot and size', () => {
-    const A = WORLDS[0];
-    open(M);
-    return round.placed.length >= 20 && round.placed.every(p => {
-      const z = A.zones.find(z => z.id === p.zone), el = $('#i-' + p.item.id);
-      return z && inScene(A)(z) && el && Math.abs(parseFloat(el.style.width) - p.d * 10) < .01 && Math.abs(parseFloat(el.style.left) - (p.x * 10 - p.d * 5)) < .01;
-    });
+  await test('t', 'Hidden Object 1 in the Attic, Wizard\'s Kitchen and Micro-Kingdoms: every item is drawn at its placed spot and size (its art never spills out of that box), mirrored exactly when its seat says so, with a soft contact shadow (blurred, 35% opacity, squashed ellipse) under its base', () => {
+    let n = 0, shadows = 0;
+    for (const w of [W, 'wizards-kitchen', W2]) {
+      const r = open(M, 1, w);
+      for (const p of r.placed) {
+        const el = $('#i-' + p.k), chip = el && el.querySelector('.chip.in'), sh = chip && getComputedStyle(chip, '::before');
+        n++;
+        if (!el || Math.abs(parseFloat(el.style.width) - p.d * 10) > .01 || Math.abs(parseFloat(el.style.left) - (p.x * 10 - p.d * 5)) > .01) return false;
+        if (!chip || chip.classList.contains('flip') !== !!p.flip || chip.querySelector('.art').getBoundingClientRect().height > el.getBoundingClientRect().height + 1) return false;
+        if (sh.opacity === '0.35' && sh.filter.includes('blur') && sh.borderRadius === '50%' && parseFloat(sh.height) < parseFloat(sh.width)) shadows++;
+      }
+    }
+    if (shadows !== n) throw new Error(`${n - shadows} of ${n} without a shadow`);
+    return `${n} items checked in the three worlds, ${shadows} with a contact shadow`;
   });
   // ----- the full game: checks (u) onward -----
   const slow = { ...TIME }, quick = { hold: 40, fly: 30, peek: 10000, curtain: 30, echo: 120 };
@@ -2337,8 +2433,8 @@ async function selfTest() {
     await wait(TIME.hold + TIME.fly + 80);
     for (let t = 0; t < 40 && r.kind === 'scene' && r.landed < r.need.length; t++) await wait(50); // a busy page can run the fly timers late
   };
-  const WANT = { 'hidden-object': [20, 20], 'i-spy': [5, 5], count: [4, 9], twins: [2, 2], 'spot-difference': [5, 5], 'odd-one-out': [3, 3], shadow: [4, 4],
-    vanished: [1, 1], changed: [1, 1], 'doesnt-belong': [3, 3], zoom: [3, 3] }; // targets per round, lowest and highest
+  const WANT = { 'hidden-object': [15, 20], 'i-spy': [3, 5], count: [3, 9], twins: [2, 2], 'spot-difference': [3, 5], 'odd-one-out': [3, 3], shadow: [4, 4],
+    vanished: [1, 1], changed: [1, 1], 'doesnt-belong': [3, 3], zoom: [3, 3] }; // targets per round, lowest and highest (fewer when a thing has no legal seat)
   await test('u', 'Every one of the 11 modes deals and script-completes a round in the Attic AND in Micro-Kingdoms: each wins, earns one piece and unlocks sub-stage 2', async () => {
     Object.assign(TIME, quick);
     const bad = [];
@@ -2355,7 +2451,9 @@ async function selfTest() {
     if (bad.length) throw new Error(bad.join(', '));
     return save.machines.pieces.join() === '10,10,2,0,0' && save.powers.join() === 'zoom,scanner' && clearedIn(W) === 11 && clearedIn(W2) === 11;
   });
-  await test('v', 'Frozen seeds: all 1,100 sub-stages (10 worlds x 11 modes x 10) deal the same layout hash twice, with the target count each mode promises; three sub-stages match their frozen hashes', () => {
+  await test('v', 'Frozen seeds: all 1,100 sub-stages (10 worlds x 11 modes x 10) deal the same layout hash twice, with the target count each mode promises; three sub-stages match their frozen hashes, and what every sub-stage picks (before seating) matches the frozen picks', () => {
+    const picks = hash(WORLDS.flatMap(w => MODES.flatMap(m => TEN.map(n => { const r = deal(w.id, m, n, true); return JSON.stringify([r.placed.map(p => p.k), (r.diffs || []).map(d => d.k), (r.choices || []).map(c => c.k), (r.sets || []).map(s => s.cards.map(c => c.item.id)), r.need]); }))).join());
+    if (picks !== FROZEN_PICKS) throw new Error(`picks hash ${picks}`);
     const bad = [];
     for (const w of WORLDS) for (const m of MODES) for (const n of TEN) {
       const r = deal(w.id, m, n), [lo, hi] = WANT[m];
@@ -2410,7 +2508,7 @@ async function selfTest() {
     use('zoom');
     const zoomed = max0 === 4 && cam.max === 8 && cam.s > s0 * 1.9 && spent('zoom') && (use('zoom'), cam.max === 8);
     use('hint');
-    const t = r.placed.find(p => p.k === r.need[0]), z = r.w.zones.find(z => z.id === t.zone), ring = $('.hintring');
+    const t = r.placed.find(p => p.k === r.need[0]), z = r.w.zones.find(z => z.id === t.zone) || r.w.painted.find(s => s.id === t.over), ring = $('.hintring');
     const hinted = !!ring && parseFloat(ring.style.left) <= t.x * 10 && parseFloat(ring.style.left) + parseFloat(ring.style.width) >= t.x * 10 &&
       Math.abs(parseFloat(ring.style.top) - (z.y - 3) * 10) < .01 && spent('hint') && count('.hintring') === 1;
     use('echo');
@@ -2508,6 +2606,20 @@ async function selfTest() {
       { players: Array(5).fill(good.players[0]) }].map(x => ({ ...good, ...x }));
     return codes.every(okCode) && codes.every(c => !/[IO]/.test(c)) && okRoom(good) && bad.every(m => !okRoom(m));
   });
+  await test('ae', 'Room guide: before any world is opened the cat walks beside the nearest world and makes it glow on every beat; opening a world stops it; after a win the cat leads to the nearest unplayed world and makes it glow once', () => {
+    const cat = $('#o-pet-cat'), arrive = () => { cat.classList.remove('walking'); cat.style.transition = 'none'; }, glowing = () => $$('#room .o.beckon').map(e => e.dataset.tap);
+    const step = () => { $$('#room .o.beckon').forEach(e => e.classList.remove('beckon')); guide(); arrive(); guide(); return glowing(); };
+    reset(); show('home'); Object.assign(guided, { opened: false, once: false });
+    const mid = () => parseFloat(cat.style.left) + parseFloat(cat.style.width) / 2;
+    const nearest = ids => ids.sort((a, b) => Math.abs(placed[worldSpot(a)].x - mid()) - Math.abs(placed[worldSpot(b)].x - mid()))[0];
+    const want1 = 'world:' + nearest(WORLDS.map(w => w.id)), a = step(), b = step();
+    guided.opened = true;
+    const quiet = step().length === 0;
+    clear(1, M, W); cur.world = W; guided.once = true;
+    const want2 = 'world:' + nearest(WORLDS.map(w => w.id).filter(id => id !== W)), c = step(), d = step();
+    reset(); cur.screen = 'home';
+    return same(a, [want1]) && same(b, [want1]) && quiet && same(c, [want2]) && d.length === 0;
+  });
   realSave === null ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, realSave); // hand the real save back
   loadSave();
   applyAudio();
@@ -2519,7 +2631,8 @@ async function selfTest() {
   document.body.insertAdjacentHTML('beforeend', `<div class="win"><div class="wincard test"><h1>Self-test: ` +
     `${results.filter(r => r.includes('PASS')).length} of ${results.length} passed</h1><ul>${results.join('')}</ul></div></div>`);
 }
-const FROZEN_HASH = 2741407881, FROZEN_MORE = [3568863516, 2877455572, 4100156888]; // frozen layout hashes: Attic Hidden Object 1, and three more sub-stages
+const FROZEN_HASH = 3005925216, FROZEN_MORE = [4270793942, 4197183560, 4100156888]; // frozen layout hashes (as seated): Attic Hidden Object 1, and three more sub-stages
+const FROZEN_PICKS = 273926691; // what all 1,100 sub-stages pick before seating; unchanged since the layouts were first frozen
 
 Promise.all([loadData(), loadAtelier()]).then(() => {
   loadSave();

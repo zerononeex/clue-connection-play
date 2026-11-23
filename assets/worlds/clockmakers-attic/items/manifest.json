@@ -185,25 +185,29 @@
    "file": "gold-case-pocket-watch.png",
    "w": 159,
    "h": 210,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "clockmakers-attic-032": {
    "file": "silver-case-pocket-watch.png",
    "w": 160,
    "h": 210,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "clockmakers-attic-033": {
    "file": "open-pocket-watch-showing-its-gears.png",
    "w": 162,
    "h": 212,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "clockmakers-attic-034": {
    "file": "wristwatch-with-a-leather-strap.png",
    "w": 132,
    "h": 198,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "clockmakers-attic-035": {
    "file": "tiny-blue-roofed-cuckoo-clock-with-a-pine-cone-weight.png",
@@ -215,13 +219,15 @@
    "file": "round-alarm-clock-with-twin-bells.png",
    "w": 139,
    "h": 193,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "clockmakers-attic-037": {
    "file": "mantel-clock-with-a-domed-top.png",
    "w": 218,
    "h": 178,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "clockmakers-attic-038": {
    "file": "hourglass-in-a-brass-frame.png",
@@ -233,13 +239,15 @@
    "file": "stone-sundial-disc.png",
    "w": 186,
    "h": 164,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "clockmakers-attic-040": {
    "file": "owl-shaped-wind-up-egg-timer.png",
    "w": 130,
    "h": 183,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "clockmakers-attic-041": {
    "file": "red-wooden-handle-screwdriver.png",
@@ -341,7 +349,8 @@
    "file": "paper-aeroplane-folded-from-a-blueprint.png",
    "w": 205,
    "h": 168,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "L"
   },
   "clockmakers-attic-058": {
    "file": "brass-compass-for-drawing-circles.png",
@@ -353,7 +362,8 @@
    "file": "wooden-ruler-with-tick-marks.png",
    "w": 187,
    "h": 197,
-   "sheet": 3
+   "sheet": 3,
+   "fixed": true
   },
   "clockmakers-attic-060": {
    "file": "white-goose-feather-quill-in-a-round-inkwell.png",
@@ -425,19 +435,22 @@
    "file": "straight-long-spout-oil-can.png",
    "w": 194,
    "h": 191,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "L"
   },
   "clockmakers-attic-072": {
    "file": "curly-long-spout-oil-can.png",
    "w": 187,
    "h": 197,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "L"
   },
   "clockmakers-attic-073": {
    "file": "squat-copper-oil-can.png",
    "w": 195,
    "h": 194,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "L"
   },
   "clockmakers-attic-074": {
    "file": "tiny-oil-dropper-bottle.png",
@@ -485,19 +498,22 @@
    "file": "blue-tail-carved-wooden-cuckoo-bird.png",
    "w": 202,
    "h": 188,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "clockmakers-attic-082": {
    "file": "yellow-tail-carved-wooden-cuckoo-bird.png",
    "w": 202,
    "h": 188,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "clockmakers-attic-083": {
    "file": "cuckoo-bird-on-a-spring-perch.png",
    "w": 118,
    "h": 198,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "clockmakers-attic-084": {
    "file": "pair-of-tiny-cuckoo-clock-doors.png",
@@ -539,25 +555,29 @@
    "file": "brass-gramophone-horn.png",
    "w": 188,
    "h": 194,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "clockmakers-attic-091": {
    "file": "red-bow-tie-wind-up-tin-mouse.png",
    "w": 189,
    "h": 152,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "clockmakers-attic-092": {
    "file": "blue-bow-tie-wind-up-tin-mouse.png",
    "w": 189,
    "h": 151,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "clockmakers-attic-093": {
    "file": "wind-up-tin-bird-with-a-key-in-its-back.png",
    "w": 187,
    "h": 171,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "L"
   },
   "clockmakers-attic-094": {
    "file": "clockwork-robot-with-a-dial-on-its-chest.png",
@@ -581,7 +601,8 @@
    "file": "small-framed-picture-of-a-clock-tower.png",
    "w": 175,
    "h": 176,
-   "sheet": 5
+   "sheet": 5,
+   "fixed": true
   },
   "clockmakers-attic-098": {
    "file": "wooden-spinning-top.png",

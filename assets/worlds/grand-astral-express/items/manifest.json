@@ -17,7 +17,8 @@
    "file": "strip-of-three-perforated-tickets.png",
    "w": 193,
    "h": 192,
-   "sheet": 1
+   "sheet": 1,
+   "fixed": true
   },
   "grand-astral-express-004": {
    "file": "ticket-stub-with-a-torn-edge.png",
@@ -53,7 +54,8 @@
    "file": "ticket-roll-on-a-brass-spindle.png",
    "w": 202,
    "h": 158,
-   "sheet": 1
+   "sheet": 1,
+   "fixed": true
   },
   "grand-astral-express-010": {
    "file": "rubber-stamp-with-a-star-face.png",
@@ -197,7 +199,8 @@
    "file": "open-star-chart-showing-a-bear-constellation.png",
    "w": 228,
    "h": 192,
-   "sheet": 2
+   "sheet": 2,
+   "fixed": true
   },
   "grand-astral-express-034": {
    "file": "round-star-wheel-chart.png",
@@ -317,7 +320,8 @@
    "file": "silver-teapot-with-a-long-spout.png",
    "w": 204,
    "h": 209,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "L"
   },
   "grand-astral-express-054": {
    "file": "sugar-bowl-with-tongs.png",
@@ -353,7 +357,8 @@
    "file": "folded-napkin-shaped-like-a-swan.png",
    "w": 189,
    "h": 184,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "R"
   },
   "grand-astral-express-060": {
    "file": "fork-and-spoon-tied-with-a-ribbon.png",
@@ -413,7 +418,8 @@
    "file": "route-booklet-with-a-train-picture-on-the-cover.png",
    "w": 182,
    "h": 223,
-   "sheet": 4
+   "sheet": 4,
+   "fixed": true
   },
   "grand-astral-express-070": {
    "file": "brass-carriage-door-handle.png",

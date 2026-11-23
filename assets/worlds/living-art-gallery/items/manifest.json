@@ -257,13 +257,15 @@
    "file": "small-bronze-horse-statue.png",
    "w": 180,
    "h": 214,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "L"
   },
   "living-art-gallery-044": {
    "file": "clay-bird-sculpture.png",
    "w": 181,
    "h": 160,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "R"
   },
   "living-art-gallery-045": {
    "file": "sculptors-chisel.png",
@@ -527,7 +529,8 @@
    "file": "paint-by-dots-kit-box.png",
    "w": 204,
    "h": 176,
-   "sheet": 5
+   "sheet": 5,
+   "fixed": true
   },
   "living-art-gallery-089": {
    "file": "tin-of-colouring-pencils.png",
@@ -563,7 +566,8 @@
    "file": "painted-teapot-with-a-blue-flower.png",
    "w": 204,
    "h": 158,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "L"
   },
   "living-art-gallery-095": {
    "file": "tiny-painted-sailboat.png",
@@ -575,7 +579,8 @@
    "file": "painted-seagull-standing-on-one-leg.png",
    "w": 194,
    "h": 196,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "living-art-gallery-097": {
    "file": "painted-wave-curl-with-foam.png",
@@ -587,7 +592,8 @@
    "file": "painted-castle-flag-on-a-pole-blue-and-white-checks.png",
    "w": 164,
    "h": 203,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "living-art-gallery-099": {
    "file": "painted-crown-with-brush-stroke-jewels.png",
@@ -599,7 +605,8 @@
    "file": "painted-duck-with-a-wet-paint-drip.png",
    "w": 161,
    "h": 193,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   }
  }
 }

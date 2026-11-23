@@ -5,19 +5,22 @@
    "file": "red-paper-origami-crane.png",
    "w": 193,
    "h": 163,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "L"
   },
   "papercraft-origami-kingdom-002": {
    "file": "blue-paper-origami-crane.png",
    "w": 194,
    "h": 163,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "L"
   },
   "papercraft-origami-kingdom-003": {
    "file": "origami-swan-with-a-curved-neck.png",
    "w": 186,
    "h": 178,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "R"
   },
   "papercraft-origami-kingdom-004": {
    "file": "origami-owl-with-big-eyes.png",
@@ -29,13 +32,15 @@
    "file": "origami-fox-with-a-pointed-tail.png",
    "w": 194,
    "h": 181,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "L"
   },
   "papercraft-origami-kingdom-006": {
    "file": "origami-rabbit-with-long-ears.png",
    "w": 136,
    "h": 203,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "R"
   },
   "papercraft-origami-kingdom-007": {
    "file": "origami-elephant-with-a-folded-trunk.png",
@@ -47,13 +52,15 @@
    "file": "origami-frog-ready-to-jump.png",
    "w": 198,
    "h": 143,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "R"
   },
   "papercraft-origami-kingdom-009": {
    "file": "origami-fish-with-fan-fins.png",
    "w": 188,
    "h": 165,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "R"
   },
   "papercraft-origami-kingdom-010": {
    "file": "origami-whale-with-a-paper-spout.png",
@@ -509,7 +516,8 @@
    "file": "paper-pennant-flag-on-a-stick.png",
    "w": 135,
    "h": 169,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "papercraft-origami-kingdom-086": {
    "file": "string-of-bunting-with-three-flags.png",
@@ -521,13 +529,15 @@
    "file": "paper-trumpet-with-a-ribbon.png",
    "w": 209,
    "h": 126,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "papercraft-origami-kingdom-088": {
    "file": "corrugated-card-hobby-horse.png",
    "w": 172,
    "h": 213,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "L"
   },
   "papercraft-origami-kingdom-089": {
    "file": "cardboard-cart-with-bottle-top-wheels.png",

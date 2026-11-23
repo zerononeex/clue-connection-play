@@ -53,7 +53,8 @@
    "file": "bottle-shaped-like-a-sleeping-cat.png",
    "w": 197,
    "h": 174,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "L"
   },
   "wizards-kitchen-010": {
    "file": "fizzing-bottle-with-a-popped-cork-and-bubbles.png",
@@ -107,13 +108,15 @@
    "file": "grumpy-teapot-with-a-frowning-face.png",
    "w": 218,
    "h": 163,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "L"
   },
   "wizards-kitchen-019": {
    "file": "whistling-kettle-with-a-puff-of-steam.png",
    "w": 186,
    "h": 197,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "L"
   },
   "wizards-kitchen-020": {
    "file": "milk-pan-boiling-over-with-star-foam.png",
@@ -227,7 +230,8 @@
    "file": "self-pouring-measuring-jug.png",
    "w": 183,
    "h": 157,
-   "sheet": 2
+   "sheet": 2,
+   "facing": "R"
   },
   "wizards-kitchen-039": {
    "file": "salt-and-pepper-shakers-holding-hands.png",
@@ -377,13 +381,15 @@
    "file": "hanging-spring-scale-with-a-hook.png",
    "w": 112,
    "h": 217,
-   "sheet": 4
+   "sheet": 4,
+   "fixed": true
   },
   "wizards-kitchen-064": {
    "file": "kitchen-scale-with-a-single-bowl.png",
    "w": 164,
    "h": 203,
-   "sheet": 4
+   "sheet": 4,
+   "fixed": true
   },
   "wizards-kitchen-065": {
    "file": "set-of-three-nested-measuring-spoons.png",

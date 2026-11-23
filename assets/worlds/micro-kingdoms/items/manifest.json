@@ -461,7 +461,8 @@
    "file": "rubber-duck.png",
    "w": 151,
    "h": 163,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "R"
   },
   "micro-kingdoms-078": {
    "file": "toy-soldier-with-a-drum.png",
@@ -473,7 +474,8 @@
    "file": "plastic-dinosaur-friendly-and-green.png",
    "w": 196,
    "h": 215,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "R"
   },
   "micro-kingdoms-080": {
    "file": "spinning-top-with-stripes.png",
@@ -527,7 +529,8 @@
    "file": "pebble-painted-like-a-ladybird.png",
    "w": 169,
    "h": 126,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "micro-kingdoms-089": {
    "file": "clothes-peg.png",

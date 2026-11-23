@@ -5,25 +5,29 @@
    "file": "red-tail-rooster-weathervane.png",
    "w": 180,
    "h": 199,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "L"
   },
   "cloud-top-sky-port-002": {
    "file": "green-tail-rooster-weathervane.png",
    "w": 178,
    "h": 198,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "L"
   },
   "cloud-top-sky-port-003": {
    "file": "whale-shaped-weathervane.png",
    "w": 206,
    "h": 200,
-   "sheet": 1
+   "sheet": 1,
+   "fixed": true
   },
   "cloud-top-sky-port-004": {
    "file": "flying-pig-weathervane.png",
    "w": 161,
    "h": 212,
-   "sheet": 1
+   "sheet": 1,
+   "fixed": true
   },
   "cloud-top-sky-port-005": {
    "file": "arrow-weathervane-with-a-star.png",
@@ -263,7 +267,8 @@
    "file": "green-parrot-shaped-kite-with-a-string-tail.png",
    "w": 200,
    "h": 208,
-   "sheet": 3
+   "sheet": 3,
+   "facing": "R"
   },
   "cloud-top-sky-port-045": {
    "file": "red-party-balloon-on-a-string.png",
@@ -575,7 +580,8 @@
    "file": "signal-horn-with-a-rubber-bulb.png",
    "w": 200,
    "h": 108,
-   "sheet": 5
+   "sheet": 5,
+   "facing": "R"
   },
   "cloud-top-sky-port-097": {
    "file": "signal-kite-with-a-mirror-tail.png",

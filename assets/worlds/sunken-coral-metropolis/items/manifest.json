@@ -59,7 +59,8 @@
    "file": "shell-with-a-hermit-crabs-eyes-peeking-out.png",
    "w": 203,
    "h": 180,
-   "sheet": 1
+   "sheet": 1,
+   "facing": "R"
   },
   "sunken-coral-metropolis-011": {
    "file": "white-open-oyster-pearl.png",
@@ -389,13 +390,15 @@
    "file": "yellow-seahorse-with-a-curled-tail.png",
    "w": 113,
    "h": 216,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "R"
   },
   "sunken-coral-metropolis-066": {
    "file": "striped-clownfish.png",
    "w": 220,
    "h": 146,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "R"
   },
   "sunken-coral-metropolis-067": {
    "file": "round-pufferfish-puffed-up-and-smiling.png",
@@ -413,13 +416,15 @@
    "file": "hermit-crab-in-a-painted-shell.png",
    "w": 212,
    "h": 181,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "L"
   },
   "sunken-coral-metropolis-070": {
    "file": "sea-snail-with-a-spotted-shell.png",
    "w": 174,
    "h": 121,
-   "sheet": 4
+   "sheet": 4,
+   "facing": "R"
   },
   "sunken-coral-metropolis-071": {
    "file": "coral-hook-pearl-lantern.png",
