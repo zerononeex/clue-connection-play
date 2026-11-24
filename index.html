@@ -10,6 +10,8 @@
 :root{--wood:#241710;--panel:#33231a;--cream:#f6ecd6;--gold:#ffc928;--a1:#e0b455;--a2:#8a5a34}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0;overflow:hidden}
+/* no press-and-hold menu to save or share the pictures (the save code box still takes paste) */
+img,.scene,.view,#room{-webkit-touch-callout:none;-webkit-user-drag:none}
 body{background:var(--wood);color:var(--cream);font:17px/1.3 Calibri,Arial,Helvetica,sans-serif;-webkit-user-select:none;user-select:none;touch-action:manipulation}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 h1,h2,h3,p{margin:0}
@@ -35,7 +37,10 @@ h1,h2,h3,p{margin:0}
 .chip.has-art .art{filter:drop-shadow(0 .05em .04em rgba(0,0,0,.5))}
 /* An item placed in a painting: bottom-aligned on its surface, shaded by the painting's light (sprite() sets the vars) */
 .chip.in{place-items:end center;filter:brightness(var(--lt))}
-.chip.in .art{filter:none;width:100%;height:100%;object-fit:contain;object-position:50% 100%;position:absolute;left:0;top:0}
+.chip.in .art{filter:drop-shadow(0 4px 4px rgba(0,0,0,.45));width:100%;height:100%;object-fit:contain;object-position:50% 100%;position:absolute;left:0;top:0}
+.chip.in.top .art{object-position:50% 0}.chip.in.mid .art{object-position:50% 50%}
+.chip.in.top .glow{-webkit-mask-position:50% 0;mask-position:50% 0}.chip.in.mid .glow{-webkit-mask-position:50% 50%;mask-position:50% 50%}
+.chip.in.top::before,.chip.in.mid::before{display:none}
 .chip.in::before{content:'';position:absolute;left:50%;bottom:0;width:calc(var(--sw) * 1.15);height:12%;transform:translate(-50%,50%);
   border-radius:50%;background:var(--ink);filter:blur(.07em);opacity:.35;mix-blend-mode:multiply}
 .chip.in.flip .art,.chip.in.flip .glow{transform:scaleX(-1)}
@@ -51,7 +56,10 @@ h1,h2,h3,p{margin:0}
 .s6{clip-path:polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%)}
 .s7{clip-path:polygon(33% 0,67% 0,67% 33%,100% 33%,100% 67%,67% 67%,67% 100%,33% 100%,33% 67%,0 67%,0 33%,33% 33%)}
 .s3 b,.s5 b{font-size:.6em;transform:translateY(25%)}
-.shade .chip{filter:brightness(0);opacity:.82}
+/* Shadow Match: the silhouette is painted on the picture itself (a filter on its parent does not draw in iPad Safari) */
+.shade .chip{filter:brightness(0);opacity:.85}
+.shade .chip.has-art{filter:none;opacity:1}
+.shade .chip.has-art .art{filter:brightness(0) opacity(.85);-webkit-filter:brightness(0) opacity(.85)}
 .shade .chip b{visibility:hidden}
 .patch{position:absolute;-webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent);mask-image:radial-gradient(closest-side,#000 72%,transparent)}
 .hintring{position:absolute;border:8px dashed var(--gold);border-radius:50%;pointer-events:none;animation:beat .6s infinite alternate}
@@ -134,13 +142,13 @@ button:disabled{opacity:.45;cursor:default}
   border:3px solid var(--a1);background:var(--cream);box-shadow:0 0 0 3px var(--wood),0 0 0 6px var(--a2),0 8px 14px rgba(0,0,0,.5)}
 .card.show{border-color:var(--gold)}
 #over{position:absolute;inset:0;pointer-events:none}
+.scene.glide{transition:transform .9s cubic-bezier(.25,.8,.3,1)}
 #over>*{pointer-events:auto}
 .peekbar{position:absolute;left:50%;top:12px;transform:translateX(-50%);display:flex;align-items:center;gap:14px;padding:6px 8px 6px 22px;border-radius:999px;
   background:var(--panel);border:3px solid var(--gold);white-space:nowrap}
+#over>.peekbar.asking{padding:8px 22px;pointer-events:none}
 .curtain{position:absolute;inset:0;background:var(--wood);animation:curtain 1s both}
 @keyframes curtain{0%{opacity:0}45%,55%{opacity:1}100%{opacity:0}}
-.choices{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:16px}
-.choices .card{width:clamp(76px,13vw,120px);font-size:clamp(30px,5vw,50px)}
 @media (orientation:portrait){
   .play{grid-template-columns:none;grid-template-rows:1fr auto}
   .side,.slimmed .side{width:auto;padding:8px}
@@ -290,6 +298,9 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
   transition:opacity 1.2s}
 .day .nightglow{opacity:0}
 #rcam .o{transform-origin:50% 100%}
+#rcam .bent{position:absolute;inset:0;perspective:900px;transform-style:preserve-3d}
+#rcam .bent .strip{position:absolute;top:0;height:100%;overflow:hidden;backface-visibility:hidden}
+#rcam .bent .strip img{position:absolute;top:0;max-width:none}
 .o.hot>img{filter:drop-shadow(0 0 0 transparent)}
 .showing .o.hot,.o.beckon{animation:showme 2.4s}
 @keyframes showme{0%,100%{filter:none}15%,85%{filter:drop-shadow(0 0 6px #fff6a8) drop-shadow(0 0 16px #ffc928)}}
@@ -340,8 +351,18 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 #drawer.open .dhole{opacity:1}
 #drawer.open .dfront{translate:0 30px;box-shadow:0 -30px 0 -2px #6b4423,0 6px 8px rgba(0,0,0,.4)}
 #drawer.open .dnote{opacity:1;translate:0 0}
-.page{position:absolute;z-index:2;left:50%;top:5%;width:40%;height:76%;border-radius:2px 10px 12px 2px;border:2px solid #5a3a1c;background:linear-gradient(90deg,#d9c084,#fff3c4 30%,#f6e3a8);transform-origin:0 50%;opacity:0;animation:pageflip 4.2s infinite}
-@keyframes pageflip{0%{opacity:0;transform:perspective(400px) rotateY(0)}6%{opacity:.95}36%{opacity:.95;transform:perspective(400px) rotateY(-180deg)}42%,100%{opacity:0;transform:perspective(400px) rotateY(-180deg)}}
+/* The spellbook's page is paper: eight strips hinged one to the next. The free edge lifts first, the page bows as it
+   turns, its edge trails behind over the spine, then it settles flat on the left. */
+.page{position:absolute;z-index:2;left:50%;top:5%;width:40%;height:76%;transform-origin:0 50%;transform-style:preserve-3d;opacity:0;
+  animation:pageflip 4.2s infinite cubic-bezier(.45,.05,.4,1)}
+.page .ps{position:absolute;left:100%;top:0;width:100%;height:100%;transform-origin:0 50%;transform-style:preserve-3d;
+  background:#f8e8b2;border-block:2px solid #5a3a1c;outline:1px solid #f8e8b2;outline-offset:-1px;animation:pagecurl 4.2s infinite ease-in-out}
+.page>.ps{left:0;width:12.5%;background:linear-gradient(90deg,#d9c084,#f8e8b2);border-left:2px solid #5a3a1c}
+.page .ps:not(:has(.ps)){border-right:2px solid #5a3a1c;border-radius:0 8px 10px 0}
+@keyframes pageflip{0%{opacity:0;transform:perspective(700px) rotateY(0)}4%{opacity:1}14%{transform:perspective(700px) rotateY(-14deg)}
+  48%{transform:perspective(700px) rotateY(-150deg)}58%{opacity:1;transform:perspective(700px) rotateY(-180deg)}66%,100%{opacity:0;transform:perspective(700px) rotateY(-180deg)}}
+@keyframes pagecurl{0%,2%{transform:rotateY(0)}14%{transform:rotateY(-7deg)}30%{transform:rotateY(3deg)}44%{transform:rotateY(8deg)}
+  54%{transform:rotateY(-2deg)}60%,100%{transform:rotateY(0)}}
 #rcam .o>.mg{position:absolute;left:var(--l,40%);top:10%;width:20px;height:auto;opacity:0;animation:magic 3s ease-out infinite}
 .mg.m1{--l:20%;animation-delay:-1s !important}.mg.m2{--l:66%;animation-delay:-2s !important}
 @keyframes magic{0%{opacity:0;translate:0 0;scale:.4}20%{opacity:1}100%{opacity:0;translate:0 -130px;scale:1.1;rotate:90deg}}
@@ -392,6 +413,7 @@ body:not([data-screen=play]) #app>*{pointer-events:auto}
 .wbtn.wide img{width:calc(var(--bs) * 2.5);height:var(--bs);object-fit:fill}
 .wbtn.wide span{position:relative;color:#fff;text-shadow:0 0 3px #000,0 1px 2px #000,0 0 7px #000}
 .wbtn.wide span small{font-size:.7em;opacity:1}
+.wbtn.wide span .g{width:1.15em;height:1.15em;vertical-align:-.22em;margin:0 .15em 0 -.2em;stroke-width:6;filter:drop-shadow(0 0 2px #000)}
 .wbtn.wide:disabled{opacity:1}
 .wbtn.wide:disabled img{filter:saturate(.45) brightness(.8)}
 .groups{flex:1;min-height:0;overflow:auto;display:grid;grid-template-columns:2fr 2fr 1fr 1fr;gap:1%}
@@ -513,23 +535,21 @@ const LABELS = {
   cat: { find: 'Find It', compare: 'Compare It', remember: 'Remember It', figure: 'Deduce It' },
   mode: {
     'i-spy': 'I Spy', 'hidden-object': 'Find Them All', count: 'Count Them', twins: 'Find the Twins',
-    'spot-difference': 'Spot the Difference', 'odd-one-out': 'Odd One Out', shadow: 'Shadow Match',
-    vanished: "What's Missing?", changed: 'What Changed?', 'doesnt-belong': "Which Doesn't Belong?", zoom: 'Tiny Clues'
+    'spot-difference': 'Spot the Difference', shadow: 'Shadow Match', changed: 'What Changed?', zoom: 'Tiny Clues'
   },
   prompt: {
     'i-spy': 'Read the riddle and find the thing.', count: 'How many can you find? Tap every one.',
     twins: 'Two of these things are twins. Find them both!', 'spot-difference': 'Find what is different between the two pictures.',
-    'odd-one-out': 'One is different. Tap it.', shadow: 'Which shadow fits?', vanished: 'What is missing now?', changed: 'What changed?',
-    'doesnt-belong': 'Which one does not belong?', zoom: 'Where is this? Find it in the big picture.'
+    shadow: 'Which shadow fits?', changed: 'What changed? Tap it in the picture.', zoom: 'Where is this? Find it in the big picture.'
   },
   power: { zoom: 'Super Zoom', hint: 'Hint', echo: 'Echo Replay', scanner: 'Truth Scanner', shield: 'Oops Shield' },
   ui: {
-    back: 'Back', home: 'Home', settings: 'Settings',
+    back: 'Back', home: 'Home', mainMenu: 'To Main Menu', settings: 'Settings',
     stages: 'Pick a Puzzle', found: 'Found', foundCount: 'found', pieces: 'pieces', powers: 'Powers', runs: 'It runs!',
     later: 'This machine comes later', win: 'You did it!', newPiece: 'You earned a new piece for the',
     oldPiece: 'You already earned the piece for this puzzle.', seeMachine: 'See my machine', next: 'Next puzzle',
     resume: 'tap to continue', reset: 'Start this puzzle over', confirmReset: 'Tap again to restart',
-    counted: 'counted', countWin: 'You counted', look: 'Look carefully!', ready: 'I am ready',
+    counted: 'counted', countWin: 'You counted', look: 'Look carefully!', lookAgain: 'Look again!', ready: 'I am ready',
     picture: 'Show me a picture', sideA: 'Picture 1', sideB: 'Picture 2', flip: 'Switch picture',
     belongs: 'Yes, that is the one!', notBelongs: 'No, that is not the one.', shielded: 'Oops Shield saved you!',
     scanOn: 'Tap a thing to scan it', newPower: 'The machine is finished! New power:',
@@ -553,11 +573,14 @@ const LABELS = {
 const ICONS = {};
 const CATEGORIES = [
   { id: 'find', modes: ['i-spy', 'hidden-object', 'count', 'twins'] },
-  { id: 'compare', modes: ['spot-difference', 'odd-one-out', 'shadow'] },
-  { id: 'remember', modes: ['vanished', 'changed'] },
-  { id: 'figure', modes: ['doesnt-belong', 'zoom'] }
+  { id: 'compare', modes: ['spot-difference', 'shadow'] },
+  { id: 'remember', modes: ['changed'] },
+  { id: 'figure', modes: ['zoom'] }
 ];
 const MODES = CATEGORIES.flatMap(c => c.modes);
+// Odd One Out, What's Missing? and Which Doesn't Belong? were taken out on 2026-11-24 (owner's ruling). The menu button
+// art keeps its original numbering, so each mode still finds its own button picture.
+const ART = ['i-spy', 'hidden-object', 'count', 'twins', 'spot-difference', 'odd-one-out', 'shadow', 'vanished', 'changed', 'doesnt-belong', 'zoom'];
 const GLYPHS = {
   back: '<path d="M29 11L16 24l13 13"/>',
   next: '<path d="M19 11l13 13-13 13"/>',
@@ -590,25 +613,31 @@ const WORLDS = [
   world('living-art-gallery', 'The Living Art Gallery', 'A storybook museum where the paintings are alive.'),
   world('sunken-coral-metropolis', 'Sunken Coral Metropolis', 'Sunny underwater ruins with turtles and pearl lanterns.'),
   world('cloud-top-sky-port', 'The Cloud-Top Sky-Port', 'Floating islands, windmills and airships at cloud piers.'),
-  world('wizards-kitchen', "The Wizard's Kitchen and Potion Pantry", 'Bubbling cauldrons, starry jars and enchanted spoons.'),
-  world('retro-arcade-toybox', 'Retro Arcade and Toybox Nexus', 'Neon cartridges, toy robots and a giant arcade cabinet.')
+  world('wizards-kitchen', "The Wizard's Kitchen and Potion Pantry", 'Bubbling cauldrons, starry jars and enchanted spoons.')
 ];
+// Put away (owner's ruling, 2026-11-24): not shown and not playable; its folder, music and LOOK entry stay for later.
+// To bring one back, move it into WORLDS and its room object back into ROOM.
+const SHELVED = [world('retro-arcade-toybox', 'Retro Arcade and Toybox Nexus', 'Neon cartridges, toy robots and a giant arcade cabinet.')];
+const SHELVED_ROOM = [['arcade', 'assets/ui/room/wo-09.webp', 4640, 884, 344, { z: 4, tap: 'world:retro-arcade-toybox', sh: 1 }]];
 const SIZE = { S: 5, M: 7, L: 10 }; // item diameter in scene units
 const getJSON = async url => { try { const r = await fetch(url); return r.ok ? await r.json() : null; } catch (e) { return null; } };
 async function loadData() { // a world whose files cannot be read stays without zones and its tile stays locked
   await Promise.all(WORLDS.map(async w => {
-    const dir = `assets/worlds/${w.id}/`, [a, r, m] = await Promise.all(['anchors.json', 'roster.json', 'items/manifest.json'].map(f => getJSON(dir + f)));
+    const dir = `assets/worlds/${w.id}/`, [a, r, m, rules] = await Promise.all(['anchors.json', 'roster.json', 'items/manifest.json', 'items.json'].map(f => getJSON(dir + f)));
     if (!a || !r) return;
     const box = b => ({ ...b, x: b.x * w.w, y: b.y * 100, w: b.w * w.w, h: b.h * 100 });
     w.w = 100 * a.background.size[0] / a.background.size[1];
     w.painted = a.paintedObjects.map(box);
     w.zones = a.zones.map(z => ({ ...box(z), top: (z.top ?? -1) * 100, near: (z.near || []).map(n => n.p ? w.painted.find(p => p.id === n.p) : box(n)) }));
+    w.mounts = (a.mounts || []).map(z => ({ ...box(z), top: -100, near: [], facing: 'F' })); // wall and hook spots: seat() only
+    w.unit = (a.unit || .07) * 100;
     w.guard = [...new Set([...w.painted, ...w.zones.flatMap(z => z.near.filter(n => !n.row))])]; // what an item may never stand on
     w.background = dir + 'background-web.jpg';
     w.light = await getJSON(dir + 'light.json');
     w.items = r.items.map((i, n) => {
       const f = m && m.items[i.id];
-      return { ...i, n, sprite: f ? dir + 'items/' + f.file : '', blend: f && w.light ? dir + 'items/blend/' + f.file.replace(/\.png$/, '.webp') : '', aspect: f ? f.w / f.h : 1, facing: f && f.facing || 'F', fixed: !!(f && f.fixed) };
+      const rule = rules && rules[i.id] || { allowedAnchors: ['flat_surface', 'tucked'], allowedTags: [...new Set(a.zones.flatMap(z => z.tags || []))], baseScale: { S: .7, M: 1, L: 1.35 }[i.size] };
+      return { ...i, ...rule, n, sprite: f ? dir + 'items/' + f.file : '', blend: f && w.light ? dir + 'items/blend/' + f.file.replace(/\.png$/, '.webp') : '', aspect: f ? f.w / f.h : 1, facing: f && f.facing || 'F', fixed: !!(f && f.fixed) };
     });
     w.byId = Object.fromEntries(w.items.map(i => [i.id, i]));
   }));
@@ -624,7 +653,7 @@ const MACHINES = [
 ];
 // POWERS: which power each finished machine grants. Change the mapping here and nowhere else.
 const POWERS = { 'wind-up-robot': 'zoom', terrarium: 'hint', 'astral-clock': 'echo', 'puzzle-box': 'scanner', 'wallpaper-art-odyssey': 'shield' };
-const TIME = { hold: 600, fly: 500, peek: 10000, curtain: 500, echo: 3000 }; // feedback and memory timings, in ms
+const TIME = { hold: 600, fly: 500, peek: 10000, curtain: 500, echo: 3000, glide: 900 }; // feedback and memory timings, in ms
 
 // ---------- Seeded dealing: a sub-stage's id (world / mode / 1..10) is its seed, frozen forever ----------
 function hash(str) { // FNV-1a, 32-bit
@@ -692,16 +721,12 @@ function paneOf(r, rnd) {
 }
 const partnerOf = (r, spot) => r.w.items.find(i => i.partner === spot.id && // never a second member of a look-alike family already in the round
   ![...r.placed, ...r.diffs].some(p => p.item && (p.item === i || i.look && p.item.look === i.look)));
-function memory(r, rnd, cast, swap) { // one thing vanishes (or is swapped) between the look and the question
-  const [zones, spots] = paneOf(r, rnd);
+function memory(r, rnd, cast) { // What Changed?: one placed thing is swapped for another thing of about its size
+  const [zones] = paneOf(r, rnd);
   fill(r, rnd, cast, 0, 10, zones, zones);
-  const spare = cast.filter(i => !r.placed.some(p => p.item === i));
-  const spot = spots.length && rnd() < .3 ? pick(spots, rnd) : null, was = spot ? null : pick(r.placed, rnd);
-  r.diffs = [];
-  r.diffs = [{ k: spot ? spot.id : was.k, spot, was, item: swap ? spot && partnerOf(r, spot) || spare.pop() : null }];
-  r.spots = spots;
-  const others = shuffle([...r.placed.map(p => ({ k: p.k, item: p.item })), ...spots.map(s => ({ k: s.id, spot: s }))].filter(c => c.k !== r.diffs[0].k), rnd);
-  r.choices = shuffle([spot ? { k: spot.id, spot } : { k: was.k, item: was.item }, ...others.slice(0, 2)], rnd);
+  const spare = cast.filter(i => !r.placed.some(p => p.item === i)), was = pick(r.placed, rnd);
+  const item = spare.find(i => i.size === was.item.size && i.cat !== was.item.cat) || spare.pop();
+  r.diffs = [{ k: was.k, was, item }];
 }
 const sets = (r, list) => { r.sets = list; r.ordered = true; r.need = list.map((_, i) => 's' + i); };
 const DEAL = { // how each mode assembles a round from the cast (the shuffled roster, one member per look-alike family)
@@ -728,14 +753,6 @@ const DEAL = { // how each mode assembles a round from the cast (the shuffled ro
     r.placed.slice(0, 5 - r.spots.length).forEach((was, i) => r.diffs.push({ k: was.k, was, item: i % 2 ? null : spare.pop() }));
     r.need = r.diffs.map(d => d.k);
   },
-  'odd-one-out'(r, rnd) { // five of one thing and one look-alike (its twin or a member of its look-alike family)
-    const pairs = [];
-    r.w.items.forEach(a => r.w.items.forEach(b => { if (a.id < b.id && a.look && a.look === b.look) pairs.push([a, b]); }));
-    sets(r, shuffle(pairs, rnd).slice(0, 3).map(pair => {
-      const [a, b] = shuffle(pair, rnd);
-      return { cards: shuffle([b, a, a, a, a, a].map((item, i) => ({ item, hit: !i })), rnd) };
-    }));
-  },
   shadow(r, rnd, cast) { // the four shadows of a set always differ in placeholder shape, so the round plays before the art exists
     const pool = cast.filter(i => i.shadow && i.cls !== 'DECOY-ONLY');
     sets(r, [0, 1, 2, 3].map(() => {
@@ -744,12 +761,7 @@ const DEAL = { // how each mode assembles a round from the cast (the shuffled ro
       return { show: four[0], cards: shuffle(four.map((item, i) => ({ item, hit: !i })), rnd) };
     }));
   },
-  vanished(r, rnd, cast) { memory(r, rnd, cast, false); },
-  changed(r, rnd, cast) { memory(r, rnd, cast, true); },
-  'doesnt-belong'(r, rnd, cast) { // four things of one category and one intruder from another
-    const cats = shuffle([...new Set(r.w.items.map(i => i.cat))], rnd);
-    sets(r, [0, 1, 2].map(s => ({ cards: shuffle([cast.find(i => i.cat === cats[s + 3]), ...cast.filter(i => i.cat === cats[s]).slice(0, 4)].map((item, i) => ({ item, hit: !i })), rnd) })));
-  },
+  changed(r, rnd, cast) { memory(r, rnd, cast); },
   zoom(r, rnd, cast) { // three painted objects, one at a time, each shown as a close-up
     r.spots = shuffle(r.w.painted, rnd).slice(0, 3);
     r.need = r.spots.map(s => s.id);
@@ -757,66 +769,71 @@ const DEAL = { // how each mode assembles a round from the cast (the shuffled ro
     fill(r, rnd, cast, 0, 10);
   }
 };
-// ---------- Seating: where each dealt thing stands, so it belongs in the painting (the owner's embedding rules) ----------
-// 1 Surface only: its base on a zone's surface line (ledge) or inside its patch (ground), wholly inside the zone, the
-//   scene and clear of every other thing; never over a painted object or character (at most a fifth of it, or of the
-//   thing itself, may overlap).
+// ---------- Seating: where each dealt thing stands, so it belongs in the painting (the owner's placement rules) ----------
+// 1 Filter zones: a thing goes only on a zone (or a wall / hook mount) whose anchorType is in its allowedAnchors, whose
+//   surface tag is in its allowedTags, whose painted category list holds it, and that still has room (maxItems).
 // 2 Replace first: a thing with a swappable painted twin stands exactly over it (same centre, same footprint).
-// 3 Scale from neighbours: its height is the median height of the painted things beside it on that surface, x0.8 (S),
-//   x1 (M) or x1.2 (L) (wide things lower, never under x0.75), always inside the owner's +-25% band; never above the
-//   zone's top (the underside of a table it stands under). 4 Facing: mirrored to face the way its neighbours face;
-//   a thing that cannot match prefers another zone. 6 Zone semantics: only categories the zone holds (anchors.json).
+// 3 Size: height = the world's unit (median painted neighbour) x K x the zone's scaleMultiplier (its depth) x the
+//   thing's baseScale (its real-world size), lower when wide, smaller towards the back of a floor (far), never under MIN_H.
+// 4 Pivot: flat_surface and tucked things stand on their base (bottom centre) on the ledge line or inside the ground
+//   patch; hanging things hang by their top centre from the hook line; wall_mount things sit centred in the wall patch.
+//   Always wholly inside the zone and the scene, never above the zone's top (the underside of a table it stands under).
+// 5 Spacing: PAD scene units of clear space around every other thing; never over a painted object or character (at most
+//   a fifth of it, or of the thing itself, may overlap). 6 Facing: mirrored to face the way its neighbours face; a thing
+//   that cannot match prefers another zone. Contact shadow and the painting's light are drawn by sprite().
 // A thing that finds no legal spot is not dealt this round. Seating has its own random stream, so picking stays frozen.
-const BAND = { S: .8, M: 1, L: 1.2 };
-const median = a => { const s = a.slice().sort((x, y) => x - y), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const K = .85, PAD = .8, MIN_H = 3, PIN = { hanging: 'top', wall_mount: 'mid' };
 const area = b => b.w * b.h;
 const cover = (a, b) => Math.max(0, Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x)) * Math.max(0, Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y));
-const artOf = p => { const a = p.item.aspect, w = p.d * Math.min(1, a), h = p.d * Math.min(1, 1 / a); return { x: p.x - w / 2, y: p.y + p.d / 2 - h, w, h }; };
-const nearOf = (z, x) => z.near.slice().sort((a, b) => Math.abs(a.x + a.w / 2 - x) - Math.abs(b.x + b.w / 2 - x)).slice(0, 3); // the three beside a spot
+const grow = (b, g) => ({ x: b.x - g, y: b.y - g, w: b.w + 2 * g, h: b.h + 2 * g });
+const artOf = p => { // the art's box inside a placed sprite's square: on its base, hanging from its top, or centred
+  const a = p.item.aspect, w = p.d * Math.min(1, a), h = p.d * Math.min(1, 1 / a);
+  return { x: p.x - w / 2, y: p.pin === 'top' ? p.y - p.d / 2 : p.pin === 'mid' ? p.y - h / 2 : p.y + p.d / 2 - h, w, h };
+};
 const overOf = (it, s) => { // a sprite fitted over a painted twin's box: same centre, same footprint
   const aw = Math.min(s.w, s.h * it.aspect), d = Math.max(aw, aw / it.aspect);
   return { x: r2(s.x + s.w / 2), y: r2(s.y + s.h / 2 + aw / it.aspect / 2 - d / 2), d: r2(d) };
 };
 const turned = (f, to) => f !== 'F' && to !== 'F' && f !== to; // L/R art that must be mirrored to face `to`
+const fits = (it, z) => it.allowedAnchors.includes(z.anchorType) && z.tags.some(t => it.allowedTags.includes(t)) && (!z.holds || z.near.length > 0 && z.holds.includes(it.cat));
+function heightAt(w, it, z, t) { // the owner's size rule; t = how far down a ground patch (0 back .. 1 front)
+  const far = z.rest || !z.far ? 1 : 1 - (1 - z.far) * (1 - t);
+  return Math.max(MIN_H, w.unit * K * z.scaleMultiplier * it.baseScale * far / Math.sqrt(Math.max(1, it.aspect)));
+}
 function seat(r) {
   const w = r.w, rnd = mulberry32(hash(`${w.id}/${r.mode}/${r.n}/seat`)), pane = r.pane || { x: 0, w: w.w };
   const used = new Set([...(r.spots || []), ...(r.diffs || []).map(d => d.spot)]); // painted objects the round itself is about
-  const key = new Set([...(r.diffs || []).map(d => d.was), ...(r.choices || []).map(c => r.placed.find(p => p.k === c.k)),
-    ...r.placed.filter(p => p.target && /^(count|twins)$/.test(r.mode))]); // things a round cannot do without
+  const key = new Set([...(r.diffs || []).map(d => d.was), ...r.placed.filter(p => p.target && /^(count|twins)$/.test(r.mode))]); // things a round cannot do without
   const order = [...r.placed].sort((a, b) => (key.has(b) - key.has(a)) * 2 + (b.target - a.target)), seated = [];
   const clear = (b, twin) => b.x >= Math.max(0, pane.x) && b.x + b.w <= Math.min(w.w, pane.x + pane.w) && b.y >= 0 && b.y + b.h <= 100 &&
-    seated.every(q => !cover(b, artOf(q))) && w.guard.every(g => g === twin || cover(b, g) <= Math.min(area(b), area(g)) * .2);
+    seated.every(q => !cover(grow(b, PAD), artOf(q))) && w.guard.every(g => g === twin || cover(b, g) <= Math.min(area(b), area(g)) * .2);
+  const room = z => seated.filter(q => q.zone === z.id).length < z.maxItems;
   for (const p of order) {
     const it = p.item, twin = p.k === it.id && w.painted.find(s => s.id === it.partner && s.swappable && !used.has(s));
     if (twin && twin.x >= pane.x && twin.x + twin.w <= pane.x + pane.w) { // rule 2: same centre, same footprint
-      const q = { ...p, ...overOf(it, twin), zone: null, over: twin.id, flip: turned(it.facing, twin.facing || 'F') && !it.fixed };
+      const q = { ...p, ...overOf(it, twin), zone: null, over: twin.id, pin: null, flip: turned(it.facing, twin.facing || 'F') && !it.fixed };
       if (clear(artOf(q), twin)) { used.add(twin); seated.push(Object.assign(p, q)); continue; }
     }
-    const zones = w.zones.filter(z => z.near.length && z.holds.includes(it.cat) && (p.target || key.has(p) || z.use === 'add'));
+    const zones = [...w.zones, ...w.mounts].filter(z => fits(it, z) && (p.target || key.has(p) || z.use === 'add'));
     for (let tries = 0, ok = false; tries < (key.has(p) ? 600 : 400) && zones.length && !ok; tries++) {
       const z = pick(zones, rnd), loose = tries >= 200, low = tries >= 400; // first only zones it can face; a key thing may then go small
-      if (!loose && (it.fixed ? turned(it.facing, z.facing) : it.facing !== 'F' && z.facing === 'F')) continue;
-      const base = z.rest ? z.y + z.h : z.y + rnd() * z.h, x = r2(z.x + rnd() * z.w);
-      const h = median(nearOf(z, x).map(n => n.h)) * (low ? .76 : Math.max(.75, BAND[it.size] / Math.sqrt(Math.max(1, it.aspect)))); // wide things sit low in the band
-      const aw = h * it.aspect, d = r2(Math.max(aw, h)), q = { ...p, x, y: r2(base - d / 2), d, zone: z.id, over: null, flip: turned(it.facing, z.facing) && !it.fixed };
-      const b = artOf(q);
-      if (b.x < z.x || b.x + b.w > z.x + z.w || b.y < z.top || !clear(b)) continue;
+      if (!room(z) || !loose && (it.fixed ? turned(it.facing, z.facing) : it.facing !== 'F' && z.facing === 'F')) continue;
+      const pin = PIN[z.anchorType] || null, t = rnd(), x = r2(z.x + rnd() * z.w);
+      const h = heightAt(w, it, z, t) * (low ? .76 : 1), d = r2(Math.max(h * it.aspect, h));
+      const y = r2(pin === 'top' ? z.y + d / 2 : pin === 'mid' ? z.y + t * z.h : (z.rest ? z.y + z.h : z.y + t * z.h) - d / 2);
+      const q = { ...p, x, y, d, zone: z.id, over: null, pin, flip: turned(it.facing, z.facing) && !it.fixed }, b = artOf(q);
+      if (b.x < z.x || b.x + b.w > z.x + z.w || b.y < z.top || pin && (b.y < z.y || b.y + b.h > z.y + z.h) || !clear(b)) continue;
       ok = seated.push(Object.assign(p, q));
     }
   }
-  // a key thing that found no spot: Compare It loses that difference, Remember It asks about (or offers) another seated thing
+  // a key thing that found no spot: Compare It loses that difference, What Changed? changes another seated thing
   const gone = p => p && !seated.includes(p);
   if (r.kind === 'duo') r.need = (r.diffs = r.diffs.filter(d => !gone(d.was))).map(d => d.k);
-  (r.kind === 'memory' ? r.choices : []).forEach((c, i) => {
-    const p = r.placed.find(p => p.k === c.k), d = r.diffs[0], free = seated.filter(q => !r.choices.some(c => c.k === q.k));
-    if (!gone(p) || !free.length) return;
-    const q = pick(free, rnd);
-    if (d.was === p) Object.assign(d, { k: q.k, was: q });
-    r.choices[i] = { k: q.k, item: q.item };
-  });
+  const d = r.kind === 'memory' && r.diffs[0];
+  if (d && gone(d.was) && seated.length) { const q = pick(seated, rnd); Object.assign(d, { k: q.k, was: q }); }
   r.placed = r.placed.filter(p => seated.includes(p));
 }
-const KIND = { 'spot-difference': 'duo', 'odd-one-out': 'sets', shadow: 'sets', 'doesnt-belong': 'sets', vanished: 'memory', changed: 'memory' };
+const KIND = { 'spot-difference': 'duo', shadow: 'sets', changed: 'memory' };
 // Deals a round. Everything comes only from the sub-stage id: same id, same round, on any device, forever.
 function deal(worldId, modeId, n, unseated) {
   const w = WORLDS.find(w => w.id === worldId), rnd = mulberry32(hash(`${worldId}/${modeId}/${n}`)), seen = new Set();
@@ -830,7 +847,7 @@ const layoutHash = r => hash(JSON.stringify(r, (key, v) => v && v.zones ? undefi
 
 // ---------- Save state. Never rename this key; every change of shape is additive and goes through migrate(). ----------
 const KEY = 'clue-connection-data-v1';
-const DEALT = 4; // generation of the dealt layouts; 1 was the 30-item sample pool, 2 the zones before items stood on real surfaces, 3 before seating
+const DEALT = 5; // generation of the dealt layouts; 1 was the 30-item sample pool, 2 the zones before items stood on real surfaces, 3 before seating, 4 before the owner's placement rules (real sizes, wall and hook spots)
 const fresh = () => ({
   version: 1,
   progress: { worlds: {} },
@@ -877,7 +894,7 @@ const inProgress = () => save.inProgress || {};
 const modeProgress = (worldId, modeId) =>
   (save.progress.worlds[worldId] || { modes: {} }).modes[modeId] || { clearedSubStages: [], currentSubStage: 1 };
 const isUnlocked = (worldId, modeId, n) => n === 1 || modeProgress(worldId, modeId).clearedSubStages.includes(n - 1);
-const clearedIn = worldId => MODES.reduce((sum, m) => sum + modeProgress(worldId, m).clearedSubStages.length, 0); // of 110: the per-world completion display
+const clearedIn = worldId => MODES.reduce((sum, m) => sum + modeProgress(worldId, m).clearedSubStages.length, 0); // of 80: the per-world completion display
 // Marks a sub-stage cleared. The first clear awards one piece to the CURRENT machine (machines fill in order 1 to 5);
 // the tenth piece finishes the machine and grants its power for good. Replays award nothing. Once all five machines
 // are finished, first clears still count toward the world's completion display.
@@ -934,11 +951,12 @@ function lightAt(w, x, y) {
   const luma = rgb[0] * .299 + rgb[1] * .587 + rgb[2] * .114;
   return { hex: '#' + hex, b: Math.min(1.18, Math.max(.62, Math.pow(luma / L.luma, .45))) };
 }
-// A sprite placed in a scene: the blended copy of its art (docs/blend_items.py), standing on the bottom of its box,
-// with a soft contact shadow under it and the painting's local light over it.
+// A sprite placed in a scene: the blended copy of its art (docs/blend_items.py), standing on the bottom of its box
+// (hanging from its top, or centred on a wall), with the owner's drop shadow, a soft contact shadow under a standing
+// thing, and the painting's local light over it.
 const sprite = (p, id, w) => {
-  const d = p.d * 10, it = p.item, lt = it.blend && w && lightAt(w, p.x, p.y + p.d / 2 - 1);
-  const inner = !lt ? pic(it) : `<span class="chip has-art in${p.flip ? ' flip' : ''}" style="--lt:${r2(lt.b)};--tint:${lt.hex};--ink:${w.light.ink};` +
+  const d = p.d * 10, it = p.item, b = artOf(p), lt = it.blend && w && lightAt(w, p.x, b.y + b.h - 1);
+  const inner = !lt ? pic(it) : `<span class="chip has-art in${p.flip ? ' flip' : ''}${p.pin ? ' ' + p.pin : ''}" style="--lt:${r2(lt.b)};--tint:${lt.hex};--ink:${w.light.ink};` +
     `--sw:${r2(Math.min(1, it.aspect) * 86)}%;--m:url(${it.blend})"><img class="art" src="${it.blend}" alt="" draggable="false"><i class="glow"></i></span>`;
   return `<div class="item" id="${id}-${p.k}" style="left:${p.x * 10 - d / 2}px;top:${p.y * 10 - d / 2}px;width:${d}px;height:${d}px;font-size:${d * .6}px">` +
     `${inner}${DEV ? `<small>${it.name}</small>` : ''}</div>`;
@@ -1058,7 +1076,7 @@ const SCREENS = {
         view('view', sceneHTML(r, 0) + `<div id="over"></div>`);
     const [s1, s2, sb] = LOOK[r.w.id].side;
     return `<div class="play" style="--s1:${s1};--s2:${s2};--sb:${sb}">${stage}${racing() ? `<div class="race" id="race">${raceHTML()}</div>` : ''}<aside class="side"><header class="bar">` +
-      btn('show', 'home', `<img src="${button(r.w.id, 12)}" alt="" draggable="false"><span>${LABELS.ui.home}</span>`, 'wbtn wide') + `<h1>${LABELS.mode[r.mode]} ${r.n}</h1></header>` +
+      btn('show', 'home', `<img src="${button(r.w.id, 12)}" alt="" draggable="false"><span>${LABELS.ui.mainMenu}</span>`, 'wbtn wide') + `<h1>${LABELS.mode[r.mode]} ${r.n}</h1></header>` +
       `<div class="powers" id="powers"></div>` +
       `<button class="slim" data-act="panel"><b id="count"></b><span id="next"></span><span class="med">${glyph('fold')}</span></button>` +
       (r.mode === 'hidden-object' ? `<ul id="list">${r.need.map(k => `<li id="l-${k}"${r.found.includes(k) ? ' class="done"' : ''}>${glyph('check')}` +
@@ -1089,7 +1107,7 @@ const LOOK = {
   'wizards-kitchen': { menu: 'kitchen', win: ['kitchen', 4, 2, 3, 6, 7], ink: '#40281a', side: ['#5c3421', '#30180c', '#b9e56c'] },
   'retro-arcade-toybox': { menu: 'arcade', win: ['arcade', 1, 2, 3, 4, 5], ink: '#1d2a4a', side: ['#1f2c62', '#0d1232', '#ff62d2'] }
 };
-const button = (w, k) => ui(`menus/${LOOK[w].menu}/buttons-up`, k); // 1-11 the games in MODES order, 12 Home, 13 Play Together
+const button = (w, k) => ui(`menus/${LOOK[w].menu}/buttons-up`, k); // 1-11 the games in ART order, 12 Home, 13 Play Together
 
 // The room: three wall panels side by side, 900 units tall; everything else stands on them in room units.
 // [id, picture, centre x, bottom y, width, options]. on: stands on that thing's top. tap: what a tap does.
@@ -1130,7 +1148,7 @@ const ROOM = [ // options: on (stands on that thing), inset (how far onto its to
   ['cuckoo', ui('room/wo-04'), 2095, 540, 235, { z: 2, wall: 1, tap: 'world:clockmakers-attic' }],
   ['sky', ui('room/wo-06'), 2400, 0, 460, { z: 6, hang: 1, cls: 'drift', tap: 'world:cloud-top-sky-port' }],
   ['starmap', 'machine:3', 4324, 398, 140, { z: 2, wall: 1 }],
-  ['shelf2', ui('room/fu-15'), 2975, 690, 412, { z: 2, tap: 'books' }],
+  ['shelf2', ui('room/fu-15'), 2975, 690, 412, { z: 2, tap: 'books', bend: [16, -22] }],
   ['lab', ui('room/wo-07'), 2962, 842, 395, { z: 4, tap: 'world:wizards-kitchen', sh: 1 }],
   ['table', ui('room/fu-01'), 2400, 850, 760, { z: 3, sh: 1 }],
   ['drawer', '', 2400, 696, 198, { z: 4, tall: 32, tap: 'drawer', id: 'drawer' }],
@@ -1145,7 +1163,7 @@ const ROOM = [ // options: on (stands on that thing), inset (how far onto its to
   ['quill', ui('room/props-books', 15), 2262, 0, 40, { z: 4, on: 'table', inset: .24 }],
   ['lamp3', ui('room/props-lights', 3), 2840, 0, 60, { z: 6, hang: 1 }],
   ['pillar2', ui('room/room-pillars', 2), PANEL * 2, 900, 214, { z: 2 }],
-  // the far end: the terrarium bench, the robot under the gallery painting, the aquarium and the telescope at the open window, the star map, the arcade
+  // the far end: the terrarium bench, the robot under the gallery painting, the aquarium and the telescope at the open window, the star map
   ['ivy', ui('room/props-plants', 2), 3370, 0, 96, { z: 6, hang: 1 }],
   ['wallart', 'machine:4', 2515, 445, 480, { z: 2, tall: 176 }],
   ['bench', ui('room/fu-04'), 3480, 800, 390, { z: 3, sh: 1 }],
@@ -1162,10 +1180,9 @@ const ROOM = [ // options: on (stands on that thing), inset (how far onto its to
   ['cabinet', ui('room/fu-06'), 4020, 792, 340, { z: 3, sh: 1 }],
   ['aquarium', ui('room/wo-08'), 4020, 0, 350, { z: 3, on: 'cabinet', tap: 'world:sunken-coral-metropolis' }],
   ['lamp4', ui('room/props-lights', 4), 3790, 0, 60, { z: 6, hang: 1 }],
-  ['shelf3', ui('room/fu-14'), 4606, 772, 436, { z: 2, tap: 'books' }],
+  ['shelf3', ui('room/fu-14'), 4606, 772, 436, { z: 2, tap: 'books', bend: [-4, -46] }],
   ['scrolls', ui('room/props-library', 10), 4212, 834, 70, { z: 4, sh: 1 }],
   ['scope', ui('room/props-wizard', 8), 4292, 786, 150, { z: 4, sh: 1 }],
-  ['arcade', ui('room/wo-09'), 4640, 884, 344, { z: 4, tap: 'world:retro-arcade-toybox', sh: 1 }],
   ['pet-owl', 'pet:owl', 1470, 262, 84, { z: 6 }],
   ['pet-frog', 'pet:frog', 1640, 870, 85, { z: 6 }],
   ['pet-cat', 'pet:cat', 2000, 895, 120, { z: 7 }],
@@ -1214,6 +1231,20 @@ let roomBuilt = false;
 const placed = {}; // id -> { x, y (top), w, h } in room units, for things that stand on others
 const NOTES = ['Every wizard was once a beginner.', 'Look twice. Then look again.', 'The cat knows where it is.', 'Psst. Tap the cherry tree outside.', 'Good finders look high and low.'];
 const DRAWER = `<span class="dhole"></span><span class="dnote"></span><span class="dfront" style="background-image:url(${ui('room/fu-01')})"></span>`;
+// bend [from, to] in degrees: the picture is cut into upright strips laid on an arc, each turned a little more than the
+// last, so a flat piece of furniture follows the curved tower wall behind it (negative: the right side comes forward).
+function bent(pic, w, hh, [a0, a1], n = 12) {
+  const sw = w / n, rad = Math.PI / 180, strips = [];
+  let x = 0, z = 0;
+  for (let i = 0; i < n; i++) {
+    const t = (a0 + (a1 - a0) * (i + .5) / n) * rad, cx = x + sw / 2 * Math.cos(t), cz = z - sw / 2 * Math.sin(t);
+    strips.push([cx, cz, t]);
+    x += sw * Math.cos(t); z -= sw * Math.sin(t);
+  }
+  const shift = (w - x) / 2; // keep the whole piece centred where it stood
+  return `<div class="bent">` + strips.map(([cx, cz, t], i) => `<div class="strip" style="left:${cx - sw / 2 + shift}px;width:${sw + .6}px;` +
+    `transform:translateZ(${cz}px) rotateY(${t / rad}deg)"><img src="${pic}" alt="" draggable="false" style="left:${-i * sw}px;width:${w}px;height:${hh}px"></div>`).join('') + `</div>`;
+}
 function roomHTML() {
   let h = `<div class="panels">` + [1, 2, 3].map(i => `<img class="pn" src="${ui('room/room-night-' + i)}" alt="" draggable="false" style="left:${(i - 1) * PANEL}px">` +
     `<img class="pn day" src="${ui('room/room-day-' + i)}" alt="" draggable="false" style="left:${(i - 1) * PANEL}px">`).join('') + `</div><div class="nightglow"></div><div class="sky"><i class="shoot"></i></div>`;
@@ -1224,9 +1255,9 @@ function roomHTML() {
     placed[id] = { x, y: bottom - hh, w, h: hh };
     const tap = kind === 'machine' ? 'machine:' + arg : kind === 'pet' ? 'pet:' + arg : o.tap || '';
     const inner = kind === 'machine' ? machineHTML(+arg, save.machines.pieces[arg], true) + `<b class="mcount" id="mc${arg}"></b>` : !src ? (id === 'drawer' ? DRAWER : '') :
-      (o.magic ? `<i class="page"></i>` + [0, 1, 2].map(i => `<img class="mg m${i}" src="${ui('title/title-sheet-2', 12)}" alt="">`).join('') : '') +
+      (o.magic ? `<i class="page">${'<i class="ps">'.repeat(8) + '</i>'.repeat(8)}</i>` + [0, 1, 2].map(i => `<img class="mg m${i}" src="${ui('title/title-sheet-2', 12)}" alt="">`).join('') : '') +
       (o.hole ? `<img class="inhole" src="${o.hole[4]}" alt="" style="left:${o.hole[0] * 100}%;top:${o.hole[1] * 100}%;width:${o.hole[2] * 100}%;height:${o.hole[3] * 100}%">` : '') +
-      `<img src="${pic}" alt="" draggable="false"${o.swap ? ` data-swap="${o.swap}"` : ''}>`;
+      (o.bend ? bent(pic, w, hh, o.bend) : `<img src="${pic}" alt="" draggable="false"${o.swap ? ` data-swap="${o.swap}"` : ''}>`);
     h += `<div class="o${tap ? ' hot' : ''}${o.cls ? ' ' + o.cls : ''}${o.hang ? ' swing' : ''}${o.wall ? ' wall' : ''}${o.sh ? ' sh' : ''}${kind === 'pet' ? ' pet' : ''}" id="${o.id || 'o-' + id}" data-tap="${tap}" ` +
       `style="left:${x - w / 2}px;top:${bottom - hh}px;width:${w}px;height:${hh}px;z-index:${o.z || 2}${o.flip ? ';scale:-1 1' : ''}">${inner}</div>`;
   }
@@ -1503,17 +1534,17 @@ function menuHTML(inner) {
   const w = WORLDS.find(w => w.id === cur.world), lk = LOOK[w.id], m = lk.menu;
   return `<div class="sheet" style="--ink:${lk.ink};--pl:url(${ui(`menus/${m}/panel-landscape`)});--pp:url(${ui(`menus/${m}/panel-portrait`)})">` +
     `<div class="shead"><h1>${w.name}</h1>${btn('show', 'together', `<img src="${button(w.id, 13)}" alt=""><span>${LABELS.ui.together}</span>`, 'wbtn wide')}` +
-    btn('show', 'home', `<img src="${button(w.id, 12)}" alt=""><span>${LABELS.ui.home}</span>`, 'wbtn wide') + `</div>${inner}</div>`;
+    btn('show', 'home', `<img src="${button(w.id, 12)}" alt=""><span>${glyph('back')}${LABELS.ui.back}</span>`, 'wbtn wide') + `</div>${inner}</div>`;
 }
 SCREENS.home = () => '';
 SCREENS.title = () => '';
 SCREENS.modes = () => menuHTML(`<div class="groups">` + CATEGORIES.map(c => `<section class="grp"><h2>${LABELS.cat[c.id]}</h2><div>` +
-  c.modes.map(m => btn('mode', m, `<img src="${button(cur.world, MODES.indexOf(m) + 1)}" alt="" draggable="false">` +
+  c.modes.map(m => btn('mode', m, `<img src="${button(cur.world, ART.indexOf(m) + 1)}" alt="" draggable="false">` +
     `<span>${LABELS.mode[m]}<small>${modeProgress(cur.world, m).clearedSubStages.length} / 10</small></span>`, 'wbtn mode')).join('') +
   `</div></section>`).join('') + `</div>`);
 SCREENS.stages = () => {
   const cleared = modeProgress(cur.world, cur.mode).clearedSubStages;
-  return menuHTML(`<div class="stagehead">${btn('show', 'modes', `<img src="${button(cur.world, MODES.indexOf(cur.mode) + 1)}" alt="">` +
+  return menuHTML(`<div class="stagehead">${btn('show', 'modes', `<img src="${button(cur.world, ART.indexOf(cur.mode) + 1)}" alt="">` +
     `<span>${LABELS.ui.back}</span>`, 'wbtn back')}<h2>${LABELS.mode[cur.mode]}: ${LABELS.ui.stages}</h2></div><div class="nums">` +
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => {
       const open = isUnlocked(cur.world, cur.mode, n), done = cleared.includes(n), going = inProgress()[roundKey(cur.world, cur.mode, n)];
@@ -1680,9 +1711,11 @@ document.addEventListener('input', e => {
 });
 // Every change is already stored as it happens; store once more as the page is hidden, so a killed tab loses nothing.
 addEventListener('pagehide', storeSave);
+document.addEventListener('contextmenu', e => { if (!e.target.closest('input,textarea')) e.preventDefault(); }); // no long-press or right-click Save Image
+document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 document.addEventListener('visibilitychange', () => { if (document.hidden) storeSave(); });
 
-// ---------- Playing a round: one tap rule, one found sequence and one win for all eleven modes ----------
+// ---------- Playing a round: one tap rule, one found sequence and one win for all eight modes ----------
 const spotOf = k => (round.spots || []).find(s => s.id === k);
 function chipOf(k) { // the Found Tray picture of a found thing
   const r = round, p = r.placed.find(p => p.k === k), s = spotOf(k);
@@ -1707,7 +1740,8 @@ function showSet() { // tray modes: the set in play is the first one not yet sol
   $('#cards').innerHTML = (set.show ? `<span class="card show">${pic(set.show)}</span>` : '') + `<div class="row${set.show ? ' shade' : ''}">` +
     set.cards.map((c, j) => btn('card', c.hit ? 's' + i : `s${i}-${j}`, pic(c.item), 'card')).join('') + `</div>`;
 }
-// Remember It: a generous look at the scene, then the curtain, the change behind it, and three picture choices.
+// Remember It: a generous look at the scene, then the curtain and the change behind it; the player taps the changed
+// thing in the picture. Three wrong taps and the first picture comes back for another look.
 function swapScene(b) {
   $('#scene').outerHTML = sceneHTML(round, b, '');
   moveCam($('#view'));
@@ -1717,6 +1751,12 @@ function peek() {
   r.phase = 'peek';
   $('#over').innerHTML = `<div class="peekbar"><b>${LABELS.ui.look}</b>${btn('ready', '', LABELS.ui.ready)}</div>`;
   r.timer = setTimeout(() => round === r && ask(), TIME.peek);
+}
+function lookAgain(r) {
+  if (round !== r || r.phase !== 'ask') return;
+  toast(LABELS.ui.lookAgain);
+  swapScene(0);
+  peek();
 }
 function ask() {
   const r = round;
@@ -1728,7 +1768,8 @@ function ask() {
   setTimeout(() => {
     if (round !== r) return;
     r.phase = 'ask';
-    $('#over').innerHTML = `<div class="choices">${r.choices.map(c => btn('card', c.k, c.item ? pic(c.item) : cropPic(r.w, c.spot), 'card')).join('')}</div>`;
+    r.miss = 0;
+    $('#over').innerHTML = `<div class="peekbar asking"><b>${LABELS.prompt.changed}</b></div>`;
     $('#powers').innerHTML = powerBar(true);
   }, TIME.curtain * 2);
 }
@@ -1757,7 +1798,7 @@ function elsOf(k) {
 }
 function tapScene(ux, uy) {
   const r = round;
-  if (!r || r.kind === 'memory') return;
+  if (!r || r.kind === 'memory' && r.phase !== 'ask') return;
   ux += (r.pane || { x: 0 }).x;
   const spot = (r.spots || []).find(s => r.need.includes(s.id) && !r.found.includes(s.id) && ux >= s.x - 1 && ux <= s.x + s.w + 1 && uy >= s.y - 1 && uy <= s.y + s.h + 1);
   let hit, best = Infinity;
@@ -1792,6 +1833,7 @@ function tapThing(k, els) {
     }
     r.wrong++;
     els.forEach(el => { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); });
+    if (r.kind === 'memory' && ++r.miss >= 3) setTimeout(() => lookAgain(r), TIME.hold);
     return;
   }
   r.found.push(k); // from this moment the thing can never be tapped again
@@ -2130,10 +2172,17 @@ Object.assign(ACT, {
 });
 // ---------- Powers: one free use of each per round, once its machine is finished ----------
 const POWER = {
-  zoom() { // Super Zoom: one extra zoom level
-    const v = $('#view'), b = v.getBoundingClientRect();
+  zoom(r) { // Super Zoom: the camera glides in to 3x over the patch of the picture where the next thing hides (no ring)
+    const k = r.ordered ? r.need[r.found.length] : r.need.find(k => !r.found.includes(k)), p = r.placed.find(p => p.k === k), v = $('#view');
+    const t = p ? { x: p.x, y: p.y } : (s => ({ x: s.x + s.w / 2, y: s.y + s.h / 2 }))(spotOf(k));
+    const off = (hash(k) % 7 - 3) / 3; // the thing is near the middle, not dead centre, so there is still something to find
     cam.max = 8;
-    v.zoom(2, b.left + b.width / 2, b.top + b.height / 2);
+    cam.s = cam.min * 3;
+    cam.x = v.clientWidth / 2 - (t.x + off * 6 - (r.pane || { x: 0 }).x) * 10 * cam.s;
+    cam.y = v.clientHeight / 2 - (t.y - off * 4) * 10 * cam.s;
+    $$('.scene').forEach(sc => sc.classList.add('glide'));
+    moveCam(v);
+    setTimeout(() => $$('.scene').forEach(sc => sc.classList.remove('glide')), TIME.glide);
   },
   hint(r) { // Hint: rings the zone the next target sits in, or the painted twin it stands over (on a tray, the card itself)
     const k = r.ordered ? r.need[r.found.length] : r.need.find(k => !r.found.includes(k)), card = $(`.card[data-arg="${k}"]`);
@@ -2184,7 +2233,9 @@ async function selfTest() {
   const clear = (upTo, m = M, w = W) => { for (let n = 1; n <= upTo; n++) clearSubStage(w, m, n); };
   const open = (m, n = 1, w = W) => { cur.world = w; cur.mode = m; ACT.stage(n); return round; };
   const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const only = (new URLSearchParams(location.search).get('only') || '').split(',').filter(Boolean); // e.g. ?selftest=1&only=u,z
   const test = async (id, name, fn) => {
+    if (only.length && !only.includes(id)) return;
     let ok = false, note = '';
     try { ok = await fn(); if (typeof ok === 'string') note = ` [${ok}]`; } catch (e) { note = ` [${e.message}]`; }
     results.push(`<li class="${ok ? 'ok' : 'bad'}"><b>${ok ? 'PASS' : 'FAIL'}</b> (${id}) ${name}${note}</li>`);
@@ -2192,22 +2243,25 @@ async function selfTest() {
   await test('a', 'Same seed builds the identical layout twice, again after a real page reload, and matches the frozen hash',
     () => hashOf(1) === hashOf(1) && hashOf(1) === +location.hash.slice(1) && hashOf(1) === FROZEN_HASH);
   await test('b', 'All 10 sub-stage seeds build different layouts', () => new Set(TEN.map(n => hashOf(n))).size === 10);
-  await test('c', 'Embedding rules on every dealt round of every world (10 worlds x 11 modes x 10): each placed item stands over its painted twin (same centre, same footprint) or on a zone that holds its category, base on the surface line or inside the ground patch, height inside +-25% of its painted neighbours, overlapping nothing', () => {
-    const e = .02, bad = [], n = { rounds: 0, items: 0, over: 0, zone: 0 };
+  await test('c', 'Placement rules on every dealt round of every world (9 worlds x 8 modes x 10): each placed item stands over its painted twin (same centre, same footprint) or on a zone or mount whose anchorType and surface tag the item allows and whose categories hold it, no zone over its maxItems; flat items on their base (ledge line or inside the ground patch), hanging items by their top on the hook line, wall items inside the wall patch; height = unit x K x scaleMultiplier x baseScale; a clear gap of PAD to every other item', () => {
+    const e = .02, bad = [], n = { rounds: 0, items: 0, over: 0, zone: 0, tucked: 0, hanging: 0, wall_mount: 0 };
     for (const w of WORLDS) for (const m of MODES) for (const s of TEN) {
-      const r = deal(w.id, m, s), arts = r.placed.map(artOf);
+      const r = deal(w.id, m, s), arts = r.placed.map(artOf), per = {};
       if (r.placed.length) n.rounds++;
       r.placed.forEach((p, i) => {
-        const b = arts[i], base = b.y + b.h, z = w.zones.find(z => z.id === p.zone), t = w.painted.find(t => t.id === p.over), med = z && median(nearOf(z, p.x).map(q => q.h));
+        const b = arts[i], base = b.y + b.h, z = [...w.zones, ...w.mounts].find(z => z.id === p.zone), t = w.painted.find(t => t.id === p.over);
+        const h = z && heightAt(w, p.item, z, z.rest || !z.h ? 1 : (base - z.y) / z.h);
         const ok = t ? Math.abs(b.x + b.w / 2 - t.x - t.w / 2) < e && Math.abs(b.y + b.h / 2 - t.y - t.h / 2) < e && (Math.abs(b.w - t.w) < e || Math.abs(b.h - t.h) < e) :
-          z && z.holds.includes(p.item.cat) && b.x >= z.x - e && b.x + b.w <= z.x + z.w + e && base >= z.y - e && base <= z.y + z.h + e && (!z.rest || Math.abs(base - z.y - z.h) < e) &&
-          b.y >= z.top - e && b.h >= med * .75 - e && b.h <= med * 1.25 + e;
-        n.items++; n[t ? 'over' : 'zone']++;
-        if (!ok || b.x < -e || b.y < -e || b.x + b.w > w.w + e || base > 100 + e || arts.some((a, j) => j !== i && cover(a, b) > 1e-3)) bad.push(`${w.id}/${m}/${s}/${p.k}`);
+          z && fits(p.item, z) && (per[z.id] = (per[z.id] || 0) + 1) <= z.maxItems && p.pin === (PIN[z.anchorType] || null) && b.x >= z.x - e && b.x + b.w <= z.x + z.w + e && b.y >= z.top - e &&
+          (p.pin === 'top' ? Math.abs(b.y - z.y) < e && base <= z.y + z.h + e : p.pin === 'mid' ? b.y >= z.y - e && base <= z.y + z.h + e :
+            base >= z.y - e && base <= z.y + z.h + e && (!z.rest || Math.abs(base - z.y - z.h) < e)) &&
+          (Math.abs(b.h - h) < .1 || Math.abs(b.h - h * .76) < .1 || p.item.aspect > 1 && Math.abs(b.w - h * p.item.aspect) < .1);
+        n.items++; n[t ? 'over' : 'zone']++; if (z && z.anchorType !== 'flat_surface') n[z.anchorType]++;
+        if (!ok || b.x < -e || b.y < -e || b.x + b.w > w.w + e || base > 100 + e || arts.some((a, j) => j !== i && cover(grow(a, PAD - e), b) > 1e-3)) bad.push(`${w.id}/${m}/${s}/${p.k}`);
       });
     }
     if (bad.length) throw new Error(`${bad.length} bad: ${bad.slice(0, 4).join(', ')}`);
-    return `${n.items} items in ${n.rounds} rounds: ${n.over} over their painted twin, ${n.zone} on a surface zone, 0 outside the rules`;
+    return `${n.items} items in ${n.rounds} rounds: ${n.over} over their painted twin, ${n.zone} on a zone (${n.tucked} tucked, ${n.hanging} hanging, ${n.wall_mount} on a wall), 0 outside the rules`;
   });
   await test('d', 'Save, wipe memory, load: progress round-trips', () => {
     reset(); clear(4);
@@ -2246,12 +2300,12 @@ async function selfTest() {
     ACT.machine(0);
     return ok && noted && !save.machines.justEarned && !JSON.parse(stored()).machines.justEarned;
   });
-  await test('i', 'No bottom banner: the title has the door; the room holds all 10 worlds, 5 machines, 6 pets, the settings toolbox and the way back outside', () => {
+  await test('i', 'No bottom banner: the title has the door; the room holds all 9 worlds (the put-away arcade is not there), 5 machines, 6 pets, the settings toolbox and the way back outside', () => {
     show('title');
     const door = count('#title .frontdoor') === 1;
     show('home');
     const worlds = $$('#room [data-tap^="world:"]').map(e => e.dataset.tap.slice(6));
-    return door && !$('#nav') && WORLDS.every(w => worlds.includes(w.id)) && worlds.length === 10 && count('#room [data-tap^="machine:"]') === 5 &&
+    return door && !$('#nav') && WORLDS.every(w => worlds.includes(w.id)) && worlds.length === WORLDS.length && WORLDS.length === 9 && !worlds.includes(SHELVED[0].id) && count('#room [data-tap^="machine:"]') === 5 &&
       count('#room .pet') === 6 && count('#room [data-tap=settings]') === 1 && count('#room [data-tap=outside]') === 1;
   });
   await test('j', 'Save code round trip restores progress exactly; a corrupted code is rejected with the save untouched; loading over progress needs two taps', () => {
@@ -2378,7 +2432,7 @@ async function selfTest() {
     loadSave();
     const loaded = JSON.stringify(save) === old && !('inProgress' in save) && modeProgress(W, M).clearedSubStages.length === 1;
     open(M, 2);
-    const [a, b] = targets(), all = round.placed.length;
+    const [a, b] = targets(), all = round.placed.length, of = `2 / ${round.need.length}`;
     tapScene(a.x, a.y);
     const K2 = roundKey(W, M, 2), gained = JSON.parse(stored()).inProgress[K2].found.length === 1;
     tapScene(b.x, b.y);
@@ -2388,9 +2442,9 @@ async function selfTest() {
     $('[data-act=load]').click();
     const carried = JSON.stringify(JSON.parse(stored()).inProgress[K2].found) === want;
     show('stages');
-    const shown = $('#go-2').textContent.startsWith('2 / 20');
+    const shown = $('#go-2').textContent.startsWith(of);
     ACT.stage(2);
-    return loaded && gained && carried && shown && $('#count').textContent.startsWith('2 / 20') && count('#tray .got') === 2 && count('#scene .item') === all - 2;
+    return loaded && gained && carried && shown && $('#count').textContent.startsWith(of) && count('#tray .got') === 2 && count('#scene .item') === all - 2;
   });
   const inScene = w => b => b.x >= 0 && b.y >= 0 && b.w > 0 && b.h > 0 && b.x + b.w <= w.w + 1e-9 && b.y + b.h <= 100 + 1e-9;
   await test('r', "Every world's anchors.json and roster.json load: real zones and painted objects, 100 items, and the scene uses the web-size background at the painting's shape", async () => {
@@ -2405,7 +2459,7 @@ async function selfTest() {
     return true;
   });
   await test('s', 'Every zone box and every painted-object box of every world sits inside its scene', () => WORLDS.every(w => w.zones.every(inScene(w)) && w.painted.every(inScene(w))));
-  await test('t', 'Hidden Object 1 in the Attic, Wizard\'s Kitchen and Micro-Kingdoms: every item is drawn at its placed spot and size (its art never spills out of that box), mirrored exactly when its seat says so, with a soft contact shadow (blurred, 35% opacity, squashed ellipse) under its base', () => {
+  await test('t', 'Hidden Object 1 in the Attic, Wizard\'s Kitchen and Micro-Kingdoms: every item is drawn at its placed spot and size (its art never spills out of that box), mirrored exactly when its seat says so, with the drop shadow (0 4px 4px, 45% black) and, when it stands on a surface, a soft contact shadow (blurred, squashed ellipse) under its base', () => {
     let n = 0, shadows = 0;
     for (const w of [W, 'wizards-kitchen', W2]) {
       const r = open(M, 1, w);
@@ -2414,28 +2468,29 @@ async function selfTest() {
         n++;
         if (!el || Math.abs(parseFloat(el.style.width) - p.d * 10) > .01 || Math.abs(parseFloat(el.style.left) - (p.x * 10 - p.d * 5)) > .01) return false;
         if (!chip || chip.classList.contains('flip') !== !!p.flip || chip.querySelector('.art').getBoundingClientRect().height > el.getBoundingClientRect().height + 1) return false;
-        if (sh.opacity === '0.35' && sh.filter.includes('blur') && sh.borderRadius === '50%' && parseFloat(sh.height) < parseFloat(sh.width)) shadows++;
+        const drop = getComputedStyle(chip.querySelector('.art')).filter === 'drop-shadow(rgba(0, 0, 0, 0.45) 0px 4px 4px)';
+        if (drop && (p.pin ? sh.display === 'none' : sh.filter.includes('blur') && sh.borderRadius === '50%' && parseFloat(sh.height) < parseFloat(sh.width))) shadows++;
       }
     }
     if (shadows !== n) throw new Error(`${n - shadows} of ${n} without a shadow`);
     return `${n} items checked in the three worlds, ${shadows} with a contact shadow`;
   });
   // ----- the full game: checks (u) onward -----
-  const slow = { ...TIME }, quick = { hold: 40, fly: 30, peek: 10000, curtain: 30, echo: 120 };
+  const slow = { ...TIME }, quick = { hold: 40, fly: 30, peek: 10000, curtain: 30, echo: 120, glide: 60 };
   const centre = k => { const p = round.placed.find(p => p.k === k), s = spotOf(k); return p ? [p.x - (round.pane || { x: 0 }).x, p.y] : [s.x + s.w / 2 - (round.pane || { x: 0 }).x, s.y + s.h / 2]; };
   const solve = async () => { // plays the live round to its win through the real tap and click handlers
     const r = round;
     if (r.kind === 'memory') { $('[data-act=ready]').click(); await wait(TIME.curtain * 2 + 40); }
     for (const k of r.need) {
-      if (r.sets || r.kind === 'memory') $(`.card[data-arg="${k}"]`).click(); else tapScene(...centre(k));
+      if (r.sets) $(`.card[data-arg="${k}"]`).click(); else tapScene(...centre(k));
       if (r.ordered) await wait(TIME.hold + TIME.fly + 50);
     }
     await wait(TIME.hold + TIME.fly + 80);
     for (let t = 0; t < 40 && r.kind === 'scene' && r.landed < r.need.length; t++) await wait(50); // a busy page can run the fly timers late
   };
-  const WANT = { 'hidden-object': [15, 20], 'i-spy': [3, 5], count: [3, 9], twins: [2, 2], 'spot-difference': [3, 5], 'odd-one-out': [3, 3], shadow: [4, 4],
-    vanished: [1, 1], changed: [1, 1], 'doesnt-belong': [3, 3], zoom: [3, 3] }; // targets per round, lowest and highest (fewer when a thing has no legal seat)
-  await test('u', 'Every one of the 11 modes deals and script-completes a round in the Attic AND in Micro-Kingdoms: each wins, earns one piece and unlocks sub-stage 2', async () => {
+  const WANT = { 'hidden-object': [15, 20], 'i-spy': [3, 5], count: [3, 9], twins: [2, 2], 'spot-difference': [3, 5], shadow: [4, 4],
+    changed: [1, 1], zoom: [3, 3] }; // targets per round, lowest and highest (fewer when a thing has no legal seat)
+  await test('u', 'Every one of the 8 modes deals and script-completes a round in the Attic AND in Micro-Kingdoms: each wins, earns one piece and unlocks sub-stage 2', async () => {
     Object.assign(TIME, quick);
     const bad = [];
     reset();
@@ -2449,21 +2504,21 @@ async function selfTest() {
     }
     Object.assign(TIME, slow);
     if (bad.length) throw new Error(bad.join(', '));
-    return save.machines.pieces.join() === '10,10,2,0,0' && save.powers.join() === 'zoom,scanner' && clearedIn(W) === 11 && clearedIn(W2) === 11;
+    return save.machines.pieces.join() === '10,6,0,0,0' && save.powers.join() === 'zoom' && clearedIn(W) === 8 && clearedIn(W2) === 8;
   });
-  await test('v', 'Frozen seeds: all 1,100 sub-stages (10 worlds x 11 modes x 10) deal the same layout hash twice, with the target count each mode promises; three sub-stages match their frozen hashes, and what every sub-stage picks (before seating) matches the frozen picks', () => {
-    const picks = hash(WORLDS.flatMap(w => MODES.flatMap(m => TEN.map(n => { const r = deal(w.id, m, n, true); return JSON.stringify([r.placed.map(p => p.k), (r.diffs || []).map(d => d.k), (r.choices || []).map(c => c.k), (r.sets || []).map(s => s.cards.map(c => c.item.id)), r.need]); }))).join());
+  await test('v', 'Frozen seeds: all 720 sub-stages (9 worlds x 8 modes x 10) deal the same layout hash twice, with the target count each mode promises; three sub-stages match their frozen hashes, and what every sub-stage picks (before seating) matches the frozen picks', () => {
+    const picks = hash(WORLDS.flatMap(w => MODES.flatMap(m => TEN.map(n => { const r = deal(w.id, m, n, true); return JSON.stringify([r.placed.map(p => p.k), (r.diffs || []).map(d => d.k), (r.sets || []).map(s => s.cards.map(c => c.item.id)), r.need]); }))).join());
     if (picks !== FROZEN_PICKS) throw new Error(`picks hash ${picks}`);
     const bad = [];
     for (const w of WORLDS) for (const m of MODES) for (const n of TEN) {
       const r = deal(w.id, m, n), [lo, hi] = WANT[m];
       if (layoutHash(r) !== layoutHash(deal(w.id, m, n)) || r.need.length < lo || r.need.length > hi || new Set(r.need).size !== r.need.length ||
-        r.sets && r.sets.some(s => s.cards.filter(c => c.hit).length !== 1 || s.cards.length < 4) || r.choices && (r.choices.length !== 3 || !r.choices.some(c => c.k === r.need[0])) ||
-        m === 'odd-one-out' && r.sets.some(s => new Set(s.cards.map(c => c.item.n % 8 + c.item.name[0])).size !== 2) ||
+        r.sets && r.sets.some(s => s.cards.filter(c => c.hit).length !== 1 || s.cards.length < 4) ||
+        m === 'changed' && (r.diffs.length !== 1 || r.diffs[0].spot || !r.diffs[0].item || r.diffs[0].k !== r.need[0] || !r.placed.includes(r.diffs[0].was)) ||
         m === 'shadow' && r.sets.some(s => new Set(s.cards.map(c => c.item.n % 8)).size !== s.cards.length)) bad.push(`${w.id}/${m}/${n}`);
     }
     if (bad.length) throw new Error(`${bad.length} bad: ${bad.slice(0, 4).join(', ')}`);
-    return same([hashOf(7, WORLDS[4].id, 'spot-difference'), hashOf(3, WORLDS[8].id, 'changed'), hashOf(10, WORLDS[9].id, 'doesnt-belong')], FROZEN_MORE);
+    return same([hashOf(7, WORLDS[4].id, 'spot-difference'), hashOf(3, WORLDS[8].id, 'changed'), hashOf(10, WORLDS[7].id, 'zoom')], FROZEN_MORE);
   });
   await test('w', 'Round rules in every world: at most one look-alike family member is placed in a round, no DECOY-ONLY item is ever a target, and both members of a twin pair appear only in Twin Finder (where they are the two targets)', () =>
     WORLDS.every(w => MODES.every(m => TEN.every(n => {
@@ -2498,15 +2553,19 @@ async function selfTest() {
     return all && more && shown && same(got, ['zoom', 'zoom,scanner', 'zoom,scanner,hint', 'zoom,scanner,hint,echo', 'zoom,scanner,hint,echo,shield']) &&
       !count('.mcap .powers .mb') && (open(M), count('#powers .off') === 5);
   });
-  await test('z', 'Each power performs its effect once per round: Super Zoom adds a zoom level, Hint rings the target\'s zone, Echo Replay re-shows the scene, Truth Scanner answers without guessing, Oops Shield forgives one wrong tap', async () => {
+  await test('z', 'Each power performs its effect once per round: Super Zoom glides in to 3x with the next target in view (no ring), Hint rings the target\'s zone, Echo Replay re-shows the scene, Truth Scanner answers without guessing, Oops Shield forgives one wrong tap; What Changed? is answered by tapping the picture, and three wrong taps bring back the first look', async () => {
     Object.assign(TIME, quick);
     reset();
     save.powers = Object.values(POWERS);
     const use = p => $(`#powers [data-arg=${p}]`).click(), spent = p => $(`#powers [data-arg=${p}]`).disabled;
     let r = open(M);
-    const max0 = cam.max, s0 = cam.s;
+    await wait(400); // the play sheet has finished sliding in, so the view keeps its size
+    const s0 = cam.min;
     use('zoom');
-    const zoomed = max0 === 4 && cam.max === 8 && cam.s > s0 * 1.9 && spent('zoom') && (use('zoom'), cam.max === 8);
+    const zoomed = Math.abs(cam.s - s0 * 3) < 1e-6 && cam.max === 8 && count('.scene.glide') === 1 && !count('.hintring') && spent('zoom');
+    await wait(950); // the CSS glide itself takes .9s
+    const el0 = $('#i-' + r.need[0]).getBoundingClientRect(), vb = $('#view').getBoundingClientRect();
+    const settled = !count('.scene.glide') && el0.left >= vb.left && el0.right <= vb.right && el0.top >= vb.top && el0.bottom <= vb.bottom;
     use('hint');
     const t = r.placed.find(p => p.k === r.need[0]), z = r.w.zones.find(z => z.id === t.zone) || r.w.painted.find(s => s.id === t.over), ring = $('.hintring');
     const hinted = !!ring && parseFloat(ring.style.left) <= t.x * 10 && parseFloat(ring.style.left) + parseFloat(ring.style.width) >= t.x * 10 &&
@@ -2521,27 +2580,39 @@ async function selfTest() {
     const forgiven = r.wrong === 0 && !count('.shake') && spent('shield') && count('.toast') === 1;
     tapScene(decoy.x, decoy.y);
     const then = r.wrong === 1 && count('.shake') === 1;
-    r = open('doesnt-belong');
+    r = open('zoom');
     use('scanner');
-    const wrongCard = $('.row .card:not([data-arg=s0])'), rightCard = $('.card[data-arg=s0]');
-    wrongCard.click();
-    const scanned = !r.found.length && r.wrong === 0 && !wrongCard.classList.contains('shake') && count('.verdict') === 1 && !count('.verdict.yes') &&
+    const other = r.placed.find(p => !p.target), px = (r.pane || { x: 0 }).x;
+    tapScene(other.x - px, other.y);
+    const scanned = !r.found.length && r.wrong === 0 && !count('.shake') && count('.verdict') === 1 && !count('.verdict.yes') &&
       $('.toast').textContent === LABELS.ui.notBelongs && spent('scanner');
-    wrongCard.click();
-    const after = r.wrong === 1 && wrongCard.classList.contains('shake');
+    tapScene(other.x - px, other.y);
+    const after = r.wrong === 1 && count('.shake') === 1;
+    r = open('shadow');
     use('hint');
-    const cardHint = rightCard.classList.contains('hinted') && $('#powers [data-arg=zoom]').disabled;
-    r = open('vanished');
-    const early = $('#powers [data-arg=echo]').disabled;
+    const cardHint = $('.card[data-arg=s0]').classList.contains('hinted') && $('#powers [data-arg=zoom]').disabled;
+    r = open('changed');
+    const early = $('#powers [data-arg=echo]').disabled && !count('.choices');
     $('[data-act=ready]').click();
     await wait(TIME.curtain * 2 + 40);
     const a = new DOMParser().parseFromString(sceneHTML(r, 0, ''), 'text/html').body.firstChild.innerHTML, b = $('#scene').innerHTML;
+    const asking = count('.peekbar.asking') === 1 && !count('#over .card') && r.phase === 'ask';
     use('echo');
     const again = $('#scene').innerHTML === a && $('#over').hidden;
     await wait(TIME.echo + 60);
-    const restored = $('#scene').innerHTML === b && !$('#over').hidden && a !== b && spent('echo') && count('.choices .card') === 3;
+    const restored = $('#scene').innerHTML === b && !$('#over').hidden && a !== b && spent('echo');
+    const d = r.diffs[0], wrong = r.placed.filter(p => p !== d.was).slice(0, 3);
+    const swapped = !!$('#i-' + d.k + ' img.art') && $('#i-' + d.k + ' img.art').getAttribute('src') === (d.item.blend || d.item.sprite);
+    wrong.forEach(p => tapScene(p.x - r.pane.x, p.y));
+    await wait(TIME.hold + 40);
+    const looked = wrong.length === 3 && r.phase === 'peek' && $('#scene').innerHTML === a && count('[data-act=ready]') === 1 && $('.toast').textContent === LABELS.ui.lookAgain;
+    $('[data-act=ready]').click();
+    await wait(TIME.curtain * 2 + 40);
+    tapScene(d.was.x - r.pane.x, d.was.y);
+    await wait(TIME.hold + TIME.fly + 80);
+    const won = r.found[0] === d.k && count('.win') === 1;
     Object.assign(TIME, slow);
-    return zoomed && hinted && peeked && back && forgiven && then && scanned && after && cardHint && early && again && restored;
+    return zoomed && settled && hinted && peeked && back && forgiven && then && scanned && after && cardHint && early && asking && again && restored && swapped && looked && won;
   });
   await test('aa', 'Music follows navigation on the one audio element: home.m4a on homes and menus, the world\'s own track in its puzzles; every track file exists; the Music toggle pauses it', async () => {
     reset();
@@ -2585,15 +2656,15 @@ async function selfTest() {
     return exact && resumed && same(save.powers, ['zoom']) && save.dealt === DEALT && !save.inProgress && save.machines.pieces.join() === '10,4,0,0,0' &&
       modeProgress(W, M).clearedSubStages.length === 10 && same(readCode(exportCode()), save);
   });
-  await test('ac', 'Sprites come from each world\'s items/manifest.json with no code change: every one of the 100 items in all 10 worlds draws as art, none as a placeholder; all 11 modes and all 10 worlds are open from the start; Play Together is open in a world\'s menu and in Settings', async () => {
+  await test('ac', 'Sprites come from each world\'s items/manifest.json with no code change: every one of the 100 items in all 9 worlds draws as art, none as a placeholder; all 8 modes and all 9 worlds are open from the start; Play Together is open in a world\'s menu and in Settings', async () => {
     const m = await (await fetch(`assets/worlds/${W}/items/manifest.json`)).json(), ids = Object.keys(m.items), A = WORLDS[0];
     for (const id of ids) if (!(await fetch(A.byId[id].sprite)).ok) throw new Error(id);
     reset(); open(M);
     const drawn = round.placed.every(p => !!$(`#i-${p.k} img.art`) === ids.includes(p.item.id) && !!$(`#i-${p.k} .chip b`) !== ids.includes(p.item.id));
     show('home');
-    const worlds = count('#room .hot[data-tap^="world:"]') === 10;
+    const worlds = count('#room .hot[data-tap^="world:"]') === 9;
     ACT.world(W2);
-    const modes = count('.mode:not(:disabled)') === 11, menu = count('.shead [data-arg="together"]:not(:disabled)') === 1;
+    const modes = count('.mode:not(:disabled)') === 8, menu = count('.shead [data-arg="together"]:not(:disabled)') === 1;
     show('settings');
     return ids.length >= 100 && WORLDS.every(w => w.items.length === 100 && w.items.every(i => i.sprite)) && drawn && worlds && modes &&
       menu && count('#together [data-arg="together"]:not(:disabled)') === 1;
@@ -2631,8 +2702,8 @@ async function selfTest() {
   document.body.insertAdjacentHTML('beforeend', `<div class="win"><div class="wincard test"><h1>Self-test: ` +
     `${results.filter(r => r.includes('PASS')).length} of ${results.length} passed</h1><ul>${results.join('')}</ul></div></div>`);
 }
-const FROZEN_HASH = 3005925216, FROZEN_MORE = [4270793942, 4197183560, 4100156888]; // frozen layout hashes (as seated): Attic Hidden Object 1, and three more sub-stages
-const FROZEN_PICKS = 273926691; // what all 1,100 sub-stages pick before seating; unchanged since the layouts were first frozen
+const FROZEN_HASH = 1902507832, FROZEN_MORE = [1533119988, 763361938, 3262468211]; // frozen layout hashes (as seated): Attic Hidden Object 1, and three more sub-stages
+const FROZEN_PICKS = 1794223946; // what all 720 sub-stages pick before seating; the kept modes pick what they always picked (What Changed? re-dealt 2026-11-24)
 
 Promise.all([loadData(), loadAtelier()]).then(() => {
   loadSave();
